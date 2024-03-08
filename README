@@ -19,8 +19,9 @@ Basic:
 - Search Bar
 - Logout
 - Forgot-Password (password reset from sign-in page)
+- Chat
 
-Admin:
+Manager:
 - Basic Functions
 - Analytics
 - Activity & Email Log
