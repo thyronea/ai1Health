@@ -1,7 +1,6 @@
 A simple framework for managers.
 
 Coming soon!
-- Encrypt chat
 - Dark Mode
 
 Basic:
