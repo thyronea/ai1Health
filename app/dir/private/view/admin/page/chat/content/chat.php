@@ -35,6 +35,7 @@ if(is_array($profile)){
     $my_image = $myimg['filename']; // Sender's profile image
     $my_fname = mysqli_real_escape_string($con, $_SESSION['fname']); // Sender's first name
     
+    $mydata = "";
     if(!$refresh){
         $mydata ="In conversation with:     
              <div id='active_contact'>
@@ -43,6 +44,7 @@ if(is_array($profile)){
             </div>";
     }
     
+    $messages = "";
     if(!$refresh){
         $messages = "
             <div id='message_holder_parent' style='height: 540px;'>
@@ -54,10 +56,21 @@ if(is_array($profile)){
  
                  if(mysqli_num_rows($view_msg_query_run) > 0){
                      foreach($view_msg_query_run as $view){
+                         $chat_id = $view['id'];
                          $sender = $view['sender_ID'];
+                         $receiver = $view['receiver_ID'];
                          $view_msg = $view['message'];
                          $view_time = $view['time'];
                          $view_date = $view['date'];
+                         
+                         if($myuserID == $receiver){
+                            $update_received = "1";
+                            $received_msg  = "UPDATE chat SET received=? WHERE id='$chat_id' ";
+                            $stmt = $con->prepare($received_msg);
+                            $stmt->bind_param("s", $update_received);
+                            $stmt->execute();
+                         }
+
                          if($myuserID == $sender){
                              $messages .= message_right($my_image, $my_fname, $view_msg, $view_time, $view_date);
                          }
@@ -115,19 +128,21 @@ else{
             $profile_query_run = mysqli_query($con, $profile_query);
             $profile = mysqli_fetch_array($profile_query_run);
 
-            $image = $img['filename']; // Receiver's profile image
+            $id = $profile['userID'];
             $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+            $image = $img['filename']; // Receiver's profile image
             $preview_msg = $msg['message'];
             $preview_msg_date = $msg['date'];
             $preview_msg_time = $msg['time'];
 
             $mydata .="
-                <div id='active_contact'>
+                <div id='active_contact' userid='$id' onclick='start_chat(event)' style='cursor:pointer'>
                     <img src='../../../image/profile/$image'>
-                    <div  class='mt-2'>
-                        $fname<br>
-                        <small>$preview_msg_date $preview_msg_time</small>
-                    </div>
+                    $fname<br>
+                    <span style='font-size: 11px'>
+                        $preview_msg<br>
+                        $preview_msg_date $preview_msg_time
+                    </span>
                 </div>";
 
             

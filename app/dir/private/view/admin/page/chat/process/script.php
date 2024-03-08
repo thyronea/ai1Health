@@ -79,7 +79,7 @@
           message_holder.scrollTo(0, message_holder.scrollHeight);
           var message_text = _("message_text");
           message_text.focus(); 
-        }, 0);
+        }, 100);
         
         break;  
 
