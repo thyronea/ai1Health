@@ -3,8 +3,9 @@ A simple framework for managers.
 Coming soon!
 - Dark Mode
 
-Basic:
-- Register
+Regular User:
+- Data encrypted
+- Register 
 - Registration - Email Verification (required)
 - Sign In
 - Sign In - Email Code Verification (required)
@@ -20,8 +21,8 @@ Basic:
 - Forgot-Password (password reset from sign-in page)
 - Chat
 
-Manager:
-- Basic Functions
+Admin User (Manager Tab):
+- Everything in Basic
 - Analytics
 - Activity & Email Log
 - Account Management - Add/Edit/Delete User
