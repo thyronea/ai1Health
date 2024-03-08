@@ -27,24 +27,20 @@ elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "send_message"){
   include('../content/send-message.php');
 }
 
-function message_left($image, $fname, $view_msg, $view_time, $view_date){
+function message_left($image, $fname, $decrypted_msg, $view_time, $view_date){
   return "
     <div id='message_left'>
-      <div></div>
-      <img src='../../../image/profile/$image'>
       $fname:<br>
-      $view_msg<br><br>
+      $decrypted_msg<br>
       <span>$view_date $view_time</span> 
     </div>";
 }
 
-function message_right($my_image, $my_fname, $view_msg, $view_time, $view_date){
+function message_right($my_image, $my_fname, $decrypted_msg, $view_time, $view_date){
   return "
     <div id='message_right'>
-      <div></div>
-      <img src='../../../image/profile/$my_image' style='float: right;'>
       $my_fname:<br>
-      $view_msg<br><br>
+      $decrypted_msg<br>
       <span>$view_date $view_time</span> 
     </div>";
 }

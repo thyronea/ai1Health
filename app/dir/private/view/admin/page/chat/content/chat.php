@@ -59,7 +59,7 @@ if(is_array($profile)){
                          $chat_id = $view['id'];
                          $sender = $view['sender_ID'];
                          $receiver = $view['receiver_ID'];
-                         $view_msg = $view['message'];
+                         $view_msg = decryptthis($view['message'], $key); // decrypt message
                          $view_time = $view['time'];
                          $view_date = $view['date'];
                          
@@ -96,8 +96,8 @@ if(is_array($profile)){
 else{
     
     
-    // View messages
-    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' OR receiver_ID='$myuserID' GROUP BY message_ID ORDER BY id DESC";
+    // Preview chat
+    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' OR receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp";
     $view_chat_run = mysqli_query($con, $view_chat);
 
     $mydata ="Preview Chat:<br>";    
@@ -108,9 +108,6 @@ else{
             
             $msg_ID = $preview['message_ID'];
             $sender_ID = $preview['sender_ID'];
-            $preview_msg = $preview['message'];
-            $preview_date = $preview['date'];
-            $preview_time = $preview['time'];
 
             if($sender_ID == $_SESSION['userID']){
                 $sender_ID = $preview['receiver_ID']; 
@@ -131,9 +128,9 @@ else{
             $id = $profile['userID'];
             $fname = decryptthis($profile['fname'], $key); // Receiver's first name
             $image = $img['filename']; // Receiver's profile image
-            $preview_msg = $msg['message'];
-            $preview_msg_date = $msg['date'];
-            $preview_msg_time = $msg['time'];
+            $preview_msg = decryptthis($msg['message'], $key); // Decrypted chat message
+            $preview_date = $msg['date']; // Message date
+            $preview_time = $msg['time']; // Message time
 
             $mydata .="
                 <div id='active_contact' userid='$id' onclick='start_chat(event)' style='cursor:pointer'>
@@ -141,7 +138,7 @@ else{
                     $fname<br>
                     <span style='font-size: 11px'>
                         $preview_msg<br>
-                        $preview_msg_date $preview_msg_time
+                        $preview_date $preview_time
                     </span>
                 </div>";
 

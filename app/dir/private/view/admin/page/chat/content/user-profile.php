@@ -21,7 +21,7 @@
         </a>
     </span><br>
 
-    <span id="email" style="font-size: 12px; opacity: 0.5;"><?=$_SESSION['email'];?></span>
+    
 
     <br>
     <br>

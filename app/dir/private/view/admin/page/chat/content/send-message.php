@@ -13,7 +13,7 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $myuserID = mysqli_real_escape_string($con, $_SESSION['userID']);
 
 $userID = "null";
-if(isset($DATA_OBJ->find->userid)){+
+if(isset($DATA_OBJ->find->userid)){
     $userID = $DATA_OBJ->find->userid;
 }
 
@@ -31,7 +31,6 @@ $myimg = mysqli_fetch_array($my_img_query_run);
 
 if(is_array($profile)){
 
-    $message = $DATA_OBJ->find->message;
     $time = date("h:i:s A");
     $date = $today;
     $message_ID = rand(1000000,9999999);
@@ -48,11 +47,13 @@ if(is_array($profile)){
     $fname = decryptthis($profile['fname'], $key); // Receiver's first name
     $my_image = $myimg['filename']; // Sender's profile image
     $my_fname = mysqli_real_escape_string($con, $_SESSION['fname']); // Sender's first name
+    $message = $DATA_OBJ->find->message; // Chat message
+    $encrypted_message = encryptthis($message, $key); // encrypt message
 
     // Send message
     $send_query = "INSERT INTO chat (groupID, message_ID, sender_ID, receiver_ID, message, time, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($send_query);
-    $stmt->bind_param("sssssss", $groupID, $message_ID, $myuserID, $userID, $message, $time, $date);
+    $stmt->bind_param("sssssss", $groupID, $message_ID, $myuserID, $userID, $encrypted_message, $time, $date);
     $stmt->execute();
     
     $mydata ="In conversation with:     
@@ -73,13 +74,14 @@ if(is_array($profile)){
                     foreach($view_msg_query_run as $view){
                         $sender = $view['sender_ID'];
                         $view_msg = $view['message'];
+                        $decrypted_msg = decryptthis($view_msg, $key); // decrypt message
                         $view_time = $view['time'];
                         $view_date = $view['date'];
                         if($_SESSION['userID'] == $sender){
-                            $messages .= message_right($my_image, $my_fname, $view_msg, $view_time, $view_date);
+                            $messages .= message_right($my_image, $my_fname, $decrypted_msg, $view_time, $view_date);
                         }
                         else{
-                            $messages .= message_left($image, $fname, $view_msg, $view_time, $view_date);
+                            $messages .= message_left($image, $fname, $decrypted_msg, $view_time, $view_date);
                         }
                     }
                 }
