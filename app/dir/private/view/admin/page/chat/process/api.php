@@ -33,7 +33,7 @@ function message_left($image, $fname, $view_msg, $view_time, $view_date){
       <div></div>
       <img src='../../../image/profile/$image'>
       $fname:<br>
-      $view_msg<br>
+      $view_msg<br><br>
       <span>$view_date $view_time</span> 
     </div>";
 }
@@ -44,7 +44,7 @@ function message_right($my_image, $my_fname, $view_msg, $view_time, $view_date){
       <div></div>
       <img src='../../../image/profile/$my_image' style='float: right;'>
       $my_fname:<br>
-      $view_msg<br>
+      $view_msg<br><br>
       <span>$view_date $view_time</span> 
     </div>";
 }

@@ -13,7 +13,7 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $myuserID = mysqli_real_escape_string($con, $_SESSION['userID']);
 
 $userID = "null";
-if(isset($DATA_OBJ->find->userid)){
+if(isset($DATA_OBJ->find->userid)){+
     $userID = $DATA_OBJ->find->userid;
 }
 
