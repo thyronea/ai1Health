@@ -36,7 +36,7 @@
           </div>
 
           <div class="form-group mt-4 mb-3" align="center">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-settings-Modal">Back</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-manager-Modal">Back</button>
             <button type="submit" name="update_btn" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
           </div>
 
