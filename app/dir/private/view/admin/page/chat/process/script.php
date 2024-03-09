@@ -1,28 +1,4 @@
 <script>
-  $(document).ready(function () {
-    $('.chatbtn').on('click', function() {
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-
-      $('#chat_userID').val(data[0]);
-      $('#chat_userID2').val(data[0]);
-      $('#chat_engineID').val(data[1]);
-      $('#chat_groupID').val(data[2]);
-      $('#chat_name').val(data[3]);
-      $('#chat_email').val(data[4]);
-      $('#chat_role').val(data[5]);
-      $('#chat_box').val(data[6]);
-    });
-  });
-</script>
-
-<script>
 
   var CURRENT_CHAT_USER = "";
   var SEEN_STATUS = false;
@@ -82,7 +58,7 @@
           message_holder.scrollTo(0, message_holder.scrollHeight);
           var message_text = _("message_text");
           message_text.focus(); 
-        },0);
+        }, 100);
         
         break;  
 
