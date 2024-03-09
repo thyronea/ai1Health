@@ -12,8 +12,10 @@ if(isset($DATA_OBJ->find->userid)){
 }
 
 $refresh = false;
+$seen = false;
 if($DATA_OBJ->data_type == "chat_refresh"){
     $refresh = true;
+    $seen = $DATA_OBJ->find->seen;
 }
 
 $profile_query = "SELECT * FROM profile WHERE userID='$userID' AND groupID='$groupID' LIMIT 1";
@@ -47,7 +49,7 @@ if(is_array($profile)){
     $messages = "";
     if(!$refresh){
         $messages = "
-            <div id='message_holder_parent' style='height: 540px;'>
+            <div id='message_holder_parent' onclick='set_seen(event)' style='height: 540px;'>
                 <div id='message_holder' style='height: 500px; overflow: auto'>";
     }
                  // View messages
@@ -59,10 +61,22 @@ if(is_array($profile)){
                          $chat_id = $view['id'];
                          $sender = $view['sender_ID'];
                          $receiver = $view['receiver_ID'];
+                         $seen_msg = $view['seen'];
+                         $received_msg = $view['received'];
                          $view_msg = decryptthis($view['message'], $key); // decrypt message
                          $view_time = $view['time'];
                          $view_date = $view['date'];
                          
+                         // Update chat table when message is seen
+                         if($myuserID == $receiver && $received_msg = 1 && $seen){
+                            $update_received = "1";
+                            $received_msg  = "UPDATE chat SET seen=? WHERE id='$chat_id' ";
+                            $stmt = $con->prepare($received_msg);
+                            $stmt->bind_param("s", $update_received);
+                            $stmt->execute();
+                         }
+
+                         // Update chat table when message is received
                          if($myuserID == $receiver){
                             $update_received = "1";
                             $received_msg  = "UPDATE chat SET received=? WHERE id='$chat_id' ";
@@ -70,12 +84,12 @@ if(is_array($profile)){
                             $stmt->bind_param("s", $update_received);
                             $stmt->execute();
                          }
-
+                         
                          if($myuserID == $sender){
-                             $messages .= message_right($my_image, $my_fname, $view_msg, $view_time, $view_date);
+                             $messages .= message_right($seen_msg, $received_msg, $my_fname, $view_msg, $view_time, $view_date);
                          }
                          else{
-                             $messages .= message_left($image, $fname, $view_msg, $view_time, $view_date);
+                             $messages .= message_left($seen_msg, $received_msg, $fname, $view_msg, $view_time, $view_date);
                          }
                      }
                  }
@@ -97,7 +111,7 @@ else{
     
     
     // Preview chat
-    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' OR receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp";
+    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' OR receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
     $view_chat_run = mysqli_query($con, $view_chat);
 
     $mydata ="Preview Chat:<br>";    
@@ -109,11 +123,11 @@ else{
             $msg_ID = $preview['message_ID'];
             $sender_ID = $preview['sender_ID'];
 
-            if($sender_ID == $_SESSION['userID']){
+            if($sender_ID == $myuserID){
                 $sender_ID = $preview['receiver_ID']; 
             }
 
-            $msg_query = "SELECT * FROM chat WHERE message_ID='$msg_ID' AND sender_ID='$myuserID' OR receiver_ID='$userID' ORDER BY timestamp DESC LIMIT 1";
+            $msg_query = "SELECT * FROM chat WHERE message_ID='$msg_ID' AND sender_ID='$myuserID' OR receiver_ID='$myuserID' ORDER BY timestamp DESC LIMIT 1";
             $msg_query_run = mysqli_query($con, $msg_query);
             $msg = mysqli_fetch_array($msg_query_run);
 

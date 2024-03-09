@@ -73,15 +73,18 @@ if(is_array($profile)){
                 if(mysqli_num_rows($view_msg_query_run) > 0){
                     foreach($view_msg_query_run as $view){
                         $sender = $view['sender_ID'];
+                        $receiver = $view['receiver_ID'];
+                        $seen_msg = $view['seen'];
+                        $received_msg = $view['received'];
                         $view_msg = $view['message'];
                         $decrypted_msg = decryptthis($view_msg, $key); // decrypt message
                         $view_time = $view['time'];
                         $view_date = $view['date'];
-                        if($_SESSION['userID'] == $sender){
-                            $messages .= message_right($my_image, $my_fname, $decrypted_msg, $view_time, $view_date);
+                        if($myuserID == $sender){
+                            $messages .= message_right($seen_msg, $received_msg, $my_fname, $decrypted_msg, $view_time, $view_date);
                         }
                         else{
-                            $messages .= message_left($image, $fname, $decrypted_msg, $view_time, $view_date);
+                            $messages .= message_left($seen_msg, $received_msg, $fname, $decrypted_msg, $view_time, $view_date);
                         }
                     }
                 }

@@ -27,22 +27,40 @@ elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "send_message"){
   include('../content/send-message.php');
 }
 
-function message_left($image, $fname, $decrypted_msg, $view_time, $view_date){
-  return "
+function message_left($seen_msg, $received_msg, $fname, $decrypted_msg, $view_time, $view_date){
+  $b = "
     <div id='message_left'>
+    <div>";
+    
+    if($seen_msg){
+      $b .= "<i class='bi bi-eye' style='color: green'></i>";
+    }
+    
+    $b .= "</div>
       $fname:<br>
       $decrypted_msg<br>
       <span>$view_date $view_time</span> 
     </div>";
+
+    return $b;  
 }
 
-function message_right($my_image, $my_fname, $decrypted_msg, $view_time, $view_date){
-  return "
+function message_right($seen_msg, $received_msg, $my_fname, $decrypted_msg, $view_time, $view_date){
+  $a = "
     <div id='message_right'>
+    <div>";
+    
+    if($seen_msg){
+      $a .= "<i class='bi bi-eye' style='color: green'></i>";
+    }
+    
+    $a .= "</div>
       $my_fname:<br>
       $decrypted_msg<br>
       <span>$view_date $view_time</span> 
     </div>";
+
+    return $a;
 }
 
 function message_controller(){

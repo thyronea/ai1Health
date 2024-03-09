@@ -118,7 +118,7 @@
     position: relative;
   }
   #message_left img{
-    width: 55px;;
+    width: 55px;
     height: 55px;
     margin: 5px;
     float: left;
@@ -128,11 +128,15 @@
   #message_left div{
     width: 15px;
     height: 15px;
-    background-color: #08c331;
     border-radius: 50%;
     position: absolute;
     left: 45px;
     top: 47px;
+  }
+  #message_left div i{
+    position: absolute;
+    left: 0.5px;
+    top: -1.5px;
   }
   #message_left span{
     font-size: 11px;
@@ -161,6 +165,19 @@
     float: right;
     border: solid thin white;
     border-radius: 50%;
+  }
+  #message_right div{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    right: 45px;
+    top: 47px;
+  }
+  #message_right div i{
+    position: absolute;
+    right: 0.5px;
+    top: -1.5px;
   }
   #message_right span{
     font-size: 11px;

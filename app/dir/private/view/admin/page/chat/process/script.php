@@ -25,6 +25,7 @@
 <script>
 
   var CURRENT_CHAT_USER = "";
+  var SEEN_STATUS = false;
   
   // Get Element By ID
   function _(element){
@@ -64,11 +65,13 @@
         break;
       
       case "chat_refresh":
+        SEEN_STATUS = false;
         var message_holder = _("message_holder");
         message_holder.innerHTML = obj.messages;
         break;
 
       case "chat":
+        SEEN_STATUS = false;
         var inner_left_panel = _("inner_left_panel");
         inner_left_panel.innerHTML = obj.user;
         inner_right_panel.innerHTML = obj.messages;
@@ -79,7 +82,7 @@
           message_holder.scrollTo(0, message_holder.scrollHeight);
           var message_text = _("message_text");
           message_text.focus(); 
-        },100);
+        },0);
         
         break;  
 
@@ -142,12 +145,21 @@
     if(e.keyCode == 13){
       send_message(e);
     }
+    SEEN_STATUS = true;
+  }
+
+  // Set seen status to true
+  function set_seen(e){
+    SEEN_STATUS = true;
   }
 
   // Check server for messages every 5 seconds
   setInterval(function(){
     if(CURRENT_CHAT_USER != ""){
-      get_data({userid:CURRENT_CHAT_USER}, "chat_refresh");
+      get_data({
+        userid:CURRENT_CHAT_USER,
+        seen: SEEN_STATUS
+      }, "chat_refresh");
     } 
   },5000);
 
