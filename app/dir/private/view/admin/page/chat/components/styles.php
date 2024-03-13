@@ -135,8 +135,15 @@
   }
   #message_left div i{
     position: absolute;
-    left: 0.5px;
+    left: -40px;
     top: -1.5px;
+  }
+  #message_left #trash{
+    position: absolute;
+    right: 5px;
+    top: 45px;
+    color: grey;
+    cursor: pointer;
   }
   #message_left span{
     font-size: 11px;
@@ -176,8 +183,15 @@
   }
   #message_right div i{
     position: absolute;
-    right: 0.5px;
+    right: -40px;
     top: -1.5px;
+  }
+  #message_right #trash{
+    position: absolute;
+    left: 5px;
+    top: 45px;
+    color: grey;
+    cursor: pointer;
   }
   #message_right span{
     font-size: 11px;

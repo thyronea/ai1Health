@@ -72,6 +72,7 @@ if(is_array($profile)){
 
                 if(mysqli_num_rows($view_msg_query_run) > 0){
                     foreach($view_msg_query_run as $view){
+                        $chat_id = $view['id'];
                         $sender = $view['sender_ID'];
                         $receiver = $view['receiver_ID'];
                         $seen_msg = $view['seen'];
@@ -81,10 +82,10 @@ if(is_array($profile)){
                         $view_time = $view['time'];
                         $view_date = $view['date'];
                         if($myuserID == $sender){
-                            $messages .= message_right($seen_msg, $received_msg, $my_fname, $decrypted_msg, $view_time, $view_date);
+                            $messages .= message_right($chat_id, $seen_msg, $received_msg, $my_fname, $decrypted_msg, $view_time, $view_date);
                         }
                         else{
-                            $messages .= message_left($seen_msg, $received_msg, $fname, $decrypted_msg, $view_time, $view_date);
+                            $messages .= message_left($chat_id, $seen_msg, $received_msg, $fname, $decrypted_msg, $view_time, $view_date);
                         }
                     }
                 }

@@ -92,10 +92,10 @@ if(is_array($profile)){
                          }
                          
                          if($myuserID == $sender){
-                             $messages .= message_right($seen_msg, $received_msg, $my_fname, $view_msg, $view_time, $view_date);
+                             $messages .= message_right($chat_id, $seen_msg, $received_msg, $my_fname, $view_msg, $view_time, $view_date);
                          }
                          else{
-                             $messages .= message_left($seen_msg, $received_msg, $fname, $view_msg, $view_time, $view_date);
+                             $messages .= message_left($chat_id, $seen_msg, $received_msg, $fname, $view_msg, $view_time, $view_date);
                          }
                      }
                  }
