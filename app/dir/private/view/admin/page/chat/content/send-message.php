@@ -96,7 +96,7 @@ if(is_array($profile)){
             
     $info->user = $mydata;
     $info->messages = $messages;
-    $info->data_type = "chat";
+    $info->data_type = "send_message";
     echo json_encode($info);
 }
 else{

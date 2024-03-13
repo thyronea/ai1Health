@@ -1,5 +1,7 @@
 <script>
 
+  var msg_send = new Audio("../../../audio/msg_send.mp3");
+  var msg_received = new Audio("../../../audio/msg_received.mp3");
   var CURRENT_CHAT_USER = "";
   var SEEN_STATUS = false;
   
@@ -44,8 +46,15 @@
         SEEN_STATUS = false;
         var message_holder = _("message_holder");
         message_holder.innerHTML = obj.messages;
+        if(typeof obj.new_message != 'undefined'){
+          if(obj.new_message){
+            msg_received.play();
+          }
+        }
         break;
 
+      case "send_message":
+        msg_send.play();
       case "chat":
         SEEN_STATUS = false;
         var inner_left_panel = _("inner_left_panel");
@@ -58,9 +67,14 @@
           message_holder.scrollTo(0, message_holder.scrollHeight);
           var message_text = _("message_text");
           message_text.focus(); 
-        }, 100);
+        }, 0);
         
-        break;  
+        if(typeof obj.new_message != 'undefined'){
+          if(obj.new_message){
+            msg_received.play();
+          }
+        }
+        break;
 
       case "settings":
         var inner_left_panel = _("inner_left_panel");
@@ -78,14 +92,17 @@
   function get_contacts(e){
     get_data({}, "contacts");
   }
+
   // Retrieves Chat
   function get_chat(e){
     get_data({}, "chat");
   }
+
   // Retrieves Settings
   function get_settings(e){
     get_data({}, "settings");
   }
+
   // Start chat
   function start_chat(e){
     var userid = e.target.getAttribute("userid");
@@ -107,6 +124,7 @@
       alert("Write something you idiot, tf!")
       return;
     }
+
     //alert(message_text.value);
     get_data({
 
@@ -137,7 +155,7 @@
         seen: SEEN_STATUS
       }, "chat_refresh");
     } 
-  },5000);
+  }, 2000);
 
   // Label - Chat; Event Listener 
   var label_chat = _("label_chat");

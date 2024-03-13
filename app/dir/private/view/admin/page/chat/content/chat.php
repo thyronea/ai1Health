@@ -47,6 +47,7 @@ if(is_array($profile)){
     }
     
     $messages = "";
+    $new_message = false;
     if(!$refresh){
         $messages = "
             <div id='message_holder_parent' onclick='set_seen(event)' style='height: 540px;'>
@@ -67,6 +68,11 @@ if(is_array($profile)){
                          $view_time = $view['time'];
                          $view_date = $view['date'];
                          
+                         // Check for new messages
+                         if($received_msg == 0){
+                            $new_message = true;
+                         }
+
                          // Update chat table when message is seen
                          if($myuserID == $receiver && $received_msg = 1 && $seen){
                             $update_received = "1";
@@ -101,6 +107,7 @@ if(is_array($profile)){
             
     $info->user = $mydata;
     $info->messages = $messages;
+    $info->new_message = $new_message;
     $info->data_type = "chat";
     if($refresh){
         $info->data_type = "chat_refresh";

@@ -105,7 +105,7 @@
     height: auto;
     min-height: 10%;
     width: auto;
-    min-width: 50%;
+    min-width: 60%;
     max-width: 70%;
     margin: 10px;
     padding: 2px;
@@ -146,7 +146,7 @@
     height: auto;
     min-height: 10%;
     width: auto;
-    min-width: 50%;
+    min-width: 60%;
     max-width: 70%;
     margin: 10px;
     padding: 2px;
