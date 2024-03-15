@@ -24,10 +24,10 @@ elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "settings"){
   include('../content/settings.php');
 }
 elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "send_message"){
-  include('../content/send-message.php');
+  include('../process/send-message.php');
 }
 elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "delete_message"){
-  include('../content/delete-message.php');
+  include('../process/delete-message.php');
 }
 
 function message_left($chat_id, $seen_msg, $received_msg, $fname, $decrypted_msg, $view_time, $view_date){
@@ -36,14 +36,14 @@ function message_left($chat_id, $seen_msg, $received_msg, $fname, $decrypted_msg
     <div>";
     
     if($seen_msg){
-      $b .= "<i class='bi bi-eye' style='color: green'></i>";
+      $b .= "<i class='bi bi-eye fa-sm' style='color: green' title='Seen'></i>";
     }
     
     $b .= "</div>
       $fname:<br>
       $decrypted_msg<br>
       <span>$view_date $view_time</span> 
-      <i id='trash' class='bi bi-trash' onclick='delete_message(event)' msgid='$chat_id'></i>
+      <i id='trash' class='bi bi-trash' onclick='delete_message(event)' msgid='$chat_id' style='font-size: 0.75em;' title='Delete message'></i>
     </div>";
 
     return $b;  
@@ -55,14 +55,14 @@ function message_right($chat_id, $seen_msg, $received_msg, $my_fname, $decrypted
     <div>";
     
     if($seen_msg){
-      $a .= "<i class='bi bi-eye' style='color: green'></i>";
+      $a .= "<i class='bi bi-eye fa-sm' style='color: green' title='Seen'></i>";
     }
     
     $a .= "</div>
       $my_fname:<br>
       $decrypted_msg<br>
       <span>$view_date $view_time</span> 
-      <i id='trash' class='bi bi-trash' onclick='delete_message(event)' msgid='$chat_id'></i>
+      <i id='trash' class='bi bi-trash' onclick='delete_message(event)' msgid='$chat_id' style='font-size: 0.75em;' title='Delete message'></i>
     </div>";
 
     return $a;

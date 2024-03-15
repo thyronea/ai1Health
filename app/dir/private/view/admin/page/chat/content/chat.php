@@ -51,10 +51,10 @@ if(is_array($profile)){
     if(!$refresh){
         $messages = "
             <div id='message_holder_parent' onclick='set_seen(event)' style='height: 540px;'>
-                <div id='message_holder' style='height: 500px; overflow: auto'>";
+                <div id='message_holder' style='height: 500px; overflow: scroll'>";
     }
                  // View messages
-                 $view_msg_query = "SELECT * FROM chat WHERE (sender_ID='$myuserID' AND receiver_ID='$userID') OR (receiver_ID='$myuserID' AND sender_ID='$userID') ORDER BY id";
+                 $view_msg_query = "SELECT * FROM chat WHERE (sender_ID='$myuserID' AND receiver_ID='$userID' AND sender_deleted='0') OR (receiver_ID='$myuserID' AND sender_ID='$userID' AND receiver_deleted='0') ORDER BY id";
                  $view_msg_query_run = mysqli_query($con, $view_msg_query);
  
                  if(mysqli_num_rows($view_msg_query_run) > 0){

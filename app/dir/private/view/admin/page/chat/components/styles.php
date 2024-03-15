@@ -136,12 +136,12 @@
   #message_left div i{
     position: absolute;
     left: -40px;
-    top: -1.5px;
+    top: 5px;
   }
   #message_left #trash{
     position: absolute;
     right: 5px;
-    top: 45px;
+    top: 50px;
     color: grey;
     cursor: pointer;
   }
@@ -184,12 +184,12 @@
   #message_right div i{
     position: absolute;
     right: -40px;
-    top: -1.5px;
+    top: 5px;
   }
   #message_right #trash{
     position: absolute;
     left: 5px;
-    top: 45px;
+    top: 50px;
     color: grey;
     cursor: pointer;
   }
