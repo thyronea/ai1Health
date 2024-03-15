@@ -51,6 +51,11 @@
             msg_received.play();
           }
         }
+        setTimeout(function(){
+          message_holder.scrollTo(0, message_holder.scrollHeight);
+          var message_text = _("message_text");
+          message_text.focus(); 
+        }, 100);
         break;
 
       case "send_message":
@@ -67,7 +72,7 @@
           message_holder.scrollTo(0, message_holder.scrollHeight);
           var message_text = _("message_text");
           message_text.focus(); 
-        }, 0);
+        }, 100);
         
         if(typeof obj.new_message != 'undefined'){
           if(obj.new_message){
@@ -174,31 +179,22 @@
     }
   }
 
-  // Attach image
-  function send_image(files){
-    var file = files[0];
-    var myform = new FormData();
-    var xml = new XMLHttpRequest();
-    xml.onload = function(){
-      if(xml.readyState == 4 || xml.status == 200){
-        alert(xml.responseText);
-      }
-    }
-
-    myform.append('file', files[0]);
-    myform.append('data_type', "send_image");
-    xml.open("POST", "uploader.php", true);
-    xml.send(myform);
-  }
+ 
 
   // Check server for messages every 5 seconds
   setInterval(function(){
-    if(CURRENT_CHAT_USER != ""){
+    var radio_chat = _("radio_chat");
+    var radio_contacts = _("radio_contacts");
+
+    if(CURRENT_CHAT_USER != "" && radio_chat.checked){
       get_data({
         userid:CURRENT_CHAT_USER,
         seen: SEEN_STATUS
       }, "chat_refresh");
-    } 
+    }
+    if(radio_contacts.checked){
+      get_data({}, "contacts");
+    }  
   }, 2000);
 
   // Label - Chat; Event Listener 

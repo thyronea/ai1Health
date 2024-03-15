@@ -109,6 +109,7 @@
     max-width: 70%;
     margin: 10px;
     padding: 2px;
+    padding-left: 8px;
     padding-right: 8px;
     float: left;
     background-color: #eee;
@@ -135,13 +136,14 @@
   }
   #message_left div i{
     position: absolute;
-    left: -40px;
-    top: 5px;
+    left: 13px;
+    top: 0.75px;
+    color: #4287f5;
   }
   #message_left #trash{
     position: absolute;
-    right: 5px;
-    top: 50px;
+    right: -15px;
+    top: 25px;
     color: grey;
     cursor: pointer;
   }
@@ -158,6 +160,7 @@
     margin: 10px;
     padding: 2px;
     padding-left: 8px;
+    padding-right: 8px;
     float: right;
     background-color: #eee;
     color: #444;
@@ -178,18 +181,19 @@
     height: 15px;
     border-radius: 50%;
     position: absolute;
-    right: 45px;
-    top: 47px;
+    right: 30px;
+    top: 45px;
   }
   #message_right div i{
     position: absolute;
-    right: -40px;
-    top: 5px;
+    right: 25px;
+    top: 3px;
+    color: #4287f5;
   }
   #message_right #trash{
     position: absolute;
-    left: 5px;
-    top: 50px;
+    left: -15px;
+    top: 25px;
     color: grey;
     cursor: pointer;
   }

@@ -23,11 +23,16 @@ $mydata =
             $image = $profile['filename'];
             $fname = htmlspecialchars(decryptthis($profile['fname'], $key));
             
-
-            $mydata .="   
-             <div id='contacts' userid='$id' onclick='start_chat(event)'>
+            $new_message = false;
+            
+            $mydata .= "   
+             <div id='contacts' style='position: relative;' userid='$id' onclick='start_chat(event)'>
                 <img src='../../../image/profile/$image'>
-                <br>$fname 
+                <br>$fname";
+                $mydata .= "<div style='width: 20px; height: 20px; border-radius: 50%; background-color: orange; color: white; position: absolute; left: 35px; top: 0px;'>0</div>   
+                <div style='width: 20px; height: 20px; border-radius: 50%; background-color: orange; color: white; position: absolute; left: 35px; top: 0px;'>0</div>";
+
+            $mydata .= "    
             </div>";
         }
     }
