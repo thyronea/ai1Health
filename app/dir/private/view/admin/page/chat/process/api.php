@@ -20,9 +20,6 @@ elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "contacts"){
 elseif(isset($DATA_OBJ->data_type) && ($DATA_OBJ->data_type == "chat" || $DATA_OBJ->data_type == "chat_refresh")){
   include('../content/chat.php');
 }
-elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "settings"){
-  include('../content/settings.php');
-}
 elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "send_message"){
   include('../process/send-message.php');
 }

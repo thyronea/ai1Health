@@ -80,12 +80,6 @@
           }
         }
         break;
-
-      case "settings":
-        var inner_left_panel = _("inner_left_panel");
-        inner_left_panel.innerHTML = obj.message;
-        inner_right_panel.style.overflow = "hidden";
-        break;
     }
   }
 
@@ -101,11 +95,6 @@
   // Retrieves Chat
   function get_chat(e){
     get_data({}, "chat");
-  }
-
-  // Retrieves Settings
-  function get_settings(e){
-    get_data({}, "settings");
   }
 
   // Start chat
@@ -204,9 +193,5 @@
   // Label - Contacts; Event Listener 
   var label_contacts = _("label_contacts");
   label_contacts.addEventListener("click", get_contacts);
-
-  // Label - Settings; Event Listener 
-  var label_settings = _("label_settings");
-  label_settings.addEventListener("click", get_settings);
 
 </script>

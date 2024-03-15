@@ -30,7 +30,6 @@
     <div>
         <label id="label_chat" for="radio_chat">Chat <i class="bi bi-chat-dots float-end"></i></label>
         <label id="label_contacts" for="radio_contacts">Contacts <i class="bi bi-people float-end"></i></label>
-        <label id="label_settings" for="radio_settings">Settings <i class="bi bi-gear float-end"></i></label> 
     </div>
 
 </div>

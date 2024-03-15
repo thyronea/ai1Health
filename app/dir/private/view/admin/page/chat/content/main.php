@@ -18,7 +18,6 @@
 
             <input type="radio" id="radio_chat" name="myradio" style="display: none;">
             <input type="radio" id="radio_contacts" name="myradio" style="display: none;">
-            <input type="radio" id="radio_settings" name="myradio" style="display: none;">
             
             <div id="inner_right_panel">
                 
