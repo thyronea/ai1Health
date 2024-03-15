@@ -161,6 +161,36 @@
     }
   }
 
+  // Delete thread
+  function delete_thread(e){
+    if(confirm("Are you sure about deleting this thread?")){
+      get_data({
+        userid:CURRENT_CHAT_USER
+      }, "delete_thread");
+      get_data({
+        userid:CURRENT_CHAT_USER,
+        seen: SEEN_STATUS
+      }, "chat_refresh");
+    }
+  }
+
+  // Attach image
+  function send_image(files){
+    var file = files[0];
+    var myform = new FormData();
+    var xml = new XMLHttpRequest();
+    xml.onload = function(){
+      if(xml.readyState == 4 || xml.status == 200){
+        alert(xml.responseText);
+      }
+    }
+
+    myform.append('file', files[0]);
+    myform.append('data_type', "send_image");
+    xml.open("POST", "uploader.php", true);
+    xml.send(myform);
+  }
+
   // Check server for messages every 5 seconds
   setInterval(function(){
     if(CURRENT_CHAT_USER != ""){
