@@ -40,14 +40,6 @@
           </li>
 
           <!--Chat-->
-          <!-- Get user's ID (most recent chat)-->
-          <?php
-            $myID = mysqli_real_escape_string($con, $_SESSION['userID']);
-            $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-            $sql = "SELECT * FROM profile WHERE groupID='$groupID' AND userID!='$myID' ";
-            $sql_run = mysqli_query($con, $sql);
-            $get_ID = mysqli_fetch_assoc($sql_run);
-          ?>
           <li data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Chat" class="nav-item" role="presentation">
             <form method="post">
               <a class="nav-link active" style="color: black; text-decoration: none;" href="../chat/index.php">

@@ -116,42 +116,39 @@ if(is_array($profile)){
 }
 else{
     
-    
     // Preview chat
-    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' OR receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
+    $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' || receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
     $view_chat_run = mysqli_query($con, $view_chat);
+    $row = mysqli_fetch_array($view_chat_run);
 
-    $mydata ="Preview Chat:<br>";    
+    $mydata ="Active Chat<br>";    
 
-    if(mysqli_num_rows($view_chat_run) > 0){
+    if(array_reverse($row)){
         
         foreach($view_chat_run as $preview){
             
             $msg_ID = $preview['message_ID'];
             $sender_ID = $preview['sender_ID'];
+            $preview_msg = decryptthis($preview['message'], $key); // Decrypted chat message
+            $preview_date = $preview['date']; // Message date
+            $preview_time = $preview['time']; // Message time
 
             if($sender_ID == $myuserID){
                 $sender_ID = $preview['receiver_ID']; 
             }
 
-            $msg_query = "SELECT * FROM chat WHERE message_ID='$msg_ID' AND sender_ID='$myuserID' OR receiver_ID='$myuserID' ORDER BY timestamp DESC LIMIT 1";
-            $msg_query_run = mysqli_query($con, $msg_query);
-            $msg = mysqli_fetch_array($msg_query_run);
-
-            $img_query = "SELECT * FROM profile_image WHERE userID='$sender_ID' AND groupID='$groupID' ";
+             // Preview profile image
+            $img_query = "SELECT * FROM profile_image WHERE userID='$sender_ID' AND groupID='$groupID' LIMIT 1";
             $img_query_run = mysqli_query($con, $img_query);
             $img = mysqli_fetch_array($img_query_run);
+            $image = $img['filename']; // Receiver's profile image
 
+            // Preview profile
             $profile_query = "SELECT * FROM profile WHERE userID='$sender_ID' AND groupID='$groupID' LIMIT 1";
             $profile_query_run = mysqli_query($con, $profile_query);
             $profile = mysqli_fetch_array($profile_query_run);
-
             $id = $profile['userID'];
             $fname = decryptthis($profile['fname'], $key); // Receiver's first name
-            $image = $img['filename']; // Receiver's profile image
-            $preview_msg = decryptthis($msg['message'], $key); // Decrypted chat message
-            $preview_date = $msg['date']; // Message date
-            $preview_time = $msg['time']; // Message time
 
             $mydata .="
                 <div id='active_contact' userid='$id' onclick='start_chat(event)' style='cursor:pointer'>

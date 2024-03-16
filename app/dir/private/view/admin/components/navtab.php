@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container">
 
+    <!-- Sidebar Menu Button -->
     <div class="row g-2">
-      <!-- Sidebar Menu Button -->
       <div class="col">
         <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border-none text-decoration-none" style="color: black;"><i class="bi bi-list bi-lg py-2 p-2"></i></a>
       </div>

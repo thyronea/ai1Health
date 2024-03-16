@@ -1,31 +1,66 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container">
 
+    <!-- Sidebar Menu Button -->
+    <div class="row g-2">
+        <!-- User's Dropdown Menu-->
+        <div class="col dropdown mt-2">
+          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li ><a class="dropdown-item user-select-none"><small>Group ID: <b><?=htmlspecialchars($_SESSION["groupID"]);?></b></small></a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li ><a class="dropdown-item focus-ring" href="../../view/profile/index.php?userID=<?=$_SESSION['userID'];?>" target="_blank"><small><?=htmlspecialchars($_SESSION['fname']); ?> <?=htmlspecialchars($_SESSION['lname']); ?></small></a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li ><a class="dropdown-item focus-ring" href="page/settings/index.php?userID=<?=$_SESSION['userID'];?>"><small>Account Settings</small></a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a style="color:black" class="dropdown-item focus-ring btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal"><small>Logout <i class="m-3 bi bi-door-open"></i></small></a></li>
+          </ul>
+        </div>
+      </div>
+
       <nav class="navbar">
         <div class="container">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home" style="color:black">
-                <small>Home</small>
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <div class="dropend mt-2">
-                <a class="dropdown-toggle m-3" href="#" role="button" data-bs-toggle="dropdown" style="color:black;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
-                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
-                  </svg>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a style="color:black" class="dropdown-item focus-ring btn btn-outline" type="button" href="page/settings/index.php?userID=<?=$_SESSION['userID']?>"><small>Settings <i class="m-3 bi bi-gear"></i></i></small></a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a style="color:black" class="dropdown-item focus-ring btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal"><small>Logout <i class="m-3 bi bi-door-open"></i></small></a></li>
-                </ul>
-              </div>
-            </li>
+          
+          <!-- Home -->
+          <li data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Home" class="nav-item" role="presentation">
+            <a class="nav-link active" style="color: black; text-decoration: none;" href="sindex.php">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-house-heart" viewBox="0 0 16 16">
+                <path d="M8 6.982C9.664 5.309 13.825 8.236 8 12 2.175 8.236 6.336 5.309 8 6.982Z"/>
+                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+              </svg>
+            </a>
+          </li>
+
+          <!--Chat-->
+          <li data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Chat" class="nav-item" role="presentation">
+            <form method="post">
+              <a class="nav-link" style="color: black; text-decoration: none;" href="page/chat/loader.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+                  <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                  <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/>
+                </svg>
+              </a>
+            </form>
+          </li>
+
           </ul>
         </div>
       </nav>
+
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
 
       <!-- Main Search Box -->
       <div style="width:305px">

@@ -11,7 +11,7 @@ if(isset($_POST['register_btn'])) {
   // Generate key for data decryption. IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST
   $key = md5(rand());
 
-  // creates a function for data encryption
+  // Creates a function for data encryption
   function encryptthis($data, $key) {
     $encryption_key = base64_decode($key); // Decodes data encoded with MIME base64 using $key
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc')); // Generate a pseudo-random string of bytes
@@ -28,6 +28,7 @@ if(isset($_POST['register_btn'])) {
   $role = mysqli_real_escape_string($con, $_POST['role']);
   $fname = mysqli_real_escape_string($con, $_POST['fname']);
   $lname = mysqli_real_escape_string($con, $_POST['lname']);
+  $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
   $type = mysqli_real_escape_string($con, "Registered");
   $as = mysqli_real_escape_string($con, "as");
   $admin = mysqli_real_escape_string($con, "Admin");
@@ -102,6 +103,12 @@ if(isset($_POST['register_btn'])) {
     $sql = "INSERT INTO profile (userID, engineID, groupID, fname, lname, email, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sssssss", $userID, $engineID, $groupID, $encrypted_fname, $encrypted_lname, $encrypted_email, $encrypted_role);
+    $stmt->execute();
+
+    // stores default profile image to profile_image table
+    $sql = "INSERT INTO profile_image (userID, groupID, filename) VALUES (?, ?, ?)";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $userID, $groupID, $filename);
     $stmt->execute();
 
     // stores data in engine table

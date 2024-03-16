@@ -77,9 +77,9 @@
                                 <small><?= htmlspecialchars($result['keyword2']); ?></small>
                               </a><br>
                               <a href="#" data-bs-toggle="modal" data-bs-target="#message-Modal">
-                                <small>
+                               <!-- <small>
                                   <?= htmlspecialchars($result['keyword3']); ?>
-                                </small>
+                                </small> -->
                               </a>
                               <?php include('../../modal/email/send-email.php'); ?>
                             </div>

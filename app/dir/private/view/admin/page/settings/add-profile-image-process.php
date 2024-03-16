@@ -32,12 +32,12 @@ if(isset($_POST['upload_profile_image']))
 
       if(move_uploaded_file($tempname, "$folder/$img_name")) {
         $_SESSION['success'] = "Successfully Uploaded Image!";
-        header("Location: /private/view/user/page/settings/index.php?userID=$userID");
+        header("Location: /private/view/admin/page/settings/index.php?userID=$userID");
         exit(0);
       }
       else {
         $_SESSION['warning'] = "Unable to Upload Image!";
-        header("Location: /private/view/user/page/settings/index.php?userID=$userID");
+        header("Location: /private/view/admin/page/settings/index.php?userID=$userID");
         exit(0);
       }
     }

@@ -16,7 +16,7 @@
               <!-- Suffix, dob, and Gender -->
               <div class="row g-2 mb-2">
                 <div class="col-md-6">
-                  <input type="date" name="dob" class="form-control form-select-sm" required>
+                  <input title='Date of Birth' type="date" name="dob" class="form-control form-select-sm" required>
                 </div>
                 <div class="col-md-6">
                   <select class="form-select form-select-sm" name="gender">
