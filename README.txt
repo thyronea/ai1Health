@@ -1,4 +1,4 @@
-A simple CRM framework.
+All In 1 Health: A robust electronic health system
 
 Coming soon!
 - Dark Mode
