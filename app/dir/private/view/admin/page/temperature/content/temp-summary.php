@@ -20,7 +20,7 @@
                             <th>Storage Unit:</th>
                           </thead>
                           <?php
-                          $groupID = $_SESSION["group_id"]; // this code will only show users from the same groupID
+                          $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                           $query = "SELECT * FROM storage WHERE groupID='$groupID' ";
                           $query_run = mysqli_query($con, $query);
 
@@ -63,7 +63,6 @@
                             <th>Thermometer:</th>
                           </thead>
                           <?php
-                          $groupID = $_SESSION["group_id"]; // this code will only show users from the same groupID
                           $query = "SELECT * FROM thermometers WHERE groupID='$groupID' ";
                           $query_run = mysqli_query($con, $query);
 
@@ -107,7 +106,6 @@
               <div class="card">
                 <div class="card-body">
                   <?php
-                  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                   $query_avg = "SELECT cast(AVG(current) AS DECIMAL(9,1)) FROM fridgetemp WHERE groupID='$groupID' ";
                   $query_avg_run = mysqli_query($con, $query_avg);
                   $avg = mysqli_fetch_array($query_avg_run);
@@ -123,9 +121,9 @@
 
                   <div class="row" style="text-align:left">
                     <h6 style="color:red">Refrigerator</h6>
-                    <small>Average: <?=htmlspecialchars($avg['cast(AVG(current) AS DECIMAL(9,1))']);?>F&deg;</small>
-                    <small>Highest: <?=htmlspecialchars($max['MAX(max)']);?>F&deg; </small>
-                    <small>Lowest: <?=htmlspecialchars($min['MIN(min)']);?>F&deg;</small>
+                    <small>Average: <?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small>
+                    <small>Highest: <?=$max['MAX(max)'];?>F&deg; </small>
+                    <small>Lowest: <?=$min['MIN(min)'];?>F&deg;</small>
                   </div>
 
                 </div>
@@ -136,7 +134,6 @@
               <div class="card">
                 <div class="card-body">
                   <?php
-                  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                   $query_avg = "SELECT cast(AVG(current) AS DECIMAL(9,1)) FROM freezertemp WHERE groupID='$groupID' ";
                   $query_avg_run = mysqli_query($con, $query_avg);
                   $avg = mysqli_fetch_array($query_avg_run);
@@ -152,9 +149,9 @@
 
                   <div class="row" style="text-align:left">
                     <h6 style="color:blue">Freezer</h6>
-                    <small>Average: <?=htmlspecialchars($avg['cast(AVG(current) AS DECIMAL(9,1))']);?>F&deg;</small>
-                    <small>Highest: <?=htmlspecialchars($max['MAX(max)']);?>F&deg;</small>
-                    <small>Lowest: <?=htmlspecialchars($min['MIN(min)']);?>F&deg;</small>
+                    <small>Average: <?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small>
+                    <small>Highest: <?=$max['MAX(max)'];?>F&deg;</small>
+                    <small>Lowest: <?=$min['MIN(min)'];?>F&deg;</small>
                   </div>
                 </div>
               </div>

@@ -183,4 +183,4 @@ include('../../components/print.php');
 </div>
 
 <!-- Hides background and print entire table on Vaccine Report -->
-<?php include('scripts/print-tempLogs-script.php'); ?>
+<!-- <?php include('scripts/print-tempLogs-script.php'); ?> -->
