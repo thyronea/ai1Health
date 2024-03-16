@@ -30,7 +30,7 @@ function send_password_reset($userID, $fname, $lname, $email, $new_token)
   Hello $fname,
 
   TO RESET YOUR PASSWORD, PLEASE CLICK ON THE LINK BELOW:
-  http://localhost:8000/public/page/password/reset-pw.php?userID=$userID&token=$new_token
+  http://localhost:8002/public/page/password/reset-pw.php?userID=$userID&token=$new_token
 
   If you did not make this request, please contact admin.
 

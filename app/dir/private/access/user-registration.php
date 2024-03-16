@@ -43,7 +43,7 @@ if(isset($_POST['register_user'])) {
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-  http://localhost:8000/private/security/email-verification.php?token=$token
+  http://localhost:8002/private/security/email-verification.php?token=$token
 
   Thank you!
   ");

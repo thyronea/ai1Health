@@ -1,7 +1,7 @@
 
     <footer>
       <div class="footer-bottom">
-        <p>Copyright &copy;<?php echo date("Y"); ?> <a href="/index.php">DLi</a></p>
+        <p>Copyright &copy;<?php echo date("Y"); ?> <a href="/index.php">AI1 Health</a></p>
           <div class="footer-menu">
             <ul class="f-menu">
               <li><a href="/public/page/privacy-policy/index.php">Privacy Policy</a></li>

@@ -2,7 +2,7 @@ services:
   web:
     image: nginx:latest
     ports:
-      - 8000:8080
+      - 8002:8080
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./app:/app
@@ -16,10 +16,10 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8001:8080
+      - 8003:8080
   mariadb:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD:
+      MYSQL_ROOT_PASSWORD: Grayson2019!
 volumes:
   mysqldata: {}

@@ -1,5 +1,5 @@
 <?php
-  if(!isset($page_title)) {$page_title = 'Home';}
+  if(!isset($page_title)) {$page_title = 'Health';}
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DLi - <?php echo $page_title; ?></title>
+    <title>AI1 - <?php echo $page_title; ?></title>
     <?php include('src.php'); ?>
   </head>
 
