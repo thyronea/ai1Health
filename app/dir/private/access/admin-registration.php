@@ -29,6 +29,7 @@ if(isset($_POST['register_btn'])) {
   $fname = mysqli_real_escape_string($con, $_POST['fname']);
   $lname = mysqli_real_escape_string($con, $_POST['lname']);
   $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
+  $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
   $type = mysqli_real_escape_string($con, "Registered");
   $as = mysqli_real_escape_string($con, "as");
   $admin = mysqli_real_escape_string($con, "Admin");
@@ -109,6 +110,12 @@ if(isset($_POST['register_btn'])) {
     $sql = "INSERT INTO profile_image (userID, groupID, filename) VALUES (?, ?, ?)";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $userID, $groupID, $filename);
+    $stmt->execute();
+
+    // stores default background image to background_image table
+    $sql = "INSERT INTO background_image (userID, groupID, filename) VALUES (?, ?, ?)";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $userID, $groupID, $background_filename);
     $stmt->execute();
 
     // stores data in engine table
