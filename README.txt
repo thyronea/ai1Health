@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 Coming soon!
-- Add default background image
 - Dark Mode
 
 Regular User:
