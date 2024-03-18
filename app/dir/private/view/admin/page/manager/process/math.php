@@ -13,6 +13,12 @@ $query = "SELECT count(*) FROM admin WHERE groupID='$groupID' AND role='User' ";
 $query_run = mysqli_query($con, $query);
 $user = mysqli_fetch_array($query_run);
 
+// Count total Location
+$groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+$query = "SELECT count(*) FROM location WHERE groupID='$groupID' ";
+$query_run = mysqli_query($con, $query);
+$location = mysqli_fetch_array($query_run);
+
 // Count total emails sent
 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $query = "SELECT count(*) FROM email WHERE groupID='$groupID' ";

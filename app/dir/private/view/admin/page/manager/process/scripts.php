@@ -9,7 +9,8 @@ Location: page/admin/index.php
     var data = google.visualization.arrayToDataTable([
       ['Category', 'Count'],
       ['Admin', <?=$admin['count(*)']; ?>],
-      ['User', <?=$user['count(*)']; ?>]
+      ['User', <?=$user['count(*)']; ?>],
+      ['Location', <?=$location['count(*)']; ?>]
     ]);
 
     var options = {
@@ -18,7 +19,8 @@ Location: page/admin/index.php
       pieHole: 0.4,
       slices: {
         0: { color: '#96B7FF' },
-        1: { color: '#AEB6BF' }
+        1: { color: '#AEB6BF' },
+        2: { color: '#AAB7B8' }
       }
     };
 
@@ -110,6 +112,65 @@ Location: components/footer.php
       $('#delete_engineID').val(data[1]);
       $('#delete_fname').val(data[3]);
       $('#delete_lname').val(data[4]);
+
+    });
+  });
+</script>
+
+<!--
+Title: Edit Location
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.location-editbtn').on('click', function() {
+
+      $('#location-edit').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#location_id').val(data[0]);
+      $('#location_engine_id').val(data[1]);
+      $('#location_groupID').val(data[2]);
+      $('#location_name').val(data[3]);
+      $('#location_address1').val(data[4]);
+      $('#location_address2').val(data[5]);
+      $('#location_city').val(data[6]);
+      $('#location_state').val(data[7]);
+      $('#location_zip').val(data[8]);
+      $('#location_phone').val(data[9]);
+      $('#location_email').val(data[10]);
+      $('#location_link').val(data[11]);
+      $('#location_poc').val(data[12]);
+    });
+  });
+</script>
+
+<!--
+Title: Delete Location
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.location-deletebtn').on('click', function() {
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#delete_locationID').val(data[0]);
+      $('#delete_location_engineID').val(data[1]);
+      $('#delete_location_name').val(data[3]);
 
     });
   });

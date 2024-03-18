@@ -9,13 +9,13 @@ require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php'; // PHPMailer s
 // location Add
 if(isset($_POST['register_location']))
 {
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
+  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+  $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
-  $userID = mysqli_real_escape_string($con, $_POST['userID']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
-  $officeID = mysqli_real_escape_string($con, $_POST['officeID']);
-  $groupID = mysqli_real_escape_string($con, $_POST['groupID']);
+  $poc = mysqli_real_escape_string($con, $_POST['poc']);
   $name = mysqli_real_escape_string($con, $_POST['name']);
   $address1 = mysqli_real_escape_string($con, $_POST['address1']);
   $address2 = mysqli_real_escape_string($con, $_POST['address2']);
@@ -41,7 +41,8 @@ if(isset($_POST['register_location']))
   else
   {
 
-    // Encrypt Organization Data (inactivated)
+    // Encrypt Data (inactivated)
+    $encrypt_poc = encryptthis($poc, $key);
     $encrypt_name = encryptthis($name, $key);
     $encrypt_address1 = encryptthis($address1, $key);
     $encrypt_address2 = encryptthis($address2, $key);
@@ -52,33 +53,31 @@ if(isset($_POST['register_location']))
     $encrypt_email = encryptthis($email, $key);
     $encrypt_link = encryptthis($link, $key);
 
-    //Insert to offices table
-    $sql = "INSERT INTO location (officeID, engineID, groupID, name, address1, address2, city, state, zip, phone, email, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    //Insert to location table
+    $sql = "INSERT INTO location (engineID, groupID, poc, name, address1, address2, city, state, zip, phone, email, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param("ssssssssssss", $officeID, $engineID, $groupID, $name, $address1, $address2, $city, $state, $zip, $phone, $email, $link);
+    $stmt->bind_param("ssssssssssss", $engineID, $groupID, $poc, $name, $address1, $address2, $city, $state, $zip, $phone, $email, $link);
     $stmt->execute();
 
     // Encrypt Activity Data
     $fullname = "$fname $lname";
     $org_message = "$type $name";
     $encrypt_fullname = encryptthis($fullname, $key);
-    $encrypt_office = encryptthis($office, $key);
     $encrypt_org_message = encryptthis($org_message, $key);
 
     // insert activity timestamp
     $fullname = "$fname $lname";
-    $activity = "INSERT INTO admin_log (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)";
+    $activity = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
     $stmt = $con->prepare($activity);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypt_office, $encrypt_fullname, $type, $encrypt_org_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $type, $encrypt_org_message);
     $stmt->execute();
 
     // insert keywords to engine table
     $address = "$address1 $address2 $city $state $zip";
-    $name_pin = htmlspecialchars("$name - VFC PIN: $pin");
     $link = "https://www.google.com/maps/place/$address1 $address2 $city $state $zip";
     $engine = "INSERT INTO engine (engineID, groupID, keyword1, keyword2, keyword3, link) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($engine);
-    $stmt->bind_param("ssssss", $engineID, $groupID, $name_pin, $address, $email, $link);
+    $stmt->bind_param("ssssss", $engineID, $groupID, $name, $address, $email, $link);
     $stmt->execute();
 
     if($stmt = $con->prepare($sql))

@@ -1,46 +1,56 @@
 <!-- Modal -->
-<div class="modal fade" id="office-edit" tabindex="-1" aria-labelledby="office-edit-ModalLabel" aria-hidden="true">
+<div class="modal fade" id="location-edit" tabindex="-1" aria-labelledby="location-edit-ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="office-edit-ModalLabel">Edit Office</h1>
+        <h1 class="modal-title w-100 fs-5" id="office-edit-ModalLabel">Edit Location</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-        <form class="" action="process/sql.php" method="POST">
-          <div class="form-group mb-2 mt-2">
-            <input type="text" name="userID" value="<?=htmlspecialchars($_SESSION['userID']);?>" class="form-control form-control-sm" hidden required>
+        <form class="" action="process/location-edit.php" method="POST">
+          <div class="form-group mb-2">
+            <input type="text" name="id" id="location_id" class="form-control form-control-sm" hidden required>
           </div>
           <div class="form-group mb-2">
-            <input type="text" name="officeID" id="officeid" class="form-control form-control-sm" hidden required>
+            <input type="text" name="engineID" id="location_engine_id" class="form-control form-control-sm" hidden required>
           </div>
           <div class="form-group mb-2">
-            <input type="text" name="engineID" id="office_engineid" class="form-control form-control-sm" hidden required>
+          <select class="form-select form-select-sm" name="poc" id="location_poc" required>
+                  <option disabled selected>Point of Contact</option>
+                    <?php
+                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                        $engineID = mysqli_real_escape_string($con, $_SESSION['engineID']);
+                        $sql = "SELECT * FROM engine WHERE engineID='$engineID' AND groupID='$groupID' ";
+                        $sql_run = mysqli_query($con, $sql);
+                        $profile = mysqli_num_rows($sql_run);
+                        while ($profile = mysqli_fetch_array($sql_run)){
+                          $poc_name = htmlspecialchars($profile['keyword1']);
+                          echo "<option value='". $poc_name ."'>" .$poc_name ."</option>" ;
+                        }
+                    ?>
+                </select>
           </div>
           <div class="row g-2">
             <div class="col form-group mb-2">
-              <input type="text" name="name" id="name" class="form-control form-control-sm" required>
+              <input type="text" name="name" id="location_name" class="form-control form-control-sm" required>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col form-group mb-2">
+              <input type="text" name="address1" id="location_address1" class="form-control form-control-sm" required>
             </div>
             <div class="col-md-4 form-group mb-2">
-              <input type="text" name="pin" id="vfcPIN" class="form-control form-control-sm" required>
+              <input type="text" name="address2" id="location_address2" class="form-control form-control-sm" placeholder="Address 2">
             </div>
           </div>
           <div class="row g-2">
             <div class="col form-group mb-2">
-              <input type="text" name="address1" id="address1" class="form-control form-control-sm" required>
-            </div>
-            <div class="col-md-4 form-group mb-2">
-              <input type="text" name="address2" id="address2" class="form-control form-control-sm" placeholder="Address 2">
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col form-group mb-2">
-              <input type="text" name="city" id="city" class="form-control form-control-sm" placeholder="City" required>
+              <input type="text" name="city" id="location_city" class="form-control form-control-sm" placeholder="City" required>
             </div>
             <div class="col-md-2 dropdown mb-2">
-              <select class="form-select form-select-sm" name="state" id="state" required>
+              <select class="form-select form-select-sm" name="state" id="location_state" required>
                 <option disabled>select one</option>
                 <option value="AL">AL</option>
               	<option value="AK">AK</option>
@@ -96,26 +106,26 @@
               </select>
             </div>
             <div class="col-md-4 form-group mb-3">
-              <input type="text" name="zip" id="zip" class="form-control form-control-sm" placeholder="Zip" required>
+              <input type="text" name="zip" id="location_zip" class="form-control form-control-sm" placeholder="Zip" required>
             </div>
           </div>
           <div class="row g-2">
             <div class="col form-group mb-2">
-              <input type="text" name="phone" id="phone" class="form-control form-control-sm" placeholder="Phone" required>
+              <input type="text" name="phone" id="location_phone" class="form-control form-control-sm" placeholder="Phone" required>
             </div>
             <div class="col form-group mb-2">
-              <input type="text" name="office_email" id="office_email" class="form-control form-control-sm" placeholder="Email" required>
+              <input type="text" name="location_email" id="location_email" class="form-control form-control-sm" placeholder="Email" required>
             </div>
           </div>
           <div class="row g-2">
             <div class="col fom-group mb-4">
-              <input type="text" name="office_link" id="office_link" class="form-control form-control-sm" placeholder="Website Link" required>
+              <input type="text" name="location_link" id="location_link" class="form-control form-control-sm" placeholder="Website Link">
             </div>
           </div>
 
           <div class="form-group mb-3" align="center">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-settings-Modal">Back</button>
-            <button type="submit" name="office_update_btn" class="btn btn-outline-secondary btn-sm">Update</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-manager-Modal">Back</button>
+            <button type="submit" name="location_update_btn" class="btn btn-outline-secondary btn-sm">Update</button>
           </div>
 
         </form>

@@ -10,20 +10,24 @@
 
         <form class="" action="process/location-add.php" method="POST">
           <div class="form-group mb-2 mt-2">
-            <input type="text" name="engineID" id="office_engineID" class="form-control form-control-sm" hidden required>
-          </div>
-          <div class="form-group mb-2 mt-2">
-            <input type="text" name="officeID" id="officeID" class="form-control form-control-sm" hidden required>
-          </div>
-          <div class="form-group mb-2 mt-2">
-            <input type="text" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']);?>" class="form-control form-control-sm" hidden required>
-          </div>
-          <div class="form-group mb-2 mt-2">
-            <input type="text" name="userID" value="<?=htmlspecialchars($_SESSION['userID']);?>" class="form-control form-control-sm" hidden required>
+            <input type="text" name="engineID" id="office_engineID" class="form-control form-control-sm"  hidden required>
           </div>
           <div class="row g-2">
             <div class="col form-group mb-2 mt-2">
-              <input type="text" name="poc" placeholder="Point of Contact" class="form-control form-control-sm" required>
+                <select class="form-select form-select-sm" name="poc" required>
+                  <option disabled selected>Point of Contact</option>
+                    <?php
+                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                        $engineID = mysqli_real_escape_string($con, $_SESSION['engineID']);
+                        $sql = "SELECT * FROM engine WHERE engineID='$engineID' AND groupID='$groupID' ";
+                        $sql_run = mysqli_query($con, $sql);
+                        $profile = mysqli_num_rows($sql_run);
+                        while ($profile = mysqli_fetch_array($sql_run)){
+                          $poc_name = htmlspecialchars($profile['keyword1']);
+                          echo "<option value='". $poc_name ."'>" .$poc_name ."</option>" ;
+                        }
+                    ?>
+                </select>
             </div>
           </div>
           <div class="row g-2">
@@ -118,9 +122,24 @@
       </div>
       <div class="modal-footer col d-flex justify-content-center form-group">
         <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-manager-Modal">Back</button>
-        <button type="submit" name="register_office" class="btn btn-outline-secondary btn-sm">Add</button>
+        <button type="submit" name="register_location" class="btn btn-outline-secondary btn-sm">Add</button>
       </div>
     </form>
     </div>
   </div>
 </div>
+
+<!-- Script for generating random Engine ID -->
+<script>
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 9) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("office_engineID").value = randomNumber(7);
+</script>

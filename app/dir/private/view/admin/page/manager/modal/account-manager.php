@@ -81,11 +81,10 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                                     {
                                       ?>
                                       <tr>
-                                        <td hidden><?= htmlspecialchars($office['officeID']);?></td>
+                                        <td hidden><?= htmlspecialchars($office['id']);?></td>
                                         <td hidden><?= htmlspecialchars($office['engineID']);?></td>
                                         <td hidden><?= htmlspecialchars($office['groupID']);?></td>
-                                        <td hidden><?= htmlspecialchars($office['vfcPIN']);?></td>
-                                        <td><a type="button" class="focus-ring text-decoration-none btn-md office-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#office-edit"><small><?= htmlspecialchars($office['name']);?></small></a></td>
+                                        <td><a type="button" class="focus-ring text-decoration-none btn-md location-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#office-edit"><small><?= htmlspecialchars($office['name']);?></small></a></td>
                                         <td hidden><?= htmlspecialchars($office['address1']);?></td>
                                         <td hidden><?= htmlspecialchars($office['address2']);?></td>
                                         <td hidden><?= htmlspecialchars($office['city']);?></td>
@@ -94,8 +93,9 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                                         <td hidden><?= htmlspecialchars($office['phone']);?></td>
                                         <td hidden><?= htmlspecialchars($office['email']);?></td>
                                         <td hidden><?= htmlspecialchars($office['link']);?></td>
-                                        <td><a type="button" class="focus-ring border-none office-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#office-edit"><i class="bi bi-gear"></a></td>
-                                        <td><a type="button" class="focus-ring border-none officedeletebtn" style="color:black;" data-bs-toggle="modal" data-bs-target="#officedeletemodal"><i class="bi bi-trash"></i></a></td>
+                                        <td hidden><?= htmlspecialchars($office['poc']);?></td>
+                                        <td><a type="button" class="focus-ring border-none location-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#location-edit"><i class="bi bi-gear"></a></td>
+                                        <td><a type="button" class="focus-ring border-none location-deletebtn" style="color:black;" data-bs-toggle="modal" data-bs-target="#locationdeletemodal"><i class="bi bi-trash"></i></a></td>
 
                                       </tr>
                                       <?php

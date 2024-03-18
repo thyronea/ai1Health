@@ -82,7 +82,7 @@ if(isset($_POST['userdeletebtn']))
   $stmt->bind_param("s", $delete_userID);
   $stmt->execute();
 
-  // Delete profile image
+  // Delete backgroun image
   $check_image = "SELECT * FROM background_image WHERE userID='$delete_userID' ";
   $check_image_run = mysqli_query($con, $check_image);
   $image = mysqli_fetch_assoc($check_image_run);

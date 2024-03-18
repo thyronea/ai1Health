@@ -27,7 +27,7 @@
                       <select class="form-select form-select-sm" name="office" required>
                         <option disabled selected>Select Office</option>
                         <?php
-                        $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
+                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                         $sql = "SELECT * FROM offices WHERE groupID='$groupID' ";
                         $sql_run = mysqli_query($con, $sql);
                         $office = mysqli_num_rows($sql_run);
