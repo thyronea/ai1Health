@@ -19,7 +19,7 @@
                           <a style="text-align: left" title="Add Storage & Handling Unit" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#add-sh-Modal">
                             <small>Add</small> <i class="bi bi-plugin fa-lg"></i>
                           </a>
-                          <a style="text-align: left" title="Add Thermometer" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#add-thermometer-Modal">
+                          <a style="text-align: left" title="Add Thermometer" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#add-thermometer">
                             <small>Add</small> <i class="bi bi-thermometer-snow fa-lg"></i>
                           </a>
                         </td>
@@ -41,7 +41,7 @@
                        <th>Storage Units</th>
                      </thead>
                      <?php
-                     $groupID = $_SESSION["group_id"]; // this code will only show users from the same groupID
+                     $groupID = $_SESSION["groupID"]; // this code will only show users from the same groupID
                      $query = "SELECT * FROM storage WHERE groupID='$groupID' ";
                      $query_run = mysqli_query($con, $query);
 
@@ -92,7 +92,7 @@
                         <th>Thermometers</th>
                       </thead>
                       <?php
-                      $groupID = $_SESSION["group_id"]; // this code will only show users from the same groupID
+                      $groupID = $_SESSION["groupID"]; // this code will only show users from the same groupID
                       $query = "SELECT * FROM thermometers WHERE groupID='$groupID' ";
                       $query_run = mysqli_query($con, $query);
 

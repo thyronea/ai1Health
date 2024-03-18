@@ -21,10 +21,13 @@
                   <!-- Content -->
                   <?php include('activity-chart.php') ?>
                   <!-- Modals -->
-                  <?php include('modal/add-user.php'); ?>
                   <?php include('modal/add-image.php'); ?>
+                  <?php include('modal/add-user.php'); ?>
                   <?php include('modal/edit-user.php'); ?>
                   <?php include('modal/delete-user.php'); ?>
+                  <?php include('modal/add-location.php'); ?>
+                  <?php include('modal/edit-location.php'); ?>
+                  <?php include('modal/delete-location.php'); ?>
                   <?php include('modal/send-email.php'); ?>
                   <?php include('modal/email-log.php'); ?>
                   <?php include('modal/email-clear.php'); ?>

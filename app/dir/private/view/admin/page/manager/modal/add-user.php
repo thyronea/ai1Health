@@ -37,7 +37,7 @@
           </div>
       </div>
       <div class="modal-footer col d-flex justify-content-center form-group">
-        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-settings-Modal">Back</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-manager-Modal">Back</button>
         <button type="submit" name="register_btn" class="btn btn-outline-secondary btn-sm">Add</button>
       </div>
     </form>

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="add-thermometer-Modal" tabindex="-1" aria-labelledby="add-thermometer-ModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-thermometer" tabindex="-1" aria-labelledby="add-thermometer-ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center">

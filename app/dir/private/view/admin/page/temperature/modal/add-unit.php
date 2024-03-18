@@ -18,7 +18,7 @@
                     <input type="hidden" name="engineID" id="storage_engineID" class="form-control">
                 </div>
                   <div class="form-group">
-                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['group_id']); ?>" class="form-control">
+                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']); ?>" class="form-control">
                   </div>
               </div>
                 <div class="row g-2">
