@@ -21,6 +21,7 @@ if(isset($_POST['register_btn']))
   $fname = mysqli_real_escape_string($con, $_POST['fname']);
   $lname = mysqli_real_escape_string($con, $_POST['lname']);
   $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
+  $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
   $role = mysqli_real_escape_string($con, $_POST['role']);
   $type = mysqli_real_escape_string($con, "Registered");
   $as = mysqli_real_escape_string($con, "as");
@@ -86,6 +87,12 @@ if(isset($_POST['register_btn']))
     $sql = "INSERT INTO profile_image (userID, groupID, filename) VALUES (?, ?, ?)";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $newID, $groupID, $filename);
+    $stmt->execute();
+
+    // Insert default background image to background_image table
+    $sql = "INSERT INTO background_image (userID, groupID, filename) VALUES (?, ?, ?)";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $newID, $groupID, $background_filename);
     $stmt->execute();
 
     // Encrypt Activity Data

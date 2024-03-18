@@ -75,25 +75,42 @@ if(isset($_POST['userdeletebtn']))
   $check_image = "SELECT * FROM profile_image WHERE userID='$delete_userID' ";
   $check_image_run = mysqli_query($con, $check_image);
   $image = mysqli_fetch_assoc($check_image_run);
-  $folder = '../../../../image/profile';
-  unlink('../../../../image/profile/'.$image['filename']);
-  $delete_profile_image = "DELETE FROM profile_image WHERE userID=? ";
-  $stmt = $con->prepare($delete_profile_image);
-  $stmt->bind_param("s", $delete_userID);
-  $stmt->execute();
+  if($image['filename'] !== "default-profile-pic.jpeg"){
+    $folder = '../../../../image/profile';
+    unlink('../../../../image/profile/'.$image['filename']);
+    $delete_profile_image = "DELETE FROM profile_image WHERE userID=? ";
+    $stmt = $con->prepare($delete_profile_image);
+    $stmt->bind_param("s", $delete_userID);
+    $stmt->execute();
+  }
+  else{
+    $delete_profile_image = "DELETE FROM profile_image WHERE userID=? ";
+    $stmt = $con->prepare($delete_profile_image);
+    $stmt->bind_param("s", $delete_userID);
+    $stmt->execute();
+  }
+  
 
-  // Delete backgroun image
+  // Delete background image
   $check_image = "SELECT * FROM background_image WHERE userID='$delete_userID' ";
   $check_image_run = mysqli_query($con, $check_image);
-  $image = mysqli_fetch_assoc($check_image_run);
-  $folder = '../../../../image/background';
-  unlink('../../../../image/background/'.$image['filename']);
-  $delete_background_image = "DELETE FROM background_image WHERE userID=? ";
-  $stmt = $con->prepare($delete_background_image);
-  $stmt->bind_param("s", $delete_userID);
-  $stmt->execute();
+  $background_image = mysqli_fetch_assoc($check_image_run);
+  if($background_image['filename'] !== "default-background.jpg"){
+    $folder = '../../../../image/background';
+    unlink('../../../../image/background/'.$background_image['filename']);
+    $delete_background_image = "DELETE FROM background_image WHERE userID=? ";
+    $stmt = $con->prepare($delete_background_image);
+    $stmt->bind_param("s", $delete_userID);
+    $stmt->execute();
+  }
+  else{
+    $delete_background_image = "DELETE FROM background_image WHERE userID=? ";
+    $stmt = $con->prepare($delete_background_image);
+    $stmt->bind_param("s", $delete_userID);
+    $stmt->execute();
+  }
 
-  if($stmt = $con->prepare($delete_profile_image))
+  if($stmt->execute())
   {
     $_SESSION['success'] = "User Successfully Deleted!";
     header("Location: ../../manager/index.php");
