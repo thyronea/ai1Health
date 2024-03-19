@@ -34,8 +34,8 @@
                                 <td hidden><small><?= htmlspecialchars($storage['engineID']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['groupID']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['location']);?></small></td>
-                                <td hidden><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></td>
                                 <td hidden><small><?= htmlspecialchars(decryptthis($storage['position'], $key));?></small></td>
+                                <td hidden><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['type']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars(decryptthis($storage['grade'], $key));?></small></td>
                                 <td><a type="button" class="focus-ring border-none text-decoration-none storage-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#storage-edit"><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></a></td>
@@ -72,11 +72,11 @@
                             {
                               ?>
                               <tr>
-                                <td hidden><small><?= htmlspecialchars($thermometer['thermometerID']);?></small></td>
+                                <td hidden><small><?= htmlspecialchars($thermometer['id']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($thermometer['engineID']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($thermometer['groupID']);?></small></td>
-                                <td hidden><small><?= htmlspecialchars($thermometer['office']);?></small></td>
-                                <td hidden><a type="button" class="focus-ring border-none text-decoration-none thermometer-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#thermometer-edit"><small><?=htmlspecialchars(decryptthis($thermometer['location'], $key));?></small></a></td>
+                                <td hidden><small><?= htmlspecialchars($thermometer['location']);?></small></td>
+                                <td hidden><a type="button" class="focus-ring border-none text-decoration-none thermometer-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#thermometer-edit"><small><?=htmlspecialchars(decryptthis($thermometer['position'], $key));?></small></a></td>
                                 <td ><a type="button" class="focus-ring border-none text-decoration-none thermometer-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#thermometer-edit"><small><?=htmlspecialchars(decryptthis($thermometer['name'], $key));?></small></a></td>
                                 <td hidden><small><?=htmlspecialchars(decryptthis($thermometer['serial'], $key));?></small></td>
                                 <td hidden><small><?=htmlspecialchars(decryptthis($thermometer['expiration'], $key));?></small></td>

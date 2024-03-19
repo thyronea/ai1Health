@@ -9,35 +9,32 @@
       </div>
 
       <div class="modal-body">
-
-        <form class="" action="process/sql.php" method="POST">
+      <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
+        <form class="" action="process/edit-thermometer.php" method="POST">
           <div class="form-group mb-2">
-            <input type="text" name="thermometerID" id="thermID" class="form-control form-control-sm" hidden required>
+            <input type="text" name="id" id="thermID" class="form-control form-control-sm" hidden required>
           </div>
           <div class="form-group mb-2">
             <input type="text" name="engineID" id="therm_engineID" class="form-control form-control-sm" hidden required>
           </div>
           <div class="form-group mb-2">
-            <select class="form-select form-select-sm" name="office" id="therm_office" required>
-              <option disabled selected>Select Office</option>
+            <select class="form-select form-select-sm" name="location" id="therm_location" required>
+              <option disabled selected>Select Location</option>
               <?php
-              $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-              $sql = "SELECT * FROM offices WHERE groupID='$groupID' ";
+              $sql = "SELECT * FROM location WHERE groupID='$groupID' ";
               $sql_run = mysqli_query($con, $sql);
-              $office = mysqli_num_rows($sql_run);
-              while ($office = mysqli_fetch_array($sql_run))
+              $location = mysqli_num_rows($sql_run);
+              while ($location = mysqli_fetch_array($sql_run))
               {
-                echo "<option value='". $office['name'] ."'>" .$office['name'] ."</option>" ;
+                echo "<option value='". $location['name'] ."'>" .$location['name'] ."</option>" ;
               }
               ?>
-              <option value="Back-up">Back-up</option>
             </select>
           </div>
           <div class="form-group mb-2">
-            <select class="form-select form-select-sm" name="therm_location" id="therm_location" required>
-              <option disabled selected>Select Location</option>
+            <select class="form-select form-select-sm" name="position" id="therm_position" required>
+              <option disabled selected>Select Position</option>
               <?php
-              $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
               $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";
               $sql_run = mysqli_query($con, $sql);
               $storage = mysqli_num_rows($sql_run);
@@ -73,3 +70,33 @@
     </div>
   </div>
 </div>
+
+<!--
+Title: Edit Thermometer
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.thermometer-editbtn').on('click', function() {
+
+      $('#thermometer-edit').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#thermID').val(data[0]);
+      $('#therm_engineID').val(data[1]);
+      $('#therm_groupID').val(data[2]);
+      $('#therm_location').val(data[3]);
+      $('#therm_position').val(data[4]);
+      $('#therm_name').val(data[5]);
+      $('#therm_serial').val(data[6]);
+      $('#therm_expiration').val(data[7]);
+    });
+  });
+</script>

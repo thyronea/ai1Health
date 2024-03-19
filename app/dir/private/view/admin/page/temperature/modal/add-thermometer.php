@@ -11,19 +11,13 @@
         <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
             <div class="thermometer-form mt-3 mb-3">
               <div class="col-md-2">
-                <div class="form-group">
-                    <input type="hidden" name="thermometerID" id="thermometerID" class="form-control form-control-sm">
-                </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <input type="hidden" name="engineID" id="thermometer_engineID" class="form-control form-control-sm">
-                </div>
-                <div class="form-group">
-                  <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']); ?>" class="form-control">
                 </div>
               </div>
               <div class="row mb-3 g-2">
                 <div class="col">
-                  <select class="form-group form-select form-select-sm" name="office" required>
+                  <select class="form-group form-select form-select-sm" name="location" required>
                     <option disabled selected>Select Location</option>
                       <?php
                       $sql = "SELECT * FROM location WHERE groupID='$groupID' ";
@@ -36,7 +30,7 @@
                   </select>
                 </div>
                 <div class="col">
-                  <select class="form-group form-select form-select-sm" name="thermLocation[]" required>
+                  <select class="form-group form-select form-select-sm" name="position" required>
                     <option disabled selected>Select Unit</option>
                     <?php
                     $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";
@@ -52,17 +46,17 @@
               <div class="row mb-3 g-2">
                 <div class="col-md-6">
                   <div class="form-group">
-                      <input type="text" name="thermName[]" class="form-control form-control-sm" placeholder="Brand/Make/Model" required>
+                      <input type="text" name="thermName" class="form-control form-control-sm" placeholder="Brand/Make/Model" required>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                      <input type="text" name="thermSerial[]" class="form-control form-control-sm" placeholder="Serial Number" required>
+                      <input type="text" name="thermSerial" class="form-control form-control-sm" placeholder="Serial Number" required>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                      <input type="date" name="thermExpiration[]" class="form-control form-control-sm" required>
+                      <input type="date" name="thermExpiration" class="form-control form-control-sm" required>
                   </div>
                 </div>
               </div>
@@ -81,3 +75,18 @@
     </div>
   </div>
 </div>
+
+<!-- Script for generating random Engine ID -->
+<script>
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 9) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("thermometer_engineID").value = randomNumber(7);
+</script>

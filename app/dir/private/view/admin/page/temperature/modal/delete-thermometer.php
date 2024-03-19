@@ -9,11 +9,12 @@
       </div>
 
       <div class="modal-body">
-        <form class="" action="process/sql.php" method="POST">
+        <form class="" action="process/delete-thermometer.php" method="POST">
           <div class="form-group mt-3 mb-5">
             <!-- Hidden inputs to be insterted to activity table -->
-            <input class="form-control mb-2" type="hidden" name="thermometerID" id="delete_thermID">
+            <input class="form-control mb-2" type="hidden" name="id" id="delete_thermID">
             <input class="form-control mb-2" type="hidden" name="engineID" id="delete_therm_engineID">
+            <input class="form-control mb-2" type="hidden" name="delete_thermometer_location" id="delete_therm_location">
             <input class="form-control mb-2" type="hidden" name="delete_thermometer_name" id="delete_therm_name">
             <!----------------------------------------------------->
             <p align="center">Thermometer will be permanently removed from database.</p>
@@ -30,3 +31,29 @@
     </div>
   </div>
 </div>
+
+<!--
+Title: Delete Thermometer
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.thermometerdeletebtn').on('click', function() {
+
+      $('#thermometerdeletemodal').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#delete_thermID').val(data[0]);
+      $('#delete_therm_engineID').val(data[1]);
+      $('#delete_therm_location').val(data[3]);
+      $('#delete_therm_name').val(data[5]);
+    });
+  });
+</script>

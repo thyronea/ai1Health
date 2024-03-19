@@ -1,5 +1,7 @@
 <div class="card border-0 m-3">
   <div class="card-body">
+    <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
+
     <h5>Daily Temperature Log</h5>
 
     <form action="process/sql.php" method="POST">
@@ -28,7 +30,6 @@
               <select class="form-select form-select-sm" name="refrigerator">
                 <option disabled selected>Select Unit</option>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $ref = htmlspecialchars("Refrigerator");
                 $sql = "SELECT * FROM storage WHERE groupID='$groupID' AND type='$ref' ";
                 $sql_run = mysqli_query($con, $sql);
@@ -78,7 +79,6 @@
               <select class="form-select form-select-sm" name="freezer" required>
                 <option disabled selected>Select Unit</option>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $frz = htmlspecialchars("Freezer");
                 $sql = "SELECT * FROM storage WHERE groupID='$groupID' AND type='$frz' ";
                 $sql_run = mysqli_query($con, $sql);
