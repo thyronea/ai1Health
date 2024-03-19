@@ -33,7 +33,7 @@ $myimg = mysqli_fetch_array($my_img_query_run);
 if(is_array($profile)){
 
     $image = $img['filename']; // Receiver's profile image
-    $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+    $fname = htmlspecialchars($profile['fname']); // Receiver's first name
     $my_image = $myimg['filename']; // Sender's profile image
     $my_fname = mysqli_real_escape_string($con, $_SESSION['fname']); // Sender's first name
     
@@ -119,22 +119,21 @@ else{
     // Preview chat
     $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' || receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
     $view_chat_run = mysqli_query($con, $view_chat);
-    $row = mysqli_fetch_array($view_chat_run);
 
     $mydata ="Active Chat<br>";    
 
-    if(array_reverse($row)){
+    if(mysqli_num_rows($view_chat_run)){
         
         foreach($view_chat_run as $preview){
             
-            $msg_ID = $preview['message_ID'];
-            $sender_ID = $preview['sender_ID'];
-            $preview_msg = decryptthis($preview['message'], $key); // Decrypted chat message
-            $preview_date = $preview['date']; // Message date
-            $preview_time = $preview['time']; // Message time
+            $msg_ID = htmlspecialchars($preview['message_ID']);
+            $sender_ID = htmlspecialchars($preview['sender_ID']);
+            $preview_msg = htmlspecialchars(decryptthis($preview['message'], $key)); // Decrypted chat message
+            $preview_date = htmlspecialchars($preview['date']); // Message date
+            $preview_time = htmlspecialchars($preview['time']); // Message time
 
             if($sender_ID == $myuserID){
-                $sender_ID = $preview['receiver_ID']; 
+                $sender_ID = htmlspecialchars($preview['receiver_ID']); 
             }
 
              // Preview profile image
@@ -147,8 +146,8 @@ else{
             $profile_query = "SELECT * FROM profile WHERE userID='$sender_ID' AND groupID='$groupID' LIMIT 1";
             $profile_query_run = mysqli_query($con, $profile_query);
             $profile = mysqli_fetch_array($profile_query_run);
-            $id = $profile['userID'];
-            $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+            $id = htmlspecialchars($profile['userID']);
+            $fname = htmlspecialchars($profile['fname']); // Receiver's first name
 
             $mydata .="
                 <div id='active_contact' userid='$id' onclick='start_chat(event)' style='cursor:pointer'>

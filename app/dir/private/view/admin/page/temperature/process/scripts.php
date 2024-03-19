@@ -82,36 +82,6 @@ Location: components/footer.php
 </script>
 
 <!--
-Title: Edit Storage Unit
-Location: components/footer.php
--->
-<script>
-  $(document).ready(function () {
-    $('.storage-editbtn').on('click', function() {
-
-      $('#storage-edit').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-
-      $('#unit_storageID').val(data[0]);
-      $('#unit_engineID').val(data[1]);
-      $('#unit_groupID').val(data[2]);
-      $('#unit_office').val(data[3]);
-      $('#unit_name').val(data[4]);
-      $('#unit_location').val(data[5]);
-      $('#unit_type').val(data[6]);
-      $('#unit_grade').val(data[7]);
-    });
-  });
-</script>
-
-<!--
 Title: Add More Thermometer
 Location: components/footer.php
 -->

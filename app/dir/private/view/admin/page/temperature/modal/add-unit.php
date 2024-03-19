@@ -6,34 +6,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
-        <form action="process/sql.php" method="POST">
-
+      <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
+        <form action="process/add-unit.php" method="POST">
+          <div class="form-group mb-2 mt-2">
+            <input type="text" name="engineID" id="unit_engineID" class="form-control form-control-sm" hidden required>
+          </div>
             <div class="sh-form mt-3 mb-3">
-              <div class="col-md-2">
-                <div class="form-group">
-                    <input type="hidden" name="storageID" id="storageID" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="engineID" id="storage_engineID" class="form-control">
-                </div>
-                  <div class="form-group">
-                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']); ?>" class="form-control">
-                  </div>
-              </div>
                 <div class="row g-2">
                   <div class="col">
                     <div class="form-group">
-                      <select class="form-select form-select-sm" name="office" required>
-                        <option disabled selected>Select Office</option>
+                    <label for="location"><small>Location</small></label>
+                      <select class="form-select form-select-sm" name="location" required>
+                        <option></option>
                         <?php
-                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                        $sql = "SELECT * FROM offices WHERE groupID='$groupID' ";
+                        $sql = "SELECT * FROM location WHERE groupID='$groupID' ";
                         $sql_run = mysqli_query($con, $sql);
-                        $office = mysqli_num_rows($sql_run);
-                        while ($office = mysqli_fetch_array($sql_run))
+                        while ($location = mysqli_fetch_array($sql_run))
                         {
-                          echo "<option value='". htmlspecialchars($office['name']) ."'>" .htmlspecialchars($office['name']) ."</option>" ;
+                          echo "<option value='". htmlspecialchars($location['name']) ."'>" .htmlspecialchars($location['name']) ."</option>" ;
                         }
                         ?>
                       </select>
@@ -41,15 +31,17 @@
                   </div>
                   <div class="col">
                       <div class="form-group">
-                          <input type="text" name="unitLocation[]" class="form-control form-control-sm" placeholder="Location" required>
+                          <label for="unitPosition"><small>Position</small></label>
+                          <input title="Where is the Storage & handling unit located?" type="text" name="unitPosition" class="form-control form-control-sm" required>
                       </div>
                   </div>
                 </div>
                 <div class="row g-2 mt-2">
                   <div class="col-md-3">
                       <div class="form-group">
-                        <select class="form-select form-select-sm" name="unitType[]" required>
-                          <option disabled selected>Storage Type</option>
+                      <label for="unitType"><small>Type</small></label>
+                        <select class="form-select form-select-sm" name="unitType" required>
+                        <option></option>
                           <option value="Refrigerator">Refrigerator</option>
                           <option value="Freezer">Freezer</option>
                         </select>
@@ -57,8 +49,9 @@
                   </div>
                   <div class="col-md-3">
                       <div class="form-group">
-                        <select class="form-select form-select-sm" name="unitGrade[]" required>
-                          <option disabled selected>Grade</option>
+                        <label for="unitGrade"><small>Grade</small></label>
+                        <select class="form-select form-select-sm" name="unitGrade" required>
+                        <option></option>
                           <option value="Pharm-Grade">Pharm-Grade</option>
                           <option value="Household">Household</option>
                         </select>
@@ -66,7 +59,8 @@
                   </div>
                   <div class="col">
                       <div class="form-group">
-                          <input type="text" name="unitName[]" class="form-control form-control-sm" placeholder="Brand/Make/Model" required>
+                          <label for="unitName"><small>Brand/Make/Model</small></label>
+                          <input type="text" name="unitName" class="form-control form-control-sm" required>
                       </div>
                   </div>
                 </div>
@@ -74,7 +68,7 @@
             <div class="paste-new-sh"></div>
             <div class="mt-3">
           <!-- <a type="button" href="javascript:void(0)" class="add-more-sh focus-ring py-1 px-2 btn-outline border btn btn-sm">More</a> -->
-              <button type="submit" name="add_unit" class="focus-ring py-1 px-2 btn-outline border btn btn-sm">Add</button>
+              <button type="submit" name="add_unit" class="focus-ring py-1 px-2 btn-outline border btn btn-sm mt-3">Add</button>
             </div>
         </form>
 
@@ -82,3 +76,18 @@
     </div>
   </div>
 </div>
+
+<!-- Script for generating random Engine ID -->
+<script>
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 9) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("unit_engineID").value = randomNumber(7);
+</script>

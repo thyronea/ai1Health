@@ -22,7 +22,7 @@ $mydata =
 
         if(mysqli_num_rows($sql_run) > 0){
             foreach($sql_run as $row){
-                $sender = $row['sender_ID'];
+                $sender = htmlspecialchars($row['sender_ID']);
                 
                 if(isset($msg[$sender])){
                     $msg[$sender]++;
@@ -35,9 +35,9 @@ $mydata =
         
         foreach($query_run as $profile){
             
-            $id = $profile['userID'];
-            $image = $profile['filename'];
-            $fname = htmlspecialchars(decryptthis($profile['fname'], $key));
+            $id = htmlspecialchars($profile['userID']);
+            $image = htmlspecialchars($profile['filename']);
+            $fname = htmlspecialchars($profile['fname']);
             
             $new_message = false;
             

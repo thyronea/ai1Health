@@ -22,7 +22,6 @@ if(isset($_POST['location_update_btn']))
   $zip = mysqli_real_escape_string($con, $_POST['zip']);
   $phone = mysqli_real_escape_string($con, $_POST['phone']);
   $location_email = mysqli_real_escape_string($con, $_POST['location_email']);
-  $link = mysqli_real_escape_string($con, $_POST['location_link']);
   $type = mysqli_real_escape_string($con, "Updated");
 
   // Encrypt Activity Data and insert to Activities table

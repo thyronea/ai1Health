@@ -24,7 +24,9 @@
                         if(mysqli_num_rows($sql_run)){
                           foreach($sql_run as $row){
                             $fname = htmlspecialchars($row['fname']);
-                            echo "<option value='". $fname ."'>" .$fname ."</option>" ;
+                            $lname = htmlspecialchars($row['lname']);
+                            $fullname = "$fname $lname";
+                            echo "<option value='". $fullname ."'>" .$fullname ."</option>" ;
                           }
                         }
                     ?>

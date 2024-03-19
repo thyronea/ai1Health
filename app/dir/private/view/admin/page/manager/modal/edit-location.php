@@ -19,15 +19,18 @@
           <div class="form-group mb-2">
           <select class="form-select form-select-sm" name="poc" id="location_poc" required>
                   <option disabled selected>Point of Contact</option>
-                    <?php
+                  <?php
                         $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                         $engineID = mysqli_real_escape_string($con, $_SESSION['engineID']);
-                        $sql = "SELECT * FROM engine WHERE engineID='$engineID' AND groupID='$groupID' ";
+                        $sql = "SELECT * FROM profile WHERE groupID='$groupID' ";
                         $sql_run = mysqli_query($con, $sql);
-                        $profile = mysqli_num_rows($sql_run);
-                        while ($profile = mysqli_fetch_array($sql_run)){
-                          $poc_name = htmlspecialchars($profile['keyword1']);
-                          echo "<option value='". $poc_name ."'>" .$poc_name ."</option>" ;
+                        if(mysqli_num_rows($sql_run)){
+                          foreach($sql_run as $row){
+                            $fname = htmlspecialchars($row['fname']);
+                            $lname = htmlspecialchars($row['lname']);
+                            $fullname = "$fname $lname";
+                            echo "<option value='". $fullname ."'>" .$fullname ."</option>" ;
+                          }
                         }
                     ?>
                 </select>

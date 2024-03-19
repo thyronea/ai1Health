@@ -119,11 +119,10 @@ else{
     // Preview chat
     $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' || receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
     $view_chat_run = mysqli_query($con, $view_chat);
-    $row = mysqli_fetch_array($view_chat_run);
 
     $mydata ="Active Chat<br>";    
 
-    if(array_reverse($row)){
+    if(mysqli_num_rows($view_chat_run)){
         
         foreach($view_chat_run as $preview){
             

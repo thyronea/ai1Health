@@ -30,12 +30,12 @@
                             {
                               ?>
                               <tr>
-                                <td hidden><small><?= htmlspecialchars($storage['storageID']);?></small></td>
+                                <td hidden><small><?= htmlspecialchars($storage['id']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['engineID']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['groupID']);?></small></td>
-                                <td hidden><small><?= htmlspecialchars($storage['office']);?></small></td>
+                                <td hidden><small><?= htmlspecialchars($storage['location']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></td>
-                                <td hidden><small><?= htmlspecialchars(decryptthis($storage['location'], $key));?></small></td>
+                                <td hidden><small><?= htmlspecialchars(decryptthis($storage['position'], $key));?></small></td>
                                 <td hidden><small><?= htmlspecialchars($storage['type']);?></small></td>
                                 <td hidden><small><?= htmlspecialchars(decryptthis($storage['grade'], $key));?></small></td>
                                 <td><a type="button" class="focus-ring border-none text-decoration-none storage-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#storage-edit"><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></a></td>

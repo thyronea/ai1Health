@@ -9,31 +9,32 @@
       </div>
 
       <div class="modal-body">
-
-        <form class="" action="process/sql.php" method="POST">
+        <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
+        <form class="" action="process/edit-unit.php" method="POST">
           <div class="form-group mb-2">
-            <input type="text" name="storageID" id="unit_storageID" class="form-control" hidden required>
+            <input type="text" name="id" id="unit_storageID" class="form-control"  hidden required>
           </div>
           <div class="form-group mb-2">
-            <input type="text" name="engineID" id="unit_engineID" class="form-control" hidden required>
+            <input type="text" name="engineID" id="unitEngineID" class="form-control" hidden required>
           </div>
           <div class="form-group mb-2">
-            <select class="form-select form-select-sm" name="office" id="unit_office">
-              <option disabled selected>Select Office</option>
+            <input type="text" name="groupID" id="unit_groupID" class="form-control" hidden required>
+          </div>
+          <div class="form-group mb-2">
+            <select class="form-select form-select-sm" name="location" id="unit_location">
+              <option disabled selected>Select Location</option>
               <?php
-              $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-              $sql = "SELECT * FROM offices WHERE groupID='$groupID' ";
+              $sql = "SELECT * FROM location WHERE groupID='$groupID' ";
               $sql_run = mysqli_query($con, $sql);
-              $office = mysqli_num_rows($sql_run);
-              while ($office = mysqli_fetch_array($sql_run))
+              while ($location = mysqli_fetch_array($sql_run))
               {
-                echo "<option value='". htmlspecialchars($office['name']) ."'>" .htmlspecialchars($office['name']) ."</option>" ;
+                echo "<option value='". htmlspecialchars($location['name']) ."'>" .htmlspecialchars($location['name']) ."</option>" ;
               }
               ?>
             </select>
           </div>
           <div class="form-group mb-2">
-            <input type="text" name="unit_location" id="unit_location" class="form-control form-control-sm" placeholder="Location" required>
+            <input type="text" name="position" id="unit_position" class="form-control form-control-sm" placeholder="Location" required>
           </div>
           <div class="row g-2">
             <div class="col">
@@ -69,3 +70,33 @@
     </div>
   </div>
 </div>
+
+<!--
+Title: Edit Unit
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.storage-editbtn').on('click', function() {
+
+      $('#storage-edit').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#unit_storageID').val(data[0]);
+      $('#unitEngineID').val(data[1]);
+      $('#unit_groupID').val(data[2]);
+      $('#unit_location').val(data[3]);
+      $('#unit_name').val(data[4]);
+      $('#unit_position').val(data[5]);
+      $('#unit_type').val(data[6]);
+      $('#unit_grade').val(data[7]);
+    });
+  });
+</script>

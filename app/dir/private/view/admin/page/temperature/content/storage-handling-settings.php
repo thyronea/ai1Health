@@ -19,7 +19,7 @@
                           <a style="text-align: left" title="Add Storage & Handling Unit" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#add-sh-Modal">
                             <small>Add</small> <i class="bi bi-plugin fa-lg"></i>
                           </a>
-                          <a style="text-align: left" title="Add Thermometer" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#add-thermometer">
+                          <a style="text-align: left" title="Add Thermometer" type="button" class="nav-link focus-ring py-1 px-2 btn btn-sm border-0 rounded-0" data-bs-toggle="modal" data-bs-target="#addThermometer">
                             <small>Add</small> <i class="bi bi-thermometer-snow fa-lg"></i>
                           </a>
                         </td>
@@ -51,12 +51,12 @@
                        {
                          ?>
                          <tr>
-                           <td hidden><small><?= htmlspecialchars($storage['storageID']);?></small></td>
+                           <td hidden><small><?= htmlspecialchars($storage['id']);?></small></td>
                            <td hidden><small><?= htmlspecialchars($storage['engineID']);?></small></td>
                            <td hidden><small><?= htmlspecialchars($storage['groupID']);?></small></td>
-                           <td hidden><small><?= htmlspecialchars($storage['office']);?></small></td>
+                           <td hidden><small><?= htmlspecialchars($storage['location']);?></small></td>
                            <td><a type="button" class="focus-ring border-none text-decoration-none storage-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#storage-edit"><small><?= htmlspecialchars(decryptthis($storage['name'], $key));?></small></a></td>
-                           <td hidden><small><?= htmlspecialchars(decryptthis($storage['location'], $key));?></small></td>
+                           <td hidden><small><?= htmlspecialchars(decryptthis($storage['position'], $key));?></small></td>
                            <td hidden><small><?= htmlspecialchars($storage['type']);?></small></td>
                            <td hidden><small><?= htmlspecialchars(decryptthis($storage['grade'], $key));?></small></td>
                            <td><a type="button" class="focus-ring border-none storage-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#storage-edit"><i class="bi bi-gear"></a></td>

@@ -28,10 +28,10 @@
                       </div>
 
                       <!-- Modals -->
+                      <?php include('modal/add-thermometer.php'); ?>
                       <?php include('modal/add-unit.php'); ?>
                       <?php include('modal/edit-unit.php'); ?>
                       <?php include('modal/delete-unit.php'); ?>
-                      <?php include('modal/add-thermometer.php'); ?>
                       <?php include('modal/delete-thermometer.php'); ?>
                       <?php include('modal/edit-thermometer.php'); ?>
 

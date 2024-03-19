@@ -57,7 +57,7 @@ include('../../components/header.php');
                 foreach($result as $profile){
                   ?>
 
-                  <?=htmlspecialchars(decryptthis($profile['fname'], $key));?> <?=htmlspecialchars(decryptthis($profile['lname'], $key)); ?> <br>
+                  <?=htmlspecialchars($profile['fname']);?> <?=htmlspecialchars($profile['lname']); ?> <br>
                   <?=htmlspecialchars(decryptthis($profile['role'], $key)); ?>
 
                   <?php

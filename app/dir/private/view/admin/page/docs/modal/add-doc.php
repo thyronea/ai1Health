@@ -15,8 +15,7 @@
                 <input type="file" name="docname" class="form-control form-select-sm" required>
               </div>
               <div class="col-md-2">
-                <label><small>File Type</small></label>
-                <select class="col form-control form-select-sm" name="type" required>
+                <select title="File Type" class="col form-control form-select-sm" name="type" required>
                   <option></option>
                   <option value="pdf">pdf</option>
                   <option value="word">word</option>
