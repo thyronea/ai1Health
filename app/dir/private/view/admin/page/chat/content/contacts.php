@@ -37,7 +37,7 @@ $mydata =
             
             $id = $profile['userID'];
             $image = $profile['filename'];
-            $fname = htmlspecialchars(decryptthis($profile['fname'], $key));
+            $fname = htmlspecialchars($profile['fname']);
             
             $new_message = false;
             

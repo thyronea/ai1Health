@@ -33,7 +33,7 @@ $myimg = mysqli_fetch_array($my_img_query_run);
 if(is_array($profile)){
 
     $image = $img['filename']; // Receiver's profile image
-    $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+    $fname = htmlspecialchars($profile['fname']); // Receiver's first name
     $my_image = $myimg['filename']; // Sender's profile image
     $my_fname = mysqli_real_escape_string($con, $_SESSION['fname']); // Sender's first name
     
@@ -147,8 +147,8 @@ else{
             $profile_query = "SELECT * FROM profile WHERE userID='$sender_ID' AND groupID='$groupID' LIMIT 1";
             $profile_query_run = mysqli_query($con, $profile_query);
             $profile = mysqli_fetch_array($profile_query_run);
-            $id = $profile['userID'];
-            $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+            $id = htmlspecialchars($profile['userID']);
+            $fname = htmlspecialchars($profile['fname']); // Receiver's first name
 
             $mydata .="
                 <div id='active_contact' userid='$id' onclick='start_chat(event)' style='cursor:pointer'>
