@@ -12,7 +12,7 @@ include('src.php');
     <head>
       <meta charset="utf-8">
       <meta http-equiv="refresh" content="2000;url=/private/access/logout-process.php" /> <!--Auto log out after 20 minutes-->
-      <title>DLi - Settings</title>
+      <title>AI1 Health - Settings</title>
     </head>
     <body>
       <div class="container" align="center">

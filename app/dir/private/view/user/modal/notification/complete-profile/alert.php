@@ -5,7 +5,7 @@
         <div class="container">
           <div class="col-md-12 mt-3">
             <small>Hi <?=htmlspecialchars($_SESSION['fname']); ?>!</small><br><br>
-            <small>Wecome and thank you for signing up!</small>
+            <small>Wecome to All In 1 Health!</small>
             <small>To better serve you, please complete your profile</small>
             <small>as accurate as possible.</small><br>
             <div align="center">

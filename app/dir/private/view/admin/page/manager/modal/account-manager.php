@@ -37,8 +37,8 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                                       <tr><td hidden><?= htmlspecialchars($user['userID']);?></td>
                                         <td hidden><?= htmlspecialchars($user['engineID']);?></td>
                                         <td hidden><?= htmlspecialchars($user['groupID']);?></td>
-                                        <td><a type="button" class="focus-ring text-decoration-none btn-md editbtn" style="color:black" data-bs-toggle="modal" data-bs-target="#editmodal"><small><?= htmlspecialchars(decryptthis($user['fname'], $key));?></small></a></td>
-                                        <td hidden><a type="button" class="focus-ring text-decoration-none btn-md" style="color:black" data-bs-toggle="modal" data-bs-target="#editmodal"><small><?= htmlspecialchars(decryptthis($user['lname'], $key));?></small></a></td>
+                                        <td><a type="button" class="focus-ring text-decoration-none btn-md editbtn" style="color:black" data-bs-toggle="modal" data-bs-target="#editmodal"><small><?= htmlspecialchars($user['fname']);?></small></a></td>
+                                        <td hidden><a type="button" class="focus-ring text-decoration-none btn-md" style="color:black" data-bs-toggle="modal" data-bs-target="#editmodal"><small><?= htmlspecialchars($user['lname']);?></small></a></td>
                                         <td hidden><?= htmlspecialchars(decryptthis($user['email'], $key));?></td>
                                         <td hidden><?= htmlspecialchars(decryptthis($user['role'], $key));?></td>
                                         <td><a title="Update Account Information" type="button" class="focus-ring text-decoration-none btn-md editbtn" style="color:black" data-bs-toggle="modal" data-bs-target="#editmodal"><i class="bi bi-gear"></i></a></td>

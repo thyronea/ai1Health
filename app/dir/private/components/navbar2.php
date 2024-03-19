@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body sticky-top" id="navbar">
   <div class="container">
-    <a class="navbar-brand" href="/index.php">DLi</a>
+    <a class="navbar-brand" href="/index.php">AI1 Health</a>
     <a class="nav-item" href="/public/page/about/index.php">About</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

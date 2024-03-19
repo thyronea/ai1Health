@@ -45,13 +45,11 @@ if(isset($_POST['update_btn']))
   $stmt->execute();
 
   // Encrypt Profile Data and insert to Profile table
-  $encrypt_fname = encryptthis($fname, $key);
-  $encrypt_lname = encryptthis($lname, $key);
   $encrypt_user_email = encryptthis($user_email, $key);
   $encrypt_role = encryptthis($role, $key);
   $profile  = "UPDATE profile SET fname=?, lname=?, email=?, role=? WHERE engineID='$engineID' ";
   $stmt = $con->prepare($profile);
-  $stmt->bind_param("ssss", $encrypt_fname, $encrypt_lname, $encrypt_user_email, $encrypt_role);
+  $stmt->bind_param("ssss", $fname, $lname, $encrypt_user_email, $encrypt_role);
   $stmt->execute();
 
   if($stmt->execute())

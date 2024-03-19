@@ -8,7 +8,9 @@ include(ADMIN_PROCESS . '/sql.php');
 ?>
 <!-- Login session -->
 <?php if (isset($_SESSION["userID"])): ?>
-  <!-- Navtab -->
+<!-- Key -->
+<?php $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]); ?>
+<!-- Navtab -->
 <?php include(ADMIN_COMPONENTS . '/navtab.php'); ?>
 <!-- Page Layout -->
 <?php include(ADMIN_CONTENT . '/layout.php'); ?>

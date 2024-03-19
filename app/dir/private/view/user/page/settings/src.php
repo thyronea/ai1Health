@@ -10,8 +10,8 @@ if(isset($_GET['userID'])){
   $profile_query = "SELECT * FROM profile WHERE userID='$userID' ";
   $profile_query_run = mysqli_query($con, $profile_query);
   $profile = mysqli_fetch_assoc($profile_query_run);
-  $fname = htmlspecialchars(decryptthis($profile['fname'], $key));
-  $lname = htmlspecialchars(decryptthis($profile['lname'], $key));
+  $fname = htmlspecialchars($profile['fname']);
+  $lname = htmlspecialchars($profile['lname']);
 
   // Fetches patient's diversity
   $diversity_query = "SELECT * FROM diversity WHERE userID='$userID' ";

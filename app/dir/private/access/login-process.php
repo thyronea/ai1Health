@@ -1,21 +1,7 @@
 <?php
 session_start();
 include(PRIVATE_SECURITY_PATH . '/dbcon.php');
-
-//ENCRYPT FUNCTION
-function encryptthis($data, $key) {
-$encryption_key = base64_decode($key);
-$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-$encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
-return base64_encode($encrypted . '::' . $iv);
-}
-
-//DECRYPT FUNCTION
-function decryptthis($data, $key) {
-$encryption_key = base64_decode($key);
-list($encrypted_data, $iv) = array_pad(explode('::', base64_decode($data), 2),2,null);
-return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
-}
+include(PRIVATE_SECURITY_PATH . '/encrypt_decrypt.php');
 
 // Admin login
 if(isset($_POST['admin_login_btn']))
@@ -68,12 +54,12 @@ if(isset($_POST['admin_login_btn']))
       $profile_query = "SELECT * FROM profile WHERE userID='$userID' ";
       $profile_query_run = mysqli_query($con, $profile_query);
       $profile = mysqli_fetch_assoc($profile_query_run);
-      $_SESSION['fname'] = htmlspecialchars(decryptthis($profile["fname"], $key)); // Retrieved first name for SESSION
-      $_SESSION['lname'] = htmlspecialchars(decryptthis($profile["lname"], $key)); // Retrieved last name for SESSION
+      $_SESSION['fname'] = htmlspecialchars($profile["fname"]); // Retrieved first name for SESSION
+      $_SESSION['lname'] = htmlspecialchars($profile["lname"]); // Retrieved last name for SESSION
       $_SESSION['email'] = htmlspecialchars(decryptthis($profile["email"], $key)); // Retrieved email for SESSION
       $_SESSION['role'] = htmlspecialchars(decryptthis($profile["role"], $key)); // Retrieved role for SESSION
-      $fname = htmlspecialchars(decryptthis($profile["fname"], $key)); // Decrypted first name
-      $lname = htmlspecialchars(decryptthis($profile["lname"], $key)); // Decrypted last name
+      $fname = htmlspecialchars($profile["fname"]); // Decrypted first name
+      $lname = htmlspecialchars($profile["lname"]); // Decrypted last name
 
       // Encrypt Activities Data
       $fullname = "$fname $lname"; // Combines first and last name for encryption
