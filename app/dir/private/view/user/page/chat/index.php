@@ -17,6 +17,7 @@
 <?php include('process/api.php');?>
 <?php include('content/layout.php');?>
 <?php include('process/script.php');?>
+<?php include('../../modal/logout/logout-modal.php');?>
 <!-- auto logout/login session -->
 <?php else: ?>
 <?php include('../../content/logged_out.php') ?>
