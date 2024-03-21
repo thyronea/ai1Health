@@ -12,19 +12,19 @@
               <p>Refrigerator:</p>
             </div>
           </div>
-          <!-- Date  -->
+          <!-- Date -->
           <div class="col-md-2">
             <div class="form-group mb-2">
               <input type="date" name="r_date" class="form-control form-control-sm mb-1" value="<?php echo $today; ?>" required>
             </div>
           </div>
-          <!-- Time  -->
+          <!-- Time -->
           <div class="col-md-2">
             <div class="form-group mb-2">
               <input type="text" name="r_time" class="form-control form-control-sm mb-1" value="<?php echo date("h:i A"); ?>" required>
             </div>
           </div>
-          <!-- Refrigerator  -->
+          <!-- Refrigerator -->
           <div class="col-md-2">
             <div class="form-group mb-2">
               <select class="form-select form-select-sm" name="refrigerator">

@@ -4,7 +4,7 @@
     <div class="modal-content">
 
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="editmodal-ModalLabel">User Edit</h1>
+        <h1 class="modal-title w-100 fs-5" id="editmodal-ModalLabel">Edit User</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body sticky-top" id="navbar">
   <div class="container">
-    <a class="navbar-brand" href="/index.php">DLi</a>
+    <a class="navbar-brand" href="/index.php">AI1 Health</a>
     <a class="nav-item" href="index.php">Scrollspy 1</a>
     <a class="nav-item" href="#scrollspy2">Scrollspy 2</a>
     <a class="nav-item" href="#scrollspy3">Scrollspy 3</a>

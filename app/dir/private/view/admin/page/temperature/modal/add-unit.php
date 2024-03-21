@@ -1,5 +1,5 @@
 <div class="modal fade" id="add-sh-Modal" tabindex="-1" aria-labelledby="add-sh-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h1 class="modal-title w-100 fs-5" id="add-sh-ModalLabel">Add Storage & Handling Unit</h1>
@@ -12,10 +12,9 @@
             <input type="text" name="engineID" id="unit_engineID" class="form-control form-control-sm" hidden required>
           </div>
             <div class="sh-form mt-3 mb-3">
-                <div class="row g-2">
-                  <div class="col">
+                <div class="col-md-10 g-2">
                     <div class="form-group">
-                    <label for="location"><small>Location</small></label>
+                      <label for="location"><small>Location</small></label>
                       <select class="form-select form-select-sm" name="location" required>
                         <option></option>
                         <?php
@@ -28,41 +27,37 @@
                         ?>
                       </select>
                     </div>
-                  </div>
-                  <div class="col">
-                      <div class="form-group">
-                          <label for="unitPosition"><small>Position</small></label>
-                          <input title="Where is the Storage & handling unit located?" type="text" name="unitPosition" class="form-control form-control-sm" required>
+                    <div class="form-group">
+                        <label for="unitPosition"><small>Position</small></label>
+                        <input title="Where is the Storage & handling unit located?" type="text" name="unitPosition" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="unitType"><small>Type</small></label>
+                          <select class="form-select form-select-sm" name="unitType" required>
+                          <option></option>
+                            <option value="Refrigerator">Refrigerator</option>
+                            <option value="Freezer">Freezer</option>
+                          </select>
+                        </div>
                       </div>
-                  </div>
-                </div>
-                <div class="row g-2 mt-2">
-                  <div class="col-md-3">
-                      <div class="form-group">
-                      <label for="unitType"><small>Type</small></label>
-                        <select class="form-select form-select-sm" name="unitType" required>
-                        <option></option>
-                          <option value="Refrigerator">Refrigerator</option>
-                          <option value="Freezer">Freezer</option>
-                        </select>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="unitGrade"><small>Grade</small></label>
+                          <select class="form-select form-select-sm" name="unitGrade" required>
+                          <option></option>
+                            <option value="Pharm-Grade">Pharm-Grade</option>
+                            <option value="Household">Household</option>
+                          </select>
+                        </div>
                       </div>
-                  </div>
-                  <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="unitGrade"><small>Grade</small></label>
-                        <select class="form-select form-select-sm" name="unitGrade" required>
-                        <option></option>
-                          <option value="Pharm-Grade">Pharm-Grade</option>
-                          <option value="Household">Household</option>
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col">
                       <div class="form-group">
                           <label for="unitName"><small>Brand/Make/Model</small></label>
                           <input type="text" name="unitName" class="form-control form-control-sm" required>
                       </div>
                   </div>
+
                 </div>
             </div>
             <div class="paste-new-sh"></div>
