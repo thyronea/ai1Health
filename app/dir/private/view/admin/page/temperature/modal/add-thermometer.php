@@ -40,7 +40,7 @@
                       echo "<option value='". htmlspecialchars(decryptthis($storage['name'], $key)) ."'>" .htmlspecialchars(decryptthis($storage['name'], $key)) ."</option>" ;
                     }
                     ?>
-                    <option>Back-up Thermometer</option>
+                    <option value="Back-up Thermometer">Back-up Thermometer</option>
                   </select>
                 </div>
               </div>
