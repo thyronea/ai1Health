@@ -5,21 +5,20 @@ Coming soon!
 
 Regular User:
 - Data encrypted
-- Register 
 - Registration - Email Verification (required)
-- Sign In
 - Sign In - Email Code Verification (required)
-- New User Welcome Modal - Complete Profile (Required)
+- Forgot-Password (password reset from sign-in page)
+- New User Welcome Modal - Complete Profile (required)
 - Update Profile
 - Change-Password (password reset from account settings)
 - Send Email
 - Upload Image (profile & background)
 - Edit Image (current image will be replaced and deleted in DB and directory)
-- Upload File (and delete)
-- Search Bar
-- Logout
-- Forgot-Password (password reset from sign-in page)
-- Chat
+- Search
+- Docs (upload/delete files)
+- Chat (instant message members within group)
+- Storage & Handling (add/edit/delete storage units & thermometers; log temperature)
+- Inventory (add/edit/delete inventory)
 
 Admin User (Manager Tab):
 - Everything in Basic
@@ -37,4 +36,4 @@ Currently Logging:
 - Email
 - File
 
-4/22/2024
+4/23/2024
