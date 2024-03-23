@@ -13,14 +13,14 @@
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
           </svg>
         </a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" style="font-size: 12px;">
           <li ><a class="dropdown-item"><small>Group ID: <b><?=$_SESSION["groupID"];?></b></small></a></li>
           <li><hr class="dropdown-divider" /></li>
           <li ><a class="dropdown-item" href="../../../../view/profile/index.php?userID=<?=$_SESSION['userID'];?>" target="_blank"><small><?=htmlspecialchars($_SESSION['fname']); ?> <?=htmlspecialchars($_SESSION['lname']); ?></small></a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li ><a class="dropdown-item focus-ring" href="../settings/index.php?userID=<?=$_SESSION['userID'];?>"><small>Account Settings</small></a></li>
+          <li ><a class="dropdown-item focus-ring" href="../settings/index.php?userID=<?=$_SESSION['userID'];?>"><small>Settings</small><i class="bi bi-gear" style="margin-left: 30px"></i></a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" value="logout" href="/../private/access/logout-process.php"><small>Logout</small></a></li>
+          <li><a class="dropdown-item" value="logout" href="/../private/access/logout-process.php"><small>Logout</small><i class="bi bi-door-open" style="margin-left: 36.5px"></i></a></li>
         </ul>
       </div>
     </div>
@@ -39,8 +39,17 @@
             </a>
           </li>
 
+          <!-- Inventory -->
+          <li data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Inventory" class="nav-item" role="presentation">
+            <a class="nav-link" style="color: black; text-decoration: none;" href="../inventory/index.php?inventory=&button=">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" eight="19" viewBox="0 0 512 512">
+                <path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/>
+              </svg>
+            </a>
+          </li>
+
           <!-- Storage & Handling -->
-          <li class="nav-item" role="presentation">
+          <li data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Storage & Handling" class="nav-item" role="presentation">
             <a class="nav-link" style="color: black; text-decoration: none;" href="../temperature/index.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-thermometer-snow" viewBox="0 0 16 16">
                   <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V9.5a.5.5 0 0 1 1 0v1.585A1.5 1.5 0 0 1 5 12.5z"/>

@@ -4,6 +4,7 @@ include('../../../../security/dbcon.php');
 include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
 ?>
+
 <!-- Login session -->
 <?php if (isset($_SESSION["userID"])): ?>
 
@@ -11,13 +12,12 @@ include('../../components/header.php');
 
 <!-- Navtab -->
 <?php include('components/navtab.php'); ?>
-
-<!-- Layout -->
-<?php include('content/layout.php');?>
+<!-- Navtab Result -->
+<?php include('content/layout.php'); ?>
 
 <!-- auto logout/login session -->
 <?php else: ?>
-<?php include('../../content/logged_out.php') ?>
+<?php include('../../../content/logged_out.php') ?>
 <?php endif; ?>
 
 <?php include('../../components/footer.php'); ?>
