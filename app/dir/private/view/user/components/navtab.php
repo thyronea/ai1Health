@@ -85,7 +85,7 @@
 
     <!-- Main Search Box -->
     <div class="col-md-4">
-     <form class="" action="../admin/page/search/index.php" method="get">
+     <form class="" action="../user/page/search/index.php" method="get">
        <div class="input-group input-group-sm">
          <input type="text" name="search" value="<?php if(isset($_GET['search'])){echo $_GET['']; }?>" class="form-control" placeholder="Search" required>
         <button type="submit" class="focus-ring btn btn-secondary border">Search</button>
