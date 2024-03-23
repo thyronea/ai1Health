@@ -19,7 +19,7 @@
                 <input type="password" name="confirm" onChange="onChange()" placeholder="Confirm Password" class="inputs form-control form-control-sm" style="text-align:center;" required>
               </div>
             </div>
-            <div class="row g-2">
+            <div class="row g-2 mb-2">
               <div class="col">
                 <button type="submit" name="reset_password_btn" class="focus-ring btn btn-outline-secondary btn-sm">Send Reset Password Link</button>
               </div>

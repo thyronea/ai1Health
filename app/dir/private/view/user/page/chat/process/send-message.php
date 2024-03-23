@@ -44,7 +44,7 @@ if(is_array($profile)){
     }
     
     $image = $img['filename']; // Receiver's profile image
-    $fname = decryptthis($profile['fname'], $key); // Receiver's first name
+    $fname = htmlspecialchars($profile['fname']); // Receiver's first name
     $my_image = $myimg['filename']; // Sender's profile image
     $my_fname = mysqli_real_escape_string($con, $_SESSION['fname']); // Sender's first name
     $message = $DATA_OBJ->find->message; // Chat message

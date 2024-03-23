@@ -1,9 +1,8 @@
 <?php
   session_start();
-  require_once('../../../../initialize.php');
-  include(PRIVATE_SECURITY_PATH . '/dbcon.php');
-  include(PRIVATE_SECURITY_PATH . '/encrypt_decrypt.php');
-  include(ADMIN_COMPONENTS . '/header.php');
+  include('../../../../security/dbcon.php');
+  include('../../../../security/encrypt_decrypt.php');
+  include('../../components/header.php');
 ?>
 <!-- Login session -->
 <?php if (isset($_SESSION["userID"])): ?>
@@ -17,7 +16,6 @@
 <?php include('process/api.php');?>
 <?php include('content/layout.php');?>
 <?php include('process/script.php');?>
-<?php include('../../modal/logout/logout-modal.php');?>
 <!-- auto logout/login session -->
 <?php else: ?>
 <?php include('../../content/logged_out.php') ?>

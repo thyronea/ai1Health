@@ -115,7 +115,7 @@ if(is_array($profile)){
     echo json_encode($info);
 }
 else{
-
+    
     // Preview chat
     $view_chat = "SELECT * FROM chat WHERE sender_ID='$myuserID' || receiver_ID='$myuserID' GROUP BY message_ID ORDER BY timestamp DESC";
     $view_chat_run = mysqli_query($con, $view_chat);
@@ -126,14 +126,14 @@ else{
         
         foreach($view_chat_run as $preview){
             
-            $msg_ID = htmlspecialchars($preview['message_ID']);
-            $sender_ID = htmlspecialchars($preview['sender_ID']);
-            $preview_msg = htmlspecialchars(decryptthis($preview['message'], $key)); // Decrypted chat message
-            $preview_date = htmlspecialchars($preview['date']); // Message date
-            $preview_time = htmlspecialchars($preview['time']); // Message time
+            $msg_ID = $preview['message_ID'];
+            $sender_ID = $preview['sender_ID'];
+            $preview_msg = decryptthis($preview['message'], $key); // Decrypted chat message
+            $preview_date = $preview['date']; // Message date
+            $preview_time = $preview['time']; // Message time
 
             if($sender_ID == $myuserID){
-                $sender_ID = htmlspecialchars($preview['receiver_ID']); 
+                $sender_ID = $preview['receiver_ID']; 
             }
 
              // Preview profile image

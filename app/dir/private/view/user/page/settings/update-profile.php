@@ -1,6 +1,13 @@
-<div class="card shadow" style="width:35rem">
+<style media="screen">
+  @keyframes appear {
+      0%{opacity: 0;transform: translate(50px);}
+      100%{opacity: 1;transform: translate(0px);}
+  }
+</style>
+
+<div class="card shadow" style="width:35rem; animation: appear 1.5s ease">
   <div class="card-body">
-    <form class="" action="process.php" method="post">
+    <form class="" action="update-profile-process.php" method="post">
       <div class="row mt-2 g-2">
         <!-- user image -->
         <div class="col" align="center">
@@ -13,15 +20,15 @@
                 foreach($result as $pic){
                   ?>
                     <a href="../../../image/profile/<?=$pic['filename'];?>" target="_blank">
-                      <img src="../../../image/profile/<?php echo $pic['filename'];?>" style="width:100%;height:100%;object-fit:cover;">
+                      <img src="../../../image/profile/<?php echo $pic['filename'];?>" style="width:168px;height:168px;border-radius:50%;object-fit:cover;">
                     </a>
                   <?php
                 }
               }
             ?>
           </div>
-          <a title="Add Profile Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_user_profile_image" style="color:black;"><i class="bi bi-camera"></i></a>
-          <a title="Add Background Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_user_background_image" style="color:black;"><i class="bi bi-image"></i></a>
+          <a title="Add Profile Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_profile_image" style="color:black;"><i class="bi bi-camera"></i></a>
+          <a title="Add Background Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_background_image" style="color:black;"><i class="bi bi-image"></i></a>
         </div>
         <!-- user profile -->
         <div class="col">
@@ -75,22 +82,22 @@
 
       <div class="form-group row g-2 mb-2">
         <div class="col">
-          <input type="text" name="address1" class="form-control form-select-sm" value="<?=htmlspecialchars($address1);?>" placeholder="Address" required>
+          <input type="text" name="address1" class="form-control form-select-sm" value="<?=$address1;?>" placeholder="Address" required>
         </div>
 
         <div class="col">
-          <input type="text" name="address2" class="form-control form-select-sm" value="<?=htmlspecialchars($address2);?>" placeholder="Address 2">
+          <input type="text" name="address2" class="form-control form-select-sm" value="<?=$address2;?>" placeholder="Address 2">
         </div>
       </div>
 
       <div class="form-group row g-2 mb-2">
         <div class="col-md-6">
-          <input type="text" name="city" class="form-control form-select-sm" value="<?=htmlspecialchars($city);?>" placeholder="City" required>
+          <input type="text" name="city" class="form-control form-select-sm" value="<?=$city;?>" placeholder="City" required>
         </div>
 
         <div class="col-md-2 dropdown">
           <select class="form-select form-select-sm" name="state" required>
-            <option class="dropdown-item" value="<?=htmlspecialchars($state);?>" selected><?=htmlspecialchars($state);?></option>
+            <option class="dropdown-item" value="<?=$state;?>" selected><?=$state;?></option>
             <option class="dropdown-item" disabled>select one</option>
             <option class="dropdown-item" value="AL">AL</option>
             <option class="dropdown-item" value="AK">AK</option>
@@ -147,28 +154,28 @@
         </div>
 
         <div class="col-md-4">
-          <input type="text" name="zip" class="form-control form-select-sm" value="<?=htmlspecialchars($zip);?>" placeholder="Zip" required>
+          <input type="text" name="zip" class="form-control form-select-sm" value="<?=$zip;?>" placeholder="Zip" required>
         </div>
       </div>
 
       <div class="form-group mb-4">
         <div class="row g-2 mb-2">
           <div class="col">
-            <input type="text" name="phone" class="form-control form-select-sm" value="<?=htmlspecialchars($phone);?>" placeholder="Home Phone" required>
+            <input type="text" name="phone" class="form-control form-select-sm" value="<?=$phone;?>" placeholder="Home Phone" required>
           </div>
           <div class="col">
-            <input type="text" name="mobile" class="form-control form-select-sm" value="<?=htmlspecialchars($mobile);?>" placeholder="Mobile Phone" required>
+            <input type="text" name="mobile" class="form-control form-select-sm" value="<?=$mobile;?>" placeholder="Mobile Phone" required>
           </div>
         </div>
         <div class="row g-2">
           <div class="col">
-            <input type="text" name="email" class="form-control form-select-sm" value="<?=htmlspecialchars($email);?>" placeholder="Email Address" required>
+            <input type="text" name="email" class="form-control form-select-sm" value="<?=$email;?>" placeholder="Email Address" required>
           </div>
         </div>
       </div>
 
       <div class="justify-content-center">
-        <button type="submit" name="settings_update_btn" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
+        <button type="submit" name="admin_update_profile" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
         <a class="focus-ring btn btn-outline-secondary btn-sm" href="../../../profile/index.php?userID=<?=$_SESSION['userID'];?>" target="_blank">View</a>
       </div>
     </form>
