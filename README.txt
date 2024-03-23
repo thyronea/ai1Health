@@ -1,5 +1,8 @@
 All In 1 Health: A robust electronic health system
 
+Issues:
+- images are not deleted when updated
+
 Coming soon!
 - Dark Mode
 
