@@ -18,13 +18,12 @@ if(isset($_POST['upload_background_image']))
     header("Location: /private/view/admin/page/settings/index.php?userID=$userID");
     exit(0);
   }
+  // If default background is used, update image in DB
   else {
     $default_pic = "default-background.jpg";
     $check_image = "SELECT * FROM background_image WHERE userID='$userID' AND filename='$default_pic' ";
     $check_image_run = mysqli_query($con, $check_image);
-    $background = mysqli_fetch_assoc($check_image_run);
 
-    // If image exist, replace image in DB and delete the image in directory folder (image)
     if(mysqli_num_rows($check_image_run) > 0) {
       $update_image  = "UPDATE background_image SET filename=? WHERE userID='$userID' ";
       $stmt = $con->prepare($update_image);
@@ -49,9 +48,9 @@ if(isset($_POST['upload_background_image']))
       $image = mysqli_fetch_assoc($check_image_run);
 
       unlink('../../../image/background/'.$image['filename']);
-      $upload_image = "INSERT INTO background_image (userID, groupID, filename) VALUES (?, ?, ?)";
-      $stmt = $con->prepare($upload_image);
-      $stmt->bind_param("sss", $userID, $groupID, $img_name);
+      $update_image  = "UPDATE background_image SET filename=? WHERE userID='$userID' ";
+      $stmt = $con->prepare($update_image);
+      $stmt->bind_param("s", $img_name);
       $stmt->execute();
 
       if(move_uploaded_file($tempname, "$folder/$img_name")) {

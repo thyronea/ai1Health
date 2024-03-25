@@ -1,9 +1,9 @@
 All In 1 Health: A robust electronic health system
 
-Issues:
-- images are not deleted when updated
-
-Coming soon!
+To Do:
+- Delete images in folder when updated
+- Delete files and clear activity log when account is deleted
+- Send email confirmation when account is deleted
 - Dark Mode
 
 Regular User:

@@ -17,7 +17,7 @@
                   <input type="hidden" name="engineID[]" id="vaccine_engineID" class="form-control form-control-sm" required>
                 </div>
                   <div class="form-group mb-1">
-                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['group_id']); ?>" class="form-control form-control-sm">
+                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']); ?>" class="form-control form-control-sm">
                   </div>
               </div>
 
@@ -27,7 +27,7 @@
                     <select class="form-group form-select form-select-sm" name="storage[]">
                       <option disabled selected>Storage Unit</option>
                       <?php
-                      $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
+                      $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                       $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";
                       $sql_run = mysqli_query($con, $sql);
                       $office = mysqli_num_rows($sql_run);
