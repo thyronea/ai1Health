@@ -1,24 +1,21 @@
 <!-- Modal -->
-<div class="modal fade" id="add-vaccine-Modal" tabindex="-1" aria-labelledby="add-vaccine-ModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-inventory-Modal" tabindex="-1" aria-labelledby="add-inventory-ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="add-vaccine-ModalLabel">Add Vaccine</h1>
+        <h1 class="modal-title w-100 fs-5" id="add-vaccine-ModalLabel">Add Inventory</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-        <form action="process/sql.php" method="POST">
+        <form action="process/add-inventory.php" method="POST">
 
             <div class="main-form mt-3">
 
               <div class="col-md-3">
                 <div class="form-group mb-3 mt-2">
-                  <input type="hidden" name="engineID[]" id="vaccine_engineID" class="form-control form-control-sm" required>
+                  <input type="hidden" name="engineID[]" id="inventory_engineID" class="form-control form-control-sm" required>
                 </div>
-                  <div class="form-group mb-1">
-                      <input type="hidden" name="groupID" value="<?=htmlspecialchars($_SESSION['groupID']); ?>" class="form-control form-control-sm">
-                  </div>
               </div>
 
               <div class="row g-2">
@@ -56,7 +53,7 @@
                   <div class="col">
                     <div class="form-group mb-2">
 
-                          <select class="form-select form-select-sm" name="vaccine[]" required>
+                          <select class="form-select form-select-sm" name="name[]" required>
                             <option disabled selected>Product</option>
                             <option disabled>DTaP</option>
                             <option value="DTaP - Daptacel Single Dose Vials">Daptacel (Single Dose Vials)</option>
@@ -183,10 +180,25 @@
 
       </div>
       <div class="modal-footer col d-flex justify-content-center">
-        <a href="javascript:void(0)" class="add-more-form focus-ring py-1 px-2 btn-outline border btn btn-sm" onclick="change();">More</a>
-        <button type="submit" name="add_vaccines" class="focus-ring py-1 px-2 btn-outline border btn btn-sm">Add</button>
+       <!-- <a href="javascript:void(0)" class="add-more-form focus-ring py-1 px-2 btn-outline border btn btn-sm" onclick="change();">More</a> -->
+        <button type="submit" name="add_inventory" class="focus-ring py-1 px-2 btn-outline border btn btn-sm">Add</button>
       </div>
       </form>
     </div>
   </div>
 </div>
+
+<!-- Script for generating random Engine ID -->
+<script>
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 9) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("inventory_engineID").value = randomNumber(7);
+</script>

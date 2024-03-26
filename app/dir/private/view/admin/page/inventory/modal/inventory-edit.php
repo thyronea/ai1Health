@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="vaccine-edit" tabindex="-1" aria-labelledby="vaccine-edit-ModalLabel" aria-hidden="true">
+<div class="modal fade" id="inventory-edit" tabindex="-1" aria-labelledby="inventory-edit-ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
@@ -10,7 +10,7 @@
 
       <div class="modal-body">
 
-        <form class="" action="process/sql.php" method="POST">
+        <form class="" action="process/edit-inventory.php" method="POST">
           <div class="row g-2">
             <div class="col g-2" align="left">
               <small><p class="mt-1">Storage (Date & Time):</p></small>
@@ -21,13 +21,13 @@
           </div>
           <div class="row g-2">
 
-              <input type="hidden" name="engineID" id="vax_engineid" class="form-control form-control-sm" required>
+              <input type="hidden" name="engineID" id="inventory_engineid" class="form-control form-control-sm" required>
 
               <div class="col">
                 <select class="form-group form-select form-select-sm" name="storage" id="storage">
                   <option selected >Storage Unit</option>
                   <?php
-                  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
+                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                   $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";
                   $sql_run = mysqli_query($con, $sql);
                   $office = mysqli_num_rows($sql_run);
@@ -41,7 +41,7 @@
 
               <div class="col-md-4">
                 <div class="form-group mb-2">
-                  <select class="form-select form-select-sm" name="manufacturer" id="vax_manufacturer" required>
+                  <select class="form-select form-select-sm" name="manufacturer" id="inventory_manufacturer" required>
                     <option selected>Manufacturer</option>
                     <option value="GSK">GSK</option>
                     <option value="Merck">Merck</option>
@@ -62,7 +62,7 @@
               <div class="col-md-8">
                 <div class="form-group mb-2">
                   <!-- Vaccine Group -->
-                  <select id="vaccine" class="form-select form-select-sm" name="vaccine" required>
+                  <select id="name" class="form-select form-select-sm" name="name" required>
                     <option selected>Select Vaccine</option>
                     <option disabled>DTaP</option>
                     <option value="DTaP - Daptacel Single Dose Vials">Daptacel (Single Dose Vials)</option>
@@ -175,7 +175,7 @@
             </div>
 
           <div class="form-group mb-2" align="center">
-            <button type="submit" name="update_vaccine_btn" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
+            <button type="submit" name="update_inventory_btn" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
           </div>
 
         </form>
@@ -185,3 +185,36 @@
     </div>
   </div>
 </div>
+
+<!--
+Title: Edit Vaccine
+Location: components/footer.php
+-->
+<script>
+  $(document).ready(function () {
+    $('.vaccine-editbtn').on('click', function() {
+
+      $('#vaccine-edit').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+
+      $('#inventory_engineid').val(data[0]);
+      $('#groupid').val(data[1]);
+      $('#doses').val(data[2]);
+      $('#name').val(data[3]);
+      $('#inventory_manufacturer').val(data[4]);
+      $('#ndc').val(data[5]);
+      $('#lot').val(data[6]);
+      $('#exp').val(data[7]);
+      $('#source').val(data[8]);
+      $('#storage').val(data[9]);
+      $('#timestamp').val(data[10]);
+    });
+  });
+</script>

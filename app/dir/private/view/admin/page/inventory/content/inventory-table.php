@@ -11,8 +11,8 @@
       <div class="col" align="left">
         <b>
           <?php
-          $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-          $query = "SELECT SUM(doses) FROM vaccines WHERE groupID='$groupID' ";
+          $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+          $query = "SELECT SUM(doses) FROM inventory WHERE groupID='$groupID' ";
           $query_run = mysqli_query($con, $query);
 
           while($row = mysqli_fetch_array($query_run))
@@ -26,8 +26,7 @@
       <tbody>
 
         <?php
-        $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']); // this code will only show users from the same groupID
-        $query = "SELECT * FROM vaccines WHERE groupID='$groupID' ";
+        $query = "SELECT * FROM inventory WHERE groupID='$groupID' ";
         $query_run = mysqli_query($con, $query);
 
         if(mysqli_num_rows($query_run) > 0)
@@ -38,11 +37,11 @@
             <tr>
 
               <td hidden><small><?=htmlspecialchars($vaccine['engineID']);?></small></td>
-              <td><small><?=htmlspecialchars($vaccine['vaccine']);?></small></td>
+              <td><small><?=htmlspecialchars($vaccine['name']);?></small></td>
               <td><small><?=htmlspecialchars($vaccine['doses']);?> <a>- doses</a></small></td>
               <td><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></td>
               <td><small><?=htmlspecialchars($vaccine['exp']);?></small></td>
-              <td><small><?=htmlspecialchars(decryptthis($vaccine['funding_source'], $key));?></small></td>
+              <td><small><?=htmlspecialchars($vaccine['funding_source']);?></small></td>
 
             </tr>
             <?php

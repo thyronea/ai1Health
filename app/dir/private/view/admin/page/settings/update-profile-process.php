@@ -55,7 +55,7 @@ if(isset($_POST['admin_update_profile']))
   $encrypt_email = encryptthis($email, $key);
   $profile  = "UPDATE profile SET fname=?, lname=?, email=? WHERE userID='$userID' ";
   $stmt = $con->prepare($profile);
-  $stmt->bind_param("sss", $encrypt_fname, $encrypt_lname, $encrypt_email);
+  $stmt->bind_param("sss", $fname, $lname, $encrypt_email);
   $stmt->execute();
 
   // Encrypt Patient's diversity and update

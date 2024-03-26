@@ -31,7 +31,7 @@ include('../../components/print.php');
 
                         <?php
                         // Display provider table
-                        $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
+                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                         $immunized = "SELECT * FROM immunization WHERE groupID='$groupID' ";
                         $immunized_run = mysqli_query($con, $immunized);
                         if(mysqli_num_rows($immunized_run) > 0 )
@@ -55,7 +55,7 @@ include('../../components/print.php');
                         {
                         ?>
                         <tr>
-                          <td colspan="7"><small>No Record Found</small></td>
+                          <td colspan="7" align="center"><small>No Record Found</small></td>
                         </tr>
                         <?php
                         }
@@ -72,13 +72,6 @@ include('../../components/print.php');
       </div>
       <div class="modal-footer">
         <div class="align-center col d-flex justify-content-center">
-          <!-- Close Modal -->
-          <button title="Close" type="button" class="nav-link focus-ring py-1 px-2 text-decoration-none border-none mb-2" data-bs-dismiss="modal" aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
-              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-          </button>
           <!-- Save Inventory -->
           <button title="Save Report" class="nav-link focus-ring py-1 px-2 text-decoration-none border-none mb-2" style="text-align: left">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
@@ -97,3 +90,26 @@ include('../../components/print.php');
     </div>
   </div>
 </div>
+
+<!-- Script to print Vaccine Administered List -->
+<script>
+  document.getElementById("administeredReportPrint").onclick = function () {
+    printElement(document.getElementById("administeredReportprintThis"));
+  };
+
+  function printElement(elem) {
+    var domClone = elem.cloneNode(true);
+
+    var $printSection = document.getElementById("printSection");
+
+    if (!$printSection) {
+        var $printSection = document.createElement("div");
+        $printSection.id = "printSection";
+        document.body.appendChild($printSection);
+    }
+
+    $printSection.innerHTML = "";
+    $printSection.appendChild(domClone);
+    window.print();
+  }
+</script>

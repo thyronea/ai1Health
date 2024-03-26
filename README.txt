@@ -1,8 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Delete images in folder when updated
-- Delete files and clear activity log when account is deleted
 - Send email confirmation when account is deleted
 - Dark Mode
 

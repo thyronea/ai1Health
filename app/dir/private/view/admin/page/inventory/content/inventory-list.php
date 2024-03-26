@@ -49,18 +49,18 @@
                    {
                      ?>
                      <tr>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none vaccinedeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccinedeletemodal"><i class="bi bi-trash"></i></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
+                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
+                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }
@@ -104,18 +104,18 @@
                    {
                      ?>
                      <tr>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none vaccinedeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccinedeletemodal"><i class="bi bi-trash"></i></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
+                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }
@@ -159,18 +159,18 @@
                    {
                      ?>
                      <tr>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
-                       <td hidden><a type="hidden" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none vaccine-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccine-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none vaccinedeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#vaccinedeletemodal"><i class="bi bi-trash"></i></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
+                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }

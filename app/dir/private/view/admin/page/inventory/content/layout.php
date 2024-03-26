@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container-fluid" align="center">
-   <div class="row flex-nowrap" style="animation: appear 2s ease">
+   <div class="row flex-nowrap" style="animation: appear 1s ease">
 
      <!-- Sidebar Menu Button -->
      <?php include('components/sidebar.php'); ?>
@@ -9,10 +9,10 @@
      <?php include('content/inventory.php'); ?>
 
      <!-- Modals -->
-     <?php include('modal/add-vaccine.php'); ?>
-     <?php include('modal/vaccine-edit.php'); ?>
+     <?php include('modal/add-inventory.php'); ?>
+     <?php include('modal/inventory-edit.php'); ?>
      <?php include('modal/vaccine-delete.php'); ?>
-     <?php include('modal/vaccine-inventory-list.php'); ?>
+     <?php include('modal/inventory-list.php'); ?>
      <?php include('modal/vaccine-administered-list.php'); ?>
      <?php include('modal/clear-inventory.php'); ?>
 

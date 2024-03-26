@@ -11,7 +11,6 @@ include('../../components/header.php');
 
 <!-- Navtab -->
 <?php include('components/navtab.php'); ?>
-
 <!-- Layout -->
 <?php include('content/layout.php');?>
 

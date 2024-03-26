@@ -32,7 +32,7 @@
              </div>
 
              <div class="form-group mb-2">
-               <button type="submit" name="admin_send_code" class="btn btn-outline-secondary btn-sm">Send Verification Code</button>
+               <button type="submit" name="send_code" class="btn btn-outline-secondary btn-sm">Send Verification Code</button>
              </div>
              <hr style="border-top: 2px solid;">
 

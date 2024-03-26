@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\SMTP;
 $is_invalid = false;
 
 // Provider login
-if(isset($_POST['admin_send_code']))
+if(isset($_POST['send_code']))
 {
   include('dbcon.php');
   $email = mysqli_real_escape_string($con, $_POST['email']);
@@ -69,10 +69,13 @@ if(isset($_POST['admin_send_code']))
     $mail->send();
 
     // stores vcode in token table for login verification
-    $update_vcode = "UPDATE token SET v_code='$vcode' WHERE userID='$userID' ";
-    $update_vcode_run = mysqli_query($con, $update_vcode);
+    $update_vcode = "UPDATE token SET v_code=? WHERE userID='$userID' ";
+    $stmt = $con->prepare($update_vcode);
+    $stmt->bind_param("s", $vcode);
+    $stmt->execute();
 
-    if($update_vcode_run)
+
+    if($stmt->execute())
     {
       $_SESSION['success'] = "Code was sent to your email";
       header("Location: /public/page/access/login-verification.php"); // If user type is "Admin", go to admin page

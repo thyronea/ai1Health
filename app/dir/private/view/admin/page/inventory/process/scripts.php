@@ -275,38 +275,7 @@ Location: components/footer.php
   }
 </script>
 
-<!--
-Title: Edit Vaccine
-Location: components/footer.php
--->
-<script>
-  $(document).ready(function () {
-    $('.vaccine-editbtn').on('click', function() {
 
-      $('#vaccine-edit').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-
-      $('#vax_engineid').val(data[0]);
-      $('#groupid').val(data[1]);
-      $('#doses').val(data[2]);
-      $('#vaccine').val(data[3]);
-      $('#vax_manufacturer').val(data[4]);
-      $('#ndc').val(data[5]);
-      $('#lot').val(data[6]);
-      $('#exp').val(data[7]);
-      $('#source').val(data[8]);
-      $('#storage').val(data[9]);
-      $('#timestamp').val(data[10]);
-    });
-  });
-</script>
 
 <!--
 Title: Delete Vaccine

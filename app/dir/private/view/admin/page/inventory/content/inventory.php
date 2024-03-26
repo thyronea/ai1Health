@@ -14,9 +14,10 @@
         </div>
        </form>
       </div>
-
+      
         <!-- SQL Math for Google Charts -->
         <?php include('process/math.php'); ?>
+        <?php include('process/scripts.php'); ?>
 
         <!-- Inventory Chart & List -->
         <div class="row">
@@ -38,3 +39,5 @@
     100%{opacity: 1;transform: translate(0px);}
 }
 </style>
+
+

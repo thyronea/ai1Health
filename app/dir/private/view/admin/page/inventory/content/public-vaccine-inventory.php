@@ -40,7 +40,7 @@
                   ?>
                   <tr>
                     <td hidden><<?= htmlspecialchars($user['id']);?></td>
-                    <td><small><?=htmlspecialchars($user['vaccine']);?>:</small></td>
+                    <td><small><?=htmlspecialchars($user['name']);?>:</small></td>
                     <td><small><?=htmlspecialchars($user['doses']);?></small></td>
                   </tr>
                   <?php

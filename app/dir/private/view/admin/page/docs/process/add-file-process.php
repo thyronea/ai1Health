@@ -2,10 +2,10 @@
 session_start();
 include('../../../../../security/dbcon.php');
 include('../../../../../security/encrypt_decrypt.php');
-$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
 
 if(isset($_POST['upload_doc']))
-{
+{ 
+  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
   $maxsize = 2097152;
   $rand_name = rand(1000,9999);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
