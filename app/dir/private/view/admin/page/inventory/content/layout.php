@@ -11,7 +11,7 @@
      <!-- Modals -->
      <?php include('modal/add-inventory.php'); ?>
      <?php include('modal/inventory-edit.php'); ?>
-     <?php include('modal/vaccine-delete.php'); ?>
+     <?php include('modal/inventory-delete.php'); ?>
      <?php include('modal/inventory-list.php'); ?>
      <?php include('modal/vaccine-administered-list.php'); ?>
      <?php include('modal/clear-inventory.php'); ?>

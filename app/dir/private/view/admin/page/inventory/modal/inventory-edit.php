@@ -4,7 +4,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="vaccine-edit-ModalLabel">Update Inventory</h1>
+        <h1 class="modal-title w-100 fs-5" id="vaccine-edit-ModalLabel">Update Inventory</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -25,7 +25,7 @@
 
               <div class="col">
                 <select class="form-group form-select form-select-sm" name="storage" id="storage">
-                  <option selected >Storage Unit</option>
+                  <option selected disabled>Storage Unit</option>
                   <?php
                   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                   $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";

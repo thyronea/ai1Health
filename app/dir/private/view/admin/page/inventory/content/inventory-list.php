@@ -36,10 +36,7 @@
            <tbody>
 
              <?php
-               if(isset($_GET['inventory']))
-               {
                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                 $filtervalues = htmlspecialchars($_GET['inventory']);
                  $query = "SELECT * FROM inventory WHERE groupID='$groupID' ";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
@@ -49,6 +46,7 @@
                    {
                      ?>
                      <tr>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -65,15 +63,14 @@
                      <?php
                    }
                  }
-               }
-               else
-               {
-                 ?>
-                   <tr>
-                     <td colspan="5" align="center"><small>No Data Found</small></td>
-                   </tr>
-                 <?php
-               }
+                else
+                {
+                  ?>
+                    <tr>
+                      <td colspan="5" align="center"><small>No Data Found</small></td>
+                    </tr>
+                  <?php
+                }
              ?>
 
            </tbody>
@@ -91,10 +88,7 @@
            <tbody>
 
              <?php
-               if(isset($_GET['inventory']))
-               {
                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                 $filtervalues = htmlspecialchars($_GET['inventory']);
                  $query = "SELECT * FROM inventory WHERE groupID='$groupID' AND funding_source='Private' ";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
@@ -104,6 +98,7 @@
                    {
                      ?>
                      <tr>
+                     <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -120,15 +115,14 @@
                      <?php
                    }
                  }
-               }
-               else
-               {
-                 ?>
-                   <tr>
-                     <td colspan="5" align="center"><small>No Data Found</small></td>
-                   </tr>
-                 <?php
-               }
+                  else
+                  {
+                    ?>
+                      <tr>
+                        <td colspan="5" align="center"><small>No Data Found</small></td>
+                      </tr>
+                    <?php
+                  }
              ?>
 
            </tbody>
@@ -146,10 +140,7 @@
            <tbody>
 
              <?php
-               if(isset($_GET['inventory']))
-               {
                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                 $filtervalues = htmlspecialchars($_GET['inventory']);
                  $query = "SELECT * FROM inventory WHERE groupID='$groupID' AND funding_source='Public' ";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
@@ -159,6 +150,7 @@
                    {
                      ?>
                      <tr>
+                     <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -175,15 +167,14 @@
                      <?php
                    }
                  }
-               }
-               else
-               {
-                 ?>
-                   <tr>
-                     <td colspan="5" align="center"><small>No Data Found</small></td>
-                   </tr>
-                 <?php
-               }
+                  else
+                  {
+                    ?>
+                      <tr>
+                        <td colspan="5" align="center"><small>No Data Found</small></td>
+                      </tr>
+                    <?php
+                  }
              ?>
 
            </tbody>

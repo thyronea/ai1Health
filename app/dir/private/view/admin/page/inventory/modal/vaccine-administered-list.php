@@ -7,6 +7,7 @@ include('../../components/print.php');
     <div class="modal-content">
       <div class="modal-header text-center">
         <h1 class="modal-title w-100 fs-5" id="administered-list-ModalLabel">Vaccine Administered List</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="card m-1 col-md-11 border-0" id="administeredReportprintThis">

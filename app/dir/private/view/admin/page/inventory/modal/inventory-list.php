@@ -6,7 +6,8 @@ include('../../components/print.php');
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="inventory-list-ModalLabel">Inventory List</h1>
+        <h1 class="modal-title w-100 fs-5" id="inventory-list-ModalLabel">Inventory Report</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="card m-1 col-md-10 border-0" id="vaccineReportprintThis">
@@ -71,5 +72,39 @@ include('../../components/print.php');
     $printSection.innerHTML = "";
     $printSection.appendChild(domClone);
     window.print();
+  }
+</script>
+
+<!--
+Title: Google Pie Chart - Inventory Data for ALL
+Location: pages/admin/index.php
+-->
+<script>
+  google.charts.load("current", {packages:["corechart"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Category', 'Count'],
+      ['Private Inventory', <?=$private['count(*)']; ?>],
+      ['Public Inventory', <?=$public['count(*)']; ?>]
+    ]);
+
+    var options = {
+      title: 'Inventory Data',
+      legend: 'none',
+      pieHole: 0.4,
+      slices: {
+        0: { color: '#AAB7B8' },
+        1: { color: '#96B7FF' },
+        2: { color: '#CACFD2' },
+        3: { color: '#AEB6BF' },
+        4: { color: '#5D6D7E' },
+        5: { color: '#7B7D7D' },
+        6: { color: '#D0C3DE' }
+      }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('inventorychart'));
+    chart.draw(data, options);
   }
 </script>

@@ -17,7 +17,6 @@
       
         <!-- SQL Math for Google Charts -->
         <?php include('process/math.php'); ?>
-        <?php include('process/scripts.php'); ?>
 
         <!-- Inventory Chart & List -->
         <div class="row">

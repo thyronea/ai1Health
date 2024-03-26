@@ -73,13 +73,13 @@ if(isset($_POST['add_inventory']))
   if($stmt->execute())
   {
       $_SESSION['success'] = "Inventory Added Successfully";
-      header("Location: ../../inventory/index.php?inventory=&button=");
+      header("Location: ../../inventory/index.php");
       exit(0);
   }
   else
   {
       $_SESSION['warning'] = "Data Not Inserted";
-      header("Location: ../../inventory/index.php?inventory=&button=");
+      header("Location: ../../inventory/index.php");
       exit(0);
   }
 }

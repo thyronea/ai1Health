@@ -4,6 +4,7 @@
   include('../../../../security/dbcon.php');
   include('../../../../security/encrypt_decrypt.php');
   include('../../components/header.php');
+  include('process/sql.php');
 ?>
 
 <!-- Login session -->
