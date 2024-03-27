@@ -14,7 +14,7 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
       </div>
       <div class="modal-body">
 
-        <form action="process/sql.php" method="POST" enctype="multipart/form-data">
+        <form action="process/add-new-patient.php" method="POST" enctype="multipart/form-data">
 
             <div class="main-form">
               <div class="row col-md-6 mb-2">
@@ -32,19 +32,10 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
                 <div class="form-group">
                     <input type="hidden" name="engineID" id="engineID" class="form-control" >
                 </div>
-                <div class="form-group">
-                    <input type="hidden" name="diversityID" id="diversityID" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="addressID" id="addressID" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="contactID" id="contactID" class="form-control" >
-                </div>
                 </div>
               </div>
                 <div class="col-md-10" style="text-align: left">
-                  <div class="row g-2 mb-2">
+                  <div class="row g-2 mt-3 mb-2">
                     <div class="col">
                       <label><small>First Name</small></label>
                       <input class="form-control form-control-sm" type="text" name="fname" required>
@@ -153,7 +144,22 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
   </div>
 </div>
 
+
 <script>
+// Generate randome patientID
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 5) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("patientID").value = randomNumber(7);
+
+  // Generate randome engineID
  function randomNumber(len) {
   var randomNumber;
   var n = '';
@@ -165,4 +171,6 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
   return n;
   }
   document.getElementById("engineID").value = randomNumber(7);
+
+
 </script>

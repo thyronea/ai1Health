@@ -1,13 +1,10 @@
 <?php
 session_start();
-include('../../../components/dbcon.php');
-include('../../../components/encrypt_decrypt.php'); // encryption/decryption source
-// PHPMailer source code
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+include('../../../../../security/dbcon.php');
+include('../../../../../security/encrypt_decrypt.php');
+require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 // Delete vaccine from inventory when 0
 if(isset($_GET['engineID']))
