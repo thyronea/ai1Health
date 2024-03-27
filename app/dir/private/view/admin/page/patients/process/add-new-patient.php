@@ -9,17 +9,14 @@ require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 if(isset($_POST['add_patient']))
 {
   $token = md5(rand());
+  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
+  $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
-  $diversityID = mysqli_real_escape_string($con, $_POST['diversityID']);
-  $addressID = mysqli_real_escape_string($con, $_POST['addressID']);
-  $contactID = mysqli_real_escape_string($con, $_POST['contactID']);
-  $type = mysqli_real_escape_string($con, "Registered Patient");
   $date = mysqli_real_escape_string($con, $_POST['date']);
   $time = mysqli_real_escape_string($con, $_POST['time']);
   $fname = mysqli_real_escape_string($con, $_POST['fname']);
@@ -38,15 +35,16 @@ if(isset($_POST['add_patient']))
   $mobile = mysqli_real_escape_string($con, $_POST['mobile']);
   $patient_email = mysqli_real_escape_string($con, $_POST['email']);
   $role = mysqli_real_escape_string($con, $_POST['role']);
+  $type = mysqli_real_escape_string($con, "Registered Patient");
   $admin = mysqli_real_escape_string($con, "Admin");
   $status = mysqli_real_escape_string($con, "Account Created");
   $patient_image = mysqli_real_escape_string($con, $_FILES['patient_image']['name']);
   $subject = mysqli_real_escape_string($con, "Patient Registration Confirmation");
-  $link = mysqli_real_escape_string($con, "pages/patients/content/patient-chart.php?engineID=$engineID");
+  $link = mysqli_real_escape_string($con, "page/patients/content/patient-chart.php?engineID=$engineID");
   $message = htmlspecialchars("
   Hello $fname,
 
-  Your Patient ID is $engineID.
+  Your Patient ID is $patientID.
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
   http://localhost:8002/private/security/new-patient-email-verification.php?token=$token
@@ -58,47 +56,20 @@ if(isset($_POST['add_patient']))
   ");
 
   // Check if email exist
-  $checkpatient = "SELECT * FROM patients WHERE email='$patient_email' ";
+  $checkpatient = "SELECT * FROM patients WHERE fname='$fname' lname='$lname' dob='$dob' AND email='$patient_email' ";
   $checkpatient_run = mysqli_query($con, $checkpatient);
 
   // If email exist, patient will not be added
   if(mysqli_num_rows($checkpatient_run) > 0)
   {
     $_SESSION['warning'] = "Patient Already Exist!";
-    header("Location: /HC/admin/pages/patients/index.php?patient=&button=");
+    header("Location: ../../patients/index.php");
     exit(0);
   }
   else
   {
-    // Verifies if image is already in database. If so, patient will not be added
-    if(file_exists("upload/" . $_FILES["patient_image"]["name"]))
-    {
-      $_SESSION['warning'] = "Image Already Exist!";
-      header("Location: /HC/admin/pages/patients/index.php");
-      exit(0);
-    }
-    else
-    {
-      // Send email confirmation
-      $mail = new PHPMailer(true);
-
-      $mail->isSMTP();
-      $mail->SMTPAuth = true;
-
-      $mail->Host = "smtp.gmail.com";
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-      $mail->Port = 587;
-
-      $mail->Username = "thyrone.antonio@gmail.com";
-      $mail->Password = "mhopftvkjlemevgn";
-
-      $mail->setFrom($patient_email);
-      $mail->addAddress($patient_email);
-
-      $mail->Subject = $subject;
-      $mail->Body = $message;
-
-      $mail->send();
+      // Email Configuration
+      include('../../manager/components/email-config.php');
 
       // stores data in token table
       $sql = "INSERT INTO token (userID, groupID, token, dk_token) VALUES (?, ?, ?, ?)";
