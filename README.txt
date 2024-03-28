@@ -1,6 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
+- Unable to connect $plan
 - Save reports in PDF
 - Send email confirmation when account is deleted
 - Dark Mode
