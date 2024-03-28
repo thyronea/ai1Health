@@ -40,10 +40,7 @@
            <tbody>
 
              <?php
-               if(isset($_GET['patient']))
-               {
-                 $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-                 $filtervalues = htmlspecialchars($_GET['patient']);
+                 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                  $query = "SELECT * FROM patients WHERE groupID='$groupID' ";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
@@ -65,15 +62,14 @@
                      <?php
                    }
                  }
-               }
-               else
-               {
-                 ?>
-                   <tr>
-                     <td colspan="5" align="center"><small>No Data Found</small></td>
-                   </tr>
-                 <?php
-               }
+                else
+                {
+                  ?>
+                    <tr>
+                      <td colspan="5" align="center"><small>No Data Found</small></td>
+                    </tr>
+                  <?php
+                }
              ?>
 
            </tbody>
@@ -88,10 +84,6 @@
            <tbody>
 
              <?php
-               if(isset($_GET['patient']))
-               {
-                 $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-                 $filtervalues = htmlspecialchars($_GET['patient']);
                  $query = "SELECT * FROM patients WHERE groupID='$groupID' AND (YEAR(NOW()) - YEAR(dob)) BETWEEN 0 AND 18";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
@@ -113,15 +105,14 @@
                      <?php
                    }
                  }
-               }
-               else
-               {
-                 ?>
-                   <tr>
-                     <td colspan="5" align="center"><small>No Data Found</small></td>
-                   </tr>
-                 <?php
-               }
+                else
+                {
+                  ?>
+                    <tr>
+                      <td colspan="5" align="center"><small>No Data Found</small></td>
+                    </tr>
+                  <?php
+                }
              ?>
 
            </tbody>

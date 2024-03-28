@@ -42,7 +42,7 @@ if(isset($_POST['add_patient']))
   $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
   $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
   $subject = mysqli_real_escape_string($con, "Patient Registration Confirmation");
-  $link = mysqli_real_escape_string($con, "page/patients/content/patient-chart.php?engineID=$engineID");
+  $link = mysqli_real_escape_string($con, "page/patients/content/patient-chart.php?patientID=$patientID");
   $message = htmlspecialchars("
   Hello $fname,
 
@@ -197,7 +197,7 @@ if(isset($_POST['add_patient']))
       $patient_fullname = "$fname $lname";
       $engine = "INSERT INTO engine (engineID, groupID, keyword1, keyword2, keyword3, link) VALUES (?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($engine);
-      $stmt->bind_param("ssssss", $engineID, $groupID, $patient_fullname, $groupID, $role, $link);
+      $stmt->bind_param("ssssss", $engineID, $groupID, $patient_fullname, $role, $groupID, $link);
       $stmt->execute();
 
       // Encrypt Patient's log Data
