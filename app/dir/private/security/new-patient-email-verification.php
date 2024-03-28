@@ -29,31 +29,31 @@ if(isset($_GET['token']))
       if($update_query_run)
       {
         $_SESSION['success'] = "Your account has been verified!";
-        header("Location: /HC/public/pages/create-patient-pw.php?token=$token");
+        header("Location: /public/page/password/create-user-pw.php?token=$token");
         exit(0);
       }
       else
       {
         $_SESSION['warning'] = "Verification failed!";
-        header("Location: /HC/public/pages/patient-login.php");
+        header("Location: /public/page/password/create-user-pw.php?token=$token");
         exit(0);
       }
     }
     else
     {
       $_SESSION['warning'] = "Email already verified! Please log in.";
-      header("Location: /HC/public/pages/patient-login.php");
+      header("Location: /public/page/access/sign-in.php");
       exit(0);
     }
   }
   else {
     $_SESSION['warning'] = "This email does not exist";
-    header("Location: /HC/public/pages/patient-login.php");
+    header("Location: /public/page/access/sign-in.php");
   }
 }
 else {
   $_SESSION['warning'] = "Not allowed";
-  header("Location: /HC/public/pages/patient-login.php");
+  header("Location: /public/page/access/sign-in.php");
 }
 
 ?>
