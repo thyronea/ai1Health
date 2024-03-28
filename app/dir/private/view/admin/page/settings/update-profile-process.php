@@ -60,11 +60,12 @@ if(isset($_POST['admin_update_profile']))
 
   // Encrypt Patient's diversity and update
   $encrypt_dob = encryptthis($dob, $key);
+  $encrypt_gender = encryptthis($gender, $key);
   $encrypt_race = encryptthis($race, $key);
   $encrypt_ethnicity = encryptthis($ethnicity, $key);
   $diversity  = "UPDATE diversity SET dob=?, gender=?, race=?, ethnicity=? WHERE userID='$userID' ";
   $stmt = $con->prepare($diversity);
-  $stmt->bind_param("ssss", $encrypt_dob, $gender, $encrypt_race, $encrypt_ethnicity);
+  $stmt->bind_param("ssss", $encrypt_dob, $encrypt_gender, $encrypt_race, $encrypt_ethnicity);
   $stmt->execute();
 
   // Encrypt Patient's address and update

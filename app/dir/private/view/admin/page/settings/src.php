@@ -20,7 +20,7 @@ if(isset($_GET['userID'])){
   $dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
   $race = htmlspecialchars(decryptthis($diversity['race'], $key));
   $ethnicity = htmlspecialchars(decryptthis($diversity['ethnicity'], $key));
-  $gender = htmlspecialchars($diversity['gender']);
+  $gender = htmlspecialchars(decryptthis($diversity['gender'], $key));
 
   // Fetches patient's address information
   $address_query = "SELECT * FROM address WHERE userID='$userID' ";

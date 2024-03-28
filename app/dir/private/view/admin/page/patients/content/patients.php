@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12" style="animation: appear 1s ease">
   <!-- Header Alert -->
   <?php include('../../components/alert.php'); ?>
 
@@ -72,3 +72,10 @@
 
 
 </div>
+
+<style>
+  @keyframes appear {
+    0%{opacity: 0;transform: translate(50px);}
+    100%{opacity: 1;transform: translate(0px);}
+}
+</style>

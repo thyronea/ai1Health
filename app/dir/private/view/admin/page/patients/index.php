@@ -19,7 +19,7 @@ include('../../components/header.php');
 
 <!-- auto logout/login session -->
 <?php else: ?>
-<?php include(ADMIN_COMP_PATH . '/logged_out.php') ?>
+<?php include('../../../content/logged_out.php') ?>
 <?php endif; ?>
 
 <?php include('../../components/footer.php'); ?>

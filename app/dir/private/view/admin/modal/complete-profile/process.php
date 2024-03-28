@@ -36,11 +36,12 @@ if(isset($_POST['admin_profile_btn']))
 
     // Encrypt diversity data and insert
     $encrypt_dob = encryptthis($dob, $key);
+    $encrypt_gender = encryptthis($gender, $key);
     $encrypt_race = encryptthis($race, $key);
     $encrypt_ethnicity = encryptthis($ethnicity, $key);
     $diversity = "INSERT INTO diversity (userID, engineID, groupID, dob, gender, race, ethnicity) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($diversity);
-    $stmt->bind_param("sssssss", $userID, $engineID, $groupID, $encrypt_dob, $gender, $encrypt_race, $encrypt_ethnicity);
+    $stmt->bind_param("sssssss", $userID, $engineID, $groupID, $encrypt_dob, $encrypt_gender, $encrypt_race, $encrypt_ethnicity);
     $stmt->execute();
 
     // Encrypt Patient's address Data and insert
