@@ -87,12 +87,12 @@ if(isset($_POST['add_patient']))
       $stmt->execute();
 
       // Encrypt Patient Data and insert to profile
-      $encrypt_patient_email = encryptthis($patient_email, $key);
-      $encrypt_role = encryptthis($role, $key);
-      $patient_profile = "INSERT INTO profile (userID, engineID, groupID, fname, lname, email, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      $stmt = $con->prepare($patient_profile);
-      $stmt->bind_param("sssssss", $patientID, $engineID, $groupID, $fname, $lname, $encrypt_patient_email, $encrypt_role);
-      $stmt->execute();
+      // $encrypt_patient_email = encryptthis($patient_email, $key);
+      // $encrypt_role = encryptthis($role, $key);
+      // $patient_profile = "INSERT INTO profile (userID, engineID, groupID, fname, lname, email, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      // $stmt = $con->prepare($patient_profile);
+      // $stmt->bind_param("sssssss", $patientID, $engineID, $groupID, $fname, $lname, $encrypt_patient_email, $encrypt_role);
+      // $stmt->execute();
 
       // Insert default profile image to profile_image table
       $sql = "INSERT INTO profile_image (userID, groupID, filename) VALUES (?, ?, ?)";
