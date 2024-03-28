@@ -9,7 +9,7 @@
         </svg>
       </a>
       <ul class="dropdown-menu">
-        <li ><a class="dropdown-item"><small>Group ID: <b><?=$_SESSION["group_id"];?></b></small></a></li>
+        <li ><a class="dropdown-item"><small>Group ID: <b><?=htmlspecialchars($_SESSION["groupID"]);?></b></small></a></li>
         <li><hr class="dropdown-divider" /></li>
         <li ><a class="dropdown-item" href="#"><small><?=htmlspecialchars($_SESSION['fname']); ?> <?=htmlspecialchars($_SESSION['lname']); ?></small></a></li>
         <li><hr class="dropdown-divider" /></li>

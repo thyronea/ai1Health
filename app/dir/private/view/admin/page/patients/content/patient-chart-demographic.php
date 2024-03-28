@@ -174,9 +174,9 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       <th>Emergency Contact:</th>
                       <tbody align="center" style="text-align: left">
                         <?php
-                        $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-                        $id = mysqli_real_escape_string($con, $_GET['engineID']);
-                        $query = "SELECT * FROM emergency_contact WHERE engineID='$engineID' AND groupID='$groupID' ";
+                        $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                        $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+                        $query = "SELECT * FROM emergency_contact WHERE patientID='$patientID' AND groupID='$groupID' ";
                         $query_run = mysqli_query($con, $query);
 
                         if(mysqli_num_rows($query_run) > 0)

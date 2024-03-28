@@ -33,7 +33,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       </tr>
                       <tr>
                         <td><small>Health Plan:</small></td>
-                        <td><small><?=htmlspecialchars(decryptthis($plan['health_plan'], $key));?> (<?=htmlspecialchars(decryptthis($plan['status'], $key));?>)</small></td>
+                        <td><small><?=htmlspecialchars(decryptthis($plan['fname'], $key));?> (<?=htmlspecialchars(decryptthis($plan['lname'], $key));?>)</small></td>
                       </tr>
                       <tr>
                         <td><small>Policy #:</small></td>
@@ -149,9 +149,8 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
               <table class="table table-borderless table-sm table-hover text-nowrap">
                 <tbody align="center" style="text-align: left">
                   <?php
-                  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']); // this code will only show users from the same groupID
-                  $engineID =  htmlspecialchars($patient['engineID']);
-                  $query = "SELECT * FROM patientlog WHERE engineID='$engineID' AND groupID='$groupID' ORDER BY timestamp DESC ";
+                  $patientID =  htmlspecialchars($patient['patientID']);
+                  $query = "SELECT * FROM patientlog WHERE patientID='$patientID' AND groupID='$groupID' ORDER BY timestamp DESC ";
                   $query_run = mysqli_query($con, $query);
 
                   if(mysqli_num_rows($query_run) > 0)

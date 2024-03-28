@@ -1,17 +1,12 @@
 <?php
-session_start();
-require_once('../../../../private/initialize.php');
-include('../../../components/dbcon.php');
+include('../../../../../security/dbcon.php'); 
+include('../process/sql.php');
 include('../../../components/header.php');
 ?>
-
-<!-- Login session -->
-<?php if (isset($_SESSION["userID"])): ?>
 
 <?php include('../components/patient-chart-navtab.php'); ?>
 
 <div class="tab-content">
-  <?php include('../process/sql.php'); ?>
   <?php include('patient-chart-snapshot.php'); ?>
   <?php include('patient-chart-demographic.php'); ?>
   <?php include('patient-chart-immunization.php'); ?>
@@ -165,10 +160,5 @@ include('../../../components/header.php');
 <?php include('../modal/influenza-edit.php'); ?>
 <?php include('../modal/delete-influenza.php'); ?>
 <?php include('../modal/send-patient-email.php'); ?>
-
-<!-- auto logout/login session -->
-<?php else: ?>
-<?php include(ADMIN_COMP_PATH . '/logged_out.php') ?>
-<?php endif; ?>
 
 <?php include('../../../components/footer.php'); ?>

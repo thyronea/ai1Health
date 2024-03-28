@@ -2,47 +2,32 @@
 session_start();
 include('../../../../../security/dbcon.php');
 include('../../../../../security/encrypt_decrypt.php');
+$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+$groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+$patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+
 require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
 require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
 require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 // Delete vaccine from inventory when 0
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $zero = mysqli_real_escape_string($con, "0");
-  $vaccines = "DELETE FROM vaccines WHERE groupID=? AND doses=?  ";
+  $vaccines = "DELETE FROM inventory WHERE groupID=? AND doses=?  ";
   $stmt = $con->prepare($vaccines);
   $stmt->bind_param("ss", $groupID, $zero);
   $stmt->execute();
 }
 
-// Display Organization from database to snapshot
-if(isset($_GET['engineID']))
-{
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM organization WHERE groupID='$groupID' ";
-  $query_run = mysqli_query($con, $query);
-
-  if(mysqli_num_rows($query_run) > 0)
-  {
-    $org = mysqli_fetch_array($query_run);
-    foreach($query_run as $organization){}
-  }
-}
-
 // Display patient name from database to snapshot
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM patients WHERE engineID='$engineID' AND groupID='$groupID' ";
+  $query = "SELECT * FROM patients WHERE patientID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 
   if(mysqli_num_rows($query_run) > 0)
@@ -52,12 +37,24 @@ if(isset($_GET['engineID']))
   }
 }
 
+// Display patient's health plan from database to snapshot
+if(isset($_GET['patientID']))
+{ 
+  $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+  $query = "SELECT * FROM healthplan WHERE patientID='$patientID' AND groupID='$groupID' ";
+  $query_run = mysqli_query($con, $query);
+
+  if(mysqli_num_rows($query_run) == 0)
+  {
+    $plan = mysqli_fetch_array($query_run);
+    foreach($query_run as $plan){}
+  }
+}
+
 // Display patient diversity from database to snapshot
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM diversity WHERE engineID='$engineID' AND groupID='$groupID' ";
+  $query = "SELECT * FROM diversity WHERE userID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 
   if(mysqli_num_rows($query_run) > 0)
@@ -68,11 +65,9 @@ if(isset($_GET['engineID']))
 }
 
 // Display patient address from database to snapshot
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM address WHERE engineID='$engineID' AND groupID='$groupID' ";
+  $query = "SELECT * FROM address WHERE userID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 
   if(mysqli_num_rows($query_run) > 0)
@@ -83,11 +78,9 @@ if(isset($_GET['engineID']))
 }
 
 // Display patient contact from database to snapshot
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $engineID = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM contact WHERE engineID='$engineID' AND groupID='$groupID' ";
+  $query = "SELECT * FROM contact WHERE userID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 
   if(mysqli_num_rows($query_run) > 0)
@@ -97,27 +90,11 @@ if(isset($_GET['engineID']))
   }
 }
 
-// Display patient's health plan from database to snapshot
-if(isset($_GET['engineID']))
-{
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $id = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM healthplan WHERE engineID='$engineID' AND groupID='$groupID' ";
-  $query_run = mysqli_query($con, $query);
-
-  if(mysqli_num_rows($query_run) > 0)
-  {
-    $plans = mysqli_fetch_array($query_run);
-    foreach($query_run as $plan){}
-  }
-}
-
 // Display patient's emergency contact from database to demographic
-if(isset($_GET['engineID']))
+if(isset($_GET['patientID']))
 {
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $id = mysqli_real_escape_string($con, $_GET['engineID']);
-  $query = "SELECT * FROM emergency_contact WHERE engineID='$engineID' AND groupID='$groupID' ";
+  $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+  $query = "SELECT * FROM emergency_contact WHERE patientID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 
   if(mysqli_num_rows($query_run) > 0)
@@ -128,11 +105,10 @@ if(isset($_GET['engineID']))
 }
 
 // Add New Patient
-if(isset($_POST['add_patient']))
+if(isset($_POST['patientID']))
 {
   $token = md5(rand());
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
@@ -329,7 +305,6 @@ if(isset($_POST['add_patient']))
 if(isset($_POST['delete_patient']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
@@ -389,7 +364,6 @@ if(isset($_POST['delete_patient']))
 if(isset($_POST['patient_editbtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
@@ -455,7 +429,6 @@ if(isset($_POST['patient_editbtn']))
 if(isset($_POST['add_patient_diversity']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
@@ -527,7 +500,6 @@ if(isset($_POST['add_patient_diversity']))
 if(isset($_POST['patient_addressbtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
@@ -585,7 +557,6 @@ if(isset($_POST['add_patient_contactbtn']))
 {
   $token = md5(rand());
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
@@ -639,8 +610,6 @@ if(isset($_POST['add_patient_contactbtn']))
 if(isset($_POST['patient_contactbtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -696,9 +665,7 @@ if(isset($_POST['patient_contactbtn']))
 if(isset($_POST['add_patient_addressbtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $engineID = htmlspecialchars($_POST['engineID']);
@@ -763,8 +730,6 @@ if(isset($_POST['add_patient_addressbtn']))
 if(isset($_POST['add_patient_emergencybtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
@@ -825,9 +790,7 @@ if(isset($_POST['add_patient_emergencybtn']))
 if(isset($_POST['patient_emergencybtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $id = mysqli_real_escape_string($con, $_POST['id']);
@@ -881,9 +844,7 @@ if(isset($_POST['patient_emergencybtn']))
 if(isset($_POST['add_healthplan']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = htmlspecialchars($_POST['patientID']);
@@ -915,13 +876,12 @@ if(isset($_POST['add_healthplan']))
     $fullname = "$user_fname $user_lname";
     $act_message = "$type $healthplan for $fname $lname";
     $encrypted_fullname = encryptthis($fullname, $key);
-    $encrypted_office = encryptthis($office, $key);
     $encrypted_message = encryptthis($act_message, $key);
 
     // insert activity timestamp
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)";
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Encrypt Patient's log Data
@@ -967,9 +927,7 @@ if(isset($_POST['add_healthplan']))
 if(isset($_POST['patient_planbtn']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1001,11 +959,10 @@ if(isset($_POST['patient_planbtn']))
     $fullname = "$user_fname $user_lname";
     $act_message = "$type $fname $lname's $message";
     $encrypted_fullname = encryptthis($fullname, $key);
-    $encrypted_office = encryptthis($office, $key);
     $encrypted_message = encryptthis($act_message, $key);
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)";
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Encrypt Patient's health plan Data
@@ -1036,9 +993,7 @@ if(isset($_POST['patient_planbtn']))
 if(isset($_POST['hepB_1st']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1079,11 +1034,10 @@ if(isset($_POST['hepB_1st']))
     $fullname = "$fname $lname"; // Bind first and last name
     $act_message = "$type $iz_type to $patient_fname $patient_lname"; // Bind strings to create a message
     $encrypted_fullname = encryptthis($fullname, $key); // Encrypt fullname
-    $encrypted_office = encryptthis($office, $key); // Encrypt office
     $encrypted_message = encryptthis($act_message, $key);// Encrypt binded message
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to activities table
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)"; // Insert data to activities table
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Insert Patient Log Data
@@ -1252,9 +1206,7 @@ if(isset($_POST['hepB_2nd']))
 if(isset($_POST['hepB_3rd']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1360,9 +1312,7 @@ if(isset($_POST['hepB_3rd']))
 if(isset($_POST['rv_1st']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1405,9 +1355,9 @@ if(isset($_POST['rv_1st']))
     $encrypted_fullname = encryptthis($fullname, $key); // Encrypt fullname
     $encrypted_office = encryptthis($office, $key); // Encrypt office
     $encrypted_message = encryptthis($act_message, $key);// Encrypt binded message
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to activities table
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)"; // Insert data to activities table
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Insert Patient Log Data
@@ -1792,9 +1742,7 @@ if(isset($_POST['DTaP_1st']))
 if(isset($_POST['DTaP_2nd']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1835,11 +1783,10 @@ if(isset($_POST['DTaP_2nd']))
     $fullname = "$fname $lname"; // Bind first and last name
     $act_message = "$type $iz_type to $patient_fname $patient_lname"; // Bind strings to create a message
     $encrypted_fullname = encryptthis($fullname, $key); // Encrypt fullname
-    $encrypted_office = encryptthis($office, $key); // Encrypt office
     $encrypted_message = encryptthis($act_message, $key);// Encrypt binded message
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to activities table
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)"; // Insert data to activities table
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Insert Patient Log Data
@@ -1900,9 +1847,7 @@ if(isset($_POST['DTaP_2nd']))
 if(isset($_POST['DTaP_3rd']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -1943,11 +1888,10 @@ if(isset($_POST['DTaP_3rd']))
     $fullname = "$fname $lname"; // Bind first and last name
     $act_message = "$type $iz_type to $patient_fname $patient_lname"; // Bind strings to create a message
     $encrypted_fullname = encryptthis($fullname, $key); // Encrypt fullname
-    $encrypted_office = encryptthis($office, $key); // Encrypt office
     $encrypted_message = encryptthis($act_message, $key);// Encrypt binded message
-    $activities = "INSERT INTO activities (userID, groupID, location, user, type, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to activities table
+    $activities = "INSERT INTO activities (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)"; // Insert data to activities table
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_office, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
     $stmt->execute();
 
     // Insert Patient Log Data
@@ -2008,9 +1952,7 @@ if(isset($_POST['DTaP_3rd']))
 if(isset($_POST['DTaP_4th']))
 {
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $office = mysqli_real_escape_string($con, $_SESSION['office']);
   $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);

@@ -117,6 +117,11 @@ if(isset($_POST['add_patient']))
       $stmt->bind_param("sssssssss", $patientID, $engineID, $groupID, $encrypt_fname, $encrypt_lname, $dob, $encrypt_suffix, $encrypt_patient_email, $encrypt_role);
       $stmt->execute();
 
+      $healthplan = "INSERT INTO healthplan (patientID, engineID, groupID) VALUES (?, ?, ?)";
+      $stmt = $con->prepare($healthplan);
+      $stmt->bind_param("sss", $patientID, $engineID, $groupID);
+      $stmt->execute();
+
       // Insert to data_dob for count
       $data_dob = "INSERT INTO data_dob (patientID, groupID, dob) VALUES (?, ?, ?)";
       $stmt = $con->prepare($data_dob);
