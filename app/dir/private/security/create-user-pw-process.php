@@ -17,9 +17,6 @@ if(isset($_POST['createPW_btn']))
 
       if(mysqli_num_rows($check_token_run) > 0)
       {
-          $update_password = "UPDATE patients SET password='$new_password' WHERE patientID='$userID' LIMIT 1";
-          $update_password_run = mysqli_query($con, $update_password);
-
           $update_password = "UPDATE admin SET password='$new_password' WHERE userID='$userID' LIMIT 1";
           $update_password_run = mysqli_query($con, $update_password);
 
