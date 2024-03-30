@@ -81,7 +81,6 @@
 </div>
 
 <!-- Modal -->
-<?php include('../modal/iz-history.php'); ?>
 <?php include('../modal/administer-tdap.php'); ?>
 <?php include('../modal/administer-mcv-1st.php'); ?>
 <?php include('../modal/administer-mcv-2nd.php'); ?>

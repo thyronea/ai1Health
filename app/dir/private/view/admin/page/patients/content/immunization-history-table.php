@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab" tabindex="2">
+<div class="tab-pane fade show active" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab" tabindex="0">
   <div class="row m-4">
     <div class="col">
       <!-- Routine Vaccine History -->

@@ -14,7 +14,7 @@
               </div>
             </nav>
 
-            <div class="tab-content" id="nav-tabContent">
+            <div class="tab-content" id="nav-tab">
               <!-- Immunization Chart Dash -->
               <?php include('immunization-history-table.php'); ?>
               <!-- Birth to 15 Months Schedule Table -->

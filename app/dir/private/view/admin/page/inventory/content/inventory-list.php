@@ -46,7 +46,6 @@
                    {
                      ?>
                      <tr>
-                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -98,7 +97,6 @@
                    {
                      ?>
                      <tr>
-                     <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -150,7 +148,6 @@
                    {
                      ?>
                      <tr>
-                     <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
