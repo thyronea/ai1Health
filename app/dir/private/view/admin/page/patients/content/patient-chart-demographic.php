@@ -19,7 +19,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                   <div class="card shadow" style="height:15rem">
                     <div class="card-body">
                       <div class="row">
-                        <div class="col-md-4 border m-2" style="border-radius: 50%"></div>
+                        <div class="col-md-4 border" style="margin-left: 10px; height: 150px; width: 150px;border-radius: 50%"></div>
                         <div class="col">
                           <small>
                             <table>
@@ -33,7 +33,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                             <table>
                             <table>
                               <th>Gender:</th>
-                              <td><?=htmlspecialchars($diversity['gender']);?></td>
+                              <td><?=htmlspecialchars(decryptthis($diversity['gender'], $key));?></td>
                             </table>
                             <table>
                               <th>DOB:</th>
@@ -138,15 +138,15 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       <small>
                         <table>
                           <th>Health Plan:</th>
-                          <td><?=htmlspecialchars(decryptthis($plan['health_plan'], $key));?></td>
+                          <td><?=$plan['health_plan'];?></td>
                         </table>
                         <table>
                           <th>Policy Number:</th>
-                          <td><?=htmlspecialchars(decryptthis($plan['policy_number'], $key));?></td>
+                          <td><?=$plan['policy_number'];?></td>
                         </table>
                         <table>
                           <th>Status:</th>
-                          <td><?=htmlspecialchars(decryptthis($plan['status'], $key));?></td>
+                          <td><?=$plan['status'];?></td>
                         </table>
                       </small>
                       <div class="mt-2" align="right">

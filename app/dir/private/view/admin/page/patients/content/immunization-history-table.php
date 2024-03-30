@@ -9,7 +9,7 @@
               <!-- Hep B-->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
+                $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $hepb1st = htmlspecialchars('1st Hep B');
                 $iz_hepB_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='$hepb1st' ";
@@ -42,7 +42,6 @@
               <!-- Rotavirus -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $iz_rv_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st Rotavirus' ";
                 $iz_rv_1st_run = mysqli_query($con, $iz_rv_1st);
@@ -72,7 +71,6 @@
               <!-- DTaP -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $iz_dtap_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st DTaP' ";
                 $iz_dtap_1st_run = mysqli_query($con, $iz_dtap_1st);
@@ -116,7 +114,6 @@
               <!-- Hib -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_hib_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st Hib' ";
@@ -157,7 +154,6 @@
               <!-- Pneumococcal -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_pcv_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st PCV' ";
@@ -198,7 +194,6 @@
               <!-- IPV -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_ipv_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st IPV' ";
@@ -239,7 +234,6 @@
               <!-- MMR -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_mmr_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st MMR' ";
@@ -264,7 +258,6 @@
               <!-- Varicella -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_var_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st Varicella' ";
@@ -289,7 +282,6 @@
               <!-- Hepatitis A -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_hepA_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st Hep A' ";
@@ -314,7 +306,6 @@
               <!-- Tdap -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $iz_tdap = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='Tdap' ";
                 $iz_tdap_run = mysqli_query($con, $iz_tdap);
@@ -330,7 +321,6 @@
               <!-- Meningococcal -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
 
                 $iz_mcv_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st MCV' ";
@@ -355,7 +345,6 @@
               <!-- HPV -->
               <tr>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $iz_hpv_1st = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='1st HPV' ";
                 $iz_hpv_1st_run = mysqli_query($con, $iz_hpv_1st);
@@ -401,7 +390,6 @@
                   <th><small>Expiration</small></th>
                 </thead>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $vaccine = htmlspecialchars('COVID-19');
                 $query = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='$vaccine' ";
@@ -464,7 +452,6 @@
                   <th><small>Expiration</small></th>
                 </thead>
                 <?php
-                $groupID = mysqli_real_escape_string($con, $_SESSION['group_id']);
                 $engineID = htmlspecialchars($patient['engineID']);
                 $vaccine = htmlspecialchars('Influenza');
                 $query = "SELECT * FROM immunization WHERE groupID='$groupID' AND engineID='$engineID' AND type='$vaccine' ";

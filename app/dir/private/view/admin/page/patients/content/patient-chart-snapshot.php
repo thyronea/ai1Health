@@ -25,7 +25,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                     <table class="focus-ring table table-sm text-nowrap table-borderless">
                       <tr>
                         <td><small>DOB:</small></td>
-                        <td><small><?=htmlspecialchars($dob);?> / <?=htmlspecialchars($year);?> (year old)</small></td>
+                        <td><small><?=htmlspecialchars($dob);?> (<?=htmlspecialchars($year);?> years old)</small></td>
                       </tr>
                       <tr>
                         <td><small>Patient ID:</small></td>
@@ -33,16 +33,16 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       </tr>
                       <tr>
                         <td><small>Health Plan:</small></td>
-                        <td><small><?=htmlspecialchars(decryptthis($plan['fname'], $key));?> (<?=htmlspecialchars(decryptthis($plan['lname'], $key));?>)</small></td>
+                        <td><small><?=$plan['health_plan'];?> (<?=$plan['status'];?>)</small></td>
                       </tr>
                       <tr>
                         <td><small>Policy #:</small></td>
-                        <td><small><?=htmlspecialchars(decryptthis($plan['policy_number'], $key));?></small></td>
+                        <td><small><?=$plan['policy_number'];?></small></td>
                       </tr>
                     </table>
                   </div>
                 </div>
-                <div class="float-end">
+                <div style="padding-left: 20px; padding-top: 10px">
                   <a title="Call Home Phone" type="button" class="focus-ring btn btn-sm border-0" href="tel:<?=htmlspecialchars(decryptthis($contact['phone'], $key));?>" style="color:black">
                     <i class="bi bi-telephone"></i>
                   </a>
