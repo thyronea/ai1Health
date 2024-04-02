@@ -4,16 +4,6 @@
 
   <div class="card border-0 mb-3" style="overflow:auto">
     <div class="card-body table-responsive">
-
-      <!-- Vaccine Search Box -->
-      <div class="col-md-3" hidden>
-       <form class="" action="" method="get">
-         <div class="input-group input-group-sm">
-           <input type="text" name="vaccine_search" value="<?php if(isset($_GET['vaccine_search'])){echo $_GET['']; }?>" class="form-control" placeholder="Search for vaccine" required>
-          <button type="submit" class="focus-ring btn btn-secondary border" name="button">Search</button>
-        </div>
-       </form>
-      </div>
       
         <!-- SQL Math for Google Charts -->
         <?php include('process/math.php'); ?>

@@ -4,7 +4,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h1 class="modal-title w-100 fs-5" id="vaccine-edit-ModalLabel">Update Inventory</h1>
+        <h1 class="modal-title w-100 fs-5" id="inventory-edit-ModalLabel">Update Inventory</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -192,9 +192,9 @@ Location: components/footer.php
 -->
 <script>
   $(document).ready(function () {
-    $('.vaccine-editbtn').on('click', function() {
+    $('.inventory-editbtn').on('click', function() {
 
-      $('#vaccine-edit').modal('show');
+      $('#inventory-edit').modal('show');
 
       $tr = $(this).closest('tr');
 
