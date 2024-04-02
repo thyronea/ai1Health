@@ -11,7 +11,6 @@ if(isset($_POST['inventorydeletebtn']))
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $id = mysqli_real_escape_string($con, $_POST['id']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $name = mysqli_real_escape_string($con, $_POST['delete_vaccine_name']);
   $type = htmlspecialchars("Deleted");
@@ -35,9 +34,9 @@ if(isset($_POST['inventorydeletebtn']))
   $stmt->execute();
 
   // Delete from vaccines table
-  $vaccines = "DELETE FROM inventory WHERE id=? ";
+  $vaccines = "DELETE FROM inventory WHERE engineID=? ";
   $stmt = $con->prepare($vaccines);
-  $stmt->bind_param("s", $id);
+  $stmt->bind_param("s", $engineID);
   $stmt->execute();
 
   if($stmt->execute())

@@ -11,7 +11,6 @@
         <form class="" action="process/delete-inventory.php" method="POST">
           <div class="form-group mt-3 mb-5">
             <!-- Hidden inputs to be insterted to activity table -->
-            <input class="form-control mb-2" type="hidden" name="id" id="delete_vaccine_ID">
             <input class="form-control mb-2" type="hidden" name="engineID" id="delete_vaccine_engineID">
             <input class="form-control mb-2" type="hidden" name="delete_vaccine_name" id="delete_vaccine_name">
             <!----------------------------------------------------->
@@ -48,9 +47,8 @@ Location: components/footer.php
       }).get();
 
       console.log(data);
-      $('#delete_vaccine_ID').val(data[0]);
-      $('#delete_vaccine_engineID').val(data[1]);
-      $('#delete_vaccine_name').val(data[4]);
+      $('#delete_vaccine_engineID').val(data[0]);
+      $('#delete_vaccine_name').val(data[3]);
     });
   });
 </script>
