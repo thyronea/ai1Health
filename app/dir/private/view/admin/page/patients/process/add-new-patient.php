@@ -115,7 +115,7 @@ if(isset($_POST['add_patient']))
       $encrypt_role = encryptthis($role, $key);
       $patient = "INSERT INTO patients (patientID, engineID, groupID, fname, lname, dob, suffix, email, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($patient);
-      $stmt->bind_param("sssssssss", $patientID, $engineID, $groupID, $encrypt_fname, $encrypt_lname, $dob, $encrypt_suffix, $encrypted_patient_email, $encrypt_role);
+      $stmt->bind_param("sssssssss", $patientID, $engineID, $groupID, $encrypt_fname, $encrypt_lname, $encrypt_dob, $encrypt_suffix, $encrypted_patient_email, $encrypt_role);
       $stmt->execute();
 
       $healthplan = "INSERT INTO healthplan (patientID, engineID, groupID) VALUES (?, ?, ?)";

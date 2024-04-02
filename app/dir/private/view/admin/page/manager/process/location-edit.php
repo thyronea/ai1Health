@@ -14,6 +14,7 @@ if(isset($_POST['location_update_btn']))
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $id = mysqli_real_escape_string($con, $_POST['id']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
+  $poc = mysqli_real_escape_string($con, $_POST['poc']);
   $name = mysqli_real_escape_string($con, $_POST['name']);
   $address1 = mysqli_real_escape_string($con, $_POST['address1']);
   $address2 = mysqli_real_escape_string($con, $_POST['address2']);
@@ -22,6 +23,7 @@ if(isset($_POST['location_update_btn']))
   $zip = mysqli_real_escape_string($con, $_POST['zip']);
   $phone = mysqli_real_escape_string($con, $_POST['phone']);
   $location_email = mysqli_real_escape_string($con, $_POST['location_email']);
+  $location_link = mysqli_real_escape_string($con, $_POST['location_link']);
   $type = mysqli_real_escape_string($con, "Updated");
 
   // Encrypt Activity Data and insert to Activities table
@@ -42,6 +44,7 @@ if(isset($_POST['location_update_btn']))
   $stmt->bind_param("sss", $name, $complete_address, $location_email);
   $stmt->execute();
 
+  $encrypt_poc = encryptthis($poc, $key);
   $encrypt_name = encryptthis($name, $key);
   $encrypt_address1 = encryptthis($address1, $key);
   $encrypt_address2 = encryptthis($address2, $key);
@@ -50,10 +53,10 @@ if(isset($_POST['location_update_btn']))
   $encrypt_zip = encryptthis($zip, $key);
   $encrypt_phone = encryptthis($phone, $key);
   $encrypt_email = encryptthis($location_email, $key);
-  $encrypt_link = encryptthis($link, $key);
-  $location  = "UPDATE location SET name=?, address1=?, address2=?, city=?, state=?, zip=?, phone=?, email=?, link=? WHERE id='$id' ";
+  $encrypt_link = encryptthis($location_link, $key);
+  $location  = "UPDATE location SET poc=?, name=?, address1=?, address2=?, city=?, state=?, zip=?, phone=?, email=?, link=? WHERE id='$id' ";
   $stmt = $con->prepare($location);
-  $stmt->bind_param("sssssssss", $name, $address1, $address2, $city, $state, $zip, $phone, $location_email, $link);
+  $stmt->bind_param("ssssssssss", $poc, $name, $address1, $address2, $city, $state, $zip, $phone, $location_email, $location_link);
   $stmt->execute();
 
   if($stmt = $con->prepare($location))

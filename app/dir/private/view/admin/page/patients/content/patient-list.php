@@ -84,7 +84,8 @@
            <tbody>
 
              <?php
-                 $query = "SELECT * FROM patients WHERE groupID='$groupID' AND (YEAR(NOW()) - YEAR(dob)) BETWEEN 0 AND 18";
+                 $query = "SELECT * FROM patients INNER JOIN data_dob
+                 ON patients.patientID=data_dob.patientID WHERE data_dob.groupID='$groupID' AND (YEAR(NOW()) - YEAR(data_dob.dob)) BETWEEN 0 AND 18";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
                  if($searchnum > 0)
@@ -127,7 +128,8 @@
            <tbody>
 
              <?php
-                 $query = "SELECT * FROM patients WHERE groupID='$groupID' AND (YEAR(NOW()) - YEAR(dob)) BETWEEN 19 AND 100";
+                 $query = "SELECT * FROM patients INNER JOIN data_dob
+                 ON patients.patientID=data_dob.patientID WHERE data_dob.groupID='$groupID' AND (YEAR(NOW()) - YEAR(data_dob.dob)) BETWEEN 19 AND 100";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
                  if($searchnum > 0)
@@ -136,13 +138,13 @@
                    {
                      ?>
                      <tr>
-                       <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($adult['engineID']);?></small></a></td>
-                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($adult['patientID']);?></small></a></td>
-                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($adult['fname'], $key));?> <?=htmlspecialchars(decryptthis($adult['lname'], $key));?></small></a></td>
-                       <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($adult['email'], $key));?></small></a></td>
-                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($adult['account_status']); ?></small></a></td>
+                       <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($adult['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($adult['engineID']);?></small></a></td>
+                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($adult['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($adult['patientID']);?></small></a></td>
+                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($adult['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($adult['fname'], $key));?> <?=htmlspecialchars(decryptthis($adult['lname'], $key));?></small></a></td>
+                       <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($adult['patientID']); ?>" target="_blank" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($adult['email'], $key));?></small></a></td>
+                       <td><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($adult['patientID']); ?>" class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($adult['account_status']); ?></small></a></td>
                        <td hidden><?php echo '<img src="upload/'.$adult['image'].'" width="600px" height="500px" alt="image"/>' ?></td>
-                       <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?= htmlspecialchars($peds['patientID']); ?>" target="_blank" class="focus-ring text-decoration-none" style="color: black"><i class="bi bi-universal-access-circle"></i></a></td>
+                       <td hidden><a type="button" href="content/patient-chart.php?engineID=<?=htmlspecialchars($adult['patientID']);?>" class="focus-ring text-decoration-none" style="color: black"><i class="bi bi-universal-access-circle"></i></a></td>
                        <td><a type="button" class="focus-ring text-decoration-none patientdeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#patientdeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
