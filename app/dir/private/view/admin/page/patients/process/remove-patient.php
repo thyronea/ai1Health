@@ -16,13 +16,9 @@ if(isset($_POST['remove_patient']))
     $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
     $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
     $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
+    $patient_email = mysqli_real_escape_string($con, $_POST['patient_email']);
     $admin = mysqli_real_escape_string($con, "Admin");
-    $type = mysqli_real_escape_string($con, "Removed");
-    $message = mysqli_real_escape_string($con, "as new patient");
-
-    // Generate new key for data decryption. IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST
-    $newKey = md5(rand());
-    $newGroupID = mysqli_real_escape_string($con, "0000000");
+    $type = mysqli_real_escape_string($con, "Removed Patient: ");
   
     // Retrieves patient's dk_token to decrypt patient's information
     $dk_token_query = "SELECT * FROM token WHERE userID='$patientID'";
@@ -83,7 +79,7 @@ if(isset($_POST['remove_patient']))
   
     // Sends email confirmation to patient
     $subject = mysqli_real_escape_string($con, "Account Status Update");
-    $email_message = htmlspecialchars("
+    $message = htmlspecialchars("
     Hello $patients_fname,
   
     You have been removed from:
@@ -96,12 +92,16 @@ if(isset($_POST['remove_patient']))
   
     // Email Configuration
     include('../components/email-config.php');
+
+    // Generate new key for data decryption. IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST
+    $newKey = md5(rand());
+    $newGroupID = mysqli_real_escape_string($con, "1111111");
   
     // stores data in email table
     $encrypted_admin = encryptthis($admin, $newKey);
     $encrypted_email = encryptthis($patients_email, $newKey);
     $encrypted_subject = encryptthis($subject, $newKey);
-    $encrypted_message = encryptthis($email_message, $newKey);
+    $encrypted_message = encryptthis($message, $newKey);
     $send_message = "INSERT INTO email (userID, groupID, fromEmail, toEmail, subject, message) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($send_message);
     $stmt->bind_param("ssssss", $userID, $newGroupID, $encrypted_admin, $encrypted_email, $encrypted_subject, $encrypted_message);
@@ -110,6 +110,54 @@ if(isset($_POST['remove_patient']))
     // Update admin info: group ID
     $update_patients  = "UPDATE admin SET groupID=? WHERE userID='$patientID' ";
     $stmt = $con->prepare($update_patients);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update background image: group ID
+    $update_background  = "UPDATE background_image SET groupID=? WHERE userID='$patientID' ";
+    $stmt = $con->prepare($update_background);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update profile image: group ID
+    $update_profile  = "UPDATE profile_image SET groupID=? WHERE userID='$patientID' ";
+    $stmt = $con->prepare($update_profile);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update data_dob: group ID
+    $update_data_dob  = "UPDATE data_dob SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_data_dob);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update data_ethnicity: group ID
+    $update_data_ethnicity  = "UPDATE data_ethnicity SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_data_ethnicity);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update data_gender: group ID
+    $update_data_gender  = "UPDATE data_gender SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_data_gender);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update data_race: group ID
+    $update_data_race  = "UPDATE data_race SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_data_race);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update engine: group ID
+    $update_engine  = "UPDATE engine SET groupID=? WHERE engineID='$engineID' ";
+    $stmt = $con->prepare($update_engine);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
+    // Update healthplan: group ID
+    $update_healthplan  = "UPDATE healthplan SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_healthplan);
     $stmt->bind_param("s", $newGroupID);
     $stmt->execute();
 
@@ -147,13 +195,6 @@ if(isset($_POST['remove_patient']))
     $update_contact  = "UPDATE contact SET groupID=?, phone=?, mobile=?, email=?  WHERE userID='$patientID' ";
     $stmt = $con->prepare($update_contact);
     $stmt->bind_param("ssss", $newGroupID, $encrypt_patients_phone, $encrypt_patients_mobile, $encrypt_patients_email);
-    $stmt->execute();
-  
-    $encrypt_patients_health_plan = encryptthis($patients_health_plan, $newKey);
-    $encrypt_patients_policy_number = encryptthis($patients_policy_number, $newKey);
-    $update_healthplan  = "UPDATE healthplan SET groupID=?WHERE patientID='$patientID' ";
-    $stmt = $con->prepare($update_healthplan);
-    $stmt->bind_param("s", $newGroupID);
     $stmt->execute();
   
     $encrypt_patientlog_activity = encryptthis($patientlog_activity, $newKey);

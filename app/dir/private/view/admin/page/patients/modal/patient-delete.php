@@ -14,6 +14,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" id="engine_id" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" id="patient_id" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_name" id="patient_name" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patient_email" id="patients_email" required>
 
             <!----------------------------------------------------->
             <p align="center">Patient will be removed from your group.</p>
@@ -51,6 +52,7 @@ Location: components/footer.php
       $('#engine_id').val(data[0]);
       $('#patient_id').val(data[1]);
       $('#patient_name').val(data[2]);
+      $('#patients_email').val(data[3]);
     });
   });
 </script>

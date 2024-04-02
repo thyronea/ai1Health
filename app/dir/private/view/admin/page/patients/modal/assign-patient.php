@@ -13,6 +13,7 @@
             <!-- Hidden inputs to be insterted to activity table -->
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" id="engine_ID" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" id="patient_ID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patient_email" id="patient_email" required>
 
             <!----------------------------------------------------->
             <small>

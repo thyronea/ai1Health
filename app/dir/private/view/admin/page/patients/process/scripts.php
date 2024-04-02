@@ -249,6 +249,7 @@ Location: components/footer.php
       console.log(data);
       $('#engine_ID').val(data[0]);
       $('#patient_ID').val(data[1]);
+      $('#patient_email').val(data[3]);
     });
   });
 </script>
