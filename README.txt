@@ -1,11 +1,11 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Patients: Delete
 - Patient chart 
+- Patient registration from main page (Unassigned)
 - Document: Create "My Files" and separate from "Shared Files"
 - Save reports in PDF
-- Send email confirmation when account is deleted
+- Send email confirmation when admin account is deleted
 - Dark Mode
 
 Regular User:

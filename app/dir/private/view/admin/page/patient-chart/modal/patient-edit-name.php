@@ -18,7 +18,7 @@
             <input type="text" class="form-control form-control-sm mt-2" name="suffix" value="<?=htmlspecialchars(decryptthis($patient['suffix'], $key));?>" placeholder="Suffix">
             <input type="date" class="form-control form-control-sm mt-2" name="dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" required>
             <select class="form-select form-select-sm mt-2" name="gender">
-              <option value="<?=htmlspecialchars($diversity['gender']);?>"><?=htmlspecialchars($diversity['gender']);?></option>
+              <option value="<?=htmlspecialchars(decryptthis($diversity['gender'], $key));?>"><?=htmlspecialchars(decryptthis($diversity['gender'], $key));?></option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>

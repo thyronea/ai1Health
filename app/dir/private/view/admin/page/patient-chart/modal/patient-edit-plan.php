@@ -15,8 +15,8 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
           <form class="" action="../process/sql.php" method="post">
             <input type="date" name="date" class="form-control form-control-sm" value="<?php echo $today; ?>" hidden required>
             <input type="hidden" name="time" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($plan['patientID']);?>" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($plan['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="First Name" required>
             <input type="text" class="form-control form-control-sm mt-2" name="health_plan" value="<?=htmlspecialchars(decryptthis($plan['health_plan'], $key));?>" placeholder="Health Plan" required>

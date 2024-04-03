@@ -29,8 +29,8 @@ if(isset($_POST['assign_patient']))
 
   // Retrieves patient's information for decryption
   $patient_query = "SELECT * FROM patients WHERE patientID='$patientID'";
-  $patient_query_query_run = mysqli_query($con, $patient_query);
-  $patient = mysqli_fetch_assoc($patient_query_query_run);
+  $patient_query_run = mysqli_query($con, $patient_query);
+  $patient = mysqli_fetch_assoc($patient_query_run);
   $patient_email = htmlspecialchars(decryptthis($patient["email"], $oldKey));
   $patients_fname = htmlspecialchars(decryptthis($patient["fname"], $oldKey));
   $patients_lname = htmlspecialchars(decryptthis($patient["lname"], $oldKey));
@@ -38,8 +38,8 @@ if(isset($_POST['assign_patient']))
   $patients_role = htmlspecialchars(decryptthis($patient["role"], $oldKey));
 
   $diversity_query = "SELECT * FROM diversity WHERE userID='$patientID'";
-  $diversity_query_query_run = mysqli_query($con, $diversity_query);
-  $diversity = mysqli_fetch_assoc($diversity_query_query_run);
+  $diversity_query_run = mysqli_query($con, $diversity_query);
+  $diversity = mysqli_fetch_assoc($diversity_query_run);
   $patients_dob = htmlspecialchars(decryptthis($diversity["dob"], $oldKey));
   $patients_race = htmlspecialchars(decryptthis($diversity["race"], $oldKey));
   $patients_ethnicity = htmlspecialchars(decryptthis($diversity["ethnicity"], $oldKey));
@@ -58,6 +58,13 @@ if(isset($_POST['assign_patient']))
   $contact = mysqli_fetch_assoc($contact_query_run);
   $patients_phone = htmlspecialchars(decryptthis($contact["phone"], $oldKey));
   $patients_mobile = htmlspecialchars(decryptthis($contact["mobile"], $oldKey));
+
+  $hp_query = "SELECT * FROM healthplan WHERE patientID='$patientID'";
+  $hp_query_run = mysqli_query($con, $hp_query);
+  $hp = mysqli_fetch_assoc($hp_query_run);
+  $hp_health_plan = htmlspecialchars(decryptthis($hp["health_plan"], $oldKey));
+  $hp_policy_number = htmlspecialchars(decryptthis($hp["policy_number"], $oldKey));
+  $hp_status = htmlspecialchars(decryptthis($hp["status"], $oldKey));
 
   $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
   $patientlog_query_run = mysqli_query($con, $patientlog_query);
@@ -188,6 +195,14 @@ if(isset($_POST['assign_patient']))
   $update_contact  = "UPDATE contact SET groupID=?, phone=?, mobile=?, email=?  WHERE userID='$patientID' ";
   $stmt = $con->prepare($update_contact);
   $stmt->bind_param("ssss", $groupID, $encrypt_patients_phone, $encrypt_patients_mobile, $encrypt_patients_email);
+  $stmt->execute();
+
+  $encrypt_health_plan = encryptthis($hp_health_plan, $key);
+  $encrypt_policy_number = encryptthis($hp_policy_number, $key);
+  $encrypt_status = encryptthis($hp_status, $key);
+  $update_healthplan  = "UPDATE healthplan SET groupID=?, health_plan=?, policy_number=?, status=? WHERE patientID='$patientID' ";
+  $stmt = $con->prepare($update_healthplan);
+  $stmt->bind_param("ssss", $groupID, $encrypt_health_plan, $encrypt_policy_number, $encrypt_status);
   $stmt->execute();
 
   $encrypt_patientlog_activity = encryptthis($patientlog_activity, $key);

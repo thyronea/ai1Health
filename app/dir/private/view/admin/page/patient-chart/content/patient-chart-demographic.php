@@ -138,15 +138,15 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       <small>
                         <table>
                           <th>Health Plan:</th>
-                          <td><?=$plan['health_plan'];?></td>
+                          <td><?=htmlspecialchars(decryptthis($plan['health_plan'], $key));?></td>
                         </table>
                         <table>
                           <th>Policy Number:</th>
-                          <td><?=$plan['policy_number'];?></td>
+                          <td><?=htmlspecialchars(decryptthis($plan['policy_number'], $key));?></td>
                         </table>
                         <table>
                           <th>Status:</th>
-                          <td><?=$plan['status'];?></td>
+                          <td><?=htmlspecialchars(decryptthis($plan['status'], $key));?></td>
                         </table>
                       </small>
                       <div class="mt-2" align="right">
@@ -228,17 +228,17 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
     </div>
 
     <!-- Modal -->
-    <?php include('../modal/patient-add-diversity.php'); ?>
-    <?php include('../modal/patient-edit-name.php'); ?>
-    <?php include('../modal/patient-add-address.php'); ?>
-    <?php include('../modal/patient-edit-address.php'); ?>
-    <?php include('../modal/patient-add-contact.php'); ?>
-    <?php include('../modal/patient-edit-contact.php'); ?>
-    <?php include('../modal/patient-add-emergency.php'); ?>
-    <?php include('../modal/patient-edit-emergency.php'); ?>
-    <?php include('../modal/patient-add-plan.php'); ?>
-    <?php include('../modal/patient-edit-plan.php'); ?>
-    <?php include('../modal/send-emergency-email.php'); ?>
+    <?php include('modal/patient-add-diversity.php'); ?>
+    <?php include('modal/patient-edit-name.php'); ?>
+    <?php include('modal/patient-add-address.php'); ?>
+    <?php include('modal/patient-edit-address.php'); ?>
+    <?php include('modal/patient-add-contact.php'); ?>
+    <?php include('modal/patient-edit-contact.php'); ?>
+    <?php include('modal/patient-add-emergency.php'); ?>
+    <?php include('modal/patient-edit-emergency.php'); ?>
+    <?php include('modal/patient-add-plan.php'); ?>
+    <?php include('modal/patient-edit-plan.php'); ?>
+    <?php include('modal/send-emergency-email.php'); ?>
 
   </div>
 </div>

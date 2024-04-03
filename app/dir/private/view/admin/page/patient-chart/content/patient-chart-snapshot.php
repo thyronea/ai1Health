@@ -35,11 +35,11 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                       </tr>
                       <tr>
                         <td><small>Health Plan:</small></td>
-                        <td><small><?=$plan['health_plan'];?> - <?=$plan['status'];?></small></td>
+                        <td><small><?=decryptthis($plan['health_plan'], $key);?> - <?=decryptthis($plan['status'], $key);?></small></td>
                       </tr>
                       <tr>
                         <td><small>Policy #:</small></td>
-                        <td><small><?=$plan['policy_number'];?></small></td>
+                        <td><small><?=decryptthis($plan['policy_number'], $key);?></small></td>
                       </tr>
                     </table>
                   </div>
