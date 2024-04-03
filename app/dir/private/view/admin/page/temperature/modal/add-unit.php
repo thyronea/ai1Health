@@ -52,9 +52,8 @@
                           </select>
                         </div>
                       </div>
-                      <div class="form-group">
-                          <label for="unitName"><small>Brand/Make/Model</small></label>
-                          <input type="text" name="unitName" class="form-control form-control-sm" required>
+                      <div class="form-group mt-3">
+                          <input type="text" name="unitName" class="form-control form-control-sm text-center" placeholder="Brand/Make/Model" required>
                       </div>
                   </div>
 

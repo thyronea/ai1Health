@@ -17,8 +17,10 @@
               </div>
               <div class="row mb-3 g-2">
                 <div class="col">
+                <label for="location"><small>Location</small></label>
                   <select class="form-group form-select form-select-sm" name="location" required>
-                    <option disabled selected>Select Location</option>
+                    <option></option>
+                    <option disabled>Select Location</option>
                       <?php
                       $sql = "SELECT * FROM location WHERE groupID='$groupID' ";
                       $sql_run = mysqli_query($con, $sql);
@@ -30,8 +32,10 @@
                   </select>
                 </div>
                 <div class="col">
+                <label for="position"><small>Position</small></label>
                   <select class="form-group form-select form-select-sm" name="position" required>
-                    <option disabled selected>Select Unit</option>
+                    <option></option>
+                    <option disabled>Select Unit</option>
                     <?php
                     $sql = "SELECT * FROM storage WHERE groupID='$groupID' ";
                     $sql_run = mysqli_query($con, $sql);
@@ -47,17 +51,17 @@
               <div class="row mb-3 g-2">
                 <div class="col-md-6">
                   <div class="form-group">
-                      <input type="text" name="thermName" class="form-control form-control-sm" placeholder="Brand/Make/Model" required>
+                      <input type="text" name="thermName" class="form-control form-control-sm text-center" placeholder="Brand/Make/Model" required>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                      <input type="text" name="thermSerial" class="form-control form-control-sm" placeholder="Serial Number" required>
+                      <input type="text" name="thermSerial" class="form-control form-control-sm text-center" placeholder="Serial Number" required>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                      <input type="date" name="thermExpiration" class="form-control form-control-sm" required>
+                      <input type="date" name="thermExpiration" class="form-control form-control-sm text-center" required>
                   </div>
                 </div>
               </div>
