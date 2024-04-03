@@ -1,7 +1,9 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Patient chart 
+- Patient chart: Snapshot (Fix modals) 
+- Patient chart: Demographic (Add, Edit and Delete information) 
+- Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
 - Document: Create "My Files" and separate from "Shared Files"
 - Save reports in PDF
