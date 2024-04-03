@@ -14,6 +14,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" id="engine_ID" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" id="patient_ID" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_email" id="patient_email" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patient_name" id="patient_name" required>
 
             <!----------------------------------------------------->
             <small>
@@ -31,3 +32,25 @@
     </div>
   </div>
 </div>
+
+<!-- Assign Patient -->
+<script>
+  $(document).ready(function () {
+    $('.assignPatient').on('click', function() {
+
+      $('#assignPatient').modal('show');
+
+      $tr = $(this).closest('tr');
+
+      var data = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      console.log(data);
+      $('#engine_ID').val(data[0]);
+      $('#patient_ID').val(data[1]);
+      $('#patient_name').val(data[2]);
+      $('#patient_email').val(data[3]);
+    });
+  });
+</script>

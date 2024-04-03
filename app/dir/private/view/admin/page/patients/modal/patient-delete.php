@@ -31,10 +31,7 @@
   </div>
 </div>
 
-<!--
-Title: Patient Delete
-Location: components/footer.php
--->
+<!-- Retrieve patient data -->
 <script>
   $(document).ready(function () {
     $('.patientdeletebtn').on('click', function() {

@@ -63,31 +63,6 @@ Location: components/footer.php
 </script>
 
 <!--
-Title: Patient Delete
-Location: components/footer.php
--->
-<script>
-  $(document).ready(function () {
-    $('.patientdeletebtn').on('click', function() {
-
-      $('#patientdeletemodal').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-
-      $('#engine_id').val(data[0]);
-      $('#patient_id').val(data[1]);
-      $('#patient_name').val(data[2]);
-    });
-  });
-</script>
-
-<!--
 Title: Popover
 Location: components/footer.php
 -->
@@ -226,30 +201,6 @@ Location: components/footer.php
       $('#delete_influenza_name').val(data[4]),
       $('#delete_influenza_type').val(data[15]);
 
-    });
-  });
-</script>
-
-<!--
-Title: Assign Patient
-Location: components/footer.php
--->
-<script>
-  $(document).ready(function () {
-    $('.assignPatient').on('click', function() {
-
-      $('#assignPatient').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#engine_ID').val(data[0]);
-      $('#patient_ID').val(data[1]);
-      $('#patient_email').val(data[3]);
     });
   });
 </script>

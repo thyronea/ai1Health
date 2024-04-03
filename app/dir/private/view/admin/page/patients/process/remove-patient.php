@@ -1,4 +1,9 @@
 <?php
+
+// 1. Retrieve patient's data for decryption
+// 2. Generate new key for encryption
+// 3. Update patient's data while using new group ID
+
 session_start();
 include('../../../../../security/dbcon.php');
 include('../../../../../security/encrypt_decrypt.php');
@@ -20,13 +25,7 @@ if(isset($_POST['remove_patient']))
     $admin = mysqli_real_escape_string($con, "Admin");
     $type = mysqli_real_escape_string($con, "Removed Patient: ");
   
-    // Retrieves patient's dk_token to decrypt patient's information
-    $dk_token_query = "SELECT * FROM token WHERE userID='$patientID'";
-    $dk_token_query_run = mysqli_query($con, $dk_token_query);
-    $dk_token = mysqli_fetch_assoc($dk_token_query_run);
-    $oldKey = htmlspecialchars($dk_token["dk_token"]); // Patient's Key
-  
-    // Retrieves patient's information for decryption
+    // 1. Retrieve patient's data for decryption
     $patient_query = "SELECT * FROM patients WHERE patientID='$patientID'";
     $patient_query_query_run = mysqli_query($con, $patient_query);
     $patient = mysqli_fetch_assoc($patient_query_query_run);
@@ -64,18 +63,6 @@ if(isset($_POST['remove_patient']))
     $patientlog_query_run = mysqli_query($con, $patientlog_query);
     $patientlog = mysqli_fetch_assoc($patientlog_query_run);
     $patientlog_activity = htmlspecialchars(decryptthis($patientlog["activity"], $key));
-
-    // Encrypt Activities Data
-    $fullname = "$fname $lname";
-    $act_message = "$type: $patients_fname $patients_lname";
-    $encrypted_fullname = encryptthis($fullname, $key);
-    $encrypted_message = encryptthis($act_message, $key);
-
-    // insert activity timestamp
-    $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($activities);
-    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
-    $stmt->execute();
   
     // Sends email confirmation to patient
     $subject = mysqli_real_escape_string($con, "Account Status Update");
@@ -92,10 +79,14 @@ if(isset($_POST['remove_patient']))
   
     // Email Configuration
     include('../components/email-config.php');
+    
 
-    // Generate new key for data decryption. IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST
+    // 2. Generate new key for decryption (IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST)
     $newKey = md5(rand());
     $newGroupID = mysqli_real_escape_string($con, "1111111");
+
+
+    // 3. Update patient's data while using new group ID
   
     // stores data in email table
     $encrypted_admin = encryptthis($admin, $newKey);
@@ -166,9 +157,9 @@ if(isset($_POST['remove_patient']))
     $encrypt_patients_lname = encryptthis($patients_lname, $newKey);
     $encrypt_patients_suffix = encryptthis($patients_suffix, $newKey);
     $encrypt_patients_role = encryptthis($patients_role, $newKey);
-    $update_patients  = "UPDATE patients SET groupID=?, fname=?, lname=?, suffix=?, role=? WHERE patientID='$patientID' ";
+    $update_patients  = "UPDATE patients SET groupID=?, fname=?, lname=?, suffix=?, email=?, role=? WHERE patientID='$patientID' ";
     $stmt = $con->prepare($update_patients);
-    $stmt->bind_param("sssss", $newGroupID, $encrypt_patients_fname, $encrypt_patients_lname, $encrypt_patients_suffix, $encrypt_patients_role);
+    $stmt->bind_param("ssssss", $newGroupID, $encrypt_patients_fname, $encrypt_patients_lname, $encrypt_patients_suffix, $encrypted_email, $encrypt_patients_role);
     $stmt->execute();
   
     $encrypt_patients_dob = encryptthis($patients_dob, $newKey);

@@ -17,7 +17,6 @@ if(isset($_POST['assign_patient']))
   $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
-  $patient_email = mysqli_real_escape_string($con, $_POST['patient_email']);
   $admin = mysqli_real_escape_string($con, "Admin");
   $type = mysqli_real_escape_string($con, "Added");
   $activity_message = mysqli_real_escape_string($con, "as new patient");
@@ -32,7 +31,7 @@ if(isset($_POST['assign_patient']))
   $patient_query = "SELECT * FROM patients WHERE patientID='$patientID'";
   $patient_query_query_run = mysqli_query($con, $patient_query);
   $patient = mysqli_fetch_assoc($patient_query_query_run);
-  $patients_email = htmlspecialchars(decryptthis($patient["email"], $oldKey));
+  $patient_email = htmlspecialchars(decryptthis($patient["email"], $oldKey));
   $patients_fname = htmlspecialchars(decryptthis($patient["fname"], $oldKey));
   $patients_lname = htmlspecialchars(decryptthis($patient["lname"], $oldKey));
   $patients_suffix = htmlspecialchars(decryptthis($patient["suffix"], $oldKey));
@@ -59,7 +58,6 @@ if(isset($_POST['assign_patient']))
   $contact = mysqli_fetch_assoc($contact_query_run);
   $patients_phone = htmlspecialchars(decryptthis($contact["phone"], $oldKey));
   $patients_mobile = htmlspecialchars(decryptthis($contact["mobile"], $oldKey));
-  $patients_email = htmlspecialchars(decryptthis($contact["email"], $oldKey));
 
   $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
   $patientlog_query_run = mysqli_query($con, $patientlog_query);
@@ -94,7 +92,7 @@ if(isset($_POST['assign_patient']))
 
   // stores data in email table
   $encrypted_admin = encryptthis($admin, $key);
-  $encrypted_email = encryptthis($patients_email, $key);
+  $encrypted_email = encryptthis($patient_email, $key);
   $encrypted_subject = encryptthis($subject, $key);
   $encrypted_message = encryptthis($message, $key);
   $send_message = "INSERT INTO email (userID, groupID, fromEmail, toEmail, subject, message) VALUES (?, ?, ?, ?, ?, ?)";
@@ -160,10 +158,11 @@ if(isset($_POST['assign_patient']))
   $encrypt_patients_fname = encryptthis($patients_fname, $key);
   $encrypt_patients_lname = encryptthis($patients_lname, $key);
   $encrypt_patients_suffix = encryptthis($patients_suffix, $key);
+  $encrypt_patients_email = encryptthis($patient_email, $key);
   $encrypt_patients_role = encryptthis($patients_role, $key);
-  $update_patients  = "UPDATE patients SET groupID=?, fname=?, lname=?, suffix=?, role=? WHERE patientID='$patientID' ";
+  $update_patients  = "UPDATE patients SET groupID=?, fname=?, lname=?, suffix=?, email=?, role=? WHERE patientID='$patientID' ";
   $stmt = $con->prepare($update_patients);
-  $stmt->bind_param("sssss", $groupID, $encrypt_patients_fname, $encrypt_patients_lname, $encrypt_patients_suffix, $encrypt_patients_role);
+  $stmt->bind_param("ssssss", $groupID, $encrypt_patients_fname, $encrypt_patients_lname, $encrypt_patients_suffix, $encrypt_patients_email, $encrypt_patients_role);
   $stmt->execute();
 
   $encrypt_patients_dob = encryptthis($patients_dob, $key);
@@ -186,7 +185,6 @@ if(isset($_POST['assign_patient']))
 
   $encrypt_patients_phone = encryptthis($patients_phone, $key);
   $encrypt_patients_mobile = encryptthis($patients_mobile, $key);
-  $encrypt_patients_email = encryptthis($patients_email, $key);
   $update_contact  = "UPDATE contact SET groupID=?, phone=?, mobile=?, email=?  WHERE userID='$patientID' ";
   $stmt = $con->prepare($update_contact);
   $stmt->bind_param("ssss", $groupID, $encrypt_patients_phone, $encrypt_patients_mobile, $encrypt_patients_email);
