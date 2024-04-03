@@ -167,12 +167,7 @@
        <div class="tab-pane fade" id="unassigned-tab-pane" role="tabpanel" aria-labelledby="adult-tab" tabindex="0">
          <table class="table table-sm table-borderless text-nowrap">
            <thead>
-             <th>
-               <small>Patient ID</small>
-             </th>
-             <th>
-               <small>Status</small>
-             </th>
+            <th></th>
            </thead>
            <tbody>
 
@@ -189,9 +184,9 @@
                      <tr>
                        <td hidden><a type="button"class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($unassigned['engineID']);?></small></a></td>
                        <td><a class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($unassigned['patientID']);?></small></a></td>
+                       <td hidden><a type="button" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($unassigned['fname']);?> <?=htmlspecialchars($unassigned['lname']);?></small></a></td>
+                       <td><a class="text-decoration-none" style="color: black"><small><?= htmlspecialchars(decryptthis($unassigned['email'], $key)); ?></small></a></td>
                        <td><a class="text-decoration-none" style="color: black"><small><?= htmlspecialchars($unassigned['account_status']); ?></small></a></td>
-                       <td hidden><a class="text-decoration-none" style="color: black"><small><?= htmlspecialchars(decryptthis($unassigned['email'], $key)); ?></small></a></td>
-                       <td hidden><?php echo '<img src="upload/'.$adult['image'].'" width="600px" height="500px" alt="image"/>' ?></td>
                        <td hidden><a type="button" class="focus-ring text-decoration-none" style="color: black"><i class="bi bi-universal-access-circle"></i></a></td>
                        <td><button type="button" class="focus-ring btn-outline-secondary btn btn-sm assignPatient" data-bs-toggle="modal" data-bs-target="#assignPatient">Assign <i class="bi bi-person-plus"></i></i></button></td>
                      </tr>

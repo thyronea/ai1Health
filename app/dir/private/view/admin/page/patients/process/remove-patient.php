@@ -30,40 +30,40 @@ if(isset($_POST['remove_patient']))
     $patient_query = "SELECT * FROM patients WHERE patientID='$patientID'";
     $patient_query_query_run = mysqli_query($con, $patient_query);
     $patient = mysqli_fetch_assoc($patient_query_query_run);
-    $patients_fname = htmlspecialchars(decryptthis($patient["fname"], $oldKey));
-    $patients_lname = htmlspecialchars(decryptthis($patient["lname"], $oldKey));
-    $patients_suffix = htmlspecialchars(decryptthis($patient["suffix"], $oldKey));
-    $patient_email = htmlspecialchars(decryptthis($patient["email"], $oldKey));
-    $patients_role = htmlspecialchars(decryptthis($patient["role"], $oldKey));
+    $patients_fname = htmlspecialchars(decryptthis($patient["fname"], $key));
+    $patients_lname = htmlspecialchars(decryptthis($patient["lname"], $key));
+    $patients_suffix = htmlspecialchars(decryptthis($patient["suffix"], $key));
+    $patients_email = htmlspecialchars(decryptthis($patient["email"], $key));
+    $patients_role = htmlspecialchars(decryptthis($patient["role"], $key));
   
     $diversity_query = "SELECT * FROM diversity WHERE userID='$patientID'";
     $diversity_query_query_run = mysqli_query($con, $diversity_query);
     $diversity = mysqli_fetch_assoc($diversity_query_query_run);
-    $patients_dob = htmlspecialchars(decryptthis($diversity["dob"], $oldKey));
-    $patients_gender = htmlspecialchars(decryptthis($diversity["gender"], $oldKey));
-    $patients_race = htmlspecialchars(decryptthis($diversity["race"], $oldKey));
-    $patients_ethnicity = htmlspecialchars(decryptthis($diversity["ethnicity"], $oldKey));
+    $patients_dob = htmlspecialchars(decryptthis($diversity["dob"], $key));
+    $patients_gender = htmlspecialchars(decryptthis($diversity["gender"], $key));
+    $patients_race = htmlspecialchars(decryptthis($diversity["race"], $key));
+    $patients_ethnicity = htmlspecialchars(decryptthis($diversity["ethnicity"], $key));
   
     $address_query = "SELECT * FROM address WHERE userID='$patientID'";
     $address_query_run = mysqli_query($con, $address_query);
     $address = mysqli_fetch_assoc($address_query_run);
-    $patients_address1 = htmlspecialchars(decryptthis($address["address1"], $oldKey));
-    $patients_address2 = htmlspecialchars(decryptthis($address["address2"], $oldKey));
-    $patients_city = htmlspecialchars(decryptthis($address["city"], $oldKey));
-    $patients_state = htmlspecialchars(decryptthis($address["state"], $oldKey));
-    $patients_zip = htmlspecialchars(decryptthis($address["zip"], $oldKey));
+    $patients_address1 = htmlspecialchars(decryptthis($address["address1"], $key));
+    $patients_address2 = htmlspecialchars(decryptthis($address["address2"], $key));
+    $patients_city = htmlspecialchars(decryptthis($address["city"], $key));
+    $patients_state = htmlspecialchars(decryptthis($address["state"], $key));
+    $patients_zip = htmlspecialchars(decryptthis($address["zip"], $key));
   
     $contact_query = "SELECT * FROM contact WHERE userID='$patientID'";
     $contact_query_run = mysqli_query($con, $contact_query);
     $contact = mysqli_fetch_assoc($contact_query_run);
-    $patients_phone = htmlspecialchars(decryptthis($contact["phone"], $oldKey));
-    $patients_mobile = htmlspecialchars(decryptthis($contact["mobile"], $oldKey));
-    $patients_email = htmlspecialchars(decryptthis($contact["email"], $oldKey));
+    $patients_phone = htmlspecialchars(decryptthis($contact["phone"], $key));
+    $patients_mobile = htmlspecialchars(decryptthis($contact["mobile"], $key));
+    $patients_email = htmlspecialchars(decryptthis($contact["email"], $key));
   
     $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
     $patientlog_query_run = mysqli_query($con, $patientlog_query);
     $patientlog = mysqli_fetch_assoc($patientlog_query_run);
-    $patientlog_activity = htmlspecialchars(decryptthis($patientlog["activity"], $oldKey));
+    $patientlog_activity = htmlspecialchars(decryptthis($patientlog["activity"], $key));
 
     // Encrypt Activities Data
     $fullname = "$fname $lname";
