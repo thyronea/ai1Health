@@ -42,7 +42,7 @@ if(isset($_POST['add_patient']))
   $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
   $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
   $subject = mysqli_real_escape_string($con, "Patient Registration Confirmation");
-  $link = mysqli_real_escape_string($con, "page/patients/content/patient-chart.php?patientID=$patientID");
+  $link = mysqli_real_escape_string($con, "../../page/patient-chart/index.php?patientID=$patientID");
   $message = htmlspecialchars("
   Hello $fname,
 
