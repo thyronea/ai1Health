@@ -8,10 +8,9 @@
       <?php include('content/patients.php'); ?>
       <!-- Modals -->
       <?php include('modal/add-patient.php'); ?>
+      <?php include('modal/remove-patient.php'); ?>
       <?php include('modal/assign-patient.php'); ?>
       <?php include('modal/patient-report.php'); ?>
-      <?php include('modal/patient-info.php'); ?>
-      <?php include('modal/patient-delete.php'); ?>
 
     </div>
   </div>
