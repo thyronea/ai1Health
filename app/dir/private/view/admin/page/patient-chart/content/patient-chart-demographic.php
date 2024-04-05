@@ -8,6 +8,21 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
 <div class="tab-pane fade" id="demographic-tab-pane" role="tabpanel" aria-labelledby="demographic-tab" tabindex="1">
   <div class="container user-select-none" align="center">
 
+  <!-- Modal -->
+  <?php 
+    include('modal/demographic/patient-add-diversity.php');
+    include('modal/demographic/patient-edit-name.php');
+    include('modal/demographic/patient-add-address.php'); 
+    include('modal/demographic/patient-edit-address.php'); 
+    include('modal/demographic/patient-add-contact.php'); 
+    include('modal/demographic/patient-edit-contact.php'); 
+    include('modal/demographic/patient-add-emergency.php'); 
+    include('modal/demographic/patient-edit-emergency.php'); 
+    include('modal/demographic/patient-add-plan.php'); 
+    include('modal/demographic/patient-edit-plan.php');
+    include('modal/demographic/send-emergency-email.php'); 
+  ?>
+
     <div class="col-md-12">
       <div class="card border-0">
         <div class="card-body">
@@ -226,19 +241,6 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
         </div>
       </div>
     </div>
-
-    <!-- Modal -->
-    <?php include('modal/patient-add-diversity.php'); ?>
-    <?php include('modal/patient-edit-name.php'); ?>
-    <?php include('modal/patient-add-address.php'); ?>
-    <?php include('modal/patient-edit-address.php'); ?>
-    <?php include('modal/patient-add-contact.php'); ?>
-    <?php include('modal/patient-edit-contact.php'); ?>
-    <?php include('modal/patient-add-emergency.php'); ?>
-    <?php include('modal/patient-edit-emergency.php'); ?>
-    <?php include('modal/patient-add-plan.php'); ?>
-    <?php include('modal/patient-edit-plan.php'); ?>
-    <?php include('modal/send-emergency-email.php'); ?>
 
   </div>
 </div>

@@ -14,6 +14,9 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
       <div class="col">
         <div class="row g-2 mt-2">
 
+        <!-- Modal -->
+        <?php include('modal/snapshot/send-patient-email.php'); ?>
+
           <!-- Profile Container -->
           <div class="col-md-6">
             <div class="card mb-2 shadow" style="height:16rem; overflow: auto;">
