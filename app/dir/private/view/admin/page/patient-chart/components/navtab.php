@@ -35,10 +35,10 @@
             <button style="color:black" class="nav-link" id="progress-notes-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="progress-notes-tab-pane" aria-selected="true"><small>Notes</small></button>
           </li>
           <li class="nav-item" role="presentation">
-            <button style="color:black" class="nav-link" id="immunization-tab" data-bs-toggle="tab" data-bs-target="#immunization-tab-pane" type="button" role="tab" aria-controls="immunization-tab-pane" aria-selected="true"><small>Immunization</small></button>
+            <button style="color:black" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><small>Vitals</small></button>
           </li>
           <li class="nav-item" role="presentation">
-            <button style="color:black" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><small>Vital</small></button>
+            <button style="color:black" class="nav-link" id="immunization-tab" data-bs-toggle="tab" data-bs-target="#immunization-tab-pane" type="button" role="tab" aria-controls="immunization-tab-pane" aria-selected="true"><small>Immunization</small></button>
           </li>
           <li class="nav-item" role="presentation">
             <button style="color:black" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><small>Medication</small></button>
