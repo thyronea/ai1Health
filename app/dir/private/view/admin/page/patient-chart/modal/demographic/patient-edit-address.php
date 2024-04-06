@@ -7,8 +7,8 @@
       </div>
       <div class="modal-body">
         <div class="col-md-8">
-          <form class="" action="../process/sql.php" method="post">
-            <input type="hidden" class="form-control form-control-sm mt-2" name="addressID" value="<?=htmlspecialchars($address['id']);?>" required>
+          <form class="" action="process/update-patient-address.php" method="post">
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($address['userID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($address['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="groupID" value="<?=htmlspecialchars($address['groupID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>

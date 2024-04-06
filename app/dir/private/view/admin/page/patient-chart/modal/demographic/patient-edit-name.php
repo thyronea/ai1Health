@@ -7,11 +7,11 @@
       </div>
       <div class="modal-body">
         <div class="col-md-8">
-          <form class="" action="../process/sql.php" method="post">
+          <form class="" action="process/update-patient-info.php" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="groupID" value="<?=htmlspecialchars($patient['groupID']);?>" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="email" value="<?=htmlspecialchars($patient['email']);?>" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="email" value="<?=htmlspecialchars(decryptthis($patient['email'], $key));?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="role" value="<?=htmlspecialchars(decryptthis($patient['role'], $key));?>" required>
             <input type="text" class="form-control form-control-sm mt-2" name="fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="text" class="form-control form-control-sm mt-2" name="lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
@@ -39,7 +39,7 @@
               <label><small>Upload Image</small></label>
               <input class="form-control form-control-sm" type="file" name="patient_image">
             </div>
-            <button type="submit" name="patient_editbtn" class="focus-ring btn btn-sm border mt-3">Save</button>
+            <button type="submit" name="patient_edit_btn" class="focus-ring btn btn-sm border mt-3">Save</button>
           </form>
         </div>
       </div>
