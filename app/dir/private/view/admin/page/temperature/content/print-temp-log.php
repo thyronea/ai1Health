@@ -52,7 +52,7 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); // this code w
               </thead>
               <tbody>
                 <?php
-                $query = "SELECT * FROM fridgetemp WHERE groupID='$groupID' ORDER BY date DESC";
+                $query = "SELECT * FROM fridgetemp WHERE groupID='$groupID' ORDER BY id DESC";
                 $query_run = mysqli_query($con, $query);
 
                 if(mysqli_num_rows($query_run) > 0)
@@ -134,7 +134,7 @@ $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); // this code w
               </thead>
               <tbody>
                 <?php
-                $query = "SELECT * FROM freezertemp WHERE groupID='$groupID' ORDER BY date DESC";
+                $query = "SELECT * FROM freezertemp WHERE groupID='$groupID' ORDER BY id DESC";
                 $query_run = mysqli_query($con, $query);
 
                 if(mysqli_num_rows($query_run) > 0)

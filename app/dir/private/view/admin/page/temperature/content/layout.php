@@ -21,8 +21,6 @@
                       <div class="tab-content" id="v-pills-tabContent">
                         <?php include('content/daily-temp-log.php'); ?> <!-- Daily Temp Log -->
                         <?php include('content/temp-summary.php'); ?> <!-- View Temp Summary -->
-                        <?php include('content/ref-log.php'); ?> <!-- View Refrigerator Logs -->
-                        <?php include('content/frz-log.php'); ?> <!-- View Freezer Logs -->
                         <?php include('content/storage-handling-settings.php'); ?>
                         <?php include('content/print-temp-log.php'); ?>
                       </div>

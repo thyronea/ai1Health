@@ -17,7 +17,7 @@
         <tbody>
           <?php
           $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); // this code will only show users from the same groupID
-          $query = "SELECT * FROM freezertemp WHERE groupID='$groupID' ORDER BY date DESC";
+          $query = "SELECT * FROM freezertemp WHERE groupID='$groupID' ORDER BY id DESC";
           $query_run = mysqli_query($con, $query);
 
           if(mysqli_num_rows($query_run) > 0)
@@ -26,7 +26,7 @@
             {
               ?>
               <tr>
-                <td hidden><?=htmlspecialchars(decryptthis($freezer['id'], $key));?></td>
+                <td ><?=htmlspecialchars($freezer['id']);?></td>
                 <td><small><?=htmlspecialchars($freezer['date']);?></td>
                 <td><small><?= htmlspecialchars($freezer['time']);?></small></td>
                 <td><small><?=htmlspecialchars(decryptthis($freezer['freezer'], $key));?></small></td>
