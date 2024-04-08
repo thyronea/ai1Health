@@ -115,8 +115,8 @@
                   $max = mysqli_fetch_array($query_max_run);
 
                   $query_min = "SELECT MIN(min) FROM fridgetemp WHERE groupID='$groupID' ";
-                  $query__min_run = mysqli_query($con, $query_min);
-                  $min = mysqli_fetch_array($query__min_run);
+                  $query_min_run = mysqli_query($con, $query_min);
+                  $min = mysqli_fetch_array($query_min_run);
                   ?>
 
                   <div class="row" style="text-align:left">
@@ -142,9 +142,9 @@
                   $query_max_run = mysqli_query($con, $query_max);
                   $max = mysqli_fetch_array($query_max_run);
 
-                  $query_min = "SELECT MIN(min) FROM freezertemp WHERE groupID='$groupID' ";
-                  $query__min_run = mysqli_query($con, $query_min);
-                  $min = mysqli_fetch_array($query__min_run);
+                  $query_min__ = "SELECT MIN(min) FROM freezertemp WHERE groupID='$groupID' ";
+                  $query_min_run__ = mysqli_query($con, $query_min__);
+                  $min = mysqli_fetch_array($query_min_run__);
                   ?>
 
                   <div class="row" style="text-align:left">

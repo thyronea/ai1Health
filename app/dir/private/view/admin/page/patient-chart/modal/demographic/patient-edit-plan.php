@@ -12,7 +12,7 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
       </div>
       <div class="modal-body">
         <div class="col-md-8">
-          <form class="" action="../process/sql.php" method="post">
+          <form class="" action="process/update-patient-plan.php" method="post">
             <input type="date" name="date" class="form-control form-control-sm" value="<?php echo $today; ?>" hidden required>
             <input type="hidden" name="time" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($plan['patientID']);?>" required>
