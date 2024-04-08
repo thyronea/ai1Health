@@ -18,6 +18,7 @@
               <button type="submit" name="upload_profile_image" class="focus-ring btn btn-outline-secondary btn-sm">Upload</button>
             </div>
           </form>
+          
         </div>
       </div>
 

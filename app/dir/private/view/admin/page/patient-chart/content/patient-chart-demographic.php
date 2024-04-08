@@ -10,6 +10,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
 
   <!-- Modal -->
   <?php 
+    include('modal/demographic/patient-add-image.php');
     include('modal/demographic/patient-add-diversity.php');
     include('modal/demographic/patient-edit-name.php');
     include('modal/demographic/patient-add-address.php'); 
@@ -34,7 +35,22 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                   <div class="card shadow" style="height:15rem">
                     <div class="card-body">
                       <div class="row">
-                        <div class="col-md-4 border" style="margin-left: 10px; height: 150px; width: 150px;border-radius: 50%"></div>
+                        <div class="col-md-4" style="margin-left: 10px; height: 150px; width: 150px;border-radius: 50%;">
+                          <?php
+                              $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+                              $query = " SELECT * FROM profile_image WHERE userID='$patientID' ";
+                              $result = mysqli_query($con, $query);
+                              if(mysqli_num_rows($result) > 0 ) {
+                                foreach($result as $pic){
+                                  ?>
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#patient-add-image">
+                                      <img src="../../../image/profile/<?php echo $pic['filename'];?>" style="margin-left: -12px; height: 150px; width: 150px;border-radius: 50%; object-fit:cover;">
+                                    </a>
+                                  <?php
+                                }
+                              }
+                            ?>
+                        </div>
                         <div class="col">
                           <small>
                             <table>

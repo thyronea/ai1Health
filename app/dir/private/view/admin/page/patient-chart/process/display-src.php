@@ -80,4 +80,18 @@ if(isset($_GET['patientID']))
     foreach($query_run as $emergency_contact){}
   }
 }
+
+// Display patient's profile image
+if(isset($_GET['patientID']))
+{
+  $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+  $query = "SELECT * FROM profile_image WHERE userID='$patientID' AND groupID='$groupID' ";
+  $query_run = mysqli_query($con, $query);
+
+  if(mysqli_num_rows($query_run) > 0)
+  {
+    $emergency = mysqli_fetch_array($query_run);
+    foreach($query_run as $image){}
+  }
+}
 ?>

@@ -7,6 +7,14 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
 
 ?>
 
+<div align="center">
+  <!-- Modal -->
+  <?php 
+      include('modal/snapshot/send-patient-email.php'); 
+      include('modal/demographic/patient-add-image.php');
+  ?>
+</div>
+
 <div class="tab-pane fade show active" id="snapshot-tab-pane" role="tabpanel" aria-labelledby="snapshot-tab" tabindex="0">
   <div class="container user-select-none">
     <?php include('../../components/alert.php'); ?>
@@ -14,18 +22,31 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
       <div class="col">
         <div class="row g-2 mt-2">
 
-        <!-- Modal -->
-        <?php include('modal/snapshot/send-patient-email.php'); ?>
-
           <!-- Profile Container -->
           <div class="col-md-6">
             <div class="card mb-2 shadow" style="height:16rem; overflow: auto;">
               <div class="card-header text-center">
+                <?php include('modal/demographic/patient-add-image.php');?>
                 <h6><?=htmlspecialchars(decryptthis($patient['fname'], $key));?> <?=htmlspecialchars(decryptthis($patient['lname'], $key));?> <?=htmlspecialchars(decryptthis($patient['suffix'], $key));?></h6>
               </div>
               <div class="card-body">
                 <div class="row g-2">
-                  <div class="col border m-2" style="border-radius: 50%"></div>
+                  <div class="col-md-4">
+                            <?php
+                                $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
+                                $query = " SELECT * FROM profile_image WHERE userID='$patientID' ";
+                                $result = mysqli_query($con, $query);
+                                if(mysqli_num_rows($result) > 0 ) {
+                                  foreach($result as $pic){
+                                    ?>
+                                      <a type="button" data-bs-toggle="modal" data-bs-target="#patient-add-image">
+                                        <img src="../../../image/profile/<?php echo $pic['filename'];?>" style="height: 130px; width: 130px;border-radius: 50%; object-fit:cover;">
+                                      </a>
+                                    <?php
+                                  }
+                                }
+                              ?>
+                    </div>
                   <div class="col-md-8">
                     <table class="focus-ring table table-sm text-nowrap table-borderless">
                       <tr>
