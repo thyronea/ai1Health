@@ -15,7 +15,7 @@
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item" href="../../../admin/index.php"><small>Back to Admin</small></a></li>
         <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" value="logout" href="../../../../private/process/logout-process.php"><small>Logout</small></a></li>
+        <li><a class="dropdown-item" value="logout" href="/private/access/logout-process.php"><small>Logout</small></a></li>
       </ul>
     </div>
 

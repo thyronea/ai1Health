@@ -8,12 +8,12 @@
       </div>
       <div class="modal-body">
 
-        <form method="post" action="../../admin/process/sql.php">
+        <form method="post" action="process/send-email.php">
 
           <div class="" align="left">
-            <input class="form-control form-control-sm mb-2" type="hidden" name="engineID" value="<?=$emergency_contact['engineID'];?>" required>
+            <input class="form-control form-control-sm mb-2" type="hidden" name="userID" value="<?=$contact['userID'];?>" required>
             <input class="form-control form-control-sm mb-2" type="text" name="email" value="<?=htmlspecialchars(decryptthis($contact['email'], $key));?>" required>
-            <input class="form-control form-control-sm mb-2" type="text" name="subject" id="subject" value="<?=htmlspecialchars(decryptthis($organization['name'], $key));?>: Important Message from <?=htmlspecialchars($_SESSION['office']);?>" placeholder="Subject" required>
+            <input class="form-control form-control-sm mb-2" type="text" name="subject" id="subject" value="Important Message from <?=htmlspecialchars($_SESSION['location']);?>" placeholder="Subject" required>
             <textarea class="form-control form-control-sm mb-4" name="message" id="message" style="height: 15rem" required></textarea>
           </div>
 

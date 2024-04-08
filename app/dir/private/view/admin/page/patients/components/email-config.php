@@ -15,7 +15,7 @@ $mail->Port = 587;
 $mail->Username = "thyrone.antonio@gmail.com";
 $mail->Password = "mhopftvkjlemevgn";
 
-$mail->setFrom($email);
+$mail->setFrom($email, htmlspecialchars($_SESSION['fname']));
 $mail->addAddress($patient_email);
 
 $mail->Subject = $subject;

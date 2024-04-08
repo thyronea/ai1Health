@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Patient chart: Snapshot (Fix modals) 
 - Patient chart: Demographic (Add, Edit and Delete information) 
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
@@ -43,4 +42,4 @@ Currently Logging:
 - Email
 - File
 
-5/3/2024
+5/8/2024

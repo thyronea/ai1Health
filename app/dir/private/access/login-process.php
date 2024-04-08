@@ -61,6 +61,15 @@ if(isset($_POST['admin_login_btn']))
       $fname = htmlspecialchars($profile["fname"]); // Decrypted first name
       $lname = htmlspecialchars($profile["lname"]); // Decrypted last name
 
+      // Retrieves user's location for SESSION
+      $loc_query = "SELECT * FROM location WHERE groupID='$groupID' ";
+      $loc_query_run = mysqli_query($con, $loc_query);
+      $loc = mysqli_fetch_assoc($loc_query_run);
+
+      if($loc['poc'] = "$fname $lname"){
+        $_SESSION['location'] = htmlspecialchars($loc["name"]);
+      }
+
       // Encrypt Activities Data
       $fullname = "$fname $lname"; // Combines first and last name for encryption
       $encrypted_fullname = encryptthis($fullname, $key); // Full name encryption
