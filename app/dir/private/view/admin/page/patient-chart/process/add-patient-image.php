@@ -55,7 +55,7 @@ if(isset($_POST['add_patient_image'])){
       $check_image_run = mysqli_query($con, $check_image);
       $image = mysqli_fetch_assoc($check_image_run);
 
-      unlink('../../../image/profile/'.$image['filename']);
+      unlink('../../../../image/profile/'.$image['filename']);
       $update_image  = "UPDATE profile_image SET filename=? WHERE userID='$patientID' ";
       $stmt = $con->prepare($update_image);
       $stmt->bind_param("s", $img_name);

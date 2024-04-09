@@ -51,7 +51,7 @@
                      ?>
                      <tr>
                        <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($patient['engineID']);?></small></a></td>
-                       <td><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($patient['patientID']);?></small></a></td>
+                       <td ><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($patient['patientID']);?></small></a></td>
                        <td><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($patient['fname'], $key));?> <?=htmlspecialchars(decryptthis($patient['lname'], $key));?></small></a></td>
                        <td hidden><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars(decryptthis($patient['email'], $key));?></small></a></td>
                        <td><a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black"><small><?=htmlspecialchars($patient['account_status']);?></small></a></td>
