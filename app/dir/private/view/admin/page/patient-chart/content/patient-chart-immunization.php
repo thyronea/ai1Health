@@ -8,19 +8,17 @@
 
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-history-tab" data-bs-toggle="tab" data-bs-target="#nav-history" type="button" role="tab" aria-controls="nav-history" aria-selected="true" style="color:black"><small>History</small></button>
-                <button class="nav-link" id="nav-pediatric-tab" data-bs-toggle="tab" data-bs-target="#nav-pediatric" type="button" role="tab" aria-controls="nav-pediatric" aria-selected="false" style="color:black"><small>Pediatric</small></button>
-                <button class="nav-link" id="nav-adolescent-tab" data-bs-toggle="tab" data-bs-target="#nav-adolescent" type="button" role="tab" aria-controls="nav-adolescent" aria-selected="false" style="color:black"><small>Adolescent</small></button>
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-history" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="color: black;"><small>Overview</small></button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-peds" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;"><small>Pediatric</small></button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-adol" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="color: black;"><small>Adolescent</small></button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-adult" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="color: black;"><small>Adult</small></button>
               </div>
             </nav>
-
-            <div class="tab-content" id="nav-tab">
-              <!-- Immunization Chart Dash -->
-              <?php include('immunization-history-table.php'); ?>
-              <!-- Birth to 15 Months Schedule Table -->
-              <?php include('pediatric-table-chart.php'); ?>
-              <!-- 7 to 18 Years Schedule Table -->
-              <?php include('adolescent-table-chart.php'); ?>
+            <div class="tab-content" id="nav-tabContent">
+              <?php include('immunization-overview.php');?>
+              <div class="tab-pane fade" id="nav-peds" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
+              <div class="tab-pane fade" id="nav-adol" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+              <div class="tab-pane fade" id="nav-adult" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
             </div>
 
           </div>
