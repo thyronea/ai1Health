@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Patient chart: Demographic (Edit and Delete emergency contact) 
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
 - Document: Create "My Files" and separate from "Shared Files"
@@ -42,4 +41,4 @@ Currently Logging:
 - Email
 - File
 
-5/9/2024
+5/11/2024
