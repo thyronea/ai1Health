@@ -49,10 +49,10 @@ Location: components/footer.php
       $('#emergency_patientID').val(data[1]);
       $('#emergency_engineID').val(data[2]);
       $('#emergency_groupID').val(data[3]);
-      $('#emergency_fname').val(data[4]);
-      $('#emergency_lname').val(data[5]);
-      $('#emergency_phone').val(data[6]);
-      $('#emergency_email').val(data[8]);
+      $('#emergency_fname').val(data[5]);
+      $('#emergency_lname').val(data[6]);
+      $('#emergency_phone').val(data[7]);
+      $('#emergency_email').val(data[9]);
     });
   });
 </script>
