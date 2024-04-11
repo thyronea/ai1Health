@@ -221,7 +221,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                               <td hidden><a type="text" class="focus-ring btn btn-sm border-0" ><?=htmlspecialchars($emergency_contact['patientID']);?></i></a></td>
                               <td hidden><a type="text" class="focus-ring btn btn-sm border-0" ><?=htmlspecialchars($emergency_contact['engineID']);?></i></a></td>
                               <td hidden><a type="text" class="focus-ring btn btn-sm border-0" ><?=htmlspecialchars($emergency_contact['groupID']);?></i></a></td>
-                              <td><?=htmlspecialchars(decryptthis($emergency_contact['fname'], $key));?></td>
+                              <td><?=htmlspecialchars(decryptthis($emergency_contact['fname'], $key));?> <?=htmlspecialchars(decryptthis($emergency_contact['lname'], $key));?></td>
                               <td hidden><a type="text" class="focus-ring btn btn-sm border-0" ><?=htmlspecialchars(decryptthis($emergency_contact['lname'], $key));?></i></a></td>
                               <td hidden><a type="text" class="focus-ring btn btn-sm border-0" ><?=htmlspecialchars(decryptthis($emergency_contact['phone'], $key));?></i></a></td>
                               <td><a type="button" class="focus-ring btn btn-sm border-0" href="tel:<?=htmlspecialchars(decryptthis($emergency_contact['phone'], $key));?>" style="color:black"><i class="bi bi-telephone"></i></a></td>
