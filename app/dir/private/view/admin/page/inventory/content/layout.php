@@ -9,7 +9,7 @@
      <?php include('content/inventory.php'); ?>
 
      <!-- Modals -->
-     <?php include('modal/add-inventory.php'); ?>
+     <?php include('modal/inventory-add.php'); ?>
      <?php include('modal/inventory-edit.php'); ?>
      <?php include('modal/inventory-delete.php'); ?>
      <?php include('modal/inventory-list.php'); ?>

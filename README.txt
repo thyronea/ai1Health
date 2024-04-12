@@ -3,6 +3,7 @@ All In 1 Health: A robust electronic health system
 To Do:
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
+- Send email notification when adding, editing, and deleting (anything)
 - Document: Create "My Files" and separate from "Shared Files"
 - Save reports in PDF
 - Send email confirmation when admin account is deleted

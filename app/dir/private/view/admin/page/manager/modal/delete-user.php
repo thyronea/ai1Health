@@ -22,7 +22,7 @@
           </div>
 
           <div class="form-group mb-3" align="center">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-settings-Modal">No</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#account-manager-Modal">No</button>
             <button type="submit" name="userdeletebtn" class="btn btn-outline-danger btn-sm">Yes</button>
           </div>
         </form>

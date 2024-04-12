@@ -11,8 +11,8 @@
         <form class="" action="process/delete-inventory.php" method="POST">
           <div class="form-group mt-3 mb-5">
             <!-- Hidden inputs to be insterted to activity table -->
-            <input class="form-control mb-2" type="hidden" name="engineID" id="delete_vaccine_engineID">
-            <input class="form-control mb-2" type="hidden" name="delete_vaccine_name" id="delete_vaccine_name">
+            <input class="form-control mb-2" type="hidden" name="engineID" id="inventory_engineid">
+            <input class="form-control mb-2" type="hidden" name="delete_vaccine_name" id="name_delete">
             <!----------------------------------------------------->
             <p align="center">Vaccine will be permanently removed from inventory.</p>
             <p>Do you still want to proceed?</p>
@@ -28,27 +28,3 @@
     </div>
   </div>
 </div>
-
-
-<!--
-Title: Delete Vaccine
-Location: components/footer.php
--->
-<script>
-  $(document).ready(function () {
-    $('.inventorydeletebtn').on('click', function() {
-
-      $('#inventorydeletemodal').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#delete_vaccine_engineID').val(data[0]);
-      $('#delete_vaccine_name').val(data[3]);
-    });
-  });
-</script>

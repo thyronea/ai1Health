@@ -21,7 +21,7 @@
           </div>
           <div class="row g-2">
 
-              <input type="hidden" name="engineID" id="inventory_engineid" class="form-control form-control-sm" required>
+              <input type="hidden" name="id" id="inventory_id" class="form-control form-control-sm" required>
 
               <div class="col">
                 <select class="form-group form-select form-select-sm" name="storage" id="storage">
@@ -168,13 +168,14 @@
 
               <div class="col-md-4">
                 <div class="form-group mb-4">
-                  <input type="text" name="doses" id="doses" placeholder="Number of Doses" class="form-control form-control-sm" required>
+                  <input type="number" name="doses" id="doses" placeholder="Number of Doses" class="form-control form-control-sm" required>
                 </div>
               </div>
 
             </div>
 
           <div class="form-group mb-2" align="center">
+            <button type="button" class="focus-ring btn btn-outline-danger btn-sm inventorydeletebtn" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal">Delete</button>
             <button type="submit" name="update_inventory_btn" class="focus-ring btn btn-outline-secondary btn-sm">Update</button>
           </div>
 
@@ -203,18 +204,20 @@ Location: components/footer.php
       }).get();
 
       console.log(data);
-
-      $('#inventory_engineid').val(data[0]);
-      $('#groupid').val(data[1]);
-      $('#doses').val(data[2]);
-      $('#name').val(data[3]);
-      $('#inventory_manufacturer').val(data[4]);
-      $('#ndc').val(data[5]);
-      $('#lot').val(data[6]);
-      $('#exp').val(data[7]);
-      $('#source').val(data[8]);
-      $('#storage').val(data[9]);
-      $('#timestamp').val(data[10]);
+      $('#inventory_id').val(data[0]);
+      $('#inventory_engineid').val(data[1]);
+      $('#groupid').val(data[2]);
+      $('#doses').val(data[3]);
+      $('#name').val(data[4]);
+      $('#name_delete').val(data[4]);
+      $('#inventory_manufacturer').val(data[5]);
+      $('#ndc').val(data[6]);
+      $('#lot').val(data[7]);
+      $('#exp').val(data[8]);
+      $('#source').val(data[9]);
+      $('#storage').val(data[10]);
+      $('#timestamp').val(data[11]);
     });
   });
 </script>
+

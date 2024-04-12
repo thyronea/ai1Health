@@ -57,7 +57,11 @@
                   }
                   ?>
              </select>
-
+            
+             <?php
+              
+             ?>
+             
              <div class="row mb-2">
                   <div class="col">
                     <input type="text" id="ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>

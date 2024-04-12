@@ -11,7 +11,7 @@ if(isset($_POST['update_inventory_btn']))
     $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
     $email = mysqli_real_escape_string($con, $_SESSION['email']);
-    $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
+    $id = mysqli_real_escape_string($con, $_POST['id']);
     $manufacturer = mysqli_real_escape_string($con, $_POST['manufacturer']);
     $ndc = mysqli_real_escape_string($con, $_POST['ndc']);
     $name = mysqli_real_escape_string($con, $_POST['name']);
@@ -34,9 +34,9 @@ if(isset($_POST['update_inventory_btn']))
 
     // Update engine table
     $inventory_engine = "Lot: $lot / Exp: $exp";
-    $engine  = "UPDATE engine SET keyword1=?, keyword2=?, keyword3=? WHERE engineID='$engineID' ";
+    $engine  = "UPDATE engine SET keyword1=?, keyword2=?, keyword3=? WHERE id='$id' ";
     $stmt = $con->prepare($engine);
-    $stmt->bind_param("sss", $name, $manufacturer, $inventory_engine);
+    $stmt->bind_param("sss", $name, $manufacturer, $id);
     $stmt->execute();
 
     // Encrypt Vaccine Data and update
@@ -44,7 +44,7 @@ if(isset($_POST['update_inventory_btn']))
     $encrypt_lot = encryptthis($lot, $key);
     $encrypt_manufacturer = encryptthis($manufacturer, $key);
     $encrypt_ndc = encryptthis($ndc, $key);
-    $vaccines  = "UPDATE inventory SET storage=?, name=?, lot=?, doses=?, exp=?, manufacturer=?, ndc=?, funding_source=? WHERE engineID='$engineID' ";
+    $vaccines  = "UPDATE inventory SET storage=?, name=?, lot=?, doses=?, exp=?, manufacturer=?, ndc=?, funding_source=? WHERE id='$id' ";
     $stmt = $con->prepare($vaccines);
     $stmt->bind_param("ssssssss", $encrypt_storage, $name, $encrypt_lot, $doses, $exp, $encrypt_manufacturer, $encrypt_ndc, $source);
     $stmt->execute();

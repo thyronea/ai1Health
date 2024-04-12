@@ -1,5 +1,5 @@
 <!-- Private Inventory List -->
-<div class="col mb-3">
+<div class="col-md-8 mb-3">
 
   <!-- Nav Tabs -->
   <div class="card shadow" style="height:33rem; overflow: auto">
@@ -29,10 +29,6 @@
        <!-- All Inventory -->
        <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
          <table class="table table-sm table-hover table-borderless text-nowrap">
-           <thead>
-             <th><small>Name</small></th>
-             <th><small>Funding Source</small></th>
-           </thead>
            <tbody>
 
              <?php
@@ -46,18 +42,18 @@
                    {
                      ?>
                      <tr>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
-                       <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }
@@ -78,12 +74,6 @@
        <!-- Private Inventory -->
        <div class="tab-pane fade" id="private-tab-pane" role="tabpanel" aria-labelledby="private-tab" tabindex="0">
          <table class="table table-sm table-hover table-borderless text-nowrap">
-           <thead>
-             <th><small>Doses</small></th>
-             <th><small>Name</small></th>
-             <th><small>Lot</small></th>
-             <th><small>Exp</small></th>
-           </thead>
            <tbody>
 
              <?php
@@ -97,9 +87,10 @@
                    {
                      ?>
                      <tr>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
-                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
+                       <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b><small></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['name']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $key));?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
@@ -108,7 +99,6 @@
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }
@@ -129,12 +119,6 @@
        <!-- Public Inventory -->
        <div class="tab-pane fade" id="public-tab-pane" role="tabpanel" aria-labelledby="public-tab" tabindex="0">
          <table class="table table-sm table-hover table-borderless text-nowrap">
-           <thead>
-             <th><small>Doses</small></th>
-             <th><small>Name</small></th>
-             <th><small>Lot</small></th>
-             <th><small>Exp</small></th>
-           </thead>
            <tbody>
 
              <?php
@@ -148,6 +132,7 @@
                    {
                      ?>
                      <tr>
+                       <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['engineID']);?></small></a></td>
                        <td hidden><a type="hidden" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
                        <td ><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><b><?=htmlspecialchars($vaccine['doses']);?></b></a></td>
@@ -159,7 +144,6 @@
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['funding_source']);?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars(decryptthis($vaccine['storage'], $key));?></small></a></td>
                        <td hidden><a type="button" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['timestamp']);?></small></a></td>
-                       <td><a type="button" class="focus-ring text-decoration-none inventorydeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventorydeletemodal"><i class="bi bi-trash"></i></a></td>
                      </tr>
                      <?php
                    }
