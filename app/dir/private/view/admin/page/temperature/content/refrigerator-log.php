@@ -26,7 +26,7 @@
             {
               ?>
               <tr>
-                <td ><?=htmlspecialchars($fridge['id']);?></td>
+                <td hidden><?=htmlspecialchars($fridge['id']);?></td>
                 <td><small><?=htmlspecialchars($fridge['date']);?></td>
                 <td><small><?= htmlspecialchars($fridge['time']);?></small></td>
                 <td><small><?=htmlspecialchars(decryptthis($fridge['refrigerator'], $key));?></small></td>

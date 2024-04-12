@@ -50,19 +50,19 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                   <div class="col-md-8">
                     <table class="focus-ring table table-sm text-nowrap table-borderless">
                       <tr>
-                        <td><small>DOB:</small></td>
+                        <td align="right"><small><b>DOB:</b></small></td>
                         <td><small><?=htmlspecialchars($dob);?> (<?=htmlspecialchars($year);?> years old)</small></td>
                       </tr>
                       <tr>
-                        <td><small>Patient ID:</small></td>
+                        <td align="right"><small><b>Patient ID:</b></small></td>
                         <td><small><?=htmlspecialchars($patient['patientID']);?></small></td>
                       </tr>
                       <tr>
-                        <td><small>Health Plan:</small></td>
+                        <td align="right"><small><b>Health Plan:</b></small></td>
                         <td><small><?=decryptthis($plan['health_plan'], $key);?> - <?=decryptthis($plan['status'], $key);?></small></td>
                       </tr>
                       <tr>
-                        <td><small>Policy #:</small></td>
+                        <td align="right"><small><b>Policy #:</b></small></td>
                         <td><small><?=decryptthis($plan['policy_number'], $key);?></small></td>
                       </tr>
                     </table>
@@ -91,26 +91,22 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
               </div>
               <div class="card-body">
                 <div class="row g-2">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <table class="focus-ring table table-sm text-nowrap table-borderless">
                       <tr>
-                        <td><small><b>Height:</b></small></td>
+                        <td align="right"><small><b>Height:</b></small></td>
                         <td><small>...</small></td>
                       </tr>
                       <tr>
-                        <td><small><b>Weight:</b></small></td>
+                        <td align="right"><small><b>Weight:</b></small></td>
                         <td><small>...</small></td>
                       </tr>
                       <tr>
-                        <td><small><b>BMI:</b></small></td>
+                        <td align="right"><small><b>BMI:</b></small></td>
                         <td><small>...</small></td>
                       </tr>
                       <tr>
-                        <td><small><b>BP:</b></small></td>
-                        <td><small>...</small></td>
-                      </tr>
-                      <tr>
-                        <td><small>Updated:</small></td>
+                        <td align="right"><small><b>BP:</b></small></td>
                         <td><small>...</small></td>
                       </tr>
                     </table>

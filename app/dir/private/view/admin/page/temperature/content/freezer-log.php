@@ -26,7 +26,7 @@
             {
               ?>
               <tr>
-                <td ><?=htmlspecialchars($freezer['id']);?></td>
+                <td hidden><?=htmlspecialchars($freezer['id']);?></td>
                 <td><small><?=htmlspecialchars($freezer['date']);?></td>
                 <td><small><?= htmlspecialchars($freezer['time']);?></small></td>
                 <td><small><?=htmlspecialchars(decryptthis($freezer['freezer'], $key));?></small></td>

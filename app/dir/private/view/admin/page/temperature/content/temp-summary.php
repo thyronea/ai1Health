@@ -119,11 +119,23 @@
                   $min = mysqli_fetch_array($query_min_run);
                   ?>
 
-                  <div class="row" style="text-align:left">
-                    <h6 style="color:red">Refrigerator</h6>
-                    <small>Average: <?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small>
-                    <small>Highest: <?=$max['MAX(max)'];?>F&deg; </small>
-                    <small>Lowest: <?=$min['MIN(min)'];?>F&deg;</small>
+                  <div class="row">
+                    <h6 style="color:red; margin-bottom : 13px">Refrigerator</h6>
+                    <table class="focus-ring table table-sm text-nowrap table-borderless">
+                        <tr>
+                          <td align="right"><small><b>Average:</b></small></td>
+                          <td align="left"><small><?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small></td>
+                        </tr>
+                        
+                        <tr>
+                          <td align="right"><small><b>Highest:</b></small></td>
+                          <td align="left"><small><?=$max['MAX(max)'];?>F&deg;</small></td>
+                        </tr>
+                        <tr>
+                          <td align="right"><small><b>Lowest:</b></small></td>
+                          <td align="left"><small><?=$min['MIN(min)'];?>F&deg;</small></td>
+                        </tr>
+                    </table>
                   </div>
 
                 </div>
@@ -147,11 +159,23 @@
                   $min = mysqli_fetch_array($query_min_run__);
                   ?>
 
-                  <div class="row" style="text-align:left">
-                    <h6 style="color:blue">Freezer</h6>
-                    <small>Average: <?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small>
-                    <small>Highest: <?=$max['MAX(max)'];?>F&deg;</small>
-                    <small>Lowest: <?=$min['MIN(min)'];?>F&deg;</small>
+                  <div class="row">
+                    <h6 style="color:blue; margin-bottom: 13px">Freezer</h6>
+                    <table class="focus-ring table table-sm text-nowrap table-borderless">
+                        <tr>
+                          <td align="right"><small><b>Average:</b></small></td>
+                          <td align="left"><small><?=$avg['cast(AVG(current) AS DECIMAL(9,1))'];?>F&deg;</small></td>
+                        </tr>
+                        
+                        <tr>
+                          <td align="right"><small><b>Highest:</b></small></td>
+                          <td align="left"><small><?=$max['MAX(max)'];?>F&deg;</small></td>
+                        </tr>
+                        <tr>
+                          <td align="right"><small><b>Lowest:</b></small></td>
+                          <td align="left"><small><?=$min['MIN(min)'];?>F&deg;</small></td>
+                        </tr>
+                    </table>
                   </div>
                 </div>
               </div>

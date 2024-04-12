@@ -8,19 +8,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <form class="" action="process/update-patient-contact.php" method="post">
           <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
             
-            <div class="row mb-2">
+            <div class="row col-md-8 mb-2" hidden>
               <div class="col">
-                <input type="date" name="date" class="form-control form-control-sm" value="<?php echo $today; ?>" required>
+                <input type="date" name="date" class="form-control form-control-sm text-center" value="<?php echo $today; ?>" required>
               </div>
               <div class="col">
-                <input type="" name="time" class="form-control form-control-sm" value="<?php echo date("h:i A"); ?>" required>
+                <input type="" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
             <select id="vaccines" name="vaccine" class="form-select form-select-sm mb-2" required>
@@ -58,11 +58,14 @@
                   ?>
              </select>
 
-             <div class="col mb-2">
-                <input type="text" id="ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
-             </div>
-             <div class="col mb-2">
-                <input type="text" id="lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+             <div class="row mb-2">
+                  <div class="col">
+                    <input type="text" id="ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  </div>
+                  <div class="col">
+                    <input type="text" id="lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  </div>
+                
              </div>
 
              <div class="row mb-2">
