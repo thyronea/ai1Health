@@ -55,7 +55,7 @@ if(isset($_POST['administer_hepB']))
     // store activity data in activity table
     $fullname = "$fname $lname";
     $action = htmlspecialchars("Administered");
-    $message = "$action $vaccine to $patient_fname $patient_fname";
+    $message = "$action $vaccine to $patient_fname $patient_lname";
 
     // encrypt data and insert to admin_log table
     $encrypt_fullname = encryptthis($fullname, $key);
