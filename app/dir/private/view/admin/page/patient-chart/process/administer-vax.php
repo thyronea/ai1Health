@@ -44,6 +44,14 @@ if(isset($_POST['administer_hepB']))
   $type = htmlspecialchars("Hepatitis B");
   $patient_log = mysqli_real_escape_string($con, "$received $type");
 
+  $verify_completion = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
+  $sql_run =  mysqli_query($con, $verify_completion);
+  if(mysqli_num_rows($sql_run)  >= 3){
+    $_SESSION['warning'] = "3 Dose Series for $type is already complete!";
+      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+  }
+  else{
     // store activity data in activity table
     $fullname = "$fname $lname";
     $action = htmlspecialchars("Administered");
@@ -112,6 +120,7 @@ if(isset($_POST['administer_hepB']))
       header("Location: ../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
+  }
 }
 
 ?>
