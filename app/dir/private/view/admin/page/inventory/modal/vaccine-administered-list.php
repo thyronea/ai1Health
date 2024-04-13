@@ -46,7 +46,7 @@ include('../../components/print.php');
                             <td><small><?= htmlspecialchars(decryptthis($vaccine['dob'], $key)); ?></small></td>
                             <td><small><?= htmlspecialchars(decryptthis($vaccine['vaccine'], $key)); ?></small></td>
                             <td><small><?= htmlspecialchars(decryptthis($vaccine['lot'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['exp'], $key)); ?></small></td>
+                            <td><small><?= htmlspecialchars($vaccine['exp']); ?></small></td>
                             <td><?= htmlspecialchars(decryptthis($vaccine['funding_source'], $key)); ?></td>
                           </tr>
                           <?php

@@ -17,7 +17,11 @@
             <input type="" class="form-control form-control-sm mt-2" name="emergency_lname" id="emergency_lname" required>
             <input type="" class="form-control form-control-sm mt-2" name="emergency_phone" id="emergency_phone" required>
             <input type="" class="form-control form-control-sm mt-2" name="emergency_email" id="emergency_email" required>
-            <button type="submit" name="update_patient_emergencybtn" class="focus-ring btn btn-sm border mt-3">Save</button>
+
+            <div class="form-group mt-3 mb-2" align="center">
+              <button type="button" class="focus-ring btn btn-outline-danger btn-sm emergencydeletebtn" data-bs-toggle="modal" data-bs-target="#emergencydeletemodal">Delete</button>
+              <button type="submit" name="update_patient_emergencybtn" class="focus-ring btn btn-outline-secondary btn-sm border">Update</button>
+            </div>
           </form>
         </div>
       </div>
@@ -46,11 +50,16 @@ Location: components/footer.php
       console.log(data);
       // information passed from immunization table to office covid-vaccine modal
       $('#emergency_ID').val(data[0]);
+      $('#emergency_ID_').val(data[0]);
       $('#emergency_patientID').val(data[1]);
+      $('#emergency_patientID_').val(data[1]);
       $('#emergency_engineID').val(data[2]);
       $('#emergency_groupID').val(data[3]);
       $('#emergency_fname').val(data[5]);
+      $('#emergency_fname_').val(data[5]);
+      $('#emergency_fname__').val(data[5]);
       $('#emergency_lname').val(data[6]);
+      $('#emergency_lname_').val(data[6]);
       $('#emergency_phone').val(data[7]);
       $('#emergency_email').val(data[9]);
     });

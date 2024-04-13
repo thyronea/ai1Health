@@ -36,12 +36,13 @@ if(isset($_POST['add_patient_emergencybtn']))
   {
     // store activity data in activity table
     $fullname = "$fname $lname";
-    $type = htmlspecialchars("Added");
-    $message = "$emergency_fname $emergency_fname";
+    $action = htmlspecialchars("Added");
+    $message = "$action Emergency Contact: $emergency_fname $emergency_fname";
     $encrypt_fullname = encryptthis($fullname, $key);
+    $encrypt_message = encryptthis($message, $key);
     $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
     $stmt = $con->prepare($activities);
-    $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $type, $message);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action, $encrypt_message);
     $stmt->execute();
 
     $encrypt_emergency_fname = encryptthis($emergency_fname, $key);

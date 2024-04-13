@@ -19,6 +19,8 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
     include('modal/demographic/patient-edit-contact.php'); 
     include('modal/demographic/patient-add-emergency.php'); 
     include('modal/demographic/patient-edit-emergency.php'); 
+    include('modal/demographic/patient-edit-emergency.php'); 
+    include('modal/demographic/patient-delete-emergency.php'); 
     include('modal/demographic/patient-add-plan.php'); 
     include('modal/demographic/patient-edit-plan.php');
     include('modal/demographic/send-emergency-email.php'); 

@@ -24,17 +24,14 @@ if(isset($_POST['update_patient_emergencybtn']))
   $emergency_email = mysqli_real_escape_string($con, $_POST['emergency_email']);
 
   // Encrypt Activities Data and insert
-  $type = mysqli_real_escape_string($con, "Updated");
-  $message = mysqli_real_escape_string($con, "Emergency Contact");
   $user_fullname= "$fname $lname";
-  $p_fullname = "$patient_fname $patient_lname";
-  $act_message = "$p_fullname's $message";
-  $encrypted_type= encryptthis($type, $key);
+  $action = mysqli_real_escape_string($con, "Updated");
+  $message = mysqli_real_escape_string($con, "$action Emergency Contact: $emergency_fname $emergency_lname");
   $encrypted_user_fullname = encryptthis($user_fullname, $key);
-  $encrypted_message = encryptthis($act_message, $key);
+  $encrypted_message = encryptthis($message, $key);
   $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
   $stmt = $con->prepare($activities);
-  $stmt->bind_param("sssss", $userID, $groupID, $encrypted_user_fullname, $encrypted_type, $encrypted_message);
+  $stmt->bind_param("sssss", $userID, $groupID, $encrypted_user_fullname, $action, $encrypted_message);
   $stmt->execute();
 
   // Encrypt Patient's diversity Data and update

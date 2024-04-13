@@ -9,18 +9,19 @@
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <form class="" action="process/update-patient-contact.php" method="post">
-          <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
+          <form class="" action="process/administer-vax.php" method="post">
+            <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
             
-            <div class="row col-md-8 mb-2" hidden>
+            <div class="row col-md-8 mb-2">
               <div class="col">
-                <input type="date" name="date" class="form-control form-control-sm text-center" value="<?php echo $today; ?>" required>
+                <input type="hidden" name="date" class="form-control form-control-sm text-center" value="<?php echo $today; ?>" required>
               </div>
               <div class="col">
-                <input type="" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
+                <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
             <select id="vaccines" name="vaccine" class="form-select form-select-sm mb-2" required>
@@ -34,6 +35,10 @@
                   {
                     echo "<option value='". htmlspecialchars($hepB_SDV['name']) ."'>" .htmlspecialchars($hepB_SDV['name']) ."</option>" ;
                   }
+                  if(htmlspecialchars($hepB_SDV['name'])){
+                    $hepB_SDV_lot = htmlspecialchars(decryptthis($hepB_SDV['lot'], $key));
+                  }
+
                   $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
                   $sql_run = mysqli_query($con, $sql);
                   $hepB_SDS = mysqli_num_rows($sql_run);
@@ -57,21 +62,18 @@
                   }
                   ?>
              </select>
-            
+             <div class="row mb-2">
+                <div class="col">
+                  <input type="text" id="lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                </div>
+                <div class="col">
+                  <input type="text" id="ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                </div>
+             </div>
              <?php
               
              ?>
-             
-             <div class="row mb-2">
-                  <div class="col">
-                    <input type="text" id="ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
-                  </div>
-                  <div class="col">
-                    <input type="text" id="lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
-                  </div>
-                
-             </div>
-
+            
              <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
@@ -132,15 +134,6 @@
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small>Administered By:</small></label>
-                </div>
-                <div class="col">
-                  <input type="text" name="administered_by" class="form-control form-control-sm" value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" placeholder="Given By" required>
-                </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="col" align="right">
                   <label><small>Funding Source:</small></label>
                 </div>
                 <div class="col">
@@ -156,13 +149,22 @@
                 </div>
               </div>
 
+              <div class="row mb-2">
+                <div class="col" align="right">
+                  <label><small>Administered By:</small></label>
+                </div>
+                <div class="col">
+                  <input type="text" name="administered_by" class="form-control form-control-sm" value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" placeholder="Given By" required>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col">
                   <textarea name="comment" class="form-control form-control-sm" placeholder="Comment......"></textarea>
                 </div>
               </div>
 
-            <button type="submit" name="patient_contactbtn" class="focus-ring btn btn-sm border mt-3">Save</button>
+            <button type="submit" name="administer_hepB" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
