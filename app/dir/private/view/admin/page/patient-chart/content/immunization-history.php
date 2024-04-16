@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="history" role="tabpanel" tabindex="0">
-    <div class="card">
+    <div class="card mt-2">
         <div class="card-body">
             <h5>History</h5>
             <table class="table table-borderless table-sm table-hover text-nowrap">

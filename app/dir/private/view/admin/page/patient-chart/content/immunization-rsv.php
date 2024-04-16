@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="rsv" role="tabpanel" tabindex="0">
-    <div class="card">
+    <div class="card mt-2">
         <div class="card-body">
             <h5>RSV</h5>
             <table class="table table-borderless table-sm table-hover text-nowrap">
@@ -9,6 +9,6 @@
             </table>
         </div>
     </div>
-    <button type="button" class="focus-ring btn btn-sm border mt-3" data-bs-toggle="modal" data-bs-target="#administer_rsv">Administer RSV</button>  
+    <button type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_rsv">Administer RSV</button>  
     <?php include('modal/immunization/add-rsv.php'); ?>
 </div>

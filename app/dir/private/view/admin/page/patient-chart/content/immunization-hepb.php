@@ -1,19 +1,7 @@
-<style>
-  #admin_card:hover{
-    background-color: #e6effc;
-    transition: all 1s ease;
-  }
-</style>
-
 <div class="tab-pane fade" id="hepb" role="tabpanel" tabindex="0">
-    <div class="container row">
-        <div class="col-md-4 me-5">
+    <div class="d-flex align-items-start row">
+        <div class="col-md-2">
             <table class="table table-borderless text-nowrap">
-                <thead align="center">
-                    <th><h6>1st Dose</h6></th>
-                    <th><h6>2nd Dose</h6></th>
-                    <th><h6>3rd Dose</h6></th>
-                </thead>
                 <tbody align="center" style="text-align: left">
                     <?php
                     $patientID = htmlspecialchars($patient['patientID']);
@@ -32,12 +20,23 @@
                         $admin_hepB = (date('m', strtotime($admin_date)) . '/' . date('d', strtotime($admin_date)) . '/' . date('Y', strtotime($admin_date))); 
 
                         ?>
-                        
-                        <td hidden><a type="" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
-                        <td hidden><a type="" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['patientID']);?></small></a></td>
-                        <td hidden><a type="" class="text-decoration-none inventory-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#inventory-edit"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
+                        <tr align="center">
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars($vaccine['id']);?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars($vaccine['patientID']);?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars($vaccine['groupID']);?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['vaccine'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['exp'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['site'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['route'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['vis_given'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['vis'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['funding_source'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['administered_by'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['comment'], $key));?></small></a></td>
                         <td >
-                            <a type="button" class="text-decoration-none focus-ring" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#update_hepB">
+                            <a class="text-decoration-none focus-ring edit_hepB_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_hepb">
                                 <div class="card shadow" id="admin_card">
                                     <div class="card-body">
                                         <small><?=htmlspecialchars($admin_hepB);?></small>
@@ -45,6 +44,7 @@
                                 </div>
                             </a>
                         </td>
+                        </tr>
                         
                         <?php
                     }
@@ -60,13 +60,14 @@
                     ?>                
                 </tbody>
             </table>
-            <button type="button" class="focus-ring btn btn-sm border mt-3" data-bs-toggle="modal" data-bs-target="#administer_hepb">Administer Hep B</button> 
+            <button type="button" class="focus-ring btn btn-sm border mt-3 mb-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_hepb">Administer Hep B</button> 
         </div>
-        <div class="col-md-7 card">
+        <div class="col-md-10 card mt-2">
             <div class="card-body">
-
+                Hepatitis B (chart goes here)
             </div>
-        </div>
+        </div> 
     </div> 
     <?php include('modal/immunization/add-hepb.php'); ?>
+    <?php include('modal/immunization/edit-hepb.php'); ?>
 </div>
