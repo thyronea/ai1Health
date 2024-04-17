@@ -3,6 +3,7 @@ session_start();
 include('../../../../security/dbcon.php');
 include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
+include('process/display-src.php');
 ?>
 
 <!-- Login session -->
@@ -14,10 +15,12 @@ include('../../components/header.php');
 <?php include('components/navtab.php'); ?>
 <!-- Navtab Result -->
 <div class="tab-content">
-  <?php include('content/patient-chart-snapshot.php'); ?>
-  <?php include('content/patient-chart-demographic.php'); ?>
-  <?php include('content/patient-chart-immunization.php'); ?>
-  <?php include('content/patient-chart-progress-notes.php'); ?>
+  <?php include('content/snapshot/main.php'); ?>
+  <?php include('content/demographic/main.php'); ?>
+  <?php include('content/history/main.php'); ?>
+  <?php include('content/notes/main.php'); ?>
+  <?php include('content/vitals/main.php'); ?>
+  <?php include('content/immunization/main.php'); ?>
 </div>
 
 <?php

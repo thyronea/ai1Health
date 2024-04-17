@@ -27,7 +27,7 @@
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['vaccine'], $key));?></small></a></td>
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['lot'], $key));?></small></a></td>
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['ndc'], $key));?></small></a></td>
-                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['exp'], $key));?></small></a></td>
+                        <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars($vaccine['exp']);?></small></a></td>
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['site'], $key));?></small></a></td>
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['route'], $key));?></small></a></td>
                         <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis($vaccine['vis_given'], $key));?></small></a></td>
@@ -60,7 +60,7 @@
                     ?>                
                 </tbody>
             </table>
-            <button type="button" class="focus-ring btn btn-sm border mt-3 mb-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_hepb">Administer Hep B</button> 
+            <button type="button" class="focus-ring btn btn-sm border mt-3 mb-3 shadow" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_hepb">Administer Hep B</button> 
         </div>
         <div class="col-md-10 card mt-2">
             <div class="card-body">
@@ -68,6 +68,6 @@
             </div>
         </div> 
     </div> 
-    <?php include('modal/immunization/add-hepb.php'); ?>
-    <?php include('modal/immunization/edit-hepb.php'); ?>
 </div>
+<?php include('modal/immunization/add-hepb.php'); ?>
+<?php include('modal/immunization/edit-hepb.php'); ?>

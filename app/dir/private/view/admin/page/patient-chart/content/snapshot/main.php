@@ -1,5 +1,4 @@
 <?php
-include('process/display-src.php');
 $date = date('Y') . '-' . date('m') . '-' . date('d');
 $decrypted_dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
 $year = (date('Y') - date('Y', strtotime($decrypted_dob)));
