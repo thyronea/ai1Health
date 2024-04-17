@@ -4,12 +4,12 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="edit_administered_hepbLabel">Edit Administered Hep B</h1>
+        <h1 class="modal-title w-100 fs-5" id="edit_administered_hepbLabel">Hepatitis B</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <form class="" action="process/administer-vax.php" method="post">
+          <form class="" action="process/immunization/update-iz.php" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
@@ -165,7 +165,8 @@
                 </div>
               </div>
 
-            <button type="submit" name="administer_hepB" class="focus-ring btn btn-sm border mt-3">Update</button>
+            <a type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#delete_hepb">Delete</a>  
+            <button type="submit" name="update_hepB" class="focus-ring btn btn-sm border mt-3" id="submit_btn" >Update</button>
           </form>
         </div>
       </div>
