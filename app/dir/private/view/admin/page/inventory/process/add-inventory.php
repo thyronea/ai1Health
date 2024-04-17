@@ -11,7 +11,6 @@ if(isset($_POST['add_inventory']))
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-  $type = htmlspecialchars("Stored");
   $engineID = $_POST['engineID'];
   $name = $_POST['name'];
   $doses = $_POST['doses'];
@@ -35,6 +34,28 @@ if(isset($_POST['add_inventory']))
       $s_ndc = $ndc[$index];
       $s_funding = $funding[$index];
 
+      // Encrypt Activity Data
+      $fullname = "$fname $lname";
+      $type = htmlspecialchars("Stored");
+      $org_message = "$type $s_name - $s_lot";
+      $encrypt_fullname = encryptthis($fullname, $key);
+      $encrypt_org_message = encryptthis($org_message, $key);
+
+      // stores data in activity table
+      $fullname = "$fname $lname";
+      $activity = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
+      $stmt = $con->prepare($activity);
+      $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $type, $encrypt_org_message);
+      $stmt->execute();
+
+      // stores data in engine table
+      $link = htmlspecialchars("pages/immunization/index.php?inventory=$s_lot");
+      $vaccine_engine = "Lot: $s_lot / Exp: $s_exp";
+      $engine = "INSERT INTO engine (engineID, groupID, keyword1, keyword2, keyword3, link) VALUES (?, ?, ?, ?, ?, ?)";
+      $stmt = $con->prepare($engine);
+      $stmt->bind_param("ssssss", $s_engineID, $groupID, $s_name, $s_manufacturer, $vaccine_engine, $link);
+      $stmt->execute();
+
       // Encrypt Vaccine Data
       $encrypt_storage = encryptthis($s_storage, $key);
       $encrypt_lot = encryptthis($s_lot, $key);
@@ -46,31 +67,9 @@ if(isset($_POST['add_inventory']))
       $stmt = $con->prepare($inventory);
       $stmt->bind_param("ssssssssss", $s_engineID, $groupID, $encrypt_storage, $s_name, $s_doses, $encrypt_lot, $s_exp, $encrypt_manufacturer, $encrypt_ndc, $s_funding);
       $stmt->execute();
-
-      // stores data in engine table
-      $link = htmlspecialchars("pages/immunization/index.php?inventory=$s_lot");
-      $vaccine_engine = "Lot: $s_lot / Exp: $s_exp";
-      $engine = "INSERT INTO engine (engineID, groupID, keyword1, keyword2, keyword3, link) VALUES (?, ?, ?, ?, ?, ?)";
-      $stmt = $con->prepare($engine);
-      $stmt->bind_param("ssssss", $s_engineID, $groupID, $s_name, $s_manufacturer, $vaccine_engine, $link);
-      $stmt->execute();
-
-      // Encrypt Activity Data
-      $fullname = "$fname $lname";
-      $org_message = "$type $s_name";
-      $encrypt_fullname = encryptthis($fullname, $key);
-      $encrypt_org_message = encryptthis($org_message, $key);
-
-      // stores data in activity table
-      $fullname = "$fname $lname";
-      $activity = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
-      $stmt = $con->prepare($activity);
-      $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $type, $encrypt_org_message);
-      $stmt->execute();
-
   }
 
-  if($stmt->execute())
+  if($stmt = $con->prepare($inventory))
   {
       $_SESSION['success'] = "Inventory Added Successfully";
       header("Location: ../../inventory/index.php");

@@ -32,6 +32,9 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
                 <div class="form-group">
                     <input type="hidden" name="engineID" id="engineID" class="form-control" >
                 </div>
+                <div class="form-group">
+                    <input type="hidden" name="uniqueID" id="uniqueID" class="form-control" >
+                </div>
                 </div>
               </div>
                 <div class="col-md-10" style="text-align: left">
@@ -147,7 +150,7 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
 
 
 <script>
-// Generate randome patientID
+// Generate random patientID
  function randomNumber(len) {
   var randomNumber;
   var n = '';
@@ -160,7 +163,7 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
   }
   document.getElementById("patientID").value = randomNumber(7);
 
-  // Generate randome engineID
+// Generate random engineID
  function randomNumber(len) {
   var randomNumber;
   var n = '';
@@ -172,6 +175,19 @@ $today = date('Y') . '-' . date('m') . '-' . date('d');
   return n;
   }
   document.getElementById("engineID").value = randomNumber(7);
+
+  // Generate random uniqueID
+ function randomNumber(len) {
+  var randomNumber;
+  var n = '';
+
+  for (var count = 0; count < len; count++) {
+    randomNumber = Math.floor((Math.random() * 5) + 1);
+    n += randomNumber.toString();
+  }
+  return n;
+  }
+  document.getElementById("uniqueID").value = randomNumber(8);
 
 
 </script>

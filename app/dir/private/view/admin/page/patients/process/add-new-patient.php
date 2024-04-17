@@ -15,8 +15,10 @@ if(isset($_POST['add_patient']))
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
   $user_lname = mysqli_real_escape_string($con, $_SESSION['lname']);
   $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
+
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
+  $uniqueID = mysqli_real_escape_string($con, $_POST['uniqueID']);
   $date = mysqli_real_escape_string($con, $_POST['date']);
   $time = mysqli_real_escape_string($con, $_POST['time']);
   $fname = mysqli_real_escape_string($con, $_POST['fname']);
@@ -212,9 +214,9 @@ if(isset($_POST['add_patient']))
       $encrypt_status = encryptthis($status, $key);
 
       // insert to patient log
-      $patientlog = "INSERT INTO patientlog (patientID, engineID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)";
+      $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($patientlog);
-      $stmt->bind_param("ssssss", $patientID, $engineID, $groupID, $date, $time, $encrypt_status);
+      $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypt_status);
       $stmt->execute();
 
       if($stmt = $con->prepare($patient))

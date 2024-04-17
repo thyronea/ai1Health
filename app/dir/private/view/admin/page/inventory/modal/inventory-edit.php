@@ -213,6 +213,7 @@ Location: components/footer.php
       $('#inventory_manufacturer').val(data[5]);
       $('#ndc').val(data[6]);
       $('#lot').val(data[7]);
+      $('#lot_delete').val(data[7]);
       $('#exp').val(data[8]);
       $('#source').val(data[9]);
       $('#storage').val(data[10]);

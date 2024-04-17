@@ -25,7 +25,8 @@
               </div>
             </div>
             <select id="hepB_name" name="vaccine" class="form-select form-select-sm mb-2" required>
-              <option selected>Select from inventory</option>
+              <option value="<?=htmlspecialchars(decryptthis($vaccine['vaccine'], $key));?>" selected><?=htmlspecialchars(decryptthis($vaccine['vaccine'], $key));?></option>
+              <option disabled>Select from inventory</option>
                   <?php
                   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                   $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Vials' ";
@@ -186,19 +187,21 @@
 
       console.log(data);
       $('#hepB_ID').val(data[0]);
-      $('#patient_ID_').val(data[1]);
-      $('#group_ID').val(data[2]);
-      $('#hepB_name').val(data[3]);
-      $('#hepB_lot').val(data[4]);
-      $('#hepB_ndc').val(data[5]);
-      $('#hepB_exp').val(data[6]);
-      $('#hepB_site').val(data[7]);
-      $('#hepB_route').val(data[8]);
-      $('#hepB_vis_given').val(data[9]);
-      $('#hepB_vis').val(data[10]);
-      $('#hepB_funding_source').val(data[11]);
-      $('#hepB_administered_by').val(data[12]);
-      $('#hepB_comment').val(data[13]);
+      $('#hepB_uniqueID').val(data[1]);
+      $('#patient_ID').val(data[2]);
+      $('#group_ID').val(data[3]);
+      $('#hepB_name_').val(data[4]);
+      $('#delete_hepB_name').val(data[4]);
+      $('#hepB_lot').val(data[5]);
+      $('#hepB_ndc').val(data[6]);
+      $('#hepB_exp').val(data[7]);
+      $('#hepB_site').val(data[8]);
+      $('#hepB_route').val(data[9]);
+      $('#hepB_vis_given').val(data[10]);
+      $('#hepB_vis').val(data[11]);
+      $('#hepB_funding_source').val(data[12]);
+      $('#hepB_administered_by').val(data[13]);
+      $('#hepB_comment').val(data[14]);
     });
   });
 </script>

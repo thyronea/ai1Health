@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['administer_hepB']))
 {
@@ -25,6 +25,7 @@ if(isset($_POST['administer_hepB']))
   $patient_dob = mysqli_real_escape_string($con, $_POST['patient_dob']);
 
   // Vaccine's information
+  $uniqueID = mysqli_real_escape_string($con, $_POST['uniqueID']);
   $vaccine = mysqli_real_escape_string($con, $_POST['vaccine']);
   $lot = mysqli_real_escape_string($con, $_POST['lot']);
   $ndc = mysqli_real_escape_string($con, $_POST['ndc']);
@@ -67,15 +68,15 @@ if(isset($_POST['administer_hepB']))
 
     // Insert Patient Log Data
     $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
-    $patientlog = "INSERT INTO patientlog (patientID, engineID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
+    $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
     $stmt = $con->prepare($patientlog);
-    $stmt->bind_param("ssssss", $patientID, $engineID, $groupID, $date, $time, $encrypted_patient_log);
+    $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
     $stmt->execute();
 
     // insert to data_iz table (data visualization)
-    $data = "INSERT INTO data_iz (patientID, groupID, vaccine) VALUES (?, ?, ?)";
+    $data = "INSERT INTO data_iz (uniqueID, patientID, groupID, vaccine) VALUES (?, ?, ?, ?)";
     $stmt = $con->prepare($data);
-    $stmt->bind_param("sss", $patientID, $groupID, $vaccine);
+    $stmt->bind_param("ssss", $uniqueID, $patientID, $groupID, $vaccine);
     $stmt->execute();
 
     // encrypt data and insert to immunizaton table
@@ -95,29 +96,48 @@ if(isset($_POST['administer_hepB']))
     $encrypt_administered_by = encryptthis($administered_by, $key);
     $encrypt_comment = encryptthis($comment, $key);
 
-    $administer_iz = "INSERT INTO immunization (patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,date,time) 
-    VALUES (?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,date,time) 
+    VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($administer_iz);
-    $stmt->bind_param("ssssssssssssssssss", $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+    $stmt->bind_param("sssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
     $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_funding_source, $encrypt_administered_by, $encrypt_comment, $date, $time);
     $stmt->execute();
 
     // update inventory
     $deduct = "UPDATE inventory SET doses=doses-1 WHERE groupID='$groupID' AND name='$vaccine' "; // deduct 1 dose
     $deduct_run = mysqli_query($con, $deduct);
-    $delete = "DELETE FROM inventory WHERE groupID='$groupID' AND doses='0' "; // Delete entire row when 0
-    $delete_run = mysqli_query($con, $delete);
+
+    $verify_inventory = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='$vaccine' ";
+    $verify_run = mysqli_query($con, $verify_inventory);
+    $row = mysqli_fetch_array($verify_run);
+    $zero = $row['doses'];
+
+    if($zero == 0){
+      // delete inventory
+      $delete = "DELETE FROM inventory WHERE groupID='$groupID' AND doses='0' ";
+      $delete_run = mysqli_query($con, $delete);
+
+      // delete inventory from engine
+      $delete = "DELETE FROM engine WHERE engineID='$uniqueID' AND groupID='groupID' ";
+      $delete_run = mysqli_query($con, $delete);
+
+      $archive = "INSERT INTO archive (uniqueID,groupID,vaccine,lot,exp,manufacturer,ndc,funding_source) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      $stmt = $con->prepare($archive);
+      $stmt->bind_param("ssssssss", $uniqueID, $patientID, $groupID, $encrypt_vaccine, $encrypt_lot, $exp, $encrypt_ndc, $encrypt_funding_source);
+      $stmt->execute();
+    }
 
     if($stmt = $con->prepare($administer_iz))
     {
       $_SESSION['success'] = "$vaccine Was Successfully Administered!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
     else
     {
       $_SESSION['warning'] = "Unable to Administer $vaccine!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
   }

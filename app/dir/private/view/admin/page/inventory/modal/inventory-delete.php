@@ -13,6 +13,7 @@
             <!-- Hidden inputs to be insterted to activity table -->
             <input class="form-control mb-2" type="hidden" name="engineID" id="inventory_engineid">
             <input class="form-control mb-2" type="hidden" name="delete_vaccine_name" id="name_delete">
+            <input class="form-control mb-2" type="hidden" name="delete_vaccine_lot" id="lot_delete">
             <!----------------------------------------------------->
             <p align="center">Vaccine will be permanently removed from inventory.</p>
             <p>Do you still want to proceed?</p>

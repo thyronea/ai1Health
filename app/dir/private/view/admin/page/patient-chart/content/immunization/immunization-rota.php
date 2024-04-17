@@ -10,5 +10,5 @@
         </div>
     </div>
     <button type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_rota">Administer Rotavirus</button>  
-    <?php include('modal/immunization/add-rota.php'); ?>
 </div>
+<?php include('modal/immunization/rota/add-rota.php'); ?>

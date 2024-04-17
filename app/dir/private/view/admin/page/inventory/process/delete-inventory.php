@@ -13,11 +13,12 @@ if(isset($_POST['inventorydeletebtn']))
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
   $name = mysqli_real_escape_string($con, $_POST['delete_vaccine_name']);
-  $type = htmlspecialchars("Deleted");
+  $lot = mysqli_real_escape_string($con, $_POST['delete_vaccine_lot']);
 
   // Encrypt Activity Data
   $fullname = "$fname $lname";
-  $org_message = "$type $name";
+  $type = htmlspecialchars("Deleted");
+  $org_message = "$type $name - $lot";
   $encrypt_fullname = encryptthis($fullname, $key);
   $encrypt_org_message = encryptthis($org_message, $key);
 
