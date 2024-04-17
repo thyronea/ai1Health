@@ -2,6 +2,7 @@ All In 1 Health: A robust electronic health system
 
 To Do:
 - IZ: Decrypt lot numbers when adding in inventory
+- Patient chart: Immunization (Update and Delete Hep B)
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
 - Send email notification when adding, editing, and deleting (anything)
