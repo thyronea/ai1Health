@@ -14,9 +14,11 @@
           $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
           $query = "SELECT SUM(doses) FROM inventory WHERE groupID='$groupID' ";
           $query_run = mysqli_query($con, $query);
+          $row = mysqli_fetch_array($query_run);
 
-          while($row = mysqli_fetch_array($query_run))
-            echo htmlspecialchars($row['SUM(doses)']);
+          if(mysqli_num_rows($query_run) > 0){
+              $row['SUM(doses)'];
+          }
           ?>
         </b>
       </div>

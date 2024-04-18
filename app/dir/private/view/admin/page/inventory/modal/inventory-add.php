@@ -160,7 +160,7 @@
                 <!-- Doses -->
                 <div class="col">
                     <div class="form-group mb-1">
-                        <input type="text" name="doses[]" class="form-control form-control-sm" placeholder="Doses" required>
+                        <input type="number" name="doses[]" class="form-control form-control-sm" placeholder="Doses" required>
                     </div>
                 </div>
                 <!-- Funding Source -->
