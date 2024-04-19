@@ -57,6 +57,7 @@ if(isset($_POST['add_inventory']))
       $stmt->execute();
 
       // Encrypt Vaccine Data
+      $encrypt_name = encryptthis($s_name, $key);
       $encrypt_storage = encryptthis($s_storage, $key);
       $encrypt_lot = encryptthis($s_lot, $key);
       $encrypt_manufacturer = encryptthis($s_manufacturer, $key);

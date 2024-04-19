@@ -25,6 +25,7 @@ if(isset($_POST['administer_hepB']))
   $patient_dob = mysqli_real_escape_string($con, $_POST['patient_dob']);
 
   // Vaccine's information
+  $vaccineID = mysqli_real_escape_string($con, $_POST['id']);
   $uniqueID = mysqli_real_escape_string($con, $_POST['uniqueID']);
   $vaccine = mysqli_real_escape_string($con, $_POST['vaccine']);
   $lot = mysqli_real_escape_string($con, $_POST['lot']);
@@ -49,14 +50,14 @@ if(isset($_POST['administer_hepB']))
   $sql_run =  mysqli_query($con, $verify_completion);
   if(mysqli_num_rows($sql_run)  >= 3){
     $_SESSION['warning'] = "3 Dose Series for $type is already complete!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
   }
   else{
     // store activity data in activity table
     $fullname = "$fname $lname";
     $action = htmlspecialchars("Administered");
-    $message = "$action $vaccine to $patient_fname $patient_lname";
+    $message = "$action $vaccine ($lot) to $patient_fname $patient_lname";
 
     // encrypt data and insert to admin_log table
     $encrypt_fullname = encryptthis($fullname, $key);
@@ -104,22 +105,31 @@ if(isset($_POST['administer_hepB']))
     $stmt->execute();
 
     // update inventory
-    $deduct = "UPDATE inventory SET doses=doses-1 WHERE groupID='$groupID' AND name='$vaccine' "; // deduct 1 dose
+    $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
     $deduct_run = mysqli_query($con, $deduct);
 
-    $verify_inventory = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='$vaccine' ";
+    $verify_inventory = "SELECT * FROM inventory WHERE id='$vaccineID' AND groupID='$groupID' ";
     $verify_run = mysqli_query($con, $verify_inventory);
     $row = mysqli_fetch_array($verify_run);
     $zero = $row['doses'];
 
     if($zero == 0){
       // delete inventory
-      $delete = "DELETE FROM inventory WHERE groupID='$groupID' AND doses='0' ";
+      $delete = "DELETE FROM inventory WHERE id='$vaccineID' AND groupID='$groupID' ";
       $delete_run = mysqli_query($con, $delete);
 
       // delete inventory from engine
-      $delete = "DELETE FROM engine WHERE engineID='$uniqueID' AND groupID='groupID' ";
+      $delete = "DELETE FROM engine WHERE engineID='$uniqueID' AND groupID='$groupID' ";
       $delete_run = mysqli_query($con, $delete);
+
+      // encrypt data and insert to admin_log table
+      $action_ = htmlspecialchars("Archived");
+      $message_ = "The last dose of $vaccine ($lot) was administered and archived";
+      $encrypt_message_ = encryptthis($message_, $key);
+      $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
+      $stmt = $con->prepare($activities);
+      $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action_, $encrypt_message_);
+      $stmt->execute();
 
       $archive = "INSERT INTO archive (uniqueID,groupID,vaccine,lot,exp,manufacturer,ndc,funding_source) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

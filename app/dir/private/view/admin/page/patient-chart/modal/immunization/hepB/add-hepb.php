@@ -1,4 +1,6 @@
-<?php $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12'); ?>
+<?php 
+$hepB_vis = date('2023') . '-' . date('05') . '-' . date('12'); 
+?>
 
 <div class="modal fade" id="administer_hepb" tabindex="-1" aria-labelledby="administer_hepbLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -25,8 +27,10 @@
                 <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
-            <select id="vaccines" name="vaccine" class="form-select form-select-sm mb-2" required>
-              <option selected>Select from inventory</option>
+            <label><small>Vaccine</small></label>
+            <select id="id" name="id" class="form-select form-select-sm mb-2" onchange="vaccine_info()" required>
+              <option></option>
+              <option disabled>Select from inventory</option>
                   <?php
                   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                   $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Vials' ";
@@ -34,7 +38,7 @@
                   $hepB_SDV = mysqli_num_rows($sql_run);
                   while ($hepB_SDV = mysqli_fetch_array($sql_run))
                   {
-                    echo "<option value='". htmlspecialchars($hepB_SDV['name']) ."'>" .htmlspecialchars($hepB_SDV['name']) ."</option>" ;
+                    echo "<option value='". htmlspecialchars($hepB_SDV['id']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
                   }
                   if(htmlspecialchars($hepB_SDV['name'])){
                     $hepB_SDV_lot = htmlspecialchars(decryptthis($hepB_SDV['lot'], $key));
@@ -63,6 +67,11 @@
                   }
                   ?>
              </select>
+             <div class="row mb-2">
+                <div class="col">
+                  <input type="hidden" id="vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
+                </div>
+             </div>
              <div class="row mb-2">
                 <div class="col">
                   <input type="text" id="lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
@@ -138,8 +147,9 @@
                   <label><small>Funding Source:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" name="funding_source">
-                    <option disabled selected>Select one</option>
+                  <select class="form-select form-select-sm" name="funding_source" required>
+                    <option></option>
+                    <option disabled>Select one</option>
                     <option value="Private">Private</option>
                     <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
                     <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
@@ -173,7 +183,7 @@
   </div>
 </div>
 
-<!-- Script for generating random shot ID -->
+<!-- Script for generating random uniqueID -->
 <script>
  function randomNumber(len) {
   var randomNumber;

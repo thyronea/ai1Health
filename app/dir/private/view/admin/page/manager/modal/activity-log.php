@@ -5,7 +5,7 @@ include('../../components/print.php');
 
 <!-- Modal -->
 <div class="modal fade" id="activity-log-Modal" tabindex="-1" aria-labelledby="user-log-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h1 class="modal-title w-100 fs-5" id="activity-log-ModalLabel">Activity Log</h1>
