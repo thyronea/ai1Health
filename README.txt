@@ -2,7 +2,6 @@ All In 1 Health: A robust electronic health system
 
 To Do:
 - Emergency Contact - Fix email modal
-- Add RSV vaccines
 - Create Modal for Inventory Archive
 - Design temperature chart
 - Add temperature exposore in inventory edit modal
