@@ -18,6 +18,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Hepatitis B" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">

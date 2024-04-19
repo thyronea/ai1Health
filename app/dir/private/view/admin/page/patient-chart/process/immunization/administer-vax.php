@@ -6,46 +6,45 @@ require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php';
 require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
 require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
+// Shot giver's information
+$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+$groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+$userID = mysqli_real_escape_string($con, $_SESSION['userID']);
+$email = mysqli_real_escape_string($con, $_SESSION['email']);
+$fname = mysqli_real_escape_string($con, $_SESSION['fname']);
+$lname = mysqli_real_escape_string($con, $_SESSION['lname']);
+
+// Patient's information
+$patientID = mysqli_real_escape_string($con, $_POST['patientID']);
+$engineID = mysqli_real_escape_string($con, $_POST['engineID']);
+$patient_fname = mysqli_real_escape_string($con, $_POST['patient_fname']);
+$patient_lname = mysqli_real_escape_string($con, $_POST['patient_lname']);
+$patient_dob = mysqli_real_escape_string($con, $_POST['patient_dob']);
+
+// Vaccine's information
+$vaccineID = mysqli_real_escape_string($con, $_POST['id']);
+$uniqueID = mysqli_real_escape_string($con, $_POST['uniqueID']);
+$type = mysqli_real_escape_string($con, $_POST['type']);
+$vaccine = mysqli_real_escape_string($con, $_POST['vaccine']);
+$lot = mysqli_real_escape_string($con, $_POST['lot']);
+$ndc = mysqli_real_escape_string($con, $_POST['ndc']);
+$exp = mysqli_real_escape_string($con, $_POST['exp']);
+$site = mysqli_real_escape_string($con, $_POST['site']);
+$route = mysqli_real_escape_string($con, $_POST['route']);
+$vis_given = mysqli_real_escape_string($con, $_POST['vis_given']);
+$vis = mysqli_real_escape_string($con, $_POST['vis']);
+$funding_source = mysqli_real_escape_string($con, $_POST['funding_source']);
+$administered_by = mysqli_real_escape_string($con, $_POST['administered_by']);
+$comment = mysqli_real_escape_string($con, $_POST['comment']);
+$date = mysqli_real_escape_string($con, $_POST['date']);
+$time = mysqli_real_escape_string($con, $_POST['time']);
+
+// Patient Log
+$received = htmlspecialchars("Received");
+$patient_log = mysqli_real_escape_string($con, "$received $type");
+
 if(isset($_POST['administer_hepB']))
 {
- 
-  // Shot giver's information
-  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
-  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-  $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-  $email = mysqli_real_escape_string($con, $_SESSION['email']);
-  $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
-  $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
-
-  // Patient's information
-  $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
-  $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
-  $patient_fname = mysqli_real_escape_string($con, $_POST['patient_fname']);
-  $patient_lname = mysqli_real_escape_string($con, $_POST['patient_lname']);
-  $patient_dob = mysqli_real_escape_string($con, $_POST['patient_dob']);
-
-  // Vaccine's information
-  $vaccineID = mysqli_real_escape_string($con, $_POST['id']);
-  $uniqueID = mysqli_real_escape_string($con, $_POST['uniqueID']);
-  $vaccine = mysqli_real_escape_string($con, $_POST['vaccine']);
-  $lot = mysqli_real_escape_string($con, $_POST['lot']);
-  $ndc = mysqli_real_escape_string($con, $_POST['ndc']);
-  $exp = mysqli_real_escape_string($con, $_POST['exp']);
-  $site = mysqli_real_escape_string($con, $_POST['site']);
-  $route = mysqli_real_escape_string($con, $_POST['route']);
-  $vis_given = mysqli_real_escape_string($con, $_POST['vis_given']);
-  $vis = mysqli_real_escape_string($con, $_POST['vis']);
-  $funding_source = mysqli_real_escape_string($con, $_POST['funding_source']);
-  $administered_by = mysqli_real_escape_string($con, $_POST['administered_by']);
-  $comment = mysqli_real_escape_string($con, $_POST['comment']);
-  $date = mysqli_real_escape_string($con, $_POST['date']);
-  $time = mysqli_real_escape_string($con, $_POST['time']);
-  
-  // Patient Log
-  $received = htmlspecialchars("Received");
-  $type = htmlspecialchars("Hepatitis B");
-  $patient_log = mysqli_real_escape_string($con, "$received $type");
-
   $verify_completion = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
   $sql_run =  mysqli_query($con, $verify_completion);
   if(mysqli_num_rows($sql_run)  >= 3){
