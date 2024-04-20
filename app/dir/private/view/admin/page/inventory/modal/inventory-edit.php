@@ -115,6 +115,9 @@
                     <option value="RV - RotaTeq Single Dose Tubes">RotaTeq (Single Dose Tubes)</option>
                     <option value="RV - Rotarix Single Dose Vials">Rotarix (Single Dose Vials)</option>
                     <option value="RV - Rotarix Single Oral Doses">Rotarix (Single Oral Doses)</option>
+                    <option disabled>RSV</option>
+                    <option value="RSV -Beyfortus 0.5 mL Single Dose Syringes">Beyfortus 0.5mL Single Dose Syringes</option>
+                    <option value="RSV -Beyfortus 1.0 mL Single Dose Syringes">Beyfortus 1.0mL Single Dose Syringes</option>
                     <option disabled>Tdap</option>
                     <option value="Tdap - Boostrix Single Dose Vials">Boostrix (Single Dose Vials)</option>
                     <option value="Tdap - Boostrix Single Dose Syringes">Boostrix (Single Dose Syringes)</option>

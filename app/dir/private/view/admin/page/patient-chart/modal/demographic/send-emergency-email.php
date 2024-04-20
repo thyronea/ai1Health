@@ -13,7 +13,7 @@
           <div class="" align="left">
             <input class="form-control form-control-sm mb-2" type="" name="engineID" value="<?=htmlspecialchars($emergency_contact['engineID']);?>" hidden required>
             <input class="form-control form-control-sm mb-2" type="text" name="email" id="emergency_Email" placeholder="Email" required>
-            <input class="form-control form-control-sm mb-2" type="text" name="subject" id="subject" value="<?=htmlspecialchars(decryptthis($organization['name'], $key));?>: Important Message from <?=htmlspecialchars($_SESSION['office']);?>" placeholder="Subject" required>
+            <input class="form-control form-control-sm mb-2" type="text" name="subject" id="subject" value="" placeholder="Subject" required>
             <textarea class="form-control form-control-sm mb-4" name="message" id="message" style="height: 15rem" required></textarea>
           </div>
 
@@ -48,7 +48,7 @@ Location: components/footer.php
       }).get();
 
       console.log(data);
-      $('#emergency_Email').val(data[8]);
+      $('#emergency_Email').val(data[9]);
     });
   });
 </script>
