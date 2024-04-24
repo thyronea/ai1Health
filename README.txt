@@ -3,11 +3,11 @@ All In 1 Health: A robust electronic health system
 To Do:
 - Move "remove patient" button inside patient-chart
 - Create Modal for Inventory Archive
-- Design temperature chart
 - Add temperature exposore in inventory edit modal
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
 - Send email notification when adding, editing, and deleting (anything)
+- Design temperature chart
 - Document: Create "My Files" and separate from "Shared Files"
 - Save reports in PDF
 - Send email confirmation when admin account is deleted

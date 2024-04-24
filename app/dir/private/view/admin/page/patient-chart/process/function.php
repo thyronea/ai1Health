@@ -18,18 +18,3 @@ function vaccine_info(){
     })
 }
 </script>
-
-<!-- Script for generating random uniqueID -->
-<script>
- function randomNumber(len) {
-  var randomNumber;
-  var n = '';
-
-  for (var count = 0; count < len; count++) {
-    randomNumber = Math.floor((Math.random() * 9) + 1);
-    n += randomNumber.toString();
-  }
-  return n;
-  }
-  document.getElementById("uniqueID_").value = randomNumber(8);
-</script>

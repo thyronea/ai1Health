@@ -5,7 +5,7 @@
       <!-- Sidebar Menu Button -->
       <?php include('components/patients-sidebar.php'); ?>
       <!-- Main -->
-      <?php include('content/patients.php'); ?>
+      <?php include('content/main.php'); ?>
       <!-- Modals -->
       <?php include('modal/add-patient.php'); ?>
       <?php include('modal/remove-patient.php'); ?>
