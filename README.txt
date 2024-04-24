@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Emergency Contact - Fix email modal
+- Move "remove patient" button inside patient-chart
 - Create Modal for Inventory Archive
 - Design temperature chart
 - Add temperature exposore in inventory edit modal
@@ -46,4 +46,4 @@ Currently Logging:
 - Email
 - File
 
-5/16/2024
+5/23/2024
