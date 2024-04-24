@@ -23,6 +23,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
     include('modal/demographic/patient-delete-emergency.php'); 
     include('modal/demographic/patient-add-plan.php'); 
     include('modal/demographic/patient-edit-plan.php');
+    include('modal/demographic/patient-remove.php');
     include('modal/demographic/send-emergency-email.php'); 
   ?>
 
@@ -89,6 +90,9 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                         </button>
                         <button type="button" class="focus-ring btn btn-sm border-0" data-bs-toggle="modal" data-bs-target="#patient-edit-name-Modal">
                           <i class="bi bi-gear"></i>
+                        </button>
+                        <button type="button" class="focus-ring btn btn-sm border-0 patientdeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#patientdeletemodal">
+                          <i class="bi bi-trash"></i>
                         </button>
                       </div>
                     </div>

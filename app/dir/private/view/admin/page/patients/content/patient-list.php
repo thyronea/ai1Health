@@ -7,7 +7,7 @@
                 <a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black">
                     <small>
                         <div class="row" style="padding-left:20px;">
-                            <div class="col border" style="width:55px;height:50px;border-radius:50%;overflow:hidden">
+                            <div class="col border" style="width:50px;height:50px;border-radius:50%;overflow:hidden">
                                 <?php
                                     $date = date('Y') . '-' . date('m') . '-' . date('d');
                                     $year = (date('Y') - date('Y', strtotime($patient_dob)));
@@ -29,7 +29,7 @@
                                 <?=htmlspecialchars(decryptthis($patient['fname'], $key));?> <?=htmlspecialchars(decryptthis($patient['lname'], $key));?><br>
                                 <small><?=htmlspecialchars($dob);?> (<?=htmlspecialchars($year);?> years old)</small>
                             </div>
-                            <div class="col mt-2" style="left:450px; position:absolute">
+                            <div class="col mt-2" style="left:450px;top:22px;position:absolute">
                                 <?php
                                     $status = "Not Verified";
                                     if($patient['account_status'] == $status){
