@@ -171,7 +171,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                 <tbody align="center" style="text-align: left">
                   <?php
                   $patientID =  htmlspecialchars($patient['patientID']);
-                  $query = "SELECT * FROM patientlog WHERE patientID='$patientID' AND groupID='$groupID' ORDER BY timestamp DESC ";
+                  $query = "SELECT * FROM patientlog WHERE patientID='$patientID' AND groupID='$groupID' ORDER BY id DESC ";
                   $query_run = mysqli_query($con, $query);
 
                   if(mysqli_num_rows($query_run) > 0)

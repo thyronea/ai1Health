@@ -66,6 +66,23 @@ if(isset($_POST['assign_patient']))
   $hp_policy_number = htmlspecialchars(decryptthis($hp["policy_number"], $oldKey));
   $hp_status = htmlspecialchars(decryptthis($hp["status"], $oldKey));
 
+  $iz_query = "SELECT * FROM immunization WHERE patientID='$patientID'";
+  $iz_query_run = mysqli_query($con, $iz_query);
+  $iz = mysqli_fetch_assoc($iz_query_run);
+  $iz_uniqueID = htmlspecialchars($iz["uniqueID"]);
+  $iz_name = htmlspecialchars(decryptthis($iz["name"], $oldKey));
+  $iz_dob = htmlspecialchars(decryptthis($iz["dob"], $oldKey));
+  $iz_vaccine = htmlspecialchars(decryptthis($iz["vaccine"], $oldKey));
+  $iz_lot = htmlspecialchars(decryptthis($iz["lot"], $oldKey));
+  $iz_ndc = htmlspecialchars(decryptthis($iz["ndc"], $oldKey));
+  $iz_site = htmlspecialchars(decryptthis($iz["site"], $oldKey));
+  $iz_route = htmlspecialchars(decryptthis($iz["route"], $oldKey));
+  $iz_vis_given = htmlspecialchars(decryptthis($iz["vis_given"], $oldKey));
+  $iz_vis = htmlspecialchars(decryptthis($iz["vis"], $oldKey));
+  $iz_funding_source = htmlspecialchars(decryptthis($iz["funding_source"], $oldKey));
+  $iz_administered_by = htmlspecialchars(decryptthis($iz["administered_by"], $oldKey));
+  $iz_comment = htmlspecialchars(decryptthis($iz["comment"], $oldKey));
+
   $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
   $patientlog_query_run = mysqli_query($con, $patientlog_query);
   $patientlog = mysqli_fetch_assoc($patientlog_query_run);
@@ -205,10 +222,15 @@ if(isset($_POST['assign_patient']))
   $stmt->bind_param("ssss", $groupID, $encrypt_health_plan, $encrypt_policy_number, $encrypt_status);
   $stmt->execute();
 
+  $update_iz  = "UPDATE immunization SET groupID=?";
+  $stmt = $con->prepare($update_iz);
+  $stmt->bind_param("s", $groupID);
+  $stmt->execute();
+
   $encrypt_patientlog_activity = encryptthis($patientlog_activity, $key);
-  $update_patientlog  = "UPDATE patientlog SET groupID=?, activity=? WHERE patientID='$patientID' ";
+  $update_patientlog  = "UPDATE patientlog SET groupID=? WHERE patientID='$patientID' ";
   $stmt = $con->prepare($update_patientlog);
-  $stmt->bind_param("ss", $groupID, $encrypt_patientlog_activity);
+  $stmt->bind_param("s", $groupID);
   $stmt->execute();
 
   // Update Patient's dk_token

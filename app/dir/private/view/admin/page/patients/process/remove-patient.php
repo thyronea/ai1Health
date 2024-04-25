@@ -25,7 +25,9 @@ if(isset($_POST['remove_patient']))
     $admin = mysqli_real_escape_string($con, "Admin");
     $type = mysqli_real_escape_string($con, "Removed Patient: ");
   
-    // 1. Retrieve patient's data for decryption
+    // 1. Retrieve patient's demographic for decryption
+
+    // Patient's Information
     $patient_query = "SELECT * FROM patients WHERE patientID='$patientID'";
     $patient_query_run = mysqli_query($con, $patient_query);
     $patient = mysqli_fetch_assoc($patient_query_run);
@@ -34,7 +36,8 @@ if(isset($_POST['remove_patient']))
     $patients_suffix = htmlspecialchars(decryptthis($patient["suffix"], $key));
     $patients_email = htmlspecialchars(decryptthis($patient["email"], $key));
     $patients_role = htmlspecialchars(decryptthis($patient["role"], $key));
-  
+
+    // Patient's Diversity
     $diversity_query = "SELECT * FROM diversity WHERE userID='$patientID'";
     $diversity_query_run = mysqli_query($con, $diversity_query);
     $diversity = mysqli_fetch_assoc($diversity_query_run);
@@ -43,6 +46,7 @@ if(isset($_POST['remove_patient']))
     $patients_race = htmlspecialchars(decryptthis($diversity["race"], $key));
     $patients_ethnicity = htmlspecialchars(decryptthis($diversity["ethnicity"], $key));
   
+    // Patient's Address
     $address_query = "SELECT * FROM address WHERE userID='$patientID'";
     $address_query_run = mysqli_query($con, $address_query);
     $address = mysqli_fetch_assoc($address_query_run);
@@ -51,7 +55,8 @@ if(isset($_POST['remove_patient']))
     $patients_city = htmlspecialchars(decryptthis($address["city"], $key));
     $patients_state = htmlspecialchars(decryptthis($address["state"], $key));
     $patients_zip = htmlspecialchars(decryptthis($address["zip"], $key));
-  
+
+    // Patient's Contact Information
     $contact_query = "SELECT * FROM contact WHERE userID='$patientID'";
     $contact_query_run = mysqli_query($con, $contact_query);
     $contact = mysqli_fetch_assoc($contact_query_run);
@@ -59,13 +64,33 @@ if(isset($_POST['remove_patient']))
     $patients_mobile = htmlspecialchars(decryptthis($contact["mobile"], $key));
     $patients_email = htmlspecialchars(decryptthis($contact["email"], $key));
 
+    // Patient's Health Plan
     $hp_query = "SELECT * FROM healthplan WHERE patientID='$patientID'";
     $hp_query_run = mysqli_query($con, $hp_query);
     $hp = mysqli_fetch_assoc($hp_query_run);
     $hp_health_plan = htmlspecialchars(decryptthis($hp["health_plan"], $key));
     $hp_policy_number = htmlspecialchars(decryptthis($hp["policy_number"], $key));
     $hp_status = htmlspecialchars(decryptthis($hp["status"], $key));
-  
+
+    // Patient's Immunization
+    $iz_query = "SELECT * FROM immunization WHERE patientID='$patientID'";
+    $iz_query_run = mysqli_query($con, $iz_query);
+    $iz = mysqli_fetch_assoc($iz_query_run);
+    $iz_uniqueID = htmlspecialchars($iz["uniqueID"]);
+    $iz_name = htmlspecialchars(decryptthis($iz["name"], $key));
+    $iz_dob = htmlspecialchars(decryptthis($iz["dob"], $key));
+    $iz_vaccine = htmlspecialchars(decryptthis($iz["vaccine"], $key));
+    $iz_lot = htmlspecialchars(decryptthis($iz["lot"], $key));
+    $iz_ndc = htmlspecialchars(decryptthis($iz["ndc"], $key));
+    $iz_site = htmlspecialchars(decryptthis($iz["site"], $key));
+    $iz_route = htmlspecialchars(decryptthis($iz["route"], $key));
+    $iz_vis_given = htmlspecialchars(decryptthis($iz["vis_given"], $key));
+    $iz_vis = htmlspecialchars(decryptthis($iz["vis"], $key));
+    $iz_funding_source = htmlspecialchars(decryptthis($iz["funding_source"], $key));
+    $iz_administered_by = htmlspecialchars(decryptthis($iz["administered_by"], $key));
+    $iz_comment = htmlspecialchars(decryptthis($iz["comment"], $key));
+    
+    // Patient's Log
     $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
     $patientlog_query_run = mysqli_query($con, $patientlog_query);
     $patientlog = mysqli_fetch_assoc($patientlog_query_run);
@@ -196,11 +221,16 @@ if(isset($_POST['remove_patient']))
     $stmt = $con->prepare($update_healthplan);
     $stmt->bind_param("ssss", $newGroupID, $encrypt_health_plan, $encrypt_policy_number, $encrypt_status);
     $stmt->execute();
-  
+
+    $update_iz  = "UPDATE immunization SET groupID=? WHERE patientID='$patientID' ";
+    $stmt = $con->prepare($update_iz);
+    $stmt->bind_param("s", $newGroupID);
+    $stmt->execute();
+
     $encrypt_patientlog_activity = encryptthis($patientlog_activity, $newKey);
-    $update_patientlog = "UPDATE patientlog SET groupID=?, activity=? WHERE patientID='$patientID' ";
+    $update_patientlog = "UPDATE patientlog SET groupID=? WHERE patientID='$patientID' ";
     $stmt = $con->prepare($update_patientlog);
-    $stmt->bind_param("ss", $newGroupID, $encrypt_patientlog_activity);
+    $stmt->bind_param("s", $newGroupID);
     $stmt->execute();
   
     // Update Patient's dk_token

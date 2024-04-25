@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Send email when removing patient from group
 - Create Modal for Inventory Archive
 - Add temperature exposore in inventory edit modal
 - Patient chart: Immunization (Work on IZ schedule visibility)
