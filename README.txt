@@ -2,6 +2,7 @@ All In 1 Health: A robust electronic health system
 
 To Do:
 - Create Modal for Inventory Archive
+- Redesign inventory list - card design
 - Add temperature exposore in inventory edit modal
 - Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
