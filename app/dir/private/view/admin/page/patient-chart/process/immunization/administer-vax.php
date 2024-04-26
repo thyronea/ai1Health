@@ -38,6 +38,7 @@ $administered_by = mysqli_real_escape_string($con, $_POST['administered_by']);
 $comment = mysqli_real_escape_string($con, $_POST['comment']);
 $date = mysqli_real_escape_string($con, $_POST['date']);
 $time = mysqli_real_escape_string($con, $_POST['time']);
+$value = mysqli_real_escape_string($con, "1");
 
 // Patient Log
 $received = htmlspecialchars("Received");
@@ -96,11 +97,11 @@ if(isset($_POST['administer_hepB']))
     $encrypt_administered_by = encryptthis($administered_by, $key);
     $encrypt_comment = encryptthis($comment, $key);
 
-    $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,date,time) 
-    VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+    VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($administer_iz);
-    $stmt->bind_param("sssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-    $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_funding_source, $encrypt_administered_by, $encrypt_comment, $date, $time);
+    $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+    $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_funding_source, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
     $stmt->execute();
 
     // update inventory

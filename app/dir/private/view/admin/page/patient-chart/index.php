@@ -5,6 +5,8 @@ include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
 include('process/display-src.php');
 include('process/function.php');
+include('process/math.php');
+include('process/scripts.php');
 ?>
 
 <!-- Login session -->

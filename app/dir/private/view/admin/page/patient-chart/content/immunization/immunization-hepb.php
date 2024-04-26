@@ -7,7 +7,7 @@
                         $patientID = htmlspecialchars($patient['patientID']);
                         $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                         $vaccine = htmlspecialchars("Hepatitis B");
-                        $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$vaccine' ";
+                        $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$vaccine' ORDER BY id DESC";
                         $query_run = mysqli_query($con, $query);
                         $searchnum = mysqli_num_rows($query_run);
 
@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-10 card mt-2">
             <div class="card-body">
-                Hepatitis B (chart goes here)
+                <?=$hepB_count;?>% Complete
             </div>
         </div> 
     </div> 

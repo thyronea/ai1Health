@@ -13,7 +13,7 @@
           <div class="" align="left">
             <input class="form-control form-control-sm mb-2" type="" name="engineID" value="<?=htmlspecialchars($emergency_contact['engineID']);?>" hidden required>
             <input class="form-control form-control-sm mb-2" type="text" name="email" id="emergency_Email" placeholder="Email" required>
-            <input class="form-control form-control-sm mb-2" type="text" name="subject" id="subject" value="" placeholder="Subject" required>
+            <input class="form-control form-control-sm mb-2" type="text" name="subject" value="Important Message from <?=htmlspecialchars($_SESSION['location']);?>" placeholder="Subject" required>
             <textarea class="form-control form-control-sm mb-4" name="message" id="message" style="height: 15rem" required></textarea>
           </div>
 
