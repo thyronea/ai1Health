@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <div class="col-md-8">
-          <form action="process/add-emergency-contact.php" method="post">
+          <form action="process/demographic/add-emergency-contact.php" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>"required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>"required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>

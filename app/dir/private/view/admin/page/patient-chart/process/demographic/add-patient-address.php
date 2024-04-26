@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['add_patient_addressbtn']))
 {
@@ -31,7 +31,7 @@ if(isset($_POST['add_patient_addressbtn']))
   if(mysqli_num_rows($checkaddress_run) > 0)
   {
     $_SESSION['warning'] = "Patient's Address Already Exist!";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
   else
@@ -61,13 +61,13 @@ if(isset($_POST['add_patient_addressbtn']))
     if($stmt = $con->prepare($address))
     {
       $_SESSION['success'] = "Patient's Address was Successfully Added!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
     else
     {
       $_SESSION['warning'] = "Unable to Add Patient's Address!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
   }

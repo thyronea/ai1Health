@@ -1,5 +1,6 @@
 <script>
-//  Fetch vaccine information based on option selected
+
+// Fetch vaccine information based on option selected
 function vaccine_info(){
     var id = document.getElementById("id").value;
     $.ajax({
@@ -17,4 +18,5 @@ function vaccine_info(){
         }
     })
 }
+
 </script>

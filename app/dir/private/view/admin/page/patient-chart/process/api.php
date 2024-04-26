@@ -2,9 +2,16 @@
 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
 
+// Update vcode - move this code inside "sql.php" and include the file directory on top.
+if(isset($_SESSION["userID"])){
+  $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
+  $new_vcode = rand(1000,9999); // Generates random verification token
+  $update_vcode = "UPDATE token SET v_code='$new_vcode' WHERE userID='$userID' ";
+  $update_vcode_run = mysqli_query($con, $update_vcode);
+}
+
 // Display patient name from database to snapshot
-if(isset($_GET['patientID']))
-{
+if(isset($_GET['patientID'])){
   $query = "SELECT * FROM patients WHERE patientID='$patientID' AND groupID='$groupID' ";
   $query_run = mysqli_query($con, $query);
 

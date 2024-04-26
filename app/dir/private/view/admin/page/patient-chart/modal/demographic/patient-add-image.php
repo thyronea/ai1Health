@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="col-md-8">
             
-          <form class="" action="process/add-patient-image.php" method="post" enctype="multipart/form-data">
+          <form class="" action="process/demographic/add-patient-image.php" method="post" enctype="multipart/form-data">
             <div class="col-auto">
               <input type="hidden" class="form-control form-control-sm" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
               <input type="file" name="patient_image" class="form-control form-control-sm mt-2" required>

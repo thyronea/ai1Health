@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['add_patient_diversity']))
 {  
@@ -30,7 +30,7 @@ if(isset($_POST['add_patient_diversity']))
   if(mysqli_num_rows($checkdiversity_run) > 0)
   {
     $_SESSION['warning'] = "Patient's Diversity Already Exist!";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
   else
@@ -90,13 +90,13 @@ if(isset($_POST['add_patient_diversity']))
     if($stmt = $con->prepare($update_dob))
     {
       $_SESSION['success'] = "Patient's Diversity was Successfully Added!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
     else
     {
       $_SESSION['warning'] = "Unable to Add Patient's Diversity!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
   }

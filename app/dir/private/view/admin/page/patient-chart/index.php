@@ -3,10 +3,9 @@ session_start();
 include('../../../../security/dbcon.php');
 include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
-include('process/display-src.php');
+include('process/api.php');
 include('process/function.php');
 include('process/math.php');
-include('process/scripts.php');
 ?>
 
 <!-- Login session -->
@@ -25,16 +24,6 @@ include('process/scripts.php');
   <?php include('content/vitals/main.php'); ?>
   <?php include('content/immunization/main.php'); ?>
 </div>
-
-<?php
-// Update vcode - move this code inside "sql.php" and include the file directory on top.
-if(isset($_SESSION["userID"])){
-    $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-    $new_vcode = rand(1000,9999); // Generates random verification token
-    $update_vcode = "UPDATE token SET v_code='$new_vcode' WHERE userID='$userID' ";
-    $update_vcode_run = mysqli_query($con, $update_vcode);
-  }
-?>
 
 <!-- auto logout/login session -->
 <?php else: ?>

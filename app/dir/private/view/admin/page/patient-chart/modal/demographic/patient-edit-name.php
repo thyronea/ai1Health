@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <div class="col-md-8">
-          <form class="" action="process/update-patient-info.php" method="post">
+          <form class="" action="process/demographic/update-patient-info.php" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="groupID" value="<?=htmlspecialchars($patient['groupID']);?>" required>

@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['patient_planbtn']))
 { 
@@ -31,7 +31,7 @@ if(isset($_POST['patient_planbtn']))
   if(mysqli_num_rows($checkhealthplan_run) == 0)
   {
     $_SESSION['warning'] = "Unable to update. Patient's healthplan doesn't exist!";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
   else
@@ -60,13 +60,13 @@ if(isset($_POST['patient_planbtn']))
     if($stmt = $con->prepare($healthplan))
     {
       $_SESSION['success'] = "Patient Successfully Updated!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
     else
     {
       $_SESSION['warning'] = "Unable to Update Patient Information";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
   }

@@ -8,7 +8,7 @@
       </div>
 
       <div class="modal-body">
-        <form class="" action="process/delete-patient-emergency.php" method="POST">
+        <form class="" action="process/demographic/delete-patient-emergency.php" method="POST">
           <div class="form-group mt-3 mb-5">
             <!-- Hidden inputs to be insterted to activity table -->
             <input class="form-control form-control-sm mb-2" type="hidden" name="patientID" id="emergency_patientID_">
