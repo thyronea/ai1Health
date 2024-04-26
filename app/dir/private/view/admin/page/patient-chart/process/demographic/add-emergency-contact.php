@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['add_patient_emergencybtn']))
 {
@@ -29,7 +29,7 @@ if(isset($_POST['add_patient_emergencybtn']))
   if(mysqli_num_rows($checkcontact_run) > 0)
   {
     $_SESSION['warning'] = "Emergency Contact Already Exist!";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
   else
@@ -57,13 +57,13 @@ if(isset($_POST['add_patient_emergencybtn']))
     if($stmt = $con->prepare($emergency))
     {
       $_SESSION['success'] = "Emergency Contact Was Successfully Added!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
     else
     {
       $_SESSION['warning'] = "Unable to Add Patient's Emergency Contact!";
-      header("Location: ../../patient-chart/index.php?patientID=$patientID");
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
       exit(0);
     }
   }

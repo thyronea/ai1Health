@@ -190,7 +190,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                         <a type="button" href="#" target="_blank" class="focus-ring btn btn-sm border-0">
                           <i class="bi bi-check2-square"></i>
                         </a>
-                        <button type="button" class="focus-ring btn btn-sm border-0" data-bs-toggle="modal" data-bs-target="#patient-add-plan-Modal">
+                        <button type="button" class="focus-ring btn btn-sm border-0" data-bs-toggle="modal" data-bs-target="#patient-add-plan-Modal" hidden>
                           <i class="bi bi-file-earmark-plus"></i>
                         </button>
                         <button type="button" class="focus-ring btn btn-sm border-0" data-bs-toggle="modal" data-bs-target="#patient-edit-plan-Modal">

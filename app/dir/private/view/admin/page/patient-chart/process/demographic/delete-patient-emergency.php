@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['emergencydeletebtn']))
 {   
@@ -46,13 +46,13 @@ if(isset($_POST['emergencydeletebtn']))
   if($stmt = $con->prepare($delete))
   {
     $_SESSION['success'] = "Successfully Deleted Emergency Contact!";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
   else
   {
     $_SESSION['warning'] = "Unable to Delete Patient's Emergency Contact";
-    header("Location: ../../patient-chart/index.php?patientID=$patientID");
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
     exit(0);
   }
 }
