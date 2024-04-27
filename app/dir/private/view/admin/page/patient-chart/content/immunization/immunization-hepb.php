@@ -63,14 +63,19 @@
             </table>
             <button type="button" class="focus-ring btn btn-sm border mt-3 mb-3 shadow" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_hepb">Administer Hep B</button> 
         </div>
-        <div class="col-md-10 card mt-2">
+        <div class="row col-md-10 card mt-2 shadow">
             <div class="card-body">
                 <p>Hepatitis B - 3 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepB_count;?>%"><?=$hepB_count;?>%</div>
                 </div>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <?=$message?> 
+                    </div>
+                </div>
             </div>
-        </div> 
+        </div>
     </div> 
 </div>
 
