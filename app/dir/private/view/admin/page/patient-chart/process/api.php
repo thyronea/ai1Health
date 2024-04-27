@@ -143,7 +143,7 @@ if(isset($_GET['patientID'])){
             <small>
               <div class='mb-3'>
                 2nd dose is due on <b>$month2</b> along with the following vaccines and other immunization agents:
-                <div class='col-md-5 card mt-2' align='left'>
+                <div class='col-md-5 card mt-2' align='left' style='background-color: #e8e8e8'>
                    <div class='card-body'>
                       $syringe Rotavirus (RV)
                       <br> $syringe Diphtheria, tetanus, & accellular pertussis (DTaP)
@@ -157,7 +157,7 @@ if(isset($_GET['patientID'])){
               <div class='row col-md-10 mt-2'>
                 <div class='col me-2'>
                   <div class='row'>
-                    <div class='card mb-2'>
+                    <div class='card mb-2' style='background-color: #cae3d1'>
                       <div class='card-body'>
                         PEDIARIX
                         <br>(DTaP, IPV, Hep B)
@@ -166,7 +166,7 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2 mb-2'>
+                    <div class='card mt-2 mb-2' style='background-color: #e6f2e9'>
                       <div class='card-body'>
                         PCV
                         <br> Rotavirus
@@ -177,7 +177,7 @@ if(isset($_GET['patientID'])){
                 </div>
                 <div class='col me-2'>
                   <div class='row'>
-                    <div class='card mb-2'>
+                    <div class='card mb-2' style='background-color: #fadefa'>
                       <div class='card-body'>
                         PENTACEL
                         <br>(DTaP, IPV, Hib)
@@ -186,7 +186,7 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2 mb-2'>
+                    <div class='card mt-2 mb-2' style='background-color: #fcf2fc'>
                       <div class='card-body'>
                         PCV
                         <br> Rotavirus
@@ -197,7 +197,7 @@ if(isset($_GET['patientID'])){
                 </div>
                 <div class='col me-2'>
                   <div class='row'>
-                    <div class='card mb-2'>
+                    <div class='card mb-2' style='background-color: #ccd4fc'>
                       <div class='card-body'>
                         VAXELIS
                         <br>(DTaP, IPV, Hib, Hep B)
@@ -206,7 +206,7 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2' style='height:97px'>
+                    <div class='card mt-2' style='height:97px; background-color: #ebeeff'>
                       <div class='card-body'>
                         PCV
                         <br> Rotavirus
