@@ -130,7 +130,10 @@ if(isset($_GET['patientID'])){
   $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
   $query_run = mysqli_query($con, $query);
   if(mysqli_num_rows($query_run) == 0){
-      $message = "No Data Found";
+      $message = "
+      <small>No Data Found</small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
+      ";
   }
   if(mysqli_num_rows($query_run) > 0){
       $row = mysqli_fetch_assoc($query_run);
@@ -166,8 +169,8 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2 mb-2' style='background-color: #e6f2e9'>
-                      <div class='card-body'>
+                    <div class='card mt-2 mb-2' style='background-color: #e6f2e9;'>
+                      <div class='py-2'>
                         PCV
                         <br> Rotavirus
                         <br> Hib
@@ -186,8 +189,8 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2 mb-2' style='background-color: #fcf2fc'>
-                      <div class='card-body'>
+                    <div class='card mt-2 mb-2' style='background-color: #fcf2fc;'>
+                      <div class='py-2'>
                         PCV
                         <br> Rotavirus
                         <br> Hep B
@@ -206,8 +209,8 @@ if(isset($_GET['patientID'])){
                   </div>
                   +
                   <div class='row'>
-                    <div class='card mt-2' style='height:97px; background-color: #ebeeff'>
-                      <div class='card-body'>
+                    <div class='card mt-2' style='background-color: #ebeeff; height:81px'>
+                      <div class='py-2'>
                         PCV
                         <br> Rotavirus
                       </div>
@@ -215,6 +218,7 @@ if(isset($_GET['patientID'])){
                   </div>
                 </div>
               </div>
+              <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
             </small>
           </div>
       ";
@@ -226,7 +230,10 @@ if(isset($_GET['patientID'])){
       $month6 = strtotime("+4 months", strtotime($month2));
       $month6 = date('m/d/Y',$month6);
       
-      $message = "3rd Dose is due on $month6!";
+      $message = "
+        3rd Dose is due on $month6!<br>
+        <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
+      ";
   }
   if(mysqli_num_rows($query_run) == 3){
       $message = "Hepatitis B Series is Complete!";
