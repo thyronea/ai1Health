@@ -113,5 +113,125 @@ if(isset($_GET['patientID']))
   }
 }
 
+if(isset($_GET['patientID'])){
+  // Syringe icon
+  $syringe = 
+  '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 512 512">
+    <path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/>
+  </svg>';
+
+  // Count Administered Hep B
+  $query = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ";
+  $query_run = mysqli_query($con, $query);
+  $hepB_value = mysqli_fetch_assoc($query_run);
+  $hepB_count = round($hepB_value['count(*)'] / 3 * 100);
+
+  // Recommended date to administer the 2nd dose of Hep B
+  $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
+  $query_run = mysqli_query($con, $query);
+  if(mysqli_num_rows($query_run) == 0){
+      $message = "No Data Found";
+  }
+  if(mysqli_num_rows($query_run) > 0){
+      $row = mysqli_fetch_assoc($query_run);
+      $date = $row['date'];
+      $month2 = strtotime("+2 months", strtotime($date));
+      $month2 = date('m/d/Y',$month2);
+
+      $message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3'>
+                2nd dose is due on <b>$month2</b> along with the following vaccines and other immunization agents:
+                <div class='col-md-5 card mt-2' align='left'>
+                   <div class='card-body'>
+                      $syringe Rotavirus (RV)
+                      <br> $syringe Diphtheria, tetanus, & accellular pertussis (DTaP)
+                      <br> $syringe Haemophilus influenza type b (Hib)
+                      <br> $syringe Pneumococcal conjugate (PCV15, PCV20)
+                      <br> $syringe Inactivated poliovirus (IPV)
+                   </div>
+                </div>
+              </div>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a>
+              <div class='row col-md-10 mt-2'>
+                <div class='col me-2'>
+                  <div class='row'>
+                    <div class='card mb-2'>
+                      <div class='card-body'>
+                        PEDIARIX
+                        <br>(DTaP, IPV, Hep B)
+                      </div>
+                    </div>
+                  </div>
+                  +
+                  <div class='row'>
+                    <div class='card mt-2 mb-2'>
+                      <div class='card-body'>
+                        PCV
+                        <br> Rotavirus
+                        <br> Hib
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col me-2'>
+                  <div class='row'>
+                    <div class='card mb-2'>
+                      <div class='card-body'>
+                        PENTACEL
+                        <br>(DTaP, IPV, Hib)
+                      </div>
+                    </div>
+                  </div>
+                  +
+                  <div class='row'>
+                    <div class='card mt-2 mb-2'>
+                      <div class='card-body'>
+                        PCV
+                        <br> Rotavirus
+                        <br> Hep B
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col me-2'>
+                  <div class='row'>
+                    <div class='card mb-2'>
+                      <div class='card-body'>
+                        VAXELIS
+                        <br>(DTaP, IPV, Hib, Hep B)
+                      </div>
+                    </div>
+                  </div>
+                  +
+                  <div class='row'>
+                    <div class='card mt-2' style='height:97px'>
+                      <div class='card-body'>
+                        PCV
+                        <br> Rotavirus
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </small>
+          </div>
+      ";
+  }
+  if(mysqli_num_rows($query_run) == 2){
+      $date = $row['date'];
+      $month2 = strtotime("+2 months", strtotime($date));
+      $month2 = date('m/d/Y',$month2);
+      $month6 = strtotime("+4 months", strtotime($month2));
+      $month6 = date('m/d/Y',$month6);
+      
+      $message = "3rd Dose is due on $month6!";
+  }
+  if(mysqli_num_rows($query_run) == 3){
+      $message = "Hepatitis B Series is Complete!";
+  }
+}
+
 
 ?>

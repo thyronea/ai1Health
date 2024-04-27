@@ -3,7 +3,6 @@ session_start();
 include('../../../../security/dbcon.php');
 include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
-include('process/math.php');
 include('process/function.php');
 include('process/api.php');
 ?>
