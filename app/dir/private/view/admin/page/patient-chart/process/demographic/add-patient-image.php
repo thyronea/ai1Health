@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-require '../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
-require '../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
-require '../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
+include('../../../../../../security/dbcon.php');
+include('../../../../../../security/encrypt_decrypt.php');
+require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php'; 
+require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 if(isset($_POST['add_patient_image'])){
 
@@ -14,7 +14,7 @@ if(isset($_POST['add_patient_image'])){
   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
   $filename = $_FILES["patient_image"]["name"];
   $tempname = $_FILES["patient_image"]["tmp_name"];
-  $folder = '../../../../image/profile';
+  $folder = '../../../../../image/profile';
   $img_name = "$rand_name$filename";
 
   $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
@@ -40,12 +40,12 @@ if(isset($_POST['add_patient_image'])){
 
       if(move_uploaded_file($tempname, "$folder/$img_name")) {
         $_SESSION['success'] = "Successfully Uploaded Image!";
-        header("Location: ../../patient-chart/index.php?patientID=$patientID");
+        header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
       }
       else {
         $_SESSION['warning'] = "Unable to Upload Image!";
-        header("Location: ../../patient-chart/index.php?patientID=$patientID");
+        header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
       }
     }
@@ -55,7 +55,7 @@ if(isset($_POST['add_patient_image'])){
       $check_image_run = mysqli_query($con, $check_image);
       $image = mysqli_fetch_assoc($check_image_run);
 
-      unlink('../../../../image/profile/'.$image['filename']);
+      unlink('../../../../../image/profile/'.$image['filename']);
       $update_image  = "UPDATE profile_image SET filename=? WHERE userID='$patientID' ";
       $stmt = $con->prepare($update_image);
       $stmt->bind_param("s", $img_name);
@@ -63,12 +63,12 @@ if(isset($_POST['add_patient_image'])){
   
       if(move_uploaded_file($tempname, "$folder/$img_name")) {
         $_SESSION['success'] = "Successfully Uploaded Image!";
-        header("Location: ../../patient-chart/index.php?patientID=$patientID");
+        header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
       }
       else {
         $_SESSION['warning'] = "Unable to Upload Image!";
-        header("Location: ../../patient-chart/index.php?patientID=$patientID");
+        header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
       }
     }

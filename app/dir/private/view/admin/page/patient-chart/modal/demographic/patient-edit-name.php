@@ -35,10 +35,6 @@
               <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
               <option value="White">White</option>
             </select>
-            <div class="col-auto mt-3">
-              <label><small>Upload Image</small></label>
-              <input class="form-control form-control-sm" type="file" name="patient_image">
-            </div>
             <button type="submit" name="patient_edit_btn" class="focus-ring btn btn-sm border mt-3">Save</button>
           </form>
         </div>
