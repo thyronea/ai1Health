@@ -62,7 +62,7 @@
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepB_count;?>%"><?=$hepB_count;?>%</div>
                 </div>
                 <div class="mt-3">
-                    <?=$message?> 
+                    <?=$hepB_message?> 
                 </div>
             </div>
         </div>
