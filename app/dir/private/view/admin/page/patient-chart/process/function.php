@@ -1,8 +1,8 @@
 <script>
 
-// Fetch vaccine information based on option selected
-function vaccine_info(){
-    var id = document.getElementById("id").value;
+// Fetch RSV information based on option selected
+function rsv_info(){
+    var id = document.getElementById("rsv_ID").value;
     $.ajax({
         url:"process/immunization/vaccine-info.php",
         method:"POST",
@@ -11,12 +11,32 @@ function vaccine_info(){
         },
         dataType:"JSON",
         success: function(data){
-            document.getElementById("vaccines").value = data.vaccines;
-            document.getElementById("lot").value = data.lot;
-            document.getElementById("ndc").value = data.ndc;
-            document.getElementById("exp").value = data.exp;
+            document.getElementById("rsv_vaccines").value = data.vaccines;
+            document.getElementById("rsv_lot").value = data.lot;
+            document.getElementById("rsv_ndc").value = data.ndc;
+            document.getElementById("rsv_exp").value = data.exp;
         }
     })
 }
+
+// Fetch Hep B information based on option selected
+function hepB_info(){
+    var id = document.getElementById("hepB_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("hepB_vaccines").value = data.vaccines;
+            document.getElementById("hepB_lot").value = data.lot;
+            document.getElementById("hepB_ndc").value = data.ndc;
+            document.getElementById("hepB_exp").value = data.exp;
+        }
+    })
+}
+
 
 </script>

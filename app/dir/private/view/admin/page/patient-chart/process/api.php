@@ -120,23 +120,50 @@ if(isset($_GET['patientID'])){
     <path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/>
   </svg>';
 
+  // Count Administered RSV
+  $rsv = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='RSV' ";
+  $rsv_run = mysqli_query($con, $rsv);
+  $rsv_value = mysqli_fetch_assoc($rsv_run);
+  $rsv_count = round($rsv_value['count(*)'] / 1 * 100);
+
+  // Recommended dates to administer 2nd & 3rd dose of Hep B
+  $rsv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='RSV' ORDER BY id DESC";
+  $rsv_req_run = mysqli_query($con, $rsv_req);
+  if(mysqli_num_rows($rsv_req_run) == 0){
+      $rsv_message = "
+      <small>No Data Found</small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rsv'>Administer RSV</button> 
+      ";
+  }
+  else{
+    $rsv_message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3'>
+                RSV is complete!
+              </div>
+            </small>
+          </div>
+      ";
+  }
+
   // Count Administered Hep B
-  $query = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ";
-  $query_run = mysqli_query($con, $query);
-  $hepB_value = mysqli_fetch_assoc($query_run);
+  $hepB = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ";
+  $hepB_run = mysqli_query($con, $hepB);
+  $hepB_value = mysqli_fetch_assoc($hepB_run);
   $hepB_count = round($hepB_value['count(*)'] / 3 * 100);
 
   // Recommended dates to administer 2nd & 3rd dose of Hep B
-  $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
-  $query_run = mysqli_query($con, $query);
+  $hepB_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
+  $hepB_req_run = mysqli_query($con, $hepB_req);
   if(mysqli_num_rows($query_run) == 0){
       $hepB_message = "
       <small>No Data Found</small><br>
       <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
       ";
   }
-  if(mysqli_num_rows($query_run) > 0){
-      $row = mysqli_fetch_assoc($query_run);
+  if(mysqli_num_rows($hepB_req_run) > 0){
+      $row = mysqli_fetch_assoc($hepB_req_run);
       $date = $row['date'];
       $month2 = strtotime("+2 months", strtotime($date));
       $month2 = date('m/d/Y',$month2);
@@ -223,7 +250,7 @@ if(isset($_GET['patientID'])){
           </div>
       ";
   }
-  if(mysqli_num_rows($query_run) == 2){
+  if(mysqli_num_rows($hepB_req_run) == 2){
       $date = $row['date'];
       $month2 = strtotime("+2 months", strtotime($date));
       $month2 = date('m/d/Y',$month2);
@@ -312,7 +339,7 @@ if(isset($_GET['patientID'])){
           </div>
        ";
   }
-  if(mysqli_num_rows($query_run) == 3){
+  if(mysqli_num_rows($hepB_req_run) == 3){
       $hepB_message = "
       <div class='mb-3'>
         <div align='center'>
@@ -395,7 +422,6 @@ if(isset($_GET['patientID'])){
       </div>
       ";
   }
-  
 }
 
 

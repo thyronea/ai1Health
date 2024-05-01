@@ -188,6 +188,7 @@
       console.log(data);
       $('#hepB_ID').val(data[0]);
       $('#hepB_uniqueID').val(data[1]);
+      $('#delete_hepB_uniqueID').val(data[1]);
       $('#patient_ID').val(data[2]);
       $('#group_ID').val(data[3]);
       $('#hepB_name_').val(data[4]);
