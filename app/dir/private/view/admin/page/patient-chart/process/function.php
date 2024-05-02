@@ -34,9 +34,10 @@ function hepB_info(){
             document.getElementById("hepB_lot").value = data.lot;
             document.getElementById("hepB_ndc").value = data.ndc;
             document.getElementById("hepB_exp").value = data.exp;
+            document.getElementById("hepB_funding_").value = data.funding_source;
+            document.getElementById("hepB_funding").value = data.funding_source;
         }
     })
 }
-
 
 </script>

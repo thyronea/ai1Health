@@ -14,7 +14,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="rsv_ID" id="rsv_ID" required>
+            <input type="" class="form-control form-control-sm mt-2" name="rsv_ID" id="rsv_ID" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">

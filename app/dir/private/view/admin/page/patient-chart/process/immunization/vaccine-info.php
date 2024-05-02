@@ -16,6 +16,8 @@ while($row = mysqli_fetch_array($vaccine_info_run)){
     $data['lot'] = decryptthis($row["lot"], $key);
     $data['ndc'] = decryptthis($row["ndc"], $key);
     $data['exp'] = $row["exp"];
+    $data['funding_source'] = $row["funding_source"];
 }
 echo json_encode($data);
+
 ?>

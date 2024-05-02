@@ -31,81 +31,82 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             <label><small>Vaccine</small></label>
             <select id="hepB_ID" name="id" class="form-select form-select-sm mb-2" onchange="hepB_info()" required>
               <option></option>
-              <option disabled>Select from inventory</option>
+                  <option disabled>Select from inventory</option>
                   <?php
-                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                  $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Vials' ";
-                  $sql_run = mysqli_query($con, $sql);
-                  $hepB_SDV = mysqli_num_rows($sql_run);
-                  while ($hepB_SDV = mysqli_fetch_array($sql_run))
-                  {
-                    echo "<option value='". htmlspecialchars($hepB_SDV['id']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
-                  }
-                  if(htmlspecialchars($hepB_SDV['name'])){
-                    $hepB_SDV_lot = htmlspecialchars(decryptthis($hepB_SDV['lot'], $key));
-                  }
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Vials' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $hepB_SDV = mysqli_num_rows($sql_run);
+                    while ($hepB_SDV = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($hepB_SDV['id']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
+                    }
+                    if(htmlspecialchars($hepB_SDV['name'])){
+                      $hepB_SDV_lot = htmlspecialchars(decryptthis($hepB_SDV['lot'], $key));
+                    }
 
-                  $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
-                  $sql_run = mysqli_query($con, $sql);
-                  $hepB_SDS = mysqli_num_rows($sql_run);
-                  while ($hepB_SDS = mysqli_fetch_array($sql_run))
-                  {
-                    echo "<option value='". htmlspecialchars($hepB_SDS['id']) ."'>" .htmlspecialchars($hepB_SDS['name']) .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
-                  }
-                  if(htmlspecialchars($hepB_SDS['name'])){
-                    $hepB_SDS_lot = htmlspecialchars(decryptthis($hepB_SDS['lot'], $key));
-                  }
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $hepB_SDS = mysqli_num_rows($sql_run);
+                    while ($hepB_SDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($hepB_SDS['id']) ."'>" .htmlspecialchars($hepB_SDS['name']) .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
+                    }
+                    if(htmlspecialchars($hepB_SDS['name'])){
+                      $hepB_SDS_lot = htmlspecialchars(decryptthis($hepB_SDS['lot'], $key));
+                    }
 
-                  $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Vials' ";
-                  $sql_run = mysqli_query($con, $sql);
-                  $hepB_RSDV = mysqli_num_rows($sql_run);
-                  while ($hepB_RSDV = mysqli_fetch_array($sql_run))
-                  {
-                    echo "<option value='". htmlspecialchars($hepB_RSDV['id']) ."'>" .htmlspecialchars($hepB_RSDV['name']) .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
-                  }
-                  if(htmlspecialchars($hepB_RSDV['name'])){
-                    $hepB_RSDV_lot = htmlspecialchars(decryptthis($hepB_RSDV['lot'], $key));
-                  }
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Vials' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $hepB_RSDV = mysqli_num_rows($sql_run);
+                    while ($hepB_RSDV = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($hepB_RSDV['id']) ."'>" .htmlspecialchars($hepB_RSDV['name']) .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
+                    }
+                    if(htmlspecialchars($hepB_RSDV['name'])){
+                      $hepB_RSDV_lot = htmlspecialchars(decryptthis($hepB_RSDV['lot'], $key));
+                    }
 
-                  $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Syringes' ";
-                  $sql_run = mysqli_query($con, $sql);
-                  $hepB_RSDS = mysqli_num_rows($sql_run);
-                  while ($hepB_RSDS = mysqli_fetch_array($sql_run))
-                  {
-                    echo "<option value='". htmlspecialchars($hepB_RSDS['id']) ."'>" .htmlspecialchars($hepB_RSDS['name']) .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
-                  }
-                  if(htmlspecialchars($hepB_RSDS['name'])){
-                    $hepB_RSDS_lot = htmlspecialchars(decryptthis($hepB_RSDS['lot'], $key));
-                  }
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $hepB_RSDS = mysqli_num_rows($sql_run);
+                    while ($hepB_RSDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($hepB_RSDS['id']) ."'>" .htmlspecialchars($hepB_RSDS['name']) .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
+                    }
+                    if(htmlspecialchars($hepB_RSDS['name'])){
+                      $hepB_RSDS_lot = htmlspecialchars(decryptthis($hepB_RSDS['lot'], $key));
+                    }
                   ?>
-             </select>
-             <div class="row mb-2">
+              </option>
+            </select>
+            <div class="row mb-2">
                 <div class="col">
                   <input type="hidden" id="hepB_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
-             </div>
-             <div class="row mb-2">
+            </div>
+            <div class="row mb-2">
                 <div class="col">
                   <input type="text" id="hepB_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
                   <input type="text" id="hepB_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
-             </div>
-             <?php
+            </div>
+            <?php
               
-             ?>
+            ?>
             
-             <div class="row mb-2">
+            <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
                   <input type="date" id="hepB_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
-              </div>
+            </div>
 
-              <div class="row mb-2">
+            <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Site:</small></label>
                 </div>
@@ -120,7 +121,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     <option value="Mouth">Mouth</option>
                   </select>
                 </div>
-              </div>
+             </div>
 
               <div class="row mb-2">
                 <div class="col" align="right">
@@ -156,18 +157,22 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small>Funding Source:</small></label>
+                  <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" name="funding_source" required>
+                  <input type="" id="hepB_funding_" name="funding" class="form-control form-control-sm" onChange="onChange()" hidden required>
+                  <select class="form-select form-select-sm" id="hepB_funding" name="funding_" onChange="onChange()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
-                    <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
-                    <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
-                    <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
-                    <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
-                    <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
+                    <optgroup label="Public">
+                      <option value="Public">Select Eligibility Status</option>
+                      <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
+                      <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
+                      <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
+                      <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
+                      <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
@@ -178,8 +183,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 </div>
                 <div class="col">
                   <select name="administered_by" class="form-select form-select-sm mb-2" required>
-                      <option value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" selected ><?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?></option>
-                      <option disabled>Select from roster</option>
+                      <option value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" selected><?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?></option>
+                      <option disabled>Or select from active users</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                       $sql = "SELECT * FROM profile WHERE groupID='$groupID' ";
@@ -187,7 +192,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                       $admin = mysqli_num_rows($sql_run);
                       while ($admin = mysqli_fetch_array($sql_run))
                       {
-                        echo "<option value=' ". htmlspecialchars($admin['fname'])." ". htmlspecialchars($admin['lname'])." '>" .htmlspecialchars($admin['fname']) .' ' . htmlspecialchars($admin['lname']) ."</option>" ;
+                        echo "<option value='".htmlspecialchars($admin['fname'])." ".htmlspecialchars($admin['lname'])."'>".htmlspecialchars($admin['fname']).' '.htmlspecialchars($admin['lname'])."</option>" ;
                       }
                       ?>
                   </select>
@@ -221,4 +226,30 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   return n;
   }
   document.getElementById("hepB_uniqueID").value = randomNumber(8);
+</script>
+
+<!-- Funding source validation -->
+<script>
+ function onChange() {
+    const funding = document.querySelector('input[name=funding]');
+    const funding_ = document.querySelector('select[name=funding_]');
+     
+    if(funding_.value === "Public"){
+      funding_.setCustomValidity('Please select eligibility status');
+    }
+    if(funding_.value === "VFC Eligible - Medical/Medicaid" ||
+       funding_.value === "VFC Eligible - Uninsured" ||
+       funding_.value === "VFC Eligible - Underinsured" ||
+       funding_.value === "VFC Eligible - Native American" ||
+       funding_.value === "VFC Eligible - Alaskan Native"
+    ){
+      funding_.setCustomValidity('');
+    }
+    if(funding_.value === funding.value){
+      funding_.setCustomValidity('');
+    }
+    else{
+      funding_.setCustomValidity('Funding Source and Eligibility Does not Match');
+    }
+  }
 </script>

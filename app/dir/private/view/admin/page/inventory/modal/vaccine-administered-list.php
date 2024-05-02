@@ -12,20 +12,19 @@ include('../../components/print.php');
       <div class="modal-body">
         <div class="card m-1 col-md-11 border-0" id="administeredReportprintThis">
           <div class="card-body">
-            <div class="container">
-              <div class="">
                 <div class="row">
                   <!-- Administered Report List -->
-                  <table class="table table-borderless table-hover">
+                  <table class="table table-sm table-hover table-borderless text-nowrap">
                     <thead>
                       <tr>
                         <th><small>Date</small></th>
                         <th><small>Patient Name</small></th>
-                        <th><small>Date of Birth</small></th>
+                        <th hidden><small>Date of Birth</small></th>
                         <th><small>Vaccine</small></th>
-                        <th><small>Lot</small></th>
-                        <th><small>Expiration</small></th>
+                        <th hidden><small>Lot</small></th>
+                        <th hidden><small>Expiration</small></th>
                         <th><small>Eligibility</small></th>
+                        <th><small>Administered By</small></th>
                       </tr>
                     </thead>
                     <tbody align="left">
@@ -43,11 +42,12 @@ include('../../components/print.php');
                           <tr>
                             <td><small><?= htmlspecialchars($vaccine['date']); ?></small></td>
                             <td><small><?= htmlspecialchars(decryptthis($vaccine['name'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['dob'], $key)); ?></small></td>
+                            <td hidden><small><?= htmlspecialchars(decryptthis($vaccine['dob'], $key)); ?></small></td>
                             <td><small><?= htmlspecialchars(decryptthis($vaccine['vaccine'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['lot'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars($vaccine['exp']); ?></small></td>
-                            <td><?= htmlspecialchars(decryptthis($vaccine['funding_source'], $key)); ?></td>
+                            <td hidden><small><?= htmlspecialchars(decryptthis($vaccine['lot'], $key)); ?></small></td>
+                            <td hidden><small><?= htmlspecialchars($vaccine['exp']); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis($vaccine['funding_source'], $key)); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis($vaccine['administered_by'], $key)); ?></small></td>
                           </tr>
                           <?php
                           }
@@ -65,8 +65,6 @@ include('../../components/print.php');
                   </table>
 
                 </div>
-              </div>
-            </div>
 
           </div>
         </div>

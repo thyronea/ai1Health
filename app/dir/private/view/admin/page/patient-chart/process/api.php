@@ -156,7 +156,7 @@ if(isset($_GET['patientID'])){
   // Recommended dates to administer 2nd & 3rd dose of Hep B
   $hepB_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
   $hepB_req_run = mysqli_query($con, $hepB_req);
-  if(mysqli_num_rows($query_run) == 0){
+  if(mysqli_num_rows($hepB_req_run) == 0){
       $hepB_message = "
       <small>No Data Found</small><br>
       <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
