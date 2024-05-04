@@ -30,6 +30,8 @@ Regular User:
 - Chat (instant message members within group)
 - Storage & Handling (add/edit/delete storage units & thermometers; log temperature)
 - Inventory (add/edit/delete inventory)
+- Patients (add/edit/chart/remove/assign)
+- Patient-Chart - Immunization (private funding can be administered to public eligible but public cannot be administered to private)
 
 Admin User (Manager Tab):
 - Everything in Basic
@@ -47,4 +49,4 @@ Currently Logging:
 - Email
 - File
 
-5/23/2024
+5/3/2024
