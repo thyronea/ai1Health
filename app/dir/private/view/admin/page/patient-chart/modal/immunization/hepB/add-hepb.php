@@ -30,7 +30,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             </div>
             <label><small>Vaccine</small></label>
             <select id="hepB_ID" name="id" class="form-select form-select-sm mb-2" onchange="hepB_info()" required>
-              <option></option>
+                  <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
@@ -157,16 +157,16 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small>Eligibility:</small></label>
+                  <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input type="" id="hepB_funding_" name="funding" class="form-control form-control-sm" onChange="onChange()" hidden required>
-                  <select class="form-select form-select-sm" id="hepB_funding" name="funding_" onChange="onChange()" required>
+                  <input id="hepB_funding" name="funding" class="form-control form-control-sm" onChange="onChange()" hidden required>
+                  <select id="hepB_eligibility" name="eligibility" class="form-select form-select-sm" onChange="onChange()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
                     <optgroup label="Public">
-                      <option value="Public">Select Eligibility Status</option>
+                      <option value="Public">Select Eligibility Type</option>
                       <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
                       <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
                       <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
@@ -228,28 +228,3 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   document.getElementById("hepB_uniqueID").value = randomNumber(8);
 </script>
 
-<!-- Funding source validation -->
-<script>
- function onChange() {
-    const funding = document.querySelector('input[name=funding]');
-    const funding_ = document.querySelector('select[name=funding_]');
-     
-    if(funding_.value === "Public"){
-      funding_.setCustomValidity('Please select eligibility status');
-    }
-    if(funding_.value === "VFC Eligible - Medical/Medicaid" ||
-       funding_.value === "VFC Eligible - Uninsured" ||
-       funding_.value === "VFC Eligible - Underinsured" ||
-       funding_.value === "VFC Eligible - Native American" ||
-       funding_.value === "VFC Eligible - Alaskan Native"
-    ){
-      funding_.setCustomValidity('');
-    }
-    if(funding_.value === funding.value){
-      funding_.setCustomValidity('');
-    }
-    else{
-      funding_.setCustomValidity('Funding Source and Eligibility Does not Match');
-    }
-  }
-</script>
