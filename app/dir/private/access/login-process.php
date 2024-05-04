@@ -70,6 +70,12 @@ if(isset($_POST['admin_login_btn']))
         $_SESSION['location'] = htmlspecialchars($loc["name"]);
       }
 
+      // Retreive key for immunization encryption and decryption
+      $iz = "SELECT * FROM immunization_key";
+      $iz_run =  mysqli_query($con, $iz);
+      $iz_key = mysqli_fetch_assoc($iz_run);
+      $_SESSION["iz_key"] = htmlspecialchars($iz_key["key"]);
+
       // Encrypt Activities Data
       $fullname = "$fname $lname"; // Combines first and last name for encryption
       $encrypted_fullname = encryptthis($fullname, $key); // Full name encryption

@@ -10,7 +10,9 @@ include('process/api.php');
 <!-- Login session -->
 <?php if (isset($_SESSION["userID"])): ?>
 
+<!-- Encrypton and Decryption Keys-->  
 <?php $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]); ?>
+<?php $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]); ?>
 
 <!-- Navtab -->
 <?php include('components/navtab.php'); ?>

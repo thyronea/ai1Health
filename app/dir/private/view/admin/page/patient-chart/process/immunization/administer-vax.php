@@ -6,8 +6,11 @@ require '../../../../../../../vendor/mailer/PHPMailer/src/Exception.php';
 require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
 require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
-// Shot giver's information
+// Decryption and Encryption Keys
 $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+$iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);
+
+// Shot giver's information
 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
 $email = mysqli_real_escape_string($con, $_SESSION['email']);
@@ -89,20 +92,20 @@ if(isset($_POST['administer_hepB']))
 
       // encrypt data and insert to immunizaton table
       $patient_fullname = "$patient_fname $patient_lname";
-      $encrypt_patient_name = encryptthis($patient_fullname, $key);
-      $encrypt_dob = encryptthis($patient_dob, $key);
-      $encrypt_type = encryptthis($type, $key);
-      $encrypt_vaccine = encryptthis($vaccine, $key);
-      $encrypt_lot = encryptthis($lot, $key);
-      $encrypt_ndc = encryptthis($ndc, $key);
-      $encrypt_exp = encryptthis($exp, $key);
-      $encrypt_site = encryptthis($site, $key);
-      $encrypt_route = encryptthis($route, $key);
-      $encrypt_vis_given = encryptthis($vis_given, $key);
-      $encrypt_vis = encryptthis($vis, $key);
-      $encrypt_eligibility = encryptthis($eligibility, $key);
-      $encrypt_administered_by = encryptthis($administered_by, $key);
-      $encrypt_comment = encryptthis($comment, $key);
+      $encrypt_patient_name = encryptthis_iz($patient_fullname, $iz_key);
+      $encrypt_dob = encryptthis_iz($patient_dob, $iz_key);
+      $encrypt_type = encryptthis_iz($type, $iz_key);
+      $encrypt_vaccine = encryptthis_iz($vaccine, $iz_key);
+      $encrypt_lot = encryptthis_iz($lot, $iz_key);
+      $encrypt_ndc = encryptthis_iz($ndc, $iz_key);
+      $encrypt_exp = encryptthis_iz($exp, $iz_key);
+      $encrypt_site = encryptthis_iz($site, $iz_key);
+      $encrypt_route = encryptthis_iz($route, $iz_key);
+      $encrypt_vis_given = encryptthis_iz($vis_given, $iz_key);
+      $encrypt_vis = encryptthis_iz($vis, $iz_key);
+      $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
+      $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
       VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

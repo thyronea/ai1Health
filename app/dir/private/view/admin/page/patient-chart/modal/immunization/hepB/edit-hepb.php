@@ -33,28 +33,28 @@
                     $hepB_SDV = mysqli_num_rows($sql_run);
                     while ($hepB_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($hepB_SDV['name']) ."'>" .htmlspecialchars($hepB_SDV['name']) ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hepB_SDV['name']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
                     }
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_SDS = mysqli_num_rows($sql_run);
                     while ($hepB_SDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_SDS['name'] ."'>" .$hepB_SDS['name'] ."</option>" ;
+                      echo "<option value='". $hepB_SDS['name'] ."'>" .$hepB_SDS['name'] .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
                     }
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_RSDV = mysqli_num_rows($sql_run);
                     while ($hepB_RSDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_RSDV['name'] ."'>" .$hepB_RSDV['name'] ."</option>" ;
+                      echo "<option value='". $hepB_RSDV['name'] ."'>" .$hepB_RSDV['name'] .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
                     }
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_RSDS = mysqli_num_rows($sql_run);
                     while ($hepB_RSDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_RSDS['vaccine'] ."'>" .$hepB_RSDS['vaccine'] ."</option>" ;
+                      echo "<option value='". $hepB_RSDS['vaccine'] ."'>" .$hepB_RSDS['vaccine'] .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
                     }
                   ?>
              </select>

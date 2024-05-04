@@ -66,22 +66,22 @@ if(isset($_POST['assign_patient']))
   $hp_policy_number = htmlspecialchars(decryptthis($hp["policy_number"], $oldKey));
   $hp_status = htmlspecialchars(decryptthis($hp["status"], $oldKey));
 
-  $iz_query = "SELECT * FROM immunization WHERE patientID='$patientID'";
-  $iz_query_run = mysqli_query($con, $iz_query);
-  $iz = mysqli_fetch_assoc($iz_query_run);
-  $iz_uniqueID = htmlspecialchars($iz["uniqueID"]);
-  $iz_name = htmlspecialchars(decryptthis($iz["name"], $oldKey));
-  $iz_dob = htmlspecialchars(decryptthis($iz["dob"], $oldKey));
-  $iz_vaccine = htmlspecialchars(decryptthis($iz["vaccine"], $oldKey));
-  $iz_lot = htmlspecialchars(decryptthis($iz["lot"], $oldKey));
-  $iz_ndc = htmlspecialchars(decryptthis($iz["ndc"], $oldKey));
-  $iz_site = htmlspecialchars(decryptthis($iz["site"], $oldKey));
-  $iz_route = htmlspecialchars(decryptthis($iz["route"], $oldKey));
-  $iz_vis_given = htmlspecialchars(decryptthis($iz["vis_given"], $oldKey));
-  $iz_vis = htmlspecialchars(decryptthis($iz["vis"], $oldKey));
-  $iz_funding_source = htmlspecialchars(decryptthis($iz["funding_source"], $oldKey));
-  $iz_administered_by = htmlspecialchars(decryptthis($iz["administered_by"], $oldKey));
-  $iz_comment = htmlspecialchars(decryptthis($iz["comment"], $oldKey));
+  //$iz_query = "SELECT * FROM immunization WHERE patientID='$patientID'";
+  //$iz_query_run = mysqli_query($con, $iz_query);
+  //$iz = mysqli_fetch_assoc($iz_query_run);
+  //$iz_uniqueID = htmlspecialchars($iz["uniqueID"]);
+  //$iz_name = htmlspecialchars(decryptthis($iz["name"], $oldKey));
+  //$iz_dob = htmlspecialchars(decryptthis($iz["dob"], $oldKey));
+  //$iz_vaccine = htmlspecialchars(decryptthis($iz["vaccine"], $oldKey));
+  //$iz_lot = htmlspecialchars(decryptthis($iz["lot"], $oldKey));
+  //$iz_ndc = htmlspecialchars(decryptthis($iz["ndc"], $oldKey));
+  //$iz_site = htmlspecialchars(decryptthis($iz["site"], $oldKey));
+  //$iz_route = htmlspecialchars(decryptthis($iz["route"], $oldKey));
+  //$iz_vis_given = htmlspecialchars(decryptthis($iz["vis_given"], $oldKey));
+  //$iz_vis = htmlspecialchars(decryptthis($iz["vis"], $oldKey));
+  //$iz_funding_source = htmlspecialchars(decryptthis($iz["funding_source"], $oldKey));
+  //$iz_administered_by = htmlspecialchars(decryptthis($iz["administered_by"], $oldKey));
+  //$iz_comment = htmlspecialchars(decryptthis($iz["comment"], $oldKey));
 
   $patientlog_query = "SELECT * FROM patientlog WHERE patientID='$patientID'";
   $patientlog_query_run = mysqli_query($con, $patientlog_query);
