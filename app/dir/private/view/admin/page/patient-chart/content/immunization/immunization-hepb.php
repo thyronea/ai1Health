@@ -1,7 +1,6 @@
 <div class="tab-pane fade" id="hepb" role="tabpanel" tabindex="0">
     <div class="d-flex align-items-start row">
         <div class="col-md-2">
-            <button type="button" class="focus-ring btn btn-sm border mt-2 mb-3 shadow" id="submit_btn" data-bs-toggle="modal" data-bs-target="#administer_hepb" hidden>Administer Hep B</button> 
             <table class="table table-borderless text-nowrap">
                 <tbody align="center" style="text-align: left">
                     <?php

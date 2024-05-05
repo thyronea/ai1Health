@@ -1,6 +1,4 @@
-<?php 
-$rsv_vis = date('2023') . '-' . date('10') . '-' . date('19'); 
-?>
+<?php $rsv_vis = date('2023') . '-' . date('10') . '-' . date('19'); ?>
 
 <div class="modal fade" id="administer_rsv" tabindex="-1" aria-labelledby="administer_hepbLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -125,10 +123,10 @@ $rsv_vis = date('2023') . '-' . date('10') . '-' . date('19');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rsv.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $hepB_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $rsv_vis; ?>" required>
                 </div>
               </div>
 
@@ -137,15 +135,19 @@ $rsv_vis = date('2023') . '-' . date('10') . '-' . date('19');
                   <label><small>Funding Source:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" name="funding_source" required>
-                    <option></option>
+                  <input id="rsv_funding" name="funding" class="form-control form-control-sm" onChange="onChange()" hidden required>
+                  <select id="rsv_eligibility" name="eligibility" class="form-select form-select-sm" onChange="onChange()" required>
+                  <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
-                    <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
-                    <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
-                    <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
-                    <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
-                    <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
+                    <optgroup label="Public">
+                      <option value="Public">Select Eligibility Type</option>
+                      <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
+                      <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
+                      <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
+                      <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
+                      <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>

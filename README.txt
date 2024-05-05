@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Fix error when removing and assigning patient
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design
 - Add temperature exposore in inventory edit modal

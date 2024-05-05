@@ -41,9 +41,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     {
                       echo "<option value='". htmlspecialchars($hepB_SDV['id']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
                     }
-                    if(htmlspecialchars($hepB_SDV['name'])){
-                      $hepB_SDV_lot = htmlspecialchars(decryptthis($hepB_SDV['lot'], $key));
-                    }
 
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
@@ -51,9 +48,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     while ($hepB_SDS = mysqli_fetch_array($sql_run))
                     {
                       echo "<option value='". htmlspecialchars($hepB_SDS['id']) ."'>" .htmlspecialchars($hepB_SDS['name']) .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
-                    }
-                    if(htmlspecialchars($hepB_SDS['name'])){
-                      $hepB_SDS_lot = htmlspecialchars(decryptthis($hepB_SDS['lot'], $key));
                     }
 
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Vials' ";
@@ -63,9 +57,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     {
                       echo "<option value='". htmlspecialchars($hepB_RSDV['id']) ."'>" .htmlspecialchars($hepB_RSDV['name']) .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
                     }
-                    if(htmlspecialchars($hepB_RSDV['name'])){
-                      $hepB_RSDV_lot = htmlspecialchars(decryptthis($hepB_RSDV['lot'], $key));
-                    }
 
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
@@ -73,9 +64,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     while ($hepB_RSDS = mysqli_fetch_array($sql_run))
                     {
                       echo "<option value='". htmlspecialchars($hepB_RSDS['id']) ."'>" .htmlspecialchars($hepB_RSDS['name']) .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
-                    }
-                    if(htmlspecialchars($hepB_RSDS['name'])){
-                      $hepB_RSDS_lot = htmlspecialchars(decryptthis($hepB_RSDS['lot'], $key));
                     }
                   ?>
               </option>

@@ -15,6 +15,8 @@ function rsv_info(){
             document.getElementById("rsv_lot").value = data.lot;
             document.getElementById("rsv_ndc").value = data.ndc;
             document.getElementById("rsv_exp").value = data.exp;
+            document.getElementById("rsv_funding").value = data.funding_source;
+            document.getElementById("rsv_eligibility").value = data.funding_source;
         }
     })
 }
