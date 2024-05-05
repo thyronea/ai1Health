@@ -36,8 +36,6 @@ $site = mysqli_real_escape_string($con, $_POST['site']);
 $route = mysqli_real_escape_string($con, $_POST['route']);
 $vis_given = mysqli_real_escape_string($con, $_POST['vis_given']);
 $vis = mysqli_real_escape_string($con, $_POST['vis']);
-$funding_source = mysqli_real_escape_string($con, $_POST['funding']);
-$eligibility = mysqli_real_escape_string($con, $_POST['eligibility']);
 $administered_by = mysqli_real_escape_string($con, $_POST['administered_by']);
 $comment = mysqli_real_escape_string($con, $_POST['comment']);
 $date = mysqli_real_escape_string($con, $_POST['date']);
@@ -49,7 +47,9 @@ $received = htmlspecialchars("Received");
 $patient_log = mysqli_real_escape_string($con, "$received $type");
 
 if(isset($_POST['administer_hepB']))
-{
+{ 
+  $funding_source = mysqli_real_escape_string($con, $_POST['hepB_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['hepB_eligibility']);
   if($funding_source && $eligibility == "Public"){
     $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
     header("Location: ../../../patient-chart/index.php?patientID=$patientID");
@@ -166,6 +166,8 @@ if(isset($_POST['administer_hepB']))
 
 if(isset($_POST['administer_rsv']))
 { 
+  $funding_source = mysqli_real_escape_string($con, $_POST['rsv_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['rsv_eligibility']);
   if($funding_source && $eligibility == "Public"){
     $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
     header("Location: ../../../patient-chart/index.php?patientID=$patientID");

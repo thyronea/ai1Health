@@ -45,9 +45,26 @@ function hepB_info(){
 
 
 // Funding source validation
-function onChange() {
-    const funding = document.querySelector('input[name=funding]');
-    const eligibility = document.querySelector('select[name=eligibility]');
+function rsv() {
+    const funding = document.querySelector('input[name=rsv_funding]');
+    const eligibility = document.querySelector('select[name=rsv_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+  }
+
+  function hepB() {
+    const funding = document.querySelector('input[name=hepB_funding]');
+    const eligibility = document.querySelector('select[name=hepB_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||

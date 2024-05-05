@@ -148,8 +148,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="hepB_funding" name="funding" class="form-control form-control-sm" onChange="onChange()" hidden required>
-                  <select id="hepB_eligibility" name="eligibility" class="form-select form-select-sm" onChange="onChange()" required>
+                  <input id="hepB_funding" name="hepB_funding" class="form-control form-control-sm" onChange="hepB()" hidden required>
+                  <select id="hepB_eligibility" name="hepB_eligibility" class="form-select form-select-sm" onChange="hepB()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
