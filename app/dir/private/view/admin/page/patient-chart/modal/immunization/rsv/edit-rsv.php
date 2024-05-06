@@ -122,6 +122,7 @@
                 <div class="col">
                   <select class="form-select form-select-sm" id="rsv_edit_funding_source" name="funding_source">
                     <option disabled selected>Select one</option>
+                    <option value="Private">Private</option>
                     <optgroup label="Public">
                       <option value="Public">Select Elegibility Status</option>
                       <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
