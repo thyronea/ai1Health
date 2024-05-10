@@ -41,13 +41,13 @@ include('../../components/print.php');
                           ?>
                           <tr>
                             <td><small><?= htmlspecialchars($vaccine['date']); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['name'], $key)); ?></small></td>
-                            <td hidden><small><?= htmlspecialchars(decryptthis($vaccine['dob'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['vaccine'], $key)); ?></small></td>
-                            <td hidden><small><?= htmlspecialchars(decryptthis($vaccine['lot'], $key)); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis_iz($vaccine['name'], $iz_key)); ?></small></td>
+                            <td hidden><small><?= htmlspecialchars(decryptthis_iz($vaccine['dob'], $iz_key)); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis_iz($vaccine['vaccine'], $iz_key)); ?></small></td>
+                            <td hidden><small><?= htmlspecialchars(decryptthis_iz($vaccine['lot'], $iz_key)); ?></small></td>
                             <td hidden><small><?= htmlspecialchars($vaccine['exp']); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['funding_source'], $key)); ?></small></td>
-                            <td><small><?= htmlspecialchars(decryptthis($vaccine['administered_by'], $key)); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis_iz($vaccine['funding_source'], $iz_key)); ?></small></td>
+                            <td><small><?= htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key)); ?></small></td>
                           </tr>
                           <?php
                           }

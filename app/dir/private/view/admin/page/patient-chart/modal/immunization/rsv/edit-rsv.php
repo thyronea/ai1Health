@@ -14,7 +14,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis_iz($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis_iz($patient['lname'], $key));?>" placeholder="Last Name" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="rsv_ID" id="rsv_edit_ID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="shotID" id="rsv_edit_ID" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -24,8 +24,9 @@
                 <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
-            <select id="edit_rsv_name" name="vaccine" class="form-select form-select-sm mb-2" required>
-              <option disabled>Select from inventory</option>
+            
+            <select id="edit_rsv_vaccines" name="vaccineID" class="form-select form-select-sm mb-4" onchange="edit_rsv()">
+              <option>Select from inventory</option>
                   <?php
                   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                   $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RSV - Beyfortus 0.5 mL Single Dose Syringes' ";
@@ -33,7 +34,7 @@
                   $rsv_half = mysqli_num_rows($sql_run);
                   while ($rsv_half = mysqli_fetch_array($sql_run))
                   {
-                    echo "<option value='". htmlspecialchars($rsv_half['name']) ."'>" .htmlspecialchars($rsv_half['name']) .' ' .'('.htmlspecialchars($rsv_half['funding_source']).')' ."</option>" ;
+                    echo "<option value='". htmlspecialchars($rsv_half['id']) ."'>" .htmlspecialchars($rsv_half['name']) .' ' .'('.htmlspecialchars($rsv_half['funding_source']).')' ."</option>" ;
                   }
 
                   $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RSV - Beyfortus 1.0 mL Single Dose Syringes' ";
@@ -41,16 +42,23 @@
                   $rsv_full = mysqli_num_rows($sql_run);
                   while ($rsv_full = mysqli_fetch_array($sql_run))
                   {
-                    echo "<option value='". htmlspecialchars($rsv_full['name']) ."'>" .htmlspecialchars($rsv_full['name']) .' ' .'('.htmlspecialchars($rsv_full['funding_source']).')' ."</option>" ;
+                    echo "<option value='". htmlspecialchars($rsv_full['id']) ."'>" .htmlspecialchars($rsv_full['name']) .' ' .'('.htmlspecialchars($rsv_full['funding_source']).')' ."</option>" ;
                   }
                   ?>
-             </select>
+            </select>
+
+            <div class="row mb-2">
+                <div class="col">
+                  <input type="" id="edit_rsv_name" name="vaccine" class="form-control form-control-sm" value="" required>
+                </div>
+            </div>
+
              <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="rsv_edit_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="edit_rsv_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="rsv_edit_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="edit_rsv_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
              <?php
@@ -62,7 +70,7 @@
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="rsv_edit_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="edit_rsv_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
               </div>
 
@@ -120,7 +128,8 @@
                   <label><small>Funding Source:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" id="rsv_edit_funding_source" name="funding_source">
+                  <input id="edit_rsv_funding" name="edit_rsv_funding" class="form-control form-control-sm" onChange="edit_validate_rsv()" hidden required>
+                  <select id="edit_rsv_eligibility" name="edit_rsv_eligibility" class="form-select form-select-sm" onChange="edit_validate_rsv()">
                     <option disabled selected>Select one</option>
                     <option value="Private">Private</option>
                     <optgroup label="Public">
@@ -190,14 +199,15 @@
       $('#group_ID').val(data[3]);
       $('#edit_rsv_name').val(data[4]);
       $('#delete_rsv_name').val(data[4]);
-      $('#rsv_edit_lot').val(data[5]);
-      $('#rsv_edit_ndc').val(data[6]);
-      $('#rsv_edit_exp').val(data[7]);
+      $('#edit_rsv_lot').val(data[5]);
+      $('#edit_rsv_ndc').val(data[6]);
+      $('#edit_rsv_exp').val(data[7]);
       $('#rsv_edit_site').val(data[8]);
       $('#rsv_edit_route').val(data[9]);
       $('#rsv_edit_vis_given').val(data[10]);
       $('#rsv_edit_vis').val(data[11]);
-      $('#rsv_edit_funding_source').val(data[12]);
+      $('#edit_rsv_funding').val(data[12]);
+      $('#edit_rsv_eligibility').val(data[12]);
       $('#rsvadministered_by').val(data[13]);
       $('#rsv_edit_comment').val(data[14]);
     });

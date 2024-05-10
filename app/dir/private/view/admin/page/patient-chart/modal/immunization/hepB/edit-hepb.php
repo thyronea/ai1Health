@@ -14,7 +14,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="hepB_ID" id="hepB_edit_ID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="shotID" id="hepB_edit_ID" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -24,8 +24,9 @@
                 <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
-            <select id="edit_hepB_name" name="vaccine" class="form-select form-select-sm mb-2" required>
-              <option disabled>Select from inventory</option>
+
+            <select id="edit_hepB_vaccines" name="vaccineID" class="form-select form-select-sm mb-4" onchange="edit_hepB()">
+              <option>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Vials' ";
@@ -33,37 +34,47 @@
                     $hepB_SDV = mysqli_num_rows($sql_run);
                     while ($hepB_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($hepB_SDV['name']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hepB_SDV['id']) ."'>" .htmlspecialchars($hepB_SDV['name']) .' ' .'('.htmlspecialchars($hepB_SDV['funding_source']).')' ."</option>" ;
                     }
+
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Engerix B Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_SDS = mysqli_num_rows($sql_run);
                     while ($hepB_SDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_SDS['name'] ."'>" .$hepB_SDS['name'] .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hepB_SDS['id']) ."'>" .$hepB_SDS['name'] .' ' .'('.htmlspecialchars($hepB_SDS['funding_source']).')' ."</option>" ;
                     }
+
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_RSDV = mysqli_num_rows($sql_run);
                     while ($hepB_RSDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_RSDV['name'] ."'>" .$hepB_RSDV['name'] .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hepB_RSDV['id']) ."'>" .$hepB_RSDV['name'] .' ' .'('.htmlspecialchars($hepB_RSDV['funding_source']).')' ."</option>" ;
                     }
+
                     $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis B - Recombivax Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
                     $hepB_RSDS = mysqli_num_rows($sql_run);
                     while ($hepB_RSDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". $hepB_RSDS['vaccine'] ."'>" .$hepB_RSDS['vaccine'] .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hepB_RSDS['id']) ."'>" .$hepB_RSDS['name'] .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
                     }
                   ?>
-             </select>
+            </select>
+
+            <div class="row mb-2">
+                <div class="col">
+                  <input type="" id="edit_hepB_name" name="vaccine" class="form-control form-control-sm" value="" required>
+                </div>
+            </div>
+            
              <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="hepB_edit_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="edit_hepB_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="hepB_edit_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="edit_hepB_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
              <?php
@@ -75,7 +86,7 @@
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="hepB_edit_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="edit_hepB_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
               </div>
 
@@ -130,10 +141,11 @@
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small>Funding Source:</small></label>
+                  <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" id="hepB_edit_funding_source" name="funding_source">
+                  <input id="edit_hepB_funding" name="edit_hepB_funding" class="form-control form-control-sm" onChange="edit_validate_hepB()" hidden required>
+                  <select id="edit_hepB_eligibility" name="edit_hepB_eligibility" class="form-select form-select-sm" onChange="edit_validate_hepB()">
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -204,14 +216,15 @@
       $('#group_ID').val(data[3]);
       $('#edit_hepB_name').val(data[4]);
       $('#delete_hepB_name').val(data[4]);
-      $('#hepB_edit_lot').val(data[5]);
-      $('#hepB_edit_ndc').val(data[6]);
-      $('#hepB_edit_exp').val(data[7]);
+      $('#edit_hepB_lot').val(data[5]);
+      $('#edit_hepB_ndc').val(data[6]);
+      $('#edit_hepB_exp').val(data[7]);
       $('#hepB_edit_site').val(data[8]);
       $('#hepB_edit_route').val(data[9]);
       $('#hepB_edit_vis_given').val(data[10]);
       $('#hepB_edit_vis').val(data[11]);
-      $('#hepB_edit_funding_source').val(data[12]);
+      $('#edit_hepB_funding').val(data[12]);
+      $('#edit_hepB_eligibility').val(data[12]);
       $('#hepBadministered_by').val(data[13]);
       $('#hepB_edit_comment').val(data[14]);
     });

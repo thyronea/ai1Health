@@ -27,7 +27,7 @@
               </div>
             </div>
             <label><small>Vaccine</small></label>
-              <select id="rsv_ID" name="id" class="form-select form-select-sm mb-2" onchange="rsv_info()" required>
+              <select id="rsv_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_rsv()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
@@ -57,15 +57,15 @@
              </select>
              <div class="row mb-2">
                 <div class="col">
-                  <input type="hidden" id="rsv_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="hidden" id="add_rsv_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
              </div>
              <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="rsv_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_rsv_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="rsv_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_rsv_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
              <?php
@@ -77,7 +77,7 @@
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="rsv_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_rsv_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
               </div>
 
@@ -132,11 +132,11 @@
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small>Funding Source:</small></label>
+                  <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="rsv_funding" name="rsv_funding" class="form-control form-control-sm" onChange="rsv()" hidden required>
-                  <select id="rsv_eligibility" name="rsv_eligibility" class="form-select form-select-sm" onChange="rsv()" required>
+                  <input id="add_rsv_funding" name="add_rsv_funding" class="form-control form-control-sm" onChange="add_rsv()" hidden required>
+                  <select id="add_rsv_eligibility" name="add_rsv_eligibility" class="form-select form-select-sm" onChange="add_rsv()" required>
                   <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>

@@ -28,8 +28,9 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
+            
             <label><small>Vaccine</small></label>
-            <select id="hepB_ID" name="id" class="form-select form-select-sm mb-2" onchange="hepB_info()" required>
+            <select id="hepB_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_hepB()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
@@ -70,15 +71,15 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="hidden" id="hepB_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="hidden" id="add_hepB_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="hepB_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_hepB_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="hepB_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_hepB_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
             <?php
@@ -90,7 +91,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="hepB_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_hepB_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 
@@ -148,8 +149,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="hepB_funding" name="hepB_funding" class="form-control form-control-sm" onChange="hepB()" hidden required>
-                  <select id="hepB_eligibility" name="hepB_eligibility" class="form-select form-select-sm" onChange="hepB()" required>
+                  <input id="add_hepB_funding" name="add_hepB_funding" class="form-control form-control-sm" onChange="add_validate_hepB()" hidden required>
+                  <select id="add_hepB_eligibility" name="add_hepB_eligibility" class="form-select form-select-sm" onChange="add_validate_hepB()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>

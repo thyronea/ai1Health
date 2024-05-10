@@ -10,6 +10,7 @@ include('process/sql.php');
 <?php if (isset($_SESSION["userID"])): ?>
 
 <?php $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]); ?>
+<?php $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]); ?>
 
 <!-- Navtab -->
 <?php include('components/navtab.php'); ?>

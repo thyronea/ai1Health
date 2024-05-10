@@ -42,14 +42,21 @@ $date = mysqli_real_escape_string($con, $_POST['date']);
 $time = mysqli_real_escape_string($con, $_POST['time']);
 $value = mysqli_real_escape_string($con, "1");
 
+// Encrypt Admin Log Data
+$fullname = "$fname $lname";
+$action = htmlspecialchars("Administered");
+$message = "$action $vaccine ($lot) to $patient_fname $patient_lname";
+$encrypt_fullname = encryptthis($fullname, $key);
+$encrypt_message = encryptthis($message, $key);
+
 // Patient Log
 $received = htmlspecialchars("Received");
 $patient_log = mysqli_real_escape_string($con, "$received $type");
 
 if(isset($_POST['administer_rsv']))
 { 
-  $funding_source = mysqli_real_escape_string($con, $_POST['rsv_funding']);
-  $eligibility = mysqli_real_escape_string($con, $_POST['rsv_eligibility']);
+  $funding_source = mysqli_real_escape_string($con, $_POST['add_rsv_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['add_rsv_eligibility']);
   if($funding_source && $eligibility == "Public"){
     $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
     header("Location: ../../../patient-chart/index.php?patientID=$patientID");
@@ -64,14 +71,7 @@ if(isset($_POST['administer_rsv']))
         exit(0);
     }
     else{
-      // store activity data in activity table
-      $fullname = "$fname $lname";
-      $action = htmlspecialchars("Administered");
-      $message = "$action $vaccine ($lot) to $patient_fname $patient_lname";
-
-      // encrypt data and insert to admin_log table
-      $encrypt_fullname = encryptthis($fullname, $key);
-      $encrypt_message = encryptthis($message, $key);
+      // Insert Admin Log Data
       $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
       $stmt = $con->prepare($activities);
       $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action, $encrypt_message);
@@ -118,11 +118,11 @@ if(isset($_POST['administer_rsv']))
       $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
       $deduct_run = mysqli_query($con, $deduct);
 
+      // verify if vaccine (per lot and ndc) count is zero. Delete then archive
       $verify_inventory = "SELECT * FROM inventory WHERE id='$vaccineID' AND groupID='$groupID' ";
       $verify_run = mysqli_query($con, $verify_inventory);
       $row = mysqli_fetch_array($verify_run);
       $zero = $row['doses'];
-
       if($zero == 0){
         // delete inventory
         $delete = "DELETE FROM inventory WHERE id='$vaccineID' AND groupID='$groupID' ";
@@ -141,6 +141,7 @@ if(isset($_POST['administer_rsv']))
         $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action_, $encrypt_message_);
         $stmt->execute();
 
+        // deleted vaccine from inventory will be archived
         $archive = "INSERT INTO archive (uniqueID,groupID,vaccine,lot,exp,manufacturer,ndc,funding_source) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($archive);
@@ -165,9 +166,10 @@ if(isset($_POST['administer_rsv']))
 }
 
 if(isset($_POST['administer_hepB']))
+
 { 
-  $funding_source = mysqli_real_escape_string($con, $_POST['hepB_funding']);
-  $eligibility = mysqli_real_escape_string($con, $_POST['hepB_eligibility']);
+  $funding_source = mysqli_real_escape_string($con, $_POST['add_hepB_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['add_hepB_eligibility']);
   if($funding_source && $eligibility == "Public"){
     $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
     header("Location: ../../../patient-chart/index.php?patientID=$patientID");
@@ -182,14 +184,7 @@ if(isset($_POST['administer_hepB']))
         exit(0);
     }
     else{
-      // store activity data in activity table
-      $fullname = "$fname $lname";
-      $action = htmlspecialchars("Administered");
-      $message = "$action $vaccine ($lot) to $patient_fname $patient_lname";
-
-      // encrypt data and insert to admin_log table
-      $encrypt_fullname = encryptthis($fullname, $key);
-      $encrypt_message = encryptthis($message, $key);
+      // Insert Admin Log Data
       $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
       $stmt = $con->prepare($activities);
       $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action, $encrypt_message);
