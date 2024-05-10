@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Update lot. ndc, funding and eligibility when selecting vaccine during administered vaccine edit
+- Administer combo vaccine (insert per single antigen)
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design
 - Add temperature exposore in inventory edit modal
@@ -49,4 +49,4 @@ Currently Logging:
 - Email
 - File
 
-5/3/2024
+5/10/2024
