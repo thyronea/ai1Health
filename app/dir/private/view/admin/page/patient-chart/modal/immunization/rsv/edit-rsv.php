@@ -49,7 +49,7 @@
 
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="edit_rsv_name" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="text" id="edit_rsv_name" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 

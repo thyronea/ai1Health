@@ -135,8 +135,8 @@
                   <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_rsv_funding" name="add_rsv_funding" class="form-control form-control-sm" onChange="add_rsv()" hidden required>
-                  <select id="add_rsv_eligibility" name="add_rsv_eligibility" class="form-select form-select-sm" onChange="add_rsv()" required>
+                  <input id="add_rsv_funding" name="add_rsv_funding" class="form-control form-control-sm" onChange="add_validate_rsv()" hidden required>
+                  <select id="add_rsv_eligibility" name="add_rsv_eligibility" class="form-select form-select-sm" onChange="add_validate_rsv()" required>
                   <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>

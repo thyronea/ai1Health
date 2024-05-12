@@ -53,7 +53,7 @@ if(isset($_POST['update_rsv']))
     $vax_info = "SELECT * FROM immunization WHERE id='$shotID' AND patientID='$patientID' ";
     $vax_info_run = mysqli_query($con, $vax_info);
     $vax = mysqli_fetch_array($vax_info_run);
-    if($lot && $ndc && $exp !== decryptthis_iz($vax['lot'],$iz_key) && decryptthis_iz($vax['ndc'],$iz_key) && $vax['lot']){
+    if($lot && $ndc && $exp != decryptthis_iz($vax['lot'],$iz_key) && decryptthis_iz($vax['ndc'],$iz_key) && $vax['lot']){
       // deduct 1 dose
       $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
       $deduct_run = mysqli_query($con, $deduct);
@@ -125,7 +125,7 @@ if(isset($_POST['update_hepB']))
       $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
       $deduct_run = mysqli_query($con, $deduct);
     }
-    
+
     // Encrypt Activities Data and insert
     $fullname = "$fname $lname";
     $type = "Updated";

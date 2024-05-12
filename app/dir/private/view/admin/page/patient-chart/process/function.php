@@ -21,7 +21,7 @@ function add_rsv(){
     })
 }
 // Validate eligbility and funding when adding RSV
-function add_rsv() {
+function add_validate_rsv() {
     const funding = document.querySelector('input[name=add_rsv_funding]');
     const eligibility = document.querySelector('select[name=add_rsv_eligibility]');
      

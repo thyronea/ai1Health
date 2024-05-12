@@ -1,6 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
+- 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Administer combo vaccine (insert per single antigen)
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design
