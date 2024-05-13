@@ -1,6 +1,6 @@
 <!-- Admin Sidebar -->
 <div class="col-auto px-0">
-  <div id="sidebar" class="collapse collapse-horizontal border-none"> <!-- ADD "show" TO DISPLAY AT REFRESH-->
+  <div id="sidebar" class="collapse collapse-horizontal border-none show"> <!-- ADD "show" TO DISPLAY AT REFRESH-->
     <div id="sidebar-nav" class="list-group border-0 rounded-0">
 
       <!-- Button Trigger message Modal -->
