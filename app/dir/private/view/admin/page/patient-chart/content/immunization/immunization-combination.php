@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="combination" role="tabpanel" tabindex="0">
     <div class="d-flex align-items-start row">
         <div class="col-md-2">
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-2 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Pediarix</button>
+            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-2 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>Administer Pediarix</button>
             <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Pentacel</button>
             <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Vaxelis</button>
             <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Quadracel</button>
@@ -15,6 +15,4 @@
         </div>
     </div> 
 </div>
-<?php include('modal/immunization/rsv/add-rsv.php'); ?>
-<?php include('modal/immunization/rsv/edit-rsv.php'); ?>
-<?php include('modal/immunization/rsv/delete-rsv.php'); ?>
+<?php include('modal/immunization/pediarix/add-pediarix.php'); ?>
