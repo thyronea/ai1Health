@@ -66,12 +66,36 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     {
                       echo "<option value='". htmlspecialchars($hepB_RSDS['id']) ."'>" .htmlspecialchars($hepB_RSDS['name']) .' ' .'('.htmlspecialchars($hepB_RSDS['funding_source']).')' ."</option>" ;
                     }
+
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP/Hep-B/IPV - Pediarix Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $hepB_pediarix = mysqli_num_rows($sql_run);
+                    while ($hepB_pediarix = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($hepB_pediarix['id']) ."'>" .htmlspecialchars($hepB_pediarix['name']) .' ' .'('.htmlspecialchars($hepB_pediarix['funding_source']).')' ."</option>" ;
+                    }
+
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP/IPV/Hib/Hep-B - Vaxelis Single Dose Vials' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $vaxelis_SDV = mysqli_num_rows($sql_run);
+                    while ($vaxelis_SDV = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($vaxelis_SDV['id']) ."'>" .htmlspecialchars($vaxelis_SDV['name']) .' ' .'('.htmlspecialchars($vaxelis_SDV['funding_source']).')' ."</option>" ;
+                    }
+
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP/IPV/Hib/Hep-B - Vaxelis Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $vaxelis_SDS = mysqli_num_rows($sql_run);
+                    while ($vaxelis_SDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($vaxelis_SDS['id']) ."'>" .htmlspecialchars($vaxelis_SDS['name']) .' ' .'('.htmlspecialchars($vaxelis_SDS['funding_source']).')' ."</option>" ;
+                    }
                   ?>
               </option>
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="hidden" id="add_hepB_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="" id="add_hepB_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
                 </div>
             </div>
             <div class="row mb-2">

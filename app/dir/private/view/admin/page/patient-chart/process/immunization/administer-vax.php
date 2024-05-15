@@ -166,7 +166,6 @@ if(isset($_POST['administer_rsv']))
 }
 
 if(isset($_POST['administer_hepB']))
-
 { 
   $funding_source = mysqli_real_escape_string($con, $_POST['add_hepB_funding']);
   $eligibility = mysqli_real_escape_string($con, $_POST['add_hepB_eligibility']);
@@ -219,6 +218,79 @@ if(isset($_POST['administer_hepB']))
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
+
+      // Insert DTaP and IPV if Pediarix is administered
+      if($vaccine = 'DTaP/Hep-B/IPV - Pediarix Single Dose Syringes'){
+        $type_dtap = 'DTaP';
+        $administer_DTaP = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_DTaP);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_dtap, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+
+        $type_ipv = 'IPV';
+        $administer_ipv = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_ipv);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_ipv, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+      }
+
+      // Insert DTaP, IPV and Hib if Vaxelis is administered
+      if($vaccine = 'DTaP/IPV/Hib/Hep-B - Vaxelis Single Dose Vials'){
+        $type_dtap = 'DTaP';
+        $administer_dtap = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_dtap);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_dtap, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+
+        $type_ipv = 'IPV';
+        $administer_ipv = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_ipv);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_ipv, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+
+        $type_hib = 'Hib';
+        $administer_hib = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_hib);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_hib, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+      }
+
+      // Insert DTaP, IPV and Hib if Vaxelis is administered
+      if($vaccine = 'DTaP/IPV/Hib/Hep-B - Vaxelis Single Dose Syringes'){
+        $type_dtap = 'DTaP';
+        $administer_dtap = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_dtap);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_dtap, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+
+        $type_ipv = 'IPV';
+        $administer_ipv = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_ipv);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_ipv, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+
+        $type_hib = 'Hib';
+        $administer_hib = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+        VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($administer_hib);
+        $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type_hib, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->execute();
+      }
 
       $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
       VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
