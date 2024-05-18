@@ -33,7 +33,7 @@
 
              <?php
                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                 $query = "SELECT * FROM inventory WHERE groupID='$groupID' ";
+                 $query = "SELECT * FROM inventory WHERE groupID='$groupID' ORDER BY name";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
                  if($searchnum > 0)

@@ -31,6 +31,10 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rsv" type="button">RSV</button>
                     <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepb" type="button">Hepatitis B</button>
                     <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rota" type="button">Rotavirus</button>
+                    <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#dtap" type="button">DTaP</button>
+                    <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hib" type="button">Hib</button>
+                    <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#pcv" type="button">PCV</button>
+                    <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#ipv" type="button">IPV</button>
                 </div>
                 <div class="col tab-content me-3">
                     <?php include('immunization-history.php');?>
@@ -38,6 +42,10 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                     <?php include('immunization-rsv.php');?>
                     <?php include('immunization-hepb.php');?>
                     <?php include('immunization-rota.php');?>
+                    <?php include('immunization-dtap.php');?>
+                    <?php include('immunization-hib.php');?>
+                    <?php include('immunization-pcv.php');?>
+                    <?php include('immunization-ipv.php');?>
                 </div>
             </div>
         </div>

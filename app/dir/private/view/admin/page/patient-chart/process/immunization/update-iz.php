@@ -25,6 +25,7 @@ $patient_lname = htmlspecialchars($_POST['patient_lname']);
 
 // Vaccine's information
 $shotID = htmlspecialchars($_POST['shotID']);
+$uniqueID = htmlspecialchars($_POST['uniqueID']);
 $vaccineID = htmlspecialchars($_POST['vaccineID']);
 $vaccine = htmlspecialchars($_POST['vaccine']);
 $lot = htmlspecialchars($_POST['lot']);
