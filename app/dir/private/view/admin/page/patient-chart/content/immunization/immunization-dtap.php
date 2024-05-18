@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>DTaP - 3 Dose Series</p>
+                <p>DTaP - 4 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$dtap_count;?>%"><?=$dtap_count;?>%</div>
                 </div>
@@ -70,4 +70,4 @@
 
 <?php include('modal/immunization/dtap/add-dtap.php'); ?>
 <?php include('modal/immunization/dtap/edit-dtap.php'); ?>
-<?php include('modal/immunization/hepB/delete-hepb.php'); ?>
+<?php include('modal/immunization/dtap/delete-dtap.php'); ?>

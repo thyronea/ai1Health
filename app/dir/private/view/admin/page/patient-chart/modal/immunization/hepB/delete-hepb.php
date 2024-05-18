@@ -19,7 +19,7 @@
             <p>Do you still want to proceed?</p>
 
             <a type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#edit_administered_hepb">No</a>  
-            <button type="submit" name="delete_hepB" class="focus-ring btn btn-sm border mt-3" id="submit_btn">Yes</button>
+            <button type="submit" name="delete_administered_vax" class="focus-ring btn btn-sm border mt-3" id="submit_btn">Yes</button>
           </form>
         </div>
       </div>

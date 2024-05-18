@@ -15,6 +15,7 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis_iz($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis_iz($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="shotID" id="rsv_edit_ID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="rsv_edit_uniqueID" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">

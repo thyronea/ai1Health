@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <p>DTaP - 3 Dose Series</p>
+                <p>DTaP - 4 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$dtap_count;?>%"><?=$dtap_count;?>%</div>
                 </div>
