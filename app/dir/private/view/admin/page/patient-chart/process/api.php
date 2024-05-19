@@ -100,8 +100,6 @@ if(isset($_GET['patientID']))
   }
 }
 
-
-
 if(isset($_GET['patientID'])){
 
   // Syringe icon
@@ -113,7 +111,7 @@ if(isset($_GET['patientID'])){
   $rsv_value = mysqli_fetch_assoc($rsv_run);
   $rsv_count = round($rsv_value['count(*)'] / 1 * 100);
 
-  // Recommended dates to administer 2nd & 3rd dose of Hep B
+  // RSV Complete
   $rsv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='RSV' ORDER BY id DESC";
   $rsv_req_run = mysqli_query($con, $rsv_req);
   if(mysqli_num_rows($rsv_req_run) == 0){
@@ -409,6 +407,193 @@ if(isset($_GET['patientID'])){
       </div>
       ";
   }
+
+   // Count Administered Rotavirus
+   $rota = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Rotavirus' ";
+   $rota_run = mysqli_query($con, $rota);
+   $rota_value = mysqli_fetch_assoc($rota_run);
+   $rota_count = round($rota_value['count(*)'] / 2 * 100);
+ 
+   // Recommended dates to administer 2nd & 3rd dose of Hep B
+   $rota_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Rotavirus' ORDER BY id DESC";
+   $rota_req_run = mysqli_query($con, $rota_req);
+   if(mysqli_num_rows($rota_req_run) == 0){
+       $rota_message = "
+       <small>No Data Found</small><br>
+       <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+       ";
+   }
+   if(mysqli_num_rows($rota_req_run) > 0){
+       $row = mysqli_fetch_assoc($rota_req_run);
+       $date = $row['date'];
+       $month2 = strtotime("+2 months", strtotime($date));
+       $month2 = date('m/d/Y',$month2);
+ 
+       $rota_message = "
+           <div align='center'>
+             <small>
+               <div class='mb-3'>
+                 2nd dose is due on <b>$month2</b> along with the following vaccines and other immunization agents:
+                 <div class='col-md-3 card mt-2' align='left' style='background-color: #e8e8e8'>
+                    <div class='card-body'>
+                       $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
+                       <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                       <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                       <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                       <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                    </div>
+                 </div>
+               </div>
+               Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a>
+               <div class='row col-md-10 mt-2'>
+                 <div class='col me-2'>
+                   <div class='row'>
+                     <div class='card mb-2' style='background-color: #cae3d1'>
+                       <div class='card-body'>
+                         PEDIARIX
+                         <br>(DTaP, IPV, Hep B)
+                       </div>
+                     </div>
+                   </div>
+                   +
+                   <div class='row'>
+                     <div class='card mt-2 mb-2' style='background-color: #e6f2e9;'>
+                       <div class='py-2'>
+                         PCV
+                         <br> Rotavirus
+                         <br> Hib
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class='col me-2'>
+                   <div class='row'>
+                     <div class='card mb-2' style='background-color: #fadefa'>
+                       <div class='card-body'>
+                         PENTACEL
+                         <br>(DTaP, IPV, Hib)
+                       </div>
+                     </div>
+                   </div>
+                   +
+                   <div class='row'>
+                     <div class='card mt-2 mb-2' style='background-color: #fcf2fc;'>
+                       <div class='py-2'>
+                         PCV
+                         <br> Rotavirus
+                         <br> Hep B
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class='col me-2'>
+                   <div class='row'>
+                     <div class='card mb-2' style='background-color: #ccd4fc'>
+                       <div class='card-body'>
+                         VAXELIS
+                         <br>(DTaP, IPV, Hib, Hep B)
+                       </div>
+                     </div>
+                   </div>
+                   +
+                   <div class='row'>
+                     <div class='card mt-2' style='background-color: #ebeeff; height:81px'>
+                       <div class='py-2'>
+                         PCV
+                         <br> Rotavirus
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+             </small>
+           </div>
+       ";
+   }
+   if(mysqli_num_rows($rota_req_run) == 2){
+       $rota_message = "
+       <div class='mb-3'>
+         <div align='center'>
+           <small>
+             <div class='mb-3'>
+                 Rotavirus series is complete! The following vaccines and other immunization agents should be administered today:
+                 <div class='col-md-5 card mt-2' align='left' style='background-color: #e8e8e8'>
+                    <div class='card-body'>
+                       $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                       <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                       <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                       <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                    </div>
+                 </div>
+             </div>
+             Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a>
+             <div class='row col-md-10 mt-2'>
+               <div class='col me-2'>
+                 <div class='row'>
+                   <div class='card mb-2' style='background-color: #cae3d1'>
+                     <div class='card-body'>
+                       PEDIARIX
+                       <br>(DTaP, IPV, Hep B)
+                     </div>
+                   </div>
+                 </div>
+                 +
+                 <div class='row'>
+                   <div class='card mt-2 mb-2' style='background-color: #e6f2e9;'>
+                     <div class='py-2'>
+                       PCV
+                       <br> Rotavirus
+                       <br> Hib
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class='col me-2'>
+                 <div class='row'>
+                   <div class='card mb-2' style='background-color: #fadefa'>
+                     <div class='card-body'>
+                       PENTACEL
+                       <br>(DTaP, IPV, Hib)
+                     </div>
+                   </div>
+                 </div>
+                 +
+                 <div class='row'>
+                   <div class='card mt-2 mb-2' style='background-color: #fcf2fc;'>
+                     <div class='py-2'>
+                       PCV
+                       <br> Rotavirus
+                       <br> Hep B
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class='col me-2'>
+                 <div class='row'>
+                   <div class='card mb-2' style='background-color: #ccd4fc'>
+                     <div class='card-body'>
+                       VAXELIS
+                       <br>(DTaP, IPV, Hib, Hep B)
+                     </div>
+                   </div>
+                 </div>
+                 +
+                 <div class='row'>
+                   <div class='card mt-2' style='background-color: #ebeeff; height:81px'>
+                     <div class='py-2'>
+                       PCV
+                       <br> Rotavirus
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </small>
+         </div>
+       </div>
+       ";
+   }
 
   // Count Administered DTaP
   $dtap = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='DTaP' ";
