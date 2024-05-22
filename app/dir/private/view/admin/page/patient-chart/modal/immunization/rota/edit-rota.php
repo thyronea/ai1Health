@@ -1,4 +1,4 @@
-<?php $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12'); ?>
+<?php $rota_vis = date('2023') . '-' . date('10') . '-' . date('15');  ?>
 
 <div class="modal fade" id="edit_administered_rota" tabindex="-1" aria-labelledby="edit_administered_rotaLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -58,7 +58,7 @@
 
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="edit_rota_name" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="text" id="edit_rota_name" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
             

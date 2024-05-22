@@ -226,7 +226,7 @@ function add_validate_rota() {
 }
 // Fetch Rotavirus information based on option selected to EDIT
 function edit_rota(){
-    var id = document.getElementById("edit_dtap_vaccines").value;
+    var id = document.getElementById("edit_rota_vaccines").value;
     $.ajax({
         url:"process/immunization/vaccine-info.php",
         method:"POST",
@@ -235,19 +235,19 @@ function edit_rota(){
         },
         dataType:"JSON",
         success: function(data){
-            document.getElementById("edit_dtap_name").value = data.vaccines;
-            document.getElementById("edit_dtap_lot").value = data.lot;
-            document.getElementById("edit_dtap_ndc").value = data.ndc;
-            document.getElementById("edit_dtap_exp").value = data.exp;
-            document.getElementById("edit_dtap_funding").value = data.funding_source;
-            document.getElementById("edit_dtap_eligibility").value = data.funding_source;
+            document.getElementById("edit_rota_name").value = data.vaccines;
+            document.getElementById("edit_rota_lot").value = data.lot;
+            document.getElementById("edit_rota_ndc").value = data.ndc;
+            document.getElementById("edit_rota_exp").value = data.exp;
+            document.getElementById("edit_rota_funding").value = data.funding_source;
+            document.getElementById("edit_rota_eligibility").value = data.funding_source;
         }
     })
 }
 // Validate eligbility and funding when editing Rotavirus
 function edit_validate_rota() {
-    const funding = document.querySelector('input[name=edit_dtap_funding]');
-    const eligibility = document.querySelector('select[name=edit_dtap_eligibility]');
+    const funding = document.querySelector('input[name=edit_rota_funding]');
+    const eligibility = document.querySelector('select[name=edit_rota_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
