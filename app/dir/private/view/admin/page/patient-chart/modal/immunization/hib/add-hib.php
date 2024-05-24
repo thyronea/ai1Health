@@ -1,5 +1,5 @@
 <?php 
-$hepB_vis = date('2023') . '-' . date('05') . '-' . date('12'); 
+$hib_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
 ?>
 
 <div class="modal fade" id="administer_hib" tabindex="-1" aria-labelledby="administer_hibbLabel" aria-hidden="true">
@@ -17,8 +17,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="dtap_uniqueID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="DTaP" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="hib_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Hib" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -30,60 +30,56 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             </div>
             
             <label><small>Vaccine</small></label>
-            <select id="dtap_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_dtap()" required>
+            <select id="hib_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_hib()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP - Daptacel Single Dose Vials' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hib - PedvaxHib Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $daptacel_SDV = mysqli_num_rows($sql_run);
-                    while ($daptacel_SDV = mysqli_fetch_array($sql_run))
+                    $pedvax_SDV = mysqli_num_rows($sql_run);
+                    while ($pedvax_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($daptacel_SDV['id']) ."'>" .htmlspecialchars($daptacel_SDV['name']) .' ' .'('.htmlspecialchars($daptacel_SDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($pedvax_SDV['id']) ."'>" .htmlspecialchars($pedvax_SDV['name']) .' ' .'('.htmlspecialchars($pedvax_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP - Infanrix Single Dose Vials' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hib - ActHIB Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $infanrix_SDV = mysqli_num_rows($sql_run);
-                    while ($infanrix_SDV = mysqli_fetch_array($sql_run))
+                    $acthib_SDV = mysqli_num_rows($sql_run);
+                    while ($acthib_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($infanrix_SDV['id']) ."'>" .htmlspecialchars($infanrix_SDV['name']) .' ' .'('.htmlspecialchars($infanrix_SDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($acthib_SDV['id']) ."'>" .htmlspecialchars($acthib_SDV['name']) .' ' .'('.htmlspecialchars($acthib_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP - Infanrix Single Dose Syringes' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hib - Hiberix Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $infanrix_SDS = mysqli_num_rows($sql_run);
-                    while ($infanrix_SDV = mysqli_fetch_array($sql_run))
+                    $hiberix_SDV = mysqli_num_rows($sql_run);
+                    while ($hiberix_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($infanrix_SDS['id']) ."'>" .htmlspecialchars($infanrix_SDS['name']) .' ' .'('.htmlspecialchars($infanrix_SDS['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($hiberix_SDV['id']) ."'>" .htmlspecialchars($hiberix_SDV['name']) .' ' .'('.htmlspecialchars($hiberix_SDV['funding_source']).')' ."</option>" ;
                     }
                   ?>
               </option>
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_dtap_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="" id="add_hib_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="add_dtap_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_hib_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="add_dtap_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_hib_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
-            <?php
-              
-            ?>
-            
             <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="add_dtap_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_hib_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 
@@ -132,7 +128,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $dtap_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $hib_vis; ?>" required>
                 </div>
               </div>
 
@@ -141,8 +137,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_dtap_funding" name="add_dtap_funding" class="form-control form-control-sm" onChange="add_validate_dtap()" hidden required>
-                  <select id="add_dtap_eligibility" name="add_dtap_eligibility" class="form-select form-select-sm" onChange="add_validate_dtap()" required>
+                  <input id="add_hib_funding" name="add_hib_funding" class="form-control form-control-sm" onChange="add_validate_hib()" hidden required>
+                  <select id="add_hib_eligibility" name="add_hib_eligibility" class="form-select form-select-sm" onChange="add_validate_hib()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -186,7 +182,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 </div>
               </div>
 
-            <button type="submit" name="administer_dtap" class="focus-ring btn btn-sm border mt-3">Submit</button>
+            <button type="submit" name="administer_hib" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
@@ -206,6 +202,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   }
   return n;
   }
-  document.getElementById("dtap_uniqueID").value = randomNumber(8);
+  document.getElementById("hib_uniqueID").value = randomNumber(8);
 </script>
 

@@ -38,7 +38,7 @@
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?></small></a></td>
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['comment'], $iz_key));?></small></a></td>
                                     <td >
-                                        <a class="text-decoration-none focus-ring edit_hepB_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_hepb">
+                                        <a class="text-decoration-none focus-ring edit_hib_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_hib">
                                             <div class="card shadow" id="admin_card">
                                                 <div class="card-body">
                                                     <small><?=htmlspecialchars($admin_hib);?></small>

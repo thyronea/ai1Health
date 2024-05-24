@@ -336,5 +336,80 @@ function edit_validate_dtap() {
         eligibility.setCustomValidity('Funding Source and Eligibility does not match');
     }
 }
+
+// Fetch Hib information based on option selected to ADD
+function add_hib(){
+    var id = document.getElementById("hib_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_hib_vaccines").value = data.vaccines;
+            document.getElementById("add_hib_lot").value = data.lot;
+            document.getElementById("add_hib_ndc").value = data.ndc;
+            document.getElementById("add_hib_exp").value = data.exp;
+            document.getElementById("add_hib_funding").value = data.funding_source;
+            document.getElementById("add_hib_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding Hib
+function add_validate_hib() {
+    const funding = document.querySelector('input[name=add_hib_funding]');
+    const eligibility = document.querySelector('select[name=add_hib_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch Hib information based on option selected to EDIT
+function edit_hib(){
+    var id = document.getElementById("edit_hib_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_hib_name").value = data.vaccines;
+            document.getElementById("edit_hib_lot").value = data.lot;
+            document.getElementById("edit_hib_ndc").value = data.ndc;
+            document.getElementById("edit_hib_exp").value = data.exp;
+            document.getElementById("edit_hib_funding").value = data.funding_source;
+            document.getElementById("edit_hib_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing Hib
+function edit_validate_hib() {
+    const funding = document.querySelector('input[name=edit_hib_funding]');
+    const eligibility = document.querySelector('select[name=edit_hib_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
   
 </script>

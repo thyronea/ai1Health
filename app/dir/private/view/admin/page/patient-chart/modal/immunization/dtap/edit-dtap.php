@@ -70,10 +70,7 @@
                   <input type="text" id="edit_dtap_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
-             <?php
-              
-             ?>
-            
+          
              <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
