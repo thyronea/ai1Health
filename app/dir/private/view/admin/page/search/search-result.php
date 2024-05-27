@@ -53,7 +53,7 @@
               $engineID = mysqli_real_escape_string($con, $_SESSION['engineID']);
               $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
               $filtervalues = htmlspecialchars($_GET['search']);
-              $query = "SELECT * FROM engine WHERE groupID='$groupID' AND CONCAT(keyword1,keyword2,keyword3) LIKE '%$filtervalues%' ";
+              $query = "SELECT * FROM engine WHERE groupID='$groupID' AND CONCAT(keyword1,keyword2,keyword3) LIKE '%$filtervalues%' ORDER BY keyword1";
               $query_run = mysqli_query($con, $query);
               $searchnum = mysqli_num_rows($query_run);
               if($searchnum == 0)
