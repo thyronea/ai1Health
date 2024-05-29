@@ -6,7 +6,7 @@
                     <?php
                         $patientID = htmlspecialchars($patient['patientID']);
                         $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                        $vaccine = htmlspecialchars("Hepatitis B");
+                        $vaccine = htmlspecialchars("IPV");
                         $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$vaccine' ORDER BY id DESC";
                         $query_run = mysqli_query($con, $query);
                         $searchnum = mysqli_num_rows($query_run);
@@ -18,7 +18,7 @@
                                 $admin_date = htmlspecialchars($vaccine['date']);
                                 $date = date('Y') . '-' . date('m') . '-' . date('d'); 
                                 $year = (date('Y') - date('Y', strtotime($admin_date)));  
-                                $admin_hepB = (date('m', strtotime($admin_date)) . '/' . date('d', strtotime($admin_date)) . '/' . date('Y', strtotime($admin_date))); 
+                                $admin_ipv = (date('m', strtotime($admin_date)) . '/' . date('d', strtotime($admin_date)) . '/' . date('Y', strtotime($admin_date))); 
 
                                 ?>
                                 <tr align="center">
@@ -38,10 +38,10 @@
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?></small></a></td>
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['comment'], $iz_key));?></small></a></td>
                                     <td >
-                                        <a class="text-decoration-none focus-ring edit_hepB_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_hepb">
+                                        <a class="text-decoration-none focus-ring edit_ipv_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_ipv">
                                             <div class="card shadow" id="admin_card">
                                                 <div class="card-body">
-                                                    <small><?=htmlspecialchars($admin_hepB);?></small>
+                                                    <small><?=htmlspecialchars($admin_ipv);?></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -61,13 +61,13 @@
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$ipv_count;?>%"><?=$ipv_count;?>%</div>
                 </div>
                 <div class="mt-3">
-                    <?=$hepB_message?> 
+                    <?=$ipv_message?> 
                 </div>
             </div>
         </div>
     </div> 
 </div>
 
-<?php include('modal/immunization/hepB/add-hepb.php'); ?>
-<?php include('modal/immunization/hepB/edit-hepb.php'); ?>
-<?php include('modal/immunization/hepB/delete-hepb.php'); ?>
+<?php include('modal/immunization/ipv/add-ipv.php'); ?>
+<?php include('modal/immunization/ipv/edit-ipv.php'); ?>
+<?php include('modal/immunization/ipv/delete-ipv.php'); ?>
