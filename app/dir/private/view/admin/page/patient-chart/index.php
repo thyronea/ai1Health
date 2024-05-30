@@ -16,6 +16,7 @@ include('process/api.php');
 
 <!-- Navtab -->
 <?php include('components/navtab.php'); ?>
+
 <!-- Navtab Result -->
 <div class="tab-content">
   <?php include('content/snapshot/main.php'); ?>

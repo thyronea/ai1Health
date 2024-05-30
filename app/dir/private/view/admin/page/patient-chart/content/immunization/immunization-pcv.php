@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>PCV15, PCV20 - 4 Dose Series</p>
+                <p>PCV <small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ppv.pdf" target="_blank" class="text-decoration-none text-secondary">(Pneumococcal Polysaccharide)</a></small> - 4 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$pcv_count;?>%"><?=$pcv_count;?>%</div>
                 </div>

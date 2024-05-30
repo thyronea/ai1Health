@@ -144,6 +144,7 @@ if(isset($_GET['patientID'])){
       <small>No Data Found</small><br>
       <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
       ";
+      $hepB_recommendation = " <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a>";
   }
   if(mysqli_num_rows($hepB_req_run) > 0){
       $row = mysqli_fetch_assoc($hepB_req_run);
@@ -229,6 +230,22 @@ if(isset($_GET['patientID'])){
                 </div>
               </div>
               <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
+            </small>
+          </div>
+      ";
+      $hepB_recommendation = "
+          <div align='center'>
+            <small>
+              <div class='mb-3' align='left'>
+              <b>Due on $month2:</b><br>
+                2nd dose of Hep B <br>
+                1st dose of Rotavirus <br>
+                1st dose of DTaP <br>
+                1st dose of Hib <br>
+                1st dose of PCV <br>
+                1st dose of IPV
+              </div>
+             
             </small>
           </div>
       ";
@@ -321,6 +338,23 @@ if(isset($_GET['patientID'])){
             </small>
           </div>
        ";
+
+       $hepB_recommendation = "
+          <div align='center'>
+            <small>
+              <div class='mb-3' align='left'>
+              <b>Due on $month6:</b><br>
+                3rd dose of Hep B <br>
+                2nd dose of Rotavirus <br>
+                2nd dose of DTaP <br>
+                2nd dose of Hib <br>
+                2nd dose of PCV <br>
+                2nd dose of IPV
+              </div>
+             
+            </small>
+          </div>
+      ";
   }
   if(mysqli_num_rows($hepB_req_run) == 3){
       $hepB_message = "
@@ -404,6 +438,8 @@ if(isset($_GET['patientID'])){
         </div>
       </div>
       ";
+      
+      $hepB_recommendation = null;
   }
 
   // Count Administered Rotavirus

@@ -1,51 +1,490 @@
 <div class="tab-pane fade" id="combination" role="tabpanel" tabindex="0">
-    <div class="d-flex align-items-start row">
-        <div class="col-md-2">
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-2 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>Administer Pediarix</button>
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Pentacel</button>
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Vaxelis</button>
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Quadracel</button>
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Kinrix</button>
-            <button type='button' class='focus-ring btn btn-sm border col-md-12 mt-3 mt-3 mb-5 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Proquad</button>
+        <div class="col-md-11 mt-2 mb-3">
+            <div align='center'>
+                <small>
+                    <!-- Schedule (months/years)-->
+                    <div class='row col-md-12 mt-2'>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>2 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>4 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>6 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>12 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>15 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>18 MONTHS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebb134; height:23px'>
+                                    <b>4-6 YEARS</b>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><hr>
+
+                    <!-- PEDIARIX -->
+                    <div class='row col-md-12 mt-2'>
+                        <!-- 2 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
+                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
+                                        <p>PEDIARIX</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hib'>
+                                    <p>Hib</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
+                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
+                                        <p>PEDIARIX</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hib'>
+                                    <p>Hib</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 6 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
+                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
+                                        <p>PEDIARIX</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hib'>
+                                    <p>Hib</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 12 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                    <p>MMR</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                    <p>Varicella</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hib'>
+                                    <p>Hib</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 15 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_dtap'>
+                                    <p>DTaP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 18 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px''>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4-6 years -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                    <p>QUADRACEL</p>
+                                </div>
+                            </div>
+                            or
+                            <div class='row'>
+                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                    <p>KINRIX</p>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                    <p>PROQUAD</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><hr>
+
+                    <!-- PENTACEL -->
+                    <div class='row col-md-12 mt-2'>
+                        <!-- 2 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>PENTACEL</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepb'>
+                                    <p>Hep B</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>PENTACEL</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepb'>
+                                    <p>Hep B</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 6 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>PENTACEL</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepb'>
+                                    <p>Hep B</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 12 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                    <p>MMR</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                    <p>Varicella</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 15 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>PENTACEL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 18 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4-6 years -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                    <p>QUADRACEL</p>
+                                </div>
+                            </div>
+                            or
+                            <div class='row'>
+                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                    <p>KINRIX</p>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                    <p>PROQUAD</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><hr>
+
+                    <!-- VAXELIS -->
+                    <div class='row col-md-12 mt-2'>
+                        <!-- 2 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>VAXELIS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>VAXELIS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 6 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
+                                    <div class='card-body'>
+                                        <p>VAXELIS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_rota'>
+                                    <p>Rotavirus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 12 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                    <p>MMR</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                    <p>Varicella</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_pcv'>
+                                    <p>PCV</p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hib'>
+                                    <p>Hib</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 15 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_dtap'>
+                                    <p>DTaP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 18 months -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                    <p>Hep A</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 4-6 years -->
+                        <div class='col me-2'>
+                            <div class='row'>
+                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                    <p>QUADRACEL</p>
+                                </div>
+                            </div>
+                            or
+                            <div class='row'>
+                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                    <p>KINRIX</p>
+                                </div>
+                            </div>
+                            +
+                            <div class='row'>
+                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                    <p>PROQUAD</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><hr>
+                </small>
+            </div>
         </div>
-        <div class="row col-md-10 mt-2 mb-3">
-            <div class="mb-3">
-                <p>Hepatitis B - 3 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepB_count;?>%"><?=$hepB_count;?>%</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p>Rotavirus - 2 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$rota_count;?>%"><?=$rota_count;?>%</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p>DTaP - 4 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$dtap_count;?>%"><?=$dtap_count;?>%</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p>Hib - 4 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hib_count;?>%"><?=$hib_count;?>%</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p>PCV - 4 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$pcv_count;?>%"><?=$pcv_count;?>%</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <p>IPV - 3 Dose Series</p>
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$ipv_count;?>%"><?=$ipv_count;?>%</div>
-                </div>
-            </div>
-        </div>
-    </div> 
 </div>
 <?php include('modal/immunization/pediarix/add-pediarix.php'); ?>

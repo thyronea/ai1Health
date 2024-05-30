@@ -155,6 +155,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                 <h6>Health Summary</h6>
               </div>
               <div class="card-body">
+                
               </div>
             </div>
           </div>
