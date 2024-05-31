@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>IPV - 3 Dose Series</p>
+                <p>IPV <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(Polio)</small></a> - 3 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$ipv_count;?>%"><?=$ipv_count;?>%</div>
                 </div>

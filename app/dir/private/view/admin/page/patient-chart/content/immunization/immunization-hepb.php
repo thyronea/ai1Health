@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>Hepatitis B - 3 Dose Series</p>
+                <p>Hep B <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(Hepatitis B)</small></a> - 3 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepB_count;?>%"><?=$hepB_count;?>%</div>
                 </div>

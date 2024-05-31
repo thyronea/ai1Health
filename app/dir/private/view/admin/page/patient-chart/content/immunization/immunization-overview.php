@@ -20,7 +20,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
 </style>
 
 <div class="tab-pane fade show active" id="nav-history" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-    <div class="container col-md-12 mt-4">
+    <div class="container col-md-12 mt-3">
         <div class="d-flex align-items-start"> 
             <div class="nav col-md-1 flex-column nav-pills me-3 mt-2" id="v-pills-tab" role="tablist">
                 <button class="active focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#history" type="button">History</button>

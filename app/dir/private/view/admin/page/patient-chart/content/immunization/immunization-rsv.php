@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>RSV (Respiratory Synctial Virus)</p>
+                <p>RSV <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rsv.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(Respiratory Synctial Virus)</small></a></p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$rsv_count;?>%"><?=$rsv_count;?>%</div>
                 </div>

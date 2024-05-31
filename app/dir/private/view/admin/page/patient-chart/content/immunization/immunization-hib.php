@@ -56,7 +56,7 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>Hib - 4 Dose Series</p>
+                <p>Hib <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(Haemophilus influenzae type b)</small></a> - 4 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hib_count;?>%"><?=$hib_count;?>%</div>
                 </div>

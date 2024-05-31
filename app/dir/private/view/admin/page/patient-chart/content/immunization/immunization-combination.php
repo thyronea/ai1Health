@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="combination" role="tabpanel" tabindex="0">
-        <div class="col-md-11 mt-2 mb-3">
+        <div class="col-md-11 mt-2">
             <div align='center'>
                 <small>
                     <!-- Schedule (months/years)-->
@@ -68,10 +68,8 @@
                         <!-- 2 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
-                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
-                                        <p>PEDIARIX</p>
-                                    </div>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pediarix' style='background-color: #cae3d1; height: 23px'>
+                                    <p>PEDIARIX</p>
                                 </div>
                             </div>
                             +
@@ -94,10 +92,8 @@
                         <!-- 4 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
-                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
-                                        <p>PEDIARIX</p>
-                                    </div>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pediarix' style='background-color: #cae3d1; height: 23px'>
+                                    <p>PEDIARIX</p>
                                 </div>
                             </div>
                             +
@@ -120,10 +116,8 @@
                         <!-- 6 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #cae3d1; height: 56px'>
-                                    <div type='button' class='card-body' data-bs-toggle='modal' data-bs-target='#administer_pediarix'>
-                                        <p>PEDIARIX</p>
-                                    </div>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pediarix' style='background-color: #cae3d1; height: 23px'>
+                                    <p>PEDIARIX</p>
                                 </div>
                             </div>
                             +
@@ -196,13 +190,13 @@
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
@@ -215,10 +209,8 @@
                         <!-- 2 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>PENTACEL</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                    <p>PENTACEL</p>
                                 </div>
                             </div>
                             +
@@ -241,10 +233,8 @@
                         <!-- 4 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>PENTACEL</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                    <p>PENTACEL</p>
                                 </div>
                             </div>
                             +
@@ -267,10 +257,8 @@
                         <!-- 6 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>PENTACEL</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                    <p>PENTACEL</p>
                                 </div>
                             </div>
                             +
@@ -316,10 +304,8 @@
                         <!-- 15 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>PENTACEL</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                    <p>PENTACEL</p>
                                 </div>
                             </div>
                         </div>
@@ -340,13 +326,13 @@
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
@@ -358,10 +344,8 @@
                         <!-- 2 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>VAXELIS</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                    <p>VAXELIS</p>
                                 </div>
                             </div>
                             +
@@ -379,10 +363,8 @@
                         <!-- 4 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>VAXELIS</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                    <p>VAXELIS</p>
                                 </div>
                             </div>
                             +
@@ -400,10 +382,8 @@
                         <!-- 6 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 56px'>
-                                    <div class='card-body'>
-                                        <p>VAXELIS</p>
-                                    </div>
+                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                    <p>VAXELIS</p>
                                 </div>
                             </div>
                             +
@@ -471,18 +451,18 @@
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-3' style='background-color: #ffc0b5; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-3 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
                         </div>
-                    </div><hr>
+                    </div>
                 </small>
             </div>
         </div>
