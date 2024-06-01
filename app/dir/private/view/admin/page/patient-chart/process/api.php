@@ -1882,7 +1882,49 @@ if(isset($_GET['patientID'])){
       </div>
     </div>
     ";
-  } 
+  }
+  
+  // Count Administered COVID-19
+  $covid = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='COVID' ";
+  $covid_run = mysqli_query($con, $covid);
+  $covid_value = mysqli_fetch_assoc($covid_run);
+  $covid_count = round($covid_value['count(*)'] / 3 * 100);
+  // Recommended dates to administer 2nd, 3rd & 4th dose of Hib
+  $covid_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='COVID' ORDER BY id DESC";
+  $covid_req_run = mysqli_query($con, $covid_req);
+  if(mysqli_num_rows($covid_req_run) == 0){
+   $covid_message = "
+   <small><a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a></small><br>
+   <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_covid'>Administer COVID-19</button> 
+    ";
+  }
+  if(mysqli_num_rows($covid_req_run) > 0){
+    $row = mysqli_fetch_assoc($covid_req_run);
+    $date = $row['date'];
+    $month4 = strtotime("+2 months", strtotime($date));
+    $month4 = date('m/d/Y',$month4);
+ 
+    $covid_message = "
+       <div align='center'>
+          <small>
+           <div class='mb-3'>
+             2nd dose is due on <b>$month4</b> along with the following vaccines and other immunization agents:
+              <div class='col-md-3 card mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                 </div>
+              </div>
+            </div>
+            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_covid'>Administer COVID-19</button> 
+          </small>
+        </div>
+    ";
+  }
+
 
 }
 

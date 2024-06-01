@@ -561,5 +561,80 @@ function edit_validate_ipv() {
         eligibility.setCustomValidity('Funding Source and Eligibility does not match');
     }
 }
+
+// Fetch COVID information based on option selected to ADD
+function add_covid(){
+    var id = document.getElementById("covid_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_covid_vaccines").value = data.vaccines;
+            document.getElementById("add_covid_lot").value = data.lot;
+            document.getElementById("add_covid_ndc").value = data.ndc;
+            document.getElementById("add_covid_exp").value = data.exp;
+            document.getElementById("add_covid_funding").value = data.funding_source;
+            document.getElementById("add_covid_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding COVID
+function add_validate_covid() {
+    const funding = document.querySelector('input[name=add_covid_funding]');
+    const eligibility = document.querySelector('select[name=add_covid_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch COVID information based on option selected to EDIT
+function edit_covid(){
+    var id = document.getElementById("edit_covid_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_covid_name").value = data.vaccines;
+            document.getElementById("edit_covid_lot").value = data.lot;
+            document.getElementById("edit_covid_ndc").value = data.ndc;
+            document.getElementById("edit_covid_exp").value = data.exp;
+            document.getElementById("edit_covid_funding").value = data.funding_source;
+            document.getElementById("edit_covid_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing COVID
+function edit_validate_covid() {
+    const funding = document.querySelector('input[name=edit_covid_funding]');
+    const eligibility = document.querySelector('select[name=edit_covid_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
   
 </script>

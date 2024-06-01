@@ -40,12 +40,13 @@
                       <div class="form-group mb-1">
                         <select class="form-select form-select-sm" name="manufacturer[]" required>
                           <option disabled selected>Manufacturer</option>
+                          <option value="AstraZeneca">AstraZeneca</option>
                           <option value="GSK">GSK</option>
                           <option value="Merck">Merck</option>
+                          <option value="Moderna">Moderna</option>
                           <option value="Pfizer">Pfizer</option>
                           <option value="Sanofi">Sanofi</option>
                           <option value="Seqirus">Seqirus</option>
-                          <option value="AstraZeneca">AstraZeneca</option>
                         </select>
                       </div>
                   </div>
@@ -125,9 +126,12 @@
                             <option value="TD - Tenivac Single Dose Vials">Tenivac (Single Dose Vials)</option>
                             <option value="TD - Tenivac Single Dose Syringes">Tenivac (Single Dose Syringes)</option>
                             <option disabled>COVID-19</option>
-                            <option value="COVID-19 - Pfizer-BioNTech">Pfizer-BioNTech</option>
-                            <option value="COVID-19 - Moderna">Moderna</option>
-                            <option value="COVID-19 - Novavax">Novavax</option>
+                            <option value="COVID-19 - Pfizer (6mo-4yrs) 3 Dose Vial - 30 Doses/10 Vials Per Box">Pfizer 6mo-4yrs (3 Dose Vial - 30 Doses/10 Vials Per Box)</option>
+                            <option value="COVID-19 - Pfizer (5yrs-11yrs) Single Dose Vials">Pfizer 5yrs-11yrs (Single Dose Vials)</option>
+                            <option value="COVID-19 - Pfizer Comirnaty (12yrs-18yrs) Single Dose Vials">Pfizer Comirnaty 12yrs-18yrs (Single Dose Vials)</option>
+                            <option value="COVID-19 - Moderna (6mo-11yrs) Single Dose Vials">Moderna 6mo-11yrs (Single Dose Vials)</option>
+                            <option value="COVID-19 - Moderna Spikevax (12yrs-18yrs) Single Dose Vials">Moderna Spikevax 12yrs-18yrs (Single Dose Vials)</option>
+                            <option value="COVID-19 - Novavax (12yrs-18yrs) 5 Dose Vial - 10 Doses/2 Vials Per Box">Novavax 12yrs-18yrs (5 Dose Vial - 10 Doses/2 Vials Per Box)</option>
                             <option disabled>Influenza</option>
                             <option value="Influenza - Fluarix Single Dose Syringes">Fluarix (Single Dose Syringes)</option>
                             <option value="Influenza - Flucelvax Single Dose Syringes">Flucelvax (Single Dose Syringes)</option>
