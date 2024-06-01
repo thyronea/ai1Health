@@ -353,14 +353,36 @@ if(isset($_POST['administer_hepB'])){
       $stmt->bind_param("sssss", $userID, $groupID, $encrypt_fullname, $action, $encrypt_message);
       $stmt->execute();
 
-      // Insert Patient Log Data
-      $received = htmlspecialchars("Received");
-      $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
-      $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
-      $stmt = $con->prepare($patientlog);
-      $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
-      $stmt->execute();
+      // Insert Series Completion in Patient Log Data
+      $verify_completion = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
+      $sql_run =  mysqli_query($con, $verify_completion);
+      if(mysqli_num_rows($sql_run)  >= 2){
+        $received = htmlspecialchars("Received");
+        $patient_log = mysqli_real_escape_string($con, "$received $type");
+        $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+        $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
+        $stmt = $con->prepare($patientlog);
+        $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
+        $stmt->execute();
+        
+        $complete = htmlspecialchars("Series is Complete");
+        $complete_patient_log = mysqli_real_escape_string($con, "$type $complete");
+        $encrypted_complete_patient_log = encryptthis($complete_patient_log, $key); // Encrypt Patient Log
+        $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
+        $stmt = $con->prepare($patientlog);
+        $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_complete_patient_log);
+        $stmt->execute();
+      }
+      else{
+        // Insert Patient Log Data
+        $received = htmlspecialchars("Received");
+        $patient_log = mysqli_real_escape_string($con, "$received $type");
+        $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+        $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
+        $stmt = $con->prepare($patientlog);
+        $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
+        $stmt->execute();
+      }
 
       // insert to data_iz table (data visualization)
       $data = "INSERT INTO data_iz (uniqueID, patientID, groupID, vaccine) VALUES (?, ?, ?, ?)";

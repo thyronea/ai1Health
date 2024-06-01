@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Administer single antigen - Hib, PCV, IPV..... COVID-19, Influenza, MMR, Varicella, Hep A, Tdap, HPV, MCV, MenB, 
+- Administer single antigen - COVID-19, Influenza, MMR, Varicella, Hep A, Tdap, HPV, MCV, MenB, 
 - Administer combo vaccine - PENTACEL, VAXELIS, QUADRACEL, KINRIX, PROQUAD (insert per single antigen)
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
@@ -17,7 +17,7 @@ To Do:
 - Dark Mode
 
 Regular User:
-- Data encrypted
+- Data encryption
 - Registration - Email Verification (required)
 - Sign In - Email Code Verification (required)
 - Forgot-Password (password reset from sign-in page)
@@ -51,4 +51,4 @@ Currently Logging:
 - Email
 - File
 
-5/10/2024
+5/31/2024
