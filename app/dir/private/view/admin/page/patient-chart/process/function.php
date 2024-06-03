@@ -636,5 +636,80 @@ function edit_validate_covid() {
         eligibility.setCustomValidity('Funding Source and Eligibility does not match');
     }
 }
+
+// Fetch Influenza information based on option selected to ADD
+function add_flu(){
+    var id = document.getElementById("flu_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_flu_vaccines").value = data.vaccines;
+            document.getElementById("add_flu_lot").value = data.lot;
+            document.getElementById("add_flu_ndc").value = data.ndc;
+            document.getElementById("add_flu_exp").value = data.exp;
+            document.getElementById("add_flu_funding").value = data.funding_source;
+            document.getElementById("add_flu_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding Influenza
+function add_validate_flu() {
+    const funding = document.querySelector('input[name=add_flu_funding]');
+    const eligibility = document.querySelector('select[name=add_flu_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch Influenza information based on option selected to EDIT
+function edit_flu(){
+    var id = document.getElementById("edit_flu_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_flu_name").value = data.vaccines;
+            document.getElementById("edit_flu_lot").value = data.lot;
+            document.getElementById("edit_flu_ndc").value = data.ndc;
+            document.getElementById("edit_flu_exp").value = data.exp;
+            document.getElementById("edit_flu_funding").value = data.funding_source;
+            document.getElementById("edit_flu_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing Influenza
+function edit_validate_flu() {
+    const funding = document.querySelector('input[name=edit_flu_funding]');
+    const eligibility = document.querySelector('select[name=edit_flu_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
   
 </script>

@@ -134,7 +134,7 @@
                     <option value="TD - Tenivac Single Dose Vials">Tenivac (Single Dose Vials)</option>
                     <option value="TD - Tenivac Single Dose Syringes">Tenivac (Single Dose Syringes)</option>
                     <option disabled>COVID-19</option>
-                    <option value="COVID-19 - Pfizer (6mo-4yrs) 3 Dose Vial - 30 Doses/10 Vials Per Box">Pfizer 6mo-4yrs (3 Dose Vial - 30 Doses/10 Vials Per Box)</option>
+                    <option value="COVID-19 - Pfizer (6mo-4yrs) 3 Dose Vial">Pfizer 6mo-4yrs (3 Dose Vial - 30 Doses/10 Vials Per Box)</option>
                     <option value="COVID-19 - Pfizer (5yrs-11yrs) Single Dose Vials">Pfizer 5yrs-11yrs (Single Dose Vials)</option>
                     <option value="COVID-19 - Pfizer Comirnaty (12yrs-18yrs) Single Dose Vials">Pfizer Comirnaty 12yrs-18yrs (Single Dose Vials)</option>
                     <option value="COVID-19 - Moderna (6mo-11yrs) Single Dose Vials">Moderna 6mo-11yrs (Single Dose Vials)</option>
