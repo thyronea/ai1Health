@@ -1,12 +1,12 @@
 <?php 
-$rota_vis = date('2021') . '-' . date('10') . '-' . date('15'); 
+$hepa_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
 ?>
 
-<div class="modal fade" id="administer_rota" tabindex="-1" aria-labelledby="administer_rotaLabel" aria-hidden="true">
+<div class="modal fade" id="administer_hepa" tabindex="-1" aria-labelledby="administer_hepaLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="administer_rotaLabel">Administer Rotavirus</h1>
+        <h1 class="modal-title w-100 fs-5" id="administer_hepaLabel">Administer Hep A</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -17,8 +17,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="rota_uniqueID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Rotavirus" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="hepA_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Hepatitis A" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -30,48 +30,59 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             </div>
             
             <label><small>Vaccine</small></label>
-            <select id="rota_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_rota()" required>
+            <select id="hepa_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_hepa()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - RotaTeq Single Dose Tubes' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Vaqta Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotateq_SDT = mysqli_num_rows($sql_run);
-                    while ($rotateq_SDT = mysqli_fetch_array($sql_run))
+                    $vaqta_SDV = mysqli_num_rows($sql_run);
+                    while ($vaqta_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotateq_SDT['id']) ."'>" .htmlspecialchars($rotateq_SDT['name']) .' ' .'('.htmlspecialchars($rotateq_SDT['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($vaqta_SDV['id']) ."'>" .htmlspecialchars($vaqta_SDV['name']) .' ' .'('.htmlspecialchars($vaqta_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Dose Vials' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Vaqta Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SDV = mysqli_num_rows($sql_run);
-                    while ($rotarix_SDV = mysqli_fetch_array($sql_run))
+                    $vaqta_SDS = mysqli_num_rows($sql_run);
+                    while ($vaqta_SDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotarix_SDV['id']) ."'>" .htmlspecialchars($rotarix_SDV['name']) .' ' .'('.htmlspecialchars($rotarix_SDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($vaqta_SDS['id']) ."'>" .htmlspecialchars($vaqta_SDS['name']) .' ' .'('.htmlspecialchars($vaqta_SDS['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Oral Doses' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Havrix Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SOD = mysqli_num_rows($sql_run);
-                    while ($rotarix_SOD = mysqli_fetch_array($sql_run))
+                    $havrix_SDV = mysqli_num_rows($sql_run);
+                    while ($havrix_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotarix_SOD['id']) ."'>" .htmlspecialchars($rotarix_SOD['name']) .' ' .'('.htmlspecialchars($rotarix_SOD['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($havrix_SDV['id']) ."'>" .htmlspecialchars($havrix_SDV['name']) .' ' .'('.htmlspecialchars($havrix_SDV['funding_source']).')' ."</option>" ;
+                    }
+
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Havrix Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $havrix_SDS = mysqli_num_rows($sql_run);
+                    while ($havrix_SDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($havrix_SDS['id']) ."'>" .htmlspecialchars($havrix_SDS['name']) .' ' .'('.htmlspecialchars($havrix_SDS['funding_source']).')' ."</option>" ;
                     }
                   ?>
               </option>
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_rota_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="" id="add_hepa_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="add_rota_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_hepa_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="add_rota_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_hepa_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
             <?php
@@ -83,7 +94,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="add_rota_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_hepa_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 
@@ -93,7 +104,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="site" required>
-                    <option selected value="Mouth">Mouth</option>
+                    <option selected value="L-Deltoid">L-Deltoid</option>
                     <option value="R-Deltoid">R-Deltoid</option>
                     <option value="L-Vastus Lateralis">L-Vastus Lateralis</option>
                     <option value="R-Vastus Lateralis">R-Vastus Lateralis</option>
@@ -110,8 +121,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="route" required>
-                    <option selected value="Oral">Oral</option>
-                    <option value="Subcutaneous">Subcutaneous</option>
+                    <option selected value="Subcutaneous">Subcutaneous</option>
+                    <option value="Intramuscular">Intramuscular</option>
                     <option value="Intranasal">Intranasal</option>
                     <option value="Oral">Oral</option>
                   </select>
@@ -129,10 +140,10 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-a.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $rota_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $hepa_vis; ?>" required>
                 </div>
               </div>
 
@@ -141,8 +152,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_rota_funding" name="add_rota_funding" class="form-control form-control-sm" onChange="add_validate_rota()" hidden required>
-                  <select id="add_rota_eligibility" name="add_rota_eligibility" class="form-select form-select-sm" onChange="add_validate_rota()" required>
+                  <input id="add_hepa_funding" name="add_hepa_funding" class="form-control form-control-sm" onChange="add_validate_hepa()" hidden required>
+                  <select id="add_hepa_eligibility" name="add_hepa_eligibility" class="form-select form-select-sm" onChange="add_validate_hepa()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -186,7 +197,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
               </div>
 
-            <button type="submit" name="administer_rota" class="focus-ring btn btn-sm border mt-3">Submit</button>
+            <button type="submit" name="administer_hepa" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
@@ -206,6 +217,6 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
   }
   return n;
   }
-  document.getElementById("rota_uniqueID").value = randomNumber(8);
+  document.getElementById("hepA_uniqueID").value = randomNumber(8);
 </script>
 

@@ -1,4 +1,4 @@
-<?php $rota_vis = date('2023') . '-' . date('10') . '-' . date('15');  ?>
+<?php $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');  ?>
 
 <div class="modal fade" id="edit_administered_rota" tabindex="-1" aria-labelledby="edit_administered_rotaLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

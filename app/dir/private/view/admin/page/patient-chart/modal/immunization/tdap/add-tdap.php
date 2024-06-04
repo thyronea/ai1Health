@@ -1,12 +1,10 @@
-<?php 
-$rota_vis = date('2021') . '-' . date('10') . '-' . date('15'); 
-?>
+<?php $tdap_vis = date('2021') . '-' . date('08') . '-' . date('06'); ?>
 
-<div class="modal fade" id="administer_rota" tabindex="-1" aria-labelledby="administer_rotaLabel" aria-hidden="true">
+<div class="modal fade" id="administer_tdap" tabindex="-1" aria-labelledby="administer_hepbLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="administer_rotaLabel">Administer Rotavirus</h1>
+        <h1 class="modal-title w-100 fs-5" id="administer_hepbLabel">Administer Tdap</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -17,8 +15,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="rota_uniqueID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Rotavirus" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="tdap_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Tdap" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -28,72 +26,81 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 <input type="hidden" name="time" class="form-control form-control-sm text-center" value="<?php echo date("h:i A"); ?>" required>
               </div>
             </div>
-            
             <label><small>Vaccine</small></label>
-            <select id="rota_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_rota()" required>
+              <select id="tdap_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_tdap()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - RotaTeq Single Dose Tubes' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Tdap - Boostrix Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotateq_SDT = mysqli_num_rows($sql_run);
-                    while ($rotateq_SDT = mysqli_fetch_array($sql_run))
+                    $boostrix_SDV = mysqli_num_rows($sql_run);
+                    while ($boostrix_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotateq_SDT['id']) ."'>" .htmlspecialchars($rotateq_SDT['name']) .' ' .'('.htmlspecialchars($rotateq_SDT['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($boostrix_SDV['id']) ."'>" .htmlspecialchars($boostrix_SDV['name']) .' ' .'('.htmlspecialchars($boostrix_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Dose Vials' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Tdap - Boostrix Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SDV = mysqli_num_rows($sql_run);
-                    while ($rotarix_SDV = mysqli_fetch_array($sql_run))
+                    $boostrix_SDS = mysqli_num_rows($sql_run);
+                    while ($boostrix_SDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotarix_SDV['id']) ."'>" .htmlspecialchars($rotarix_SDV['name']) .' ' .'('.htmlspecialchars($rotarix_SDV['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($boostrix_SDS['id']) ."'>" .htmlspecialchars($boostrix_SDS['name']) .' ' .'('.htmlspecialchars($boostrix_SDS['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Oral Doses' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Tdap - Adacel Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SOD = mysqli_num_rows($sql_run);
-                    while ($rotarix_SOD = mysqli_fetch_array($sql_run))
+                    $adacel_SDV = mysqli_num_rows($sql_run);
+                    while ($adacel_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotarix_SOD['id']) ."'>" .htmlspecialchars($rotarix_SOD['name']) .' ' .'('.htmlspecialchars($rotarix_SOD['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($adacel_SDV['id']) ."'>" .htmlspecialchars($adacel_SDV['name']) .' ' .'('.htmlspecialchars($adacel_SDV['funding_source']).')' ."</option>" ;
+                    }
+
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Tdap - Adacel Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $adacel_SDS = mysqli_num_rows($sql_run);
+                    while ($adacel_SDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($adacel_SDS['id']) ."'>" .htmlspecialchars($adacel_SDS['name']) .' ' .'('.htmlspecialchars($adacel_SDS['funding_source']).')' ."</option>" ;
                     }
                   ?>
-              </option>
-            </select>
-            <div class="row mb-2">
+             </select>
+             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_rota_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="hidden" id="add_tdap_vaccines" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
-            </div>
-            <div class="row mb-2">
+             </div>
+             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="add_rota_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_tdap_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="add_rota_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_tdap_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
-            </div>
-            <?php
+             </div>
+             <?php
               
-            ?>
+             ?>
             
-            <div class="row mb-2">
+             <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="add_rota_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_tdap_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
-            </div>
+              </div>
 
-            <div class="row mb-2">
+              <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Site:</small></label>
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="site" required>
-                    <option selected value="Mouth">Mouth</option>
+                    <option selected value="L-Deltoid">L-Deltoid</option>
                     <option value="R-Deltoid">R-Deltoid</option>
                     <option value="L-Vastus Lateralis">L-Vastus Lateralis</option>
                     <option value="R-Vastus Lateralis">R-Vastus Lateralis</option>
@@ -102,7 +109,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                     <option value="Mouth">Mouth</option>
                   </select>
                 </div>
-             </div>
+              </div>
 
               <div class="row mb-2">
                 <div class="col" align="right">
@@ -110,7 +117,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="route" required>
-                    <option selected value="Oral">Oral</option>
+                    <option selected value="Intramuscular">Intramuscular</option>
                     <option value="Subcutaneous">Subcutaneous</option>
                     <option value="Intranasal">Intranasal</option>
                     <option value="Oral">Oral</option>
@@ -129,21 +136,21 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/tdap.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $rota_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $tdap_vis; ?>" required>
                 </div>
               </div>
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label style="color:red"><small>Eligibility:</small></label>
+                  <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_rota_funding" name="add_rota_funding" class="form-control form-control-sm" onChange="add_validate_rota()" hidden required>
-                  <select id="add_rota_eligibility" name="add_rota_eligibility" class="form-select form-select-sm" onChange="add_validate_rota()" required>
-                    <option></option>
+                  <input id="add_tdap_funding" name="add_tdap_funding" class="form-control form-control-sm" onChange="add_validate_tdap()" hidden required>
+                  <select id="add_tdap_eligibility" name="add_tdap_eligibility" class="form-select form-select-sm" onChange="add_validate_tdap()" required>
+                  <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
                     <optgroup label="Public">
@@ -164,8 +171,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select name="administered_by" class="form-select form-select-sm mb-2" required>
-                      <option value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" selected><?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?></option>
-                      <option disabled>Or select from active users</option>
+                      <option value="<?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?>" selected ><?=htmlspecialchars($_SESSION["fname"]);?> <?=htmlspecialchars($_SESSION["lname"]);?></option>
+                      <option disabled>Select from roster</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                       $sql = "SELECT * FROM profile WHERE groupID='$groupID' ";
@@ -173,7 +180,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                       $admin = mysqli_num_rows($sql_run);
                       while ($admin = mysqli_fetch_array($sql_run))
                       {
-                        echo "<option value='".htmlspecialchars($admin['fname'])." ".htmlspecialchars($admin['lname'])."'>".htmlspecialchars($admin['fname']).' '.htmlspecialchars($admin['lname'])."</option>" ;
+                        echo "<option value=' ". htmlspecialchars($admin['fname'])." ". htmlspecialchars($admin['lname'])." '>" .htmlspecialchars($admin['fname']) .' ' . htmlspecialchars($admin['lname']) ."</option>" ;
                       }
                       ?>
                   </select>
@@ -186,7 +193,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
               </div>
 
-            <button type="submit" name="administer_rota" class="focus-ring btn btn-sm border mt-3">Submit</button>
+            <button type="submit" name="administer_tdap" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
@@ -206,6 +213,5 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
   }
   return n;
   }
-  document.getElementById("rota_uniqueID").value = randomNumber(8);
+  document.getElementById("tdap_uniqueID").value = randomNumber(8);
 </script>
-

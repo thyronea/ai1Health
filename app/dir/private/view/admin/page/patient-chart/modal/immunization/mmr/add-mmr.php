@@ -1,12 +1,12 @@
 <?php 
-$rota_vis = date('2021') . '-' . date('10') . '-' . date('15'); 
+$mmr_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
 ?>
 
-<div class="modal fade" id="administer_rota" tabindex="-1" aria-labelledby="administer_rotaLabel" aria-hidden="true">
+<div class="modal fade" id="administer_mmr" tabindex="-1" aria-labelledby="administer_mmrLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="administer_rotaLabel">Administer Rotavirus</h1>
+        <h1 class="modal-title w-100 fs-5" id="administer_mmrLabel">Administer MMR</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -17,8 +17,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="rota_uniqueID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="Rotavirus" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="mmr_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="MMR" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -30,48 +30,40 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             </div>
             
             <label><small>Vaccine</small></label>
-            <select id="rota_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_rota()" required>
+            <select id="mmr_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_mmr()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - RotaTeq Single Dose Tubes' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='MMR - MMR-II Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotateq_SDT = mysqli_num_rows($sql_run);
-                    while ($rotateq_SDT = mysqli_fetch_array($sql_run))
+                    $mmr_SDV = mysqli_num_rows($sql_run);
+                    while ($mmr_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotateq_SDT['id']) ."'>" .htmlspecialchars($rotateq_SDT['name']) .' ' .'('.htmlspecialchars($rotateq_SDT['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($mmr_SDV['id']) ."'>" .htmlspecialchars($mmr_SDV['name']) .' ' .'('.htmlspecialchars($mmr_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Dose Vials' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='MMR - Priorix Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SDV = mysqli_num_rows($sql_run);
-                    while ($rotarix_SDV = mysqli_fetch_array($sql_run))
+                    $priorix = mysqli_num_rows($sql_run);
+                    while ($priorix = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($rotarix_SDV['id']) ."'>" .htmlspecialchars($rotarix_SDV['name']) .' ' .'('.htmlspecialchars($rotarix_SDV['funding_source']).')' ."</option>" ;
-                    }
-
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='RV - Rotarix Single Oral Doses' ";
-                    $sql_run = mysqli_query($con, $sql);
-                    $rotarix_SOD = mysqli_num_rows($sql_run);
-                    while ($rotarix_SOD = mysqli_fetch_array($sql_run))
-                    {
-                      echo "<option value='". htmlspecialchars($rotarix_SOD['id']) ."'>" .htmlspecialchars($rotarix_SOD['name']) .' ' .'('.htmlspecialchars($rotarix_SOD['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($priorix['id']) ."'>" .htmlspecialchars($priorix['name']) .' ' .'('.htmlspecialchars($priorix['funding_source']).')' ."</option>" ;
                     }
                   ?>
               </option>
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_rota_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="" id="add_mmr_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="add_rota_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_mmr_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="add_rota_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_mmr_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
             <?php
@@ -83,7 +75,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="add_rota_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_mmr_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 
@@ -93,7 +85,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="site" required>
-                    <option selected value="Mouth">Mouth</option>
+                    <option selected value="L-Deltoid">L-Deltoid</option>
                     <option value="R-Deltoid">R-Deltoid</option>
                     <option value="L-Vastus Lateralis">L-Vastus Lateralis</option>
                     <option value="R-Vastus Lateralis">R-Vastus Lateralis</option>
@@ -110,10 +102,10 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm" name="route" required>
-                    <option selected value="Oral">Oral</option>
-                    <option value="Subcutaneous">Subcutaneous</option>
-                    <option value="Intranasal">Intranasal</option>
+                    <option selected value="Subcutaneous">Subcutaneous</option>
+                    <option value="Intramuscular">Intramuscular</option>
                     <option value="Oral">Oral</option>
+                    <option value="Intranasal">Intranasal</option>
                   </select>
                 </div>
               </div>
@@ -129,10 +121,10 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $rota_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $mmr_vis; ?>" required>
                 </div>
               </div>
 
@@ -141,8 +133,8 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_rota_funding" name="add_rota_funding" class="form-control form-control-sm" onChange="add_validate_rota()" hidden required>
-                  <select id="add_rota_eligibility" name="add_rota_eligibility" class="form-select form-select-sm" onChange="add_validate_rota()" required>
+                  <input id="add_mmr_funding" name="add_mmr_funding" class="form-control form-control-sm" onChange="add_validate_mmr()" hidden required>
+                  <select id="add_mmr_eligibility" name="add_mmr_eligibility" class="form-select form-select-sm" onChange="add_validate_mmr()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -186,7 +178,7 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
                 </div>
               </div>
 
-            <button type="submit" name="administer_rota" class="focus-ring btn btn-sm border mt-3">Submit</button>
+            <button type="submit" name="administer_mmr" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
@@ -206,6 +198,6 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
   }
   return n;
   }
-  document.getElementById("rota_uniqueID").value = randomNumber(8);
+  document.getElementById("mmr_uniqueID").value = randomNumber(8);
 </script>
 

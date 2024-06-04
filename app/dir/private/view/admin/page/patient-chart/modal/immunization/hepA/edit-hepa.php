@@ -1,10 +1,10 @@
-<?php $pcv_vis = date('2023') . '-' . date('05') . '-' . date('12'); ?>
+<?php $hepA_vis = date('2021') . '-' . date('10') . '-' . date('15');  ?>
 
-<div class="modal fade" id="edit_administered_pcv" tabindex="-1" aria-labelledby="edit_administered_hepbLabel" aria-hidden="true">
+<div class="modal fade" id="edit_administered_hepa" tabindex="-1" aria-labelledby="edit_administered_hepaLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="edit_administered_hepbLabel">PCV</h1>
+        <h1 class="modal-title w-100 fs-5" id="edit_administered_hepaLabel">Hep A</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -14,8 +14,8 @@
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="shotID" id="pcv_edit_ID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="pcv_edit_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="shotID" id="hepa_edit_ID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="hepa_edit_uniqueID" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -26,49 +26,71 @@
               </div>
             </div>
 
-            <select id="edit_pcv_vaccines" name="vaccineID" class="form-select form-select-sm mb-4" onchange="edit_pcv()">
+            <select id="edit_hepa_vaccines" name="vaccineID" class="form-select form-select-sm mb-4" onchange="edit_hepa()">
               <option>Select from inventory</option>
                   <?php
                     $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='PCV - Prevnar Single Dose Syringes' ";
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Vaqta Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $prevnar = mysqli_num_rows($sql_run);
-                    while ($prevnar = mysqli_fetch_array($sql_run))
+                    $vaqta_SDV = mysqli_num_rows($sql_run);
+                    while ($vaqta_SDV = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($prevnar['id']) ."'>" .htmlspecialchars($prevnar['name']) .' ' .'('.htmlspecialchars($prevnar['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($vaqta_SDV['id']) ."'>" .htmlspecialchars($vaqta_SDV['name']) .' ' .'('.htmlspecialchars($vaqta_SDV['funding_source']).')' ."</option>" ;
                     }
 
-                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='PCV - Vaxneuvance Single Dose Syringes' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Vaqta Single Dose Syringes' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $vaxneuvance = mysqli_num_rows($sql_run);
-                    while ($vaxneuvance = mysqli_fetch_array($sql_run))
+                    $vaqta_SDS = mysqli_num_rows($sql_run);
+                    while ($vaqta_SDS = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($vaxneuvance['id']) ."'>" .htmlspecialchars($vaxneuvance['name']) .' ' .'('.htmlspecialchars($vaxneuvance['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($vaqta_SDS['id']) ."'>" .htmlspecialchars($vaqta_SDS['name']) .' ' .'('.htmlspecialchars($vaqta_SDS['funding_source']).')' ."</option>" ;
+                    }
+
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Havrix Single Dose Vials' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $havrix_SDV = mysqli_num_rows($sql_run);
+                    while ($havrix_SDV = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($havrix_SDV['id']) ."'>" .htmlspecialchars($havrix_SDV['name']) .' ' .'('.htmlspecialchars($havrix_SDV['funding_source']).')' ."</option>" ;
+                    }
+
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
+                    $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='Hepatitis A - Havrix Single Dose Syringes' ";
+                    $sql_run = mysqli_query($con, $sql);
+                    $havrix_SDS = mysqli_num_rows($sql_run);
+                    while ($havrix_SDS = mysqli_fetch_array($sql_run))
+                    {
+                      echo "<option value='". htmlspecialchars($havrix_SDS['id']) ."'>" .htmlspecialchars($havrix_SDS['name']) .' ' .'('.htmlspecialchars($havrix_SDS['funding_source']).')' ."</option>" ;
                     }
                   ?>
             </select>
 
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="edit_pcv_name" name="vaccine" class="form-control form-control-sm" value="" required>
+                  <input type="text" id="edit_hepa_name" name="vaccine" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
             
              <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="edit_pcv_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="edit_hepa_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="edit_pcv_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="edit_hepa_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
+             <?php
+              
+             ?>
             
              <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="edit_pcv_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="edit_hepa_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
               </div>
 
@@ -77,7 +99,7 @@
                   <label><small>Site:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" name="site" id="pcv_edit_site" required>
+                  <select class="form-select form-select-sm" name="site" required>
                     <option selected value="L-Deltoid">L-Deltoid</option>
                     <option value="R-Deltoid">R-Deltoid</option>
                     <option value="L-Vastus Lateralis">L-Vastus Lateralis</option>
@@ -87,16 +109,16 @@
                     <option value="Mouth">Mouth</option>
                   </select>
                 </div>
-              </div>
+             </div>
 
               <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Route:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm" name="route" id="pcv_edit_route" required>
-                    <option selected value="Intramuscular">Intramuscular</option>
-                    <option value="Subcutaneous">Subcutaneous</option>
+                  <select class="form-select form-select-sm" name="route" required>
+                    <option selected value="Subcutaneous">Subcutaneous</option>
+                    <option value="Intramuscular">Intramuscular</option>
                     <option value="Intranasal">Intranasal</option>
                     <option value="Oral">Oral</option>
                   </select>
@@ -108,16 +130,16 @@
                   <label><small>VIS Given:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis_given" id="pcv_edit_vis_given" class="form-control form-control-sm" value="<?php echo $today; ?>" required>
+                  <input type="date" name="vis_given" id="hepa_edit_vis_given" class="form-control form-control-sm" value="<?php echo $today; ?>" required>
                 </div>
               </div>
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-a.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" id="pcv_edit_vis" class="form-control form-control-sm" value="<?php echo $pcv_vis; ?>" required>
+                  <input type="date" name="vis" id="hepa_vis" class="form-control form-control-sm" value="<?php echo $hepA_vis; ?>" required>
                 </div>
               </div>
 
@@ -126,8 +148,8 @@
                   <label><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="edit_pcv_funding" name="edit_pcv_funding" class="form-control form-control-sm" onChange="edit_validate_pcv()" hidden required>
-                  <select id="edit_pcv_eligibility" name="edit_pcv_eligibility" class="form-select form-select-sm" onChange="edit_validate_pcv()">
+                  <input id="edit_hepa_funding" name="edit_hepa_funding" class="form-control form-control-sm" onChange="edit_validate_hepa()" hidden required>
+                  <select id="edit_hepa_eligibility" name="edit_hepa_eligibility" class="form-select form-select-sm" onChange="edit_validate_hepa()">
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -148,7 +170,7 @@
                   <label><small>Administered By:</small></label>
                 </div>
                 <div class="col">
-                  <select class="form-select form-select-sm mb-2" id="pcvadministered_by" name="administered_by" required>
+                  <select class="form-select form-select-sm mb-2" id="hepaadministered_by" name="administered_by" required>
                       <option disabled selected>Or select from active users</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
@@ -166,12 +188,12 @@
 
               <div class="row">
                 <div class="col">
-                  <textarea name="comment" class="form-control form-control-sm" id="pcv_edit_comment" placeholder="Comment......"></textarea>
+                  <textarea name="comment" class="form-control form-control-sm" id="hepa_edit_comment" placeholder="Comment......"></textarea>
                 </div>
               </div>
 
-            <a type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#delete_pcv">Delete</a>  
-            <button type="submit" name="update_pcv" class="focus-ring btn btn-sm border mt-3" id="submit_btn" >Update</button>
+            <a type="button" class="focus-ring btn btn-sm border mt-3" id="submit_btn" data-bs-toggle="modal" data-bs-target="#delete_hepa">Delete</a>  
+            <button type="submit" name="update_hepa" class="focus-ring btn btn-sm border mt-3" id="submit_btn" >Update</button>
           </form>
         </div>
       </div>
@@ -181,8 +203,8 @@
 
 <script>
   $(document).ready(function () {
-    $('.edit_pcv_btn').on('click', function() {
-      $('#edit_administered_pcv').modal('show');
+    $('.edit_hepa_btn').on('click', function() {
+      $('#edit_administered_hepa').modal('show');
 
       $tr = $(this).closest('tr');
 
@@ -191,24 +213,24 @@
       }).get();
 
       console.log(data);
-      $('#pcv_edit_ID').val(data[0]);
-      $('#pcv_edit_uniqueID').val(data[1]);
-      $('#delete_pcv_uniqueID').val(data[1]);
+      $('#hepa_edit_ID').val(data[0]);
+      $('#hepa_edit_uniqueID').val(data[1]);
+      $('#delete_hepa_uniqueID').val(data[1]);
       $('#patient_ID').val(data[2]);
       $('#group_ID').val(data[3]);
-      $('#edit_pcv_name').val(data[4]);
-      $('#delete_pcv_name').val(data[4]);
-      $('#edit_pcv_lot').val(data[5]);
-      $('#edit_pcv_ndc').val(data[6]);
-      $('#edit_pcv_exp').val(data[7]);
-      $('#pcv_edit_site').val(data[8]);
-      $('#pcv_edit_route').val(data[9]);
-      $('#pcv_edit_vis_given').val(data[10]);
-      $('#pcv_edit_vis').val(data[11]);
-      $('#edit_pcv_funding').val(data[12]);
-      $('#edit_pcv_eligibility').val(data[12]);
-      $('#pcvadministered_by').val(data[13]);
-      $('#pcv_edit_comment').val(data[14]);
+      $('#edit_hepa_name').val(data[4]);
+      $('#delete_hepa_name').val(data[4]);
+      $('#edit_hepa_lot').val(data[5]);
+      $('#edit_hepa_ndc').val(data[6]);
+      $('#edit_hepa_exp').val(data[7]);
+      $('#hepa_edit_site').val(data[8]);
+      $('#hepa_edit_route').val(data[9]);
+      $('#hepa_edit_vis_given').val(data[10]);
+      $('#hepa_edit_vis').val(data[11]);
+      $('#edit_hepa_funding').val(data[12]);
+      $('#edit_hepa_eligibility').val(data[12]);
+      $('#hepaadministered_by').val(data[13]);
+      $('#hepa_edit_comment').val(data[14]);
     });
   });
 </script>

@@ -1,5 +1,5 @@
 <?php 
-$pcv_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
+$pcv_vis = date('2023') . '-' . date('05') . '-' . date('12'); 
 ?>
 
 <div class="modal fade" id="administer_pcv" tabindex="-1" aria-labelledby="administer_pcvbLabel" aria-hidden="true">
@@ -117,7 +117,7 @@ $pcv_vis = date('2021') . '-' . date('08') . '-' . date('06');
 
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
                   <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $pcv_vis; ?>" required>

@@ -27,15 +27,15 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#combination" type="button">Combo</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rsv" type="button">RSV</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepb" type="button">Hep B</button>
-                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rota" type="button">RV</button>
+                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rota" type="button">Rotavirus</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#dtap" type="button">DTaP</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hib" type="button">Hib</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#pcv" type="button">PCV</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#ipv" type="button">IPV</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#covid" type="button">COVID-19</button>
-                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#flu" type="button">IIV4</button>
+                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#flu" type="button">Influenza</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#mmr" type="button">MMR</button>
-                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#var" type="button">VAR</button>
+                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#var" type="button">Varicella</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepa" type="button">Hep A</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#tdap" type="button">Tdap</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hpv" type="button">HPV</button>

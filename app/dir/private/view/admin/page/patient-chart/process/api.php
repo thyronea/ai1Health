@@ -1772,7 +1772,7 @@ if(isset($_GET['patientID'])){
   $covid = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='COVID' ";
   $covid_run = mysqli_query($con, $covid);
   $covid_value = mysqli_fetch_assoc($covid_run);
-  $covid_count = round($covid_value['count(*)'] / 3 * 100);
+  $covid_count = round($covid_value['count(*)'] / 20 * 100);
   // Recommended dates to administer COVID-19
   $covid_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='COVID' ORDER BY id DESC";
   $covid_req_run = mysqli_query($con, $covid_req);
@@ -1813,7 +1813,7 @@ if(isset($_GET['patientID'])){
   $flu = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Influenza' ";
   $flu_run = mysqli_query($con, $flu);
   $flu_value = mysqli_fetch_assoc($flu_run);
-  $flu_count = round($flu_value['count(*)'] / 3 * 100);
+  $flu_count = round($flu_value['count(*)'] / 20 * 100);
   // Recommended dates to administer Influenza Vaccine
   $flu_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='COVID' ORDER BY id DESC";
   $flu_req_run = mysqli_query($con, $flu_req);
@@ -1850,6 +1850,154 @@ if(isset($_GET['patientID'])){
     ";
   }
 
+  // Count Administered MMR
+  $mmr = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='MMR' ";
+  $mmr_run = mysqli_query($con, $mmr);
+  $mmr_value = mysqli_fetch_assoc($mmr_run);
+  $mmr_count = round($mmr_value['count(*)'] / 2 * 100);
+  // Recommended dates to administer MMR Vaccine
+  $mmr_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='MMR' ORDER BY id DESC";
+  $mmr_req_run = mysqli_query($con, $mmr_req);
+  if(mysqli_num_rows($mmr_req_run) == 0){
+   $mmr_message = "
+      <small><a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a></small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_mmr'>Administer MMR</button> 
+    ";
+  }
+  if(mysqli_num_rows($mmr_req_run) > 0){
+    $row = mysqli_fetch_assoc($mmr_req_run);
+    $date = $row['date'];
+    $year4 = strtotime("+3 years", strtotime($date));
+    $year4 = date('m/d/Y',$year4);
+ 
+    $mmr_message = "
+       <div align='center'>
+          <small>
+           <div class='mb-3'>
+             2nd dose is due on <b>$year4</b> along with the following vaccines and other immunization agents:
+              <div class='col-md-3 card mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                 </div>
+              </div>
+            </div>
+            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_mmr'>Administer MMR</button> 
+          </small>
+        </div>
+    ";
+  }
+
+  // Count Administered Varicella
+  $var = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Varicella' ";
+  $var_run = mysqli_query($con, $var);
+  $var_value = mysqli_fetch_assoc($var_run);
+  $var_count = round($var_value['count(*)'] / 2 * 100);
+  // Recommended dates to administer Varicella Vaccine
+  $var_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Varicella' ORDER BY id DESC";
+  $var_req_run = mysqli_query($con, $var_req);
+  if(mysqli_num_rows($var_req_run) == 0){
+   $var_message = "
+      <small><a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a></small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_var'>Administer Varicella</button> 
+    ";
+  }
+  if(mysqli_num_rows($var_req_run) > 0){
+    $row = mysqli_fetch_assoc($var_req_run);
+    $date = $row['date'];
+    $year4 = strtotime("+3 years", strtotime($date));
+    $year4 = date('m/d/Y',$year4);
+ 
+    $var_message = "
+       <div align='center'>
+          <small>
+           <div class='mb-3'>
+             2nd dose is due on <b>$year4</b> along with the following vaccines and other immunization agents:
+              <div class='col-md-3 card mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                 </div>
+              </div>
+            </div>
+            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_var'>Administer Varicella</button> 
+          </small>
+        </div>
+    ";
+  }
+
+  // Count Administered Hepatitis A
+  $hepa = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Hepatitis A' ";
+  $hepa_run = mysqli_query($con, $hepa);
+  $hepa_value = mysqli_fetch_assoc($hepa_run);
+  $hepa_count = round($hepa_value['count(*)'] / 2 * 100);
+  // Recommended dates to administer Varicella Vaccine
+  $hepa_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis A' ORDER BY id DESC";
+  $hepa_req_run = mysqli_query($con, $hepa_req);
+  if(mysqli_num_rows($hepa_req_run) == 0){
+   $hepa_message = "
+      <small><a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a></small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepa'>Administer Hepatitis A</button> 
+    ";
+  }
+  if(mysqli_num_rows($hepa_req_run) > 0){
+    $row = mysqli_fetch_assoc($hepa_req_run);
+    $date = $row['date'];
+    $month6 = strtotime("+6 months", strtotime($date));
+    $month6 = date('m/d/Y',$month6);
+ 
+    $hepa_message = "
+       <div align='center'>
+          <small>
+           <div class='mb-3'>
+             2nd dose is due on <b>$month6</b> along with the following vaccines and other immunization agents:
+              <div class='col-md-3 card mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                 </div>
+              </div>
+            </div>
+            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_var'>Administer Varicella</button> 
+          </small>
+        </div>
+    ";
+  }
+
+  // Count Administered Tdap
+  $tdap = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Tdap' ";
+  $tdap_run = mysqli_query($con, $tdap);
+  $tdap_value = mysqli_fetch_assoc($tdap_run);
+  $tdap_count = round($tdap_value['count(*)'] / 1 * 100);
+  // Tdap Complete
+  $tdap_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Tdap' ORDER BY id DESC";
+  $tdap_req_run = mysqli_query($con, $tdap_req);
+  if(mysqli_num_rows($tdap_req_run) == 0){
+      $tdap_message = "
+      <small>No Data Found</small><br>
+      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_tdap'>Administer Tdap</button> 
+      ";
+    }
+    else{
+    $tdap_message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3'>
+                Tdap is complete!
+              </div>
+            </small>
+          </div>
+      ";
+  }
 
 }
 

@@ -711,5 +711,305 @@ function edit_validate_flu() {
         eligibility.setCustomValidity('Funding Source and Eligibility does not match');
     }
 }
+
+// Fetch MMR information based on option selected to ADD
+function add_mmr(){
+    var id = document.getElementById("mmr_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_mmr_vaccines").value = data.vaccines;
+            document.getElementById("add_mmr_lot").value = data.lot;
+            document.getElementById("add_mmr_ndc").value = data.ndc;
+            document.getElementById("add_mmr_exp").value = data.exp;
+            document.getElementById("add_mmr_funding").value = data.funding_source;
+            document.getElementById("add_mmr_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding MMR
+function add_validate_mmr() {
+    const funding = document.querySelector('input[name=add_mmr_funding]');
+    const eligibility = document.querySelector('select[name=add_mmr_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch MMR information based on option selected to EDIT
+function edit_mmr(){
+    var id = document.getElementById("edit_mmr_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_mmr_name").value = data.vaccines;
+            document.getElementById("edit_mmr_lot").value = data.lot;
+            document.getElementById("edit_mmr_ndc").value = data.ndc;
+            document.getElementById("edit_mmr_exp").value = data.exp;
+            document.getElementById("edit_mmr_funding").value = data.funding_source;
+            document.getElementById("edit_mmr_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing MMR
+function edit_validate_mmr() {
+    const funding = document.querySelector('input[name=edit_mmr_funding]');
+    const eligibility = document.querySelector('select[name=edit_mmr_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch Varicella information based on option selected to ADD
+function add_var(){
+    var id = document.getElementById("var_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_var_vaccines").value = data.vaccines;
+            document.getElementById("add_var_lot").value = data.lot;
+            document.getElementById("add_var_ndc").value = data.ndc;
+            document.getElementById("add_var_exp").value = data.exp;
+            document.getElementById("add_var_funding").value = data.funding_source;
+            document.getElementById("add_var_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding Varicella
+function add_validate_var() {
+    const funding = document.querySelector('input[name=add_var_funding]');
+    const eligibility = document.querySelector('select[name=add_var_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch Varicella information based on option selected to EDIT
+function edit_var(){
+    var id = document.getElementById("edit_var_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_var_name").value = data.vaccines;
+            document.getElementById("edit_var_lot").value = data.lot;
+            document.getElementById("edit_var_ndc").value = data.ndc;
+            document.getElementById("edit_var_exp").value = data.exp;
+            document.getElementById("edit_var_funding").value = data.funding_source;
+            document.getElementById("edit_var_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing Varicella
+function edit_validate_var() {
+    const funding = document.querySelector('input[name=edit_var_funding]');
+    const eligibility = document.querySelector('select[name=edit_var_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch Hepatitis A information based on option selected to ADD
+function add_hepa(){
+    var id = document.getElementById("hepa_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_hepa_vaccines").value = data.vaccines;
+            document.getElementById("add_hepa_lot").value = data.lot;
+            document.getElementById("add_hepa_ndc").value = data.ndc;
+            document.getElementById("add_hepa_exp").value = data.exp;
+            document.getElementById("add_hepa_funding").value = data.funding_source;
+            document.getElementById("add_hepa_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding Hepatitis A
+function add_validate_hepa() {
+    const funding = document.querySelector('input[name=add_hepa_funding]');
+    const eligibility = document.querySelector('select[name=add_hepa_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch Hepatitis A information based on option selected to EDIT
+function edit_hepa(){
+    var id = document.getElementById("edit_hepa_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_hepa_name").value = data.vaccines;
+            document.getElementById("edit_hepa_lot").value = data.lot;
+            document.getElementById("edit_hepa_ndc").value = data.ndc;
+            document.getElementById("edit_hepa_exp").value = data.exp;
+            document.getElementById("edit_hepa_funding").value = data.funding_source;
+            document.getElementById("edit_hepa_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing Hepatitis A
+function edit_validate_hepa() {
+    const funding = document.querySelector('input[name=edit_hepa_funding]');
+    const eligibility = document.querySelector('select[name=edit_hepa_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch Tdap information based on option selected to ADD
+function add_tdap(){
+    var id = document.getElementById("tdap_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_tdap_vaccines").value = data.vaccines;
+            document.getElementById("add_tdap_lot").value = data.lot;
+            document.getElementById("add_tdap_ndc").value = data.ndc;
+            document.getElementById("add_tdap_exp").value = data.exp;
+            document.getElementById("add_tdap_funding").value = data.funding_source;
+            document.getElementById("add_tdap_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding Tdap
+function add_validate_tdap() {
+    const funding = document.querySelector('input[name=add_tdap_funding]');
+    const eligibility = document.querySelector('select[name=add_tdap_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+// Fetch Tdap information based on option selected to EDIT
+function edit_tdap(){
+    var id = document.getElementById("edit_tdap_vaccines").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("edit_tdap_name").value = data.vaccines;
+            document.getElementById("edit_tdap_lot").value = data.lot;
+            document.getElementById("edit_tdap_ndc").value = data.ndc;
+            document.getElementById("edit_tdap_exp").value = data.exp;
+            document.getElementById("edit_tdap_funding").value = data.funding_source;
+            document.getElementById("edit_tdap_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when editing Tdap
+function edit_validate_tdap() {
+    const funding = document.querySelector('input[name=edit_tdap_funding]');
+    const eligibility = document.querySelector('select[name=edit_tdap_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
   
 </script>
