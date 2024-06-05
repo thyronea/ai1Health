@@ -907,4 +907,204 @@ if(isset($_POST['update_tdap']))
   }
 }
 
+if(isset($_POST['update_hpv']))
+{
+  $funding_source = mysqli_real_escape_string($con, $_POST['edit_hpv_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['edit_hpv_eligibility']);
+
+  if($funding_source && $eligibility == "Public"){
+    $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+    exit(0);
+  }
+  else{
+
+    // Update inventory count if changing vaccine brand (per lot number and ndc)
+    $vax_info = "SELECT * FROM immunization WHERE id='$shotID' AND patientID='$patientID' ";
+    $vax_info_run = mysqli_query($con, $vax_info);
+    $vax = mysqli_fetch_array($vax_info_run);
+    if($lot && $ndc && $exp !== decryptthis_iz($vax['lot'],$iz_key) && decryptthis_iz($vax['ndc'],$iz_key) && $vax['lot']){
+      // deduct 1 dose
+      $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
+      $deduct_run = mysqli_query($con, $deduct);
+    }
+
+    // Encrypt Activities Data and insert
+    $fullname = "$fname $lname";
+    $type = "Updated";
+    $p_fullname = "$patient_fname $patient_lname";
+    $message = "Administered $vaccine";
+    $act_message = "$type $p_fullname's $message";
+    $encrypted_fullname = encryptthis($fullname, $key);
+    $encrypted_message = encryptthis($act_message, $key);
+    $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($activities);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->execute();
+
+    $encrypt_vaccine = encryptthis_iz($vaccine, $iz_key);
+    $encrypt_lot = encryptthis_iz($lot, $iz_key);
+    $encrypt_ndc = encryptthis_iz($ndc, $iz_key);
+    $encrypt_exp = encryptthis_iz($exp, $iz_key);
+    $encrypt_site = encryptthis_iz($site, $iz_key);
+    $encrypt_route = encryptthis_iz($route, $iz_key);
+    $encrypt_vis_given = encryptthis_iz($vis_given, $iz_key);
+    $encrypt_vis = encryptthis_iz($vis, $iz_key);
+    $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
+    $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+    $encrypt_comment = encryptthis_iz($comment, $iz_key);
+    $update  = "UPDATE immunization SET vaccine=?, lot=?, ndc=?, exp=?, site=?, route=?, vis_given=?, vis=?, funding_source=?, administered_by=?, comment=? 
+    WHERE id='$shotID' AND patientID='$patientID' ";
+    $stmt = $con->prepare($update);
+    $stmt->bind_param("sssssssssss", $encrypt_vaccine, $encrypt_lot, $encrypt_ndc, $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment);
+    $stmt->execute();
+
+    if($stmt = $con->prepare($update))
+    {
+      $_SESSION['success'] = "Administered $vaccine Successfully Updated!";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+    else
+    {
+      $_SESSION['warning'] = "Unable to Update Administered $vaccine";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+  }
+}
+
+if(isset($_POST['update_mcv']))
+{
+  $funding_source = mysqli_real_escape_string($con, $_POST['edit_mcv_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['edit_mcv_eligibility']);
+
+  if($funding_source && $eligibility == "Public"){
+    $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+    exit(0);
+  }
+  else{
+
+    // Update inventory count if changing vaccine brand (per lot number and ndc)
+    $vax_info = "SELECT * FROM immunization WHERE id='$shotID' AND patientID='$patientID' ";
+    $vax_info_run = mysqli_query($con, $vax_info);
+    $vax = mysqli_fetch_array($vax_info_run);
+    if($lot && $ndc && $exp !== decryptthis_iz($vax['lot'],$iz_key) && decryptthis_iz($vax['ndc'],$iz_key) && $vax['lot']){
+      // deduct 1 dose
+      $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
+      $deduct_run = mysqli_query($con, $deduct);
+    }
+
+    // Encrypt Activities Data and insert
+    $fullname = "$fname $lname";
+    $type = "Updated";
+    $p_fullname = "$patient_fname $patient_lname";
+    $message = "Administered $vaccine";
+    $act_message = "$type $p_fullname's $message";
+    $encrypted_fullname = encryptthis($fullname, $key);
+    $encrypted_message = encryptthis($act_message, $key);
+    $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($activities);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->execute();
+
+    $encrypt_vaccine = encryptthis_iz($vaccine, $iz_key);
+    $encrypt_lot = encryptthis_iz($lot, $iz_key);
+    $encrypt_ndc = encryptthis_iz($ndc, $iz_key);
+    $encrypt_exp = encryptthis_iz($exp, $iz_key);
+    $encrypt_site = encryptthis_iz($site, $iz_key);
+    $encrypt_route = encryptthis_iz($route, $iz_key);
+    $encrypt_vis_given = encryptthis_iz($vis_given, $iz_key);
+    $encrypt_vis = encryptthis_iz($vis, $iz_key);
+    $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
+    $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+    $encrypt_comment = encryptthis_iz($comment, $iz_key);
+    $update  = "UPDATE immunization SET vaccine=?, lot=?, ndc=?, exp=?, site=?, route=?, vis_given=?, vis=?, funding_source=?, administered_by=?, comment=? 
+    WHERE id='$shotID' AND patientID='$patientID' ";
+    $stmt = $con->prepare($update);
+    $stmt->bind_param("sssssssssss", $encrypt_vaccine, $encrypt_lot, $encrypt_ndc, $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment);
+    $stmt->execute();
+
+    if($stmt = $con->prepare($update))
+    {
+      $_SESSION['success'] = "Administered $vaccine Successfully Updated!";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+    else
+    {
+      $_SESSION['warning'] = "Unable to Update Administered $vaccine";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+  }
+}
+
+if(isset($_POST['update_menb']))
+{
+  $funding_source = mysqli_real_escape_string($con, $_POST['edit_menb_funding']);
+  $eligibility = mysqli_real_escape_string($con, $_POST['edit_menb_eligibility']);
+
+  if($funding_source && $eligibility == "Public"){
+    $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
+    header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+    exit(0);
+  }
+  else{
+
+    // Update inventory count if changing vaccine brand (per lot number and ndc)
+    $vax_info = "SELECT * FROM immunization WHERE id='$shotID' AND patientID='$patientID' ";
+    $vax_info_run = mysqli_query($con, $vax_info);
+    $vax = mysqli_fetch_array($vax_info_run);
+    if($lot && $ndc && $exp !== decryptthis_iz($vax['lot'],$iz_key) && decryptthis_iz($vax['ndc'],$iz_key) && $vax['lot']){
+      // deduct 1 dose
+      $deduct = "UPDATE inventory SET doses=doses-1 WHERE id='$vaccineID' AND groupID='$groupID'"; // deduct 1 dose
+      $deduct_run = mysqli_query($con, $deduct);
+    }
+
+    // Encrypt Activities Data and insert
+    $fullname = "$fname $lname";
+    $type = "Updated";
+    $p_fullname = "$patient_fname $patient_lname";
+    $message = "Administered $vaccine";
+    $act_message = "$type $p_fullname's $message";
+    $encrypted_fullname = encryptthis($fullname, $key);
+    $encrypted_message = encryptthis($act_message, $key);
+    $activities = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($activities);
+    $stmt->bind_param("sssss", $userID, $groupID, $encrypted_fullname, $type, $encrypted_message);
+    $stmt->execute();
+
+    $encrypt_vaccine = encryptthis_iz($vaccine, $iz_key);
+    $encrypt_lot = encryptthis_iz($lot, $iz_key);
+    $encrypt_ndc = encryptthis_iz($ndc, $iz_key);
+    $encrypt_exp = encryptthis_iz($exp, $iz_key);
+    $encrypt_site = encryptthis_iz($site, $iz_key);
+    $encrypt_route = encryptthis_iz($route, $iz_key);
+    $encrypt_vis_given = encryptthis_iz($vis_given, $iz_key);
+    $encrypt_vis = encryptthis_iz($vis, $iz_key);
+    $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
+    $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+    $encrypt_comment = encryptthis_iz($comment, $iz_key);
+    $update  = "UPDATE immunization SET vaccine=?, lot=?, ndc=?, exp=?, site=?, route=?, vis_given=?, vis=?, funding_source=?, administered_by=?, comment=? 
+    WHERE id='$shotID' AND patientID='$patientID' ";
+    $stmt = $con->prepare($update);
+    $stmt->bind_param("sssssssssss", $encrypt_vaccine, $encrypt_lot, $encrypt_ndc, $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment);
+    $stmt->execute();
+
+    if($stmt = $con->prepare($update))
+    {
+      $_SESSION['success'] = "Administered $vaccine Successfully Updated!";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+    else
+    {
+      $_SESSION['warning'] = "Unable to Update Administered $vaccine";
+      header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+      exit(0);
+    }
+  }
+}
 ?>

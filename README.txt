@@ -1,9 +1,8 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Administer single antigen - HPV, MCV, MenB
-- Redesign Recommendation Box - DTaP, Hib, PCV, IPV, COVID-19, Influenza, MMR, Varicella, Hep A, Tdap, HPV, MCV, MenB
 - Administer combo vaccine - PENTACEL, VAXELIS, QUADRACEL, KINRIX, PROQUAD (insert per single antigen)
+- Redesign Recommendation Box - DTaP, Hib, PCV, IPV, COVID-19, Influenza, MMR, Varicella, Hep A, Tdap, HPV, MCV, MenB
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design

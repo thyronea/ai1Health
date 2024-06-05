@@ -6,7 +6,7 @@
                     <?php
                         $patientID = htmlspecialchars($patient['patientID']);
                         $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                        $vaccine = htmlspecialchars("IPV");
+                        $vaccine = htmlspecialchars("Men B");
                         $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$vaccine' ORDER BY id DESC";
                         $query_run = mysqli_query($con, $query);
                         $searchnum = mysqli_num_rows($query_run);
@@ -18,7 +18,7 @@
                                 $admin_date = htmlspecialchars($vaccine['date']);
                                 $date = date('Y') . '-' . date('m') . '-' . date('d'); 
                                 $year = (date('Y') - date('Y', strtotime($admin_date)));  
-                                $admin_ipv = (date('m', strtotime($admin_date)) . '/' . date('d', strtotime($admin_date)) . '/' . date('Y', strtotime($admin_date))); 
+                                $admin_menb = (date('m', strtotime($admin_date)) . '/' . date('d', strtotime($admin_date)) . '/' . date('Y', strtotime($admin_date))); 
 
                                 ?>
                                 <tr align="center">
@@ -38,10 +38,10 @@
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?></small></a></td>
                                     <td hidden><a class="text-decoration-none inventory-editbtn" style="color: black"><small><?=htmlspecialchars(decryptthis_iz($vaccine['comment'], $iz_key));?></small></a></td>
                                     <td >
-                                        <a class="text-decoration-none focus-ring edit_ipv_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_ipv">
+                                        <a class="text-decoration-none focus-ring edit_menb_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_menb">
                                             <div class="card shadow" id="admin_card">
                                                 <div class="card-body">
-                                                    <small><?=htmlspecialchars($admin_ipv);?></small>
+                                                    <small><?=htmlspecialchars($admin_menb);?></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -56,18 +56,18 @@
         </div>
         <div class="row col-md-10 mt-2 mb-3">
             <div class="">
-                <p>Meningococcal B <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(Polio)</small></a> - 3 Dose Series</p>
+                <p>Meningococcal B <a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/menb.pdf" target="_blank" class="text-decoration-none text-secondary"><small>(MenB-4C, MenB-FHbp)</small></a> - 2 Dose Series</p>
                 <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 25px">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$ipv_count;?>%"><?=$ipv_count;?>%</div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$menb_count;?>%"><?=$menb_count;?>%</div>
                 </div>
                 <div class="mt-3">
-                    <?=$ipv_message?> 
+                    <?=$menb_message?> 
                 </div>
             </div>
         </div>
     </div> 
 </div>
 
-<?php include('modal/immunization/ipv/add-ipv.php'); ?>
-<?php include('modal/immunization/ipv/edit-ipv.php'); ?>
-<?php include('modal/immunization/ipv/delete-ipv.php'); ?>
+<?php include('modal/immunization/menb/add-menb.php'); ?>
+<?php include('modal/immunization/menb/edit-menb.php'); ?>
+<?php include('modal/immunization/menb/delete-menb.php'); ?>
