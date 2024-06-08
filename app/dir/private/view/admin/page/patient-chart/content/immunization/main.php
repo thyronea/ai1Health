@@ -3,8 +3,8 @@
 
     <div class="row flex-nowrap">
       <div class="col-md-12 mt-3">
-        <div class="card shadow">
-          <div class="card-body table-responsive">
+        <div class="card shadow" style="height:43rem">
+          <div class="card-body table-responsive" id="immunization">
 
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -28,3 +28,11 @@
 
   </div>
 </div>
+
+<!-- Removes scrollbar display -->
+<style>
+  #immunization::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+  }
+</style>
