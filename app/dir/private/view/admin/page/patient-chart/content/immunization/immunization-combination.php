@@ -140,17 +140,17 @@
                         <!-- 12 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_mmr'>
                                     <p>MMR</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_var'>
                                     <p>Varicella</p>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
                         <!-- 18 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #e6f2e9; height:23px''>
+                                <div type='button' class='card mb-2' style='background-color: #e6f2e9; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
@@ -281,17 +281,17 @@
                         <!-- 12 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_mmr'>
                                     <p>MMR</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_var'>
                                     <p>Varicella</p>
                                 </div>
                             </div>
@@ -312,7 +312,7 @@
                         <!-- 18 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fcf2fc; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #fcf2fc; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
@@ -401,17 +401,17 @@
                         <!-- 12 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_mmr'>
                                     <p>MMR</p>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_var'>
                                     <p>Varicella</p>
                                 </div>
                             </div>
@@ -437,7 +437,7 @@
                         <!-- 18 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ebeeff; height:23px'>
+                                <div type='button' class='card mb-2' style='background-color: #ebeeff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_hepa'>
                                     <p>Hep A</p>
                                 </div>
                             </div>
