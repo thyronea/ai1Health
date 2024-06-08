@@ -1,14 +1,14 @@
 <?php 
 $dtap_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
 $ipv_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
-$hepB_vis = date('2023') . '-' . date('05') . '-' . date('12'); 
+$hib_vis = date('2021') . '-' . date('08') . '-' . date('06'); 
 ?>
 
-<div class="modal fade" id="administer_pediarix" tabindex="-1" aria-labelledby="administer_pediarixLabel" aria-hidden="true">
+<div class="modal fade" id="administer_pentacel" tabindex="-1" aria-labelledby="administer_pentacelLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="administer_pediarixLabel">Administer Pediarix</h1>
+        <h1 class="modal-title w-100 fs-5" id="administer_pentacelLabel">Administer Pentacel</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -19,11 +19,11 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="pediarix_uniqueID" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="pediarix_type" value="PEDIARIX" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="pentacel_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="combo_type" value="PENTACEL" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="dtap_type" value="DTaP" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="hepB_type" value="Hepatitis B" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="ipv_type" value="IPV" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="hib_type" value="Hib" required>
             
             <div class="row col-md-8 mb-2">
               <div class="col">
@@ -35,31 +35,31 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
             </div>
             
             <label><small>Vaccine</small></label>
-            <select id="pediarix_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_pediarix()" required>
+            <select id="pentacel_ID" name="id" class="form-select form-select-sm mb-2" onchange="add_pentacel()" required>
                   <option></option>
                   <option disabled>Select from inventory</option>
                   <?php
-                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP/Hep-B/IPV - Pediarix Single Dose Syringes' ";
+                    $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); $sql = "SELECT * FROM inventory WHERE groupID='$groupID' AND name='DTaP/IPV/Hib - Pentacel Single Dose Vials' ";
                     $sql_run = mysqli_query($con, $sql);
-                    $hepB_pediarix = mysqli_num_rows($sql_run);
-                    while ($hepB_pediarix = mysqli_fetch_array($sql_run))
+                    $pentacel = mysqli_num_rows($sql_run);
+                    while ($pentacel = mysqli_fetch_array($sql_run))
                     {
-                      echo "<option value='". htmlspecialchars($hepB_pediarix['id']) ."'>" .htmlspecialchars($hepB_pediarix['name']) .' ' .'('.htmlspecialchars($hepB_pediarix['funding_source']).')' ."</option>" ;
+                      echo "<option value='". htmlspecialchars($pentacel['id']) ."'>" .htmlspecialchars($pentacel['name']) .' ' .'('.htmlspecialchars($pentacel['funding_source']).')' ."</option>" ;
                     }
                   ?>
               </option>
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_pediarix_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="" id="add_pentacel_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="text" id="add_pediarix_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
+                  <input type="text" id="add_pentacel_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
-                  <input type="text" id="add_pediarix_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
+                  <input type="text" id="add_pentacel_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
             <?php
@@ -71,7 +71,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label><small>Expiration Date:</small></label>
                 </div>
                 <div class="col">
-                  <input type="date" id="add_pediarix_exp" name="exp" class="form-control form-control-sm" value="" required>
+                  <input type="date" id="add_pentacel_exp" name="exp" class="form-control form-control-sm" value="" required>
                 </div>
             </div>
 
@@ -125,18 +125,18 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
               </div>
               <div class="row mb-2">
                 <div class="col" align="right">
-                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf" target="_blank" class="text-decoration-none">(Hep B) VIS Publication Date:</a></small></label>
-                </div>
-                <div class="col">
-                  <input type="date" name="hepB_vis" class="form-control form-control-sm" value="<?php echo $hepB_vis; ?>" required>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col" align="right">
                   <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf" target="_blank" class="text-decoration-none">(IPV) VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
                   <input type="date" name="ipv_vis" class="form-control form-control-sm" value="<?php echo $ipv_vis; ?>" required>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col" align="right">
+                  <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf" target="_blank" class="text-decoration-none">(Hib) VIS Publication Date:</a></small></label>
+                </div>
+                <div class="col">
+                  <input type="date" name="hib_vis" class="form-control form-control-sm" value="<?php echo $hib_vis; ?>" required>
                 </div>
               </div>
 
@@ -145,8 +145,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_pediarix_funding" name="add_pediarix_funding" class="form-control form-control-sm" onChange="add_validate_pediarix()" hidden required>
-                  <select id="add_pediarix_eligibility" name="add_pediarix_eligibility" class="form-select form-select-sm" onChange="add_validate_pediarix()" required>
+                  <input id="add_pentacel_funding" name="add_pentacel_funding" class="form-control form-control-sm" onChange="add_validate_pentacel()" hidden required>
+                  <select id="add_pentacel_eligibility" name="add_pentacel_eligibility" class="form-select form-select-sm" onChange="add_validate_pentacel()" required>
                     <option></option>
                     <option disabled>Select one</option>
                     <option value="Private">Private</option>
@@ -190,7 +190,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 </div>
               </div>
 
-            <button type="submit" name="administer_pediarix" class="focus-ring btn btn-sm border mt-3">Submit</button>
+            <button type="submit" name="administer_pentacel" class="focus-ring btn btn-sm border mt-3">Submit</button>
           </form>
         </div>
       </div>
@@ -210,6 +210,6 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   }
   return n;
   }
-  document.getElementById("pediarix_uniqueID").value = randomNumber(8);
+  document.getElementById("pentacel_uniqueID").value = randomNumber(8);
 </script>
 

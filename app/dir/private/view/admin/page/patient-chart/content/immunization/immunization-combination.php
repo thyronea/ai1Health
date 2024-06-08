@@ -209,7 +209,7 @@
                         <!-- 2 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pentacel' style='background-color: #fadefa; height: 23px'>
                                     <p>PENTACEL</p>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                         <!-- 4 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pentacel' style='background-color: #fadefa; height: 23px'>
                                     <p>PENTACEL</p>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
                         <!-- 6 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pentacel' style='background-color: #fadefa; height: 23px'>
                                     <p>PENTACEL</p>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                         <!-- 15 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #fadefa; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_pentacel' style='background-color: #fadefa; height: 23px'>
                                     <p>PENTACEL</p>
                                 </div>
                             </div>
@@ -467,4 +467,5 @@
             </div>
         </div>
 </div>
-<?php include('modal/immunization/pediarix/add-pediarix.php'); ?>
+<?php include('modal/immunization/combo/add-pediarix.php'); ?>
+<?php include('modal/immunization/combo/add-pentacel.php'); ?>

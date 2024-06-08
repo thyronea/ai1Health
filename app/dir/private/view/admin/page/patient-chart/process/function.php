@@ -37,6 +37,44 @@ function add_validate_pediarix() {
     }
 }
 
+// Fetch PENTACEL information based on option selected to ADD
+function add_pentacel(){
+    var id = document.getElementById("pentacel_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_pentacel_vaccines").value = data.vaccines;
+            document.getElementById("add_pentacel_lot").value = data.lot;
+            document.getElementById("add_pentacel_ndc").value = data.ndc;
+            document.getElementById("add_pentacel_exp").value = data.exp;
+            document.getElementById("add_pentacel_funding").value = data.funding_source;
+            document.getElementById("add_pentacel_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding PENTACEL
+function add_validate_pentacel() {
+    const funding = document.querySelector('input[name=add_pentacel_funding]');
+    const eligibility = document.querySelector('select[name=add_pentacel_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
 // Fetch RSV information based on option selected to ADD
 function add_rsv(){
     var id = document.getElementById("rsv_ID").value;

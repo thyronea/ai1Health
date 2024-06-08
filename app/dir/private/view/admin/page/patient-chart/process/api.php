@@ -2205,7 +2205,7 @@ if(isset($_GET['patientID'])){
   $mcv_value = mysqli_fetch_assoc($mcv_run);
   $mcv_count = round($mcv_value['count(*)'] / 2 * 100);
   // Recommended dates to administer MCV
-  $mcv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Varicella' ORDER BY id DESC";
+  $mcv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='MCV' ORDER BY id DESC";
   $mcv_req_run = mysqli_query($con, $mcv_req);
   if(mysqli_num_rows($mcv_req_run) == 0){
    $mcv_message = "
@@ -2275,7 +2275,7 @@ if(isset($_GET['patientID'])){
                  </div>
               </div>
             </div>
-            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_var'>Administer Varicella</button> 
+            <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_menb'>Administer Men B</button> 
           </small>
         </div>
     ";
