@@ -120,7 +120,7 @@
                   <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf" target="_blank" class="text-decoration-none">VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="vis" id="mmr_vis" class="form-control form-control-sm" value="<?php echo $hepB_vis; ?>" required>
+                  <input type="date" name="vis" id="mmr_vis" class="form-control form-control-sm" value="<?php echo $mmr_vis; ?>" required>
                 </div>
               </div>
 

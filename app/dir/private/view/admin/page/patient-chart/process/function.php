@@ -1,4 +1,5 @@
 <script>
+
 // Fetch PEDIARIX information based on option selected to ADD
 function add_pediarix(){
     var id = document.getElementById("pediarix_ID").value;
@@ -74,6 +75,160 @@ function add_validate_pentacel() {
         eligibility.setCustomValidity('Funding Source and Eligibility does not match');
     }
 }
+
+// Fetch VAXELIS information based on option selected to ADD
+function add_vaxelis(){
+    var id = document.getElementById("vaxelis_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_vaxelis_vaccines").value = data.vaccines;
+            document.getElementById("add_vaxelis_lot").value = data.lot;
+            document.getElementById("add_vaxelis_ndc").value = data.ndc;
+            document.getElementById("add_vaxelis_exp").value = data.exp;
+            document.getElementById("add_vaxelis_funding").value = data.funding_source;
+            document.getElementById("add_vaxelis_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding VAXELIS
+function add_validate_vaxelis() {
+    const funding = document.querySelector('input[name=add_vaxelis_funding]');
+    const eligibility = document.querySelector('select[name=add_vaxelis_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch QUADRACEL information based on option selected to ADD
+function add_quadracel(){
+    var id = document.getElementById("quadracel_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_quadracel_vaccines").value = data.vaccines;
+            document.getElementById("add_quadracel_lot").value = data.lot;
+            document.getElementById("add_quadracel_ndc").value = data.ndc;
+            document.getElementById("add_quadracel_exp").value = data.exp;
+            document.getElementById("add_quadracel_funding").value = data.funding_source;
+            document.getElementById("add_quadracel_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding QUADRACEL
+function add_validate_quadracel() {
+    const funding = document.querySelector('input[name=add_quadracel_funding]');
+    const eligibility = document.querySelector('select[name=add_quadracel_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch KINRIX information based on option selected to ADD
+function add_kinrix(){
+    var id = document.getElementById("kinrix_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_kinrix_vaccines").value = data.vaccines;
+            document.getElementById("add_kinrix_lot").value = data.lot;
+            document.getElementById("add_kinrix_ndc").value = data.ndc;
+            document.getElementById("add_kinrix_exp").value = data.exp;
+            document.getElementById("add_kinrix_funding").value = data.funding_source;
+            document.getElementById("add_kinrix_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding KINRIX
+function add_validate_kinrix() {
+    const funding = document.querySelector('input[name=add_kinrix_funding]');
+    const eligibility = document.querySelector('select[name=add_kinrix_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+// Fetch PROQUAD information based on option selected to ADD
+function add_proquad(){
+    var id = document.getElementById("proquad_ID").value;
+    $.ajax({
+        url:"process/immunization/vaccine-info.php",
+        method:"POST",
+        data:{
+            x: id
+        },
+        dataType:"JSON",
+        success: function(data){
+            document.getElementById("add_proquad_vaccines").value = data.vaccines;
+            document.getElementById("add_proquad_lot").value = data.lot;
+            document.getElementById("add_proquad_ndc").value = data.ndc;
+            document.getElementById("add_proquad_exp").value = data.exp;
+            document.getElementById("add_proquad_funding").value = data.funding_source;
+            document.getElementById("add_proquad_eligibility").value = data.funding_source;
+        }
+    })
+}
+// Validate eligbility and funding when adding PROQUAD
+function add_validate_proquad() {
+    const funding = document.querySelector('input[name=add_proquad_funding]');
+    const eligibility = document.querySelector('select[name=add_proquad_eligibility]');
+     
+    if(eligibility.value === funding.value ||
+        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
+        eligibility.value === "VFC Eligible - Uninsured" ||
+        eligibility.value === "VFC Eligible - Underinsured" ||
+        eligibility.value === "VFC Eligible - Native American" ||
+        eligibility.value === "VFC Eligible - Alaskan Native"){
+        eligibility.setCustomValidity('');
+    }
+    else{
+        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
+    }
+}
+
+
 
 // Fetch RSV information based on option selected to ADD
 function add_rsv(){

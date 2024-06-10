@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Administer combo vaccine schedule - PENTACEL, VAXELIS, QUADRACEL, KINRIX, PROQUAD (insert per single antigen), Hep A, MMR, Varicella
 - Redesign Recommendation Box - DTaP, Hib, PCV, IPV, COVID-19, Influenza, MMR, Varicella, Hep A, Tdap, HPV, MCV, MenB
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
@@ -54,4 +53,4 @@ Currently Logging:
 - Vaccine Inventory
 - Patient Chart
 
-6/3/2024
+6/8/2024

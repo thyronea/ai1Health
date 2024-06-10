@@ -184,19 +184,19 @@
                         <!-- 4-6 years -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_quadracel'>
                                     <p>QUADRACEL</p>
                                 </div>
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_kinrix'>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_proquad'>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
@@ -320,19 +320,19 @@
                         <!-- 4-6 years -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_quadracel'>
                                     <p>QUADRACEL</p>
                                 </div>
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_kinrix'>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_proquad'>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
@@ -344,7 +344,7 @@
                         <!-- 2 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_vaxelis' style='background-color: #ccd4fc; height: 23px'>
                                     <p>VAXELIS</p>
                                 </div>
                             </div>
@@ -363,7 +363,7 @@
                         <!-- 4 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_vaxelis' style='background-color: #ccd4fc; height: 23px'>
                                     <p>VAXELIS</p>
                                 </div>
                             </div>
@@ -382,7 +382,7 @@
                         <!-- 6 months -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ccd4fc; height: 23px'>
+                                <div type='button' class='card mb-2' data-bs-toggle='modal' data-bs-target='#administer_vaxelis' style='background-color: #ccd4fc; height: 23px'>
                                     <p>VAXELIS</p>
                                 </div>
                             </div>
@@ -445,19 +445,19 @@
                         <!-- 4-6 years -->
                         <div class='col me-2'>
                             <div class='row'>
-                                <div class='card mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_quadracel'>
                                     <p>QUADRACEL</p>
                                 </div>
                             </div>
                             or
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #ffc0b5; height:23px' data-bs-toggle='modal' data-bs-target='#administer_kinrix'>
                                     <p>KINRIX</p>
                                 </div>
                             </div>
                             +
                             <div class='row'>
-                                <div class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px''>
+                                <div type='button' class='card mt-2 mb-2' style='background-color: #9ccaff; height:23px' data-bs-toggle='modal' data-bs-target='#administer_proquad'>
                                     <p>PROQUAD</p>
                                 </div>
                             </div>
@@ -469,3 +469,7 @@
 </div>
 <?php include('modal/immunization/combo/add-pediarix.php'); ?>
 <?php include('modal/immunization/combo/add-pentacel.php'); ?>
+<?php include('modal/immunization/combo/add-vaxelis.php'); ?>
+<?php include('modal/immunization/combo/add-quadracel.php'); ?>
+<?php include('modal/immunization/combo/add-kinrix.php'); ?>
+<?php include('modal/immunization/combo/add-proquad.php'); ?>
