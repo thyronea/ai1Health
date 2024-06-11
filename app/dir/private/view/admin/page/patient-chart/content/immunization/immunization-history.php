@@ -12,7 +12,7 @@
                     <p>Rotavirus - 2 Dose Series</p>
                 </div>
                 <div class="mb-4">
-                    <p>DTaP - 4 Dose Series</p>
+                    <p>DTaP - 5 Dose Series</p>
                 </div>
                 <div class="mb-4">
                     <p>Hib - 4 Dose Series</p>
@@ -67,19 +67,19 @@
         <div class='card-body'>
             <div class='row'>
                 <div class='col'>
-                    <?=$hepB_recommendation?>
+                    <?=$iz_recommendation?>
                 </div>
                 <div class='col'>
-                    <?=$hepB_recommendation?>
+                    <?=$iz_recommendation?>
                 </div>
                 <div class='col'>
-                    <?=$hepB_recommendation?>
+                    <?=$iz_recommendation?>
                 </div>
                 <div class='col'>
-                    <?=$hepB_recommendation?>
+                    <?=$iz_recommendation?>
                 </div>
                 <div class='col'>
-                    <?=$hepB_recommendation?>
+                    <?=$iz_recommendation?>
                 </div>
             </div>
         </div>

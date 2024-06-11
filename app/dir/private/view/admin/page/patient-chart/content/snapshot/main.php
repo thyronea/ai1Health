@@ -6,14 +6,6 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
 
 ?>
 
-<div align="center">
-  <!-- Modal -->
-  <?php 
-      include('modal/snapshot/send-patient-email.php'); 
-      include('modal/demographic/patient-add-image.php');
-  ?>
-</div>
-
 <div class="tab-pane fade show active" id="snapshot-tab-pane" role="tabpanel" aria-labelledby="snapshot-tab" tabindex="0">
   <div class="container user-select-none">
     <?php include('../../components/alert.php'); ?>
@@ -155,7 +147,23 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                 <h6>Health Summary</h6>
               </div>
               <div class="card-body">
-                
+                <div class='row mt-3'>
+                  <div class='col'>
+                      <?=$iz_recommendation?>
+                  </div>
+                  <div class='col'>
+                      <?=$iz_recommendation?>
+                  </div>
+                  <div class='col'>
+                      <?=$iz_recommendation?>
+                  </div>
+                  <div class='col'>
+                      <?=$iz_recommendation?>
+                  </div>
+                  <div class='col'>
+                      <?=$iz_recommendation?>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -206,4 +214,12 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
       </div>
     </div>
   </div>
+</div>
+
+<div align="center">
+  <!-- Modal -->
+  <?php 
+      include('modal/snapshot/send-patient-email.php'); 
+      include('modal/demographic/patient-add-image.php');
+  ?>
 </div>
