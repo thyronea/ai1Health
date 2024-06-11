@@ -21,7 +21,7 @@
                     <p>PCV - 4 Dose Series</p>
                 </div>
                 <div class="mb-4">
-                    <p>IPV - 3 Dose Series</p>
+                    <p>IPV - 4 Dose Series</p>
                 </div>
             </small>
         </div>

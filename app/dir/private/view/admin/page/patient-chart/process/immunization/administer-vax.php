@@ -1737,7 +1737,7 @@ if(isset($_POST['administer_ipv'])){
   else{
     $verify_completion = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
     $sql_run =  mysqli_query($con, $verify_completion);
-    if(mysqli_num_rows($sql_run)  >= 3){
+    if(mysqli_num_rows($sql_run)  >= 4){
       $_SESSION['warning'] = "3 Dose Series for $type is already complete!";
         header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
