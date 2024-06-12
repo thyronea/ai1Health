@@ -1478,43 +1478,46 @@ if(isset($_GET['patientID'])){
   $hpv = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='HPV' ";
   $hpv_run = mysqli_query($con, $hpv);
   $hpv_value = mysqli_fetch_assoc($hpv_run);
-  $hpv_count = round($hpv_value['count(*)'] / 3 * 100);
+  $hpv_count = round($hpv_value['count(*)'] / 2 * 100);
   // Recommended dates to administer 2nd & 3rd dose of Hep B
   $hpv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='HPV' ORDER BY id DESC";
   $hpv_req_run = mysqli_query($con, $hpv_req);
   if(mysqli_num_rows($hpv_req_run) == 0){
       $hpv_message = "
-      <small>No Data Found</small><br>
-      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hpv'>Administer HPV</button> 
+      <small>
+        Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+        Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+      </small>
+      <button type='button' class='focus-ring btn btn-sm border mt-4 mb-3' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hpv'>Administer HPV</button> 
       ";
-      $hpv_recommendation = " <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a>";
   }
   if(mysqli_num_rows($hpv_req_run) > 0){
       $row = mysqli_fetch_assoc($hpv_req_run);
       $date = $row['date'];
-      $month2 = strtotime("+2 months", strtotime($date));
-      $month2 = date('m/d/Y',$month2);
+      $month6 = strtotime("+6 months", strtotime($date));
+      $month6 = date('m/d/Y',$month6);
+      $month12 = strtotime("+6 months", strtotime($month6));
+      $month12 = date('m/d/Y',$month12);
 
       $hpv_message = "
           <div align='center'>
             <small>
               <div class='mb-3 row col-md-12'>
                 <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-                  <div class='card-body mt-3'>
-                  2nd dose is due on <b>$month2</b> along with the following vaccines and other immunization agents:
+                  <div class='card-body mt-2'>
+                    2nd dose is due by <b>$month6</b> (but no later than <b>$month12</b>) along with the following vaccines and other immunization agents:
                   </div>
                 </div>
                 <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
                    <div class='card-body'>
-                      $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
-                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
-                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                      $syringe 1 or more doses of updated <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                      <br> $syringe 1 or 2 doses of annual <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
                    </div>
                 </div>
               </div>
-              <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hpv'>Administer HPV</button> 
+              Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              <button type='button' class='focus-ring btn btn-sm border mt-3' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hpv'>Administer HPV</button> 
             </small>
           </div>
       ";
@@ -1536,142 +1539,27 @@ if(isset($_GET['patientID'])){
       ";
   }
   if(mysqli_num_rows($hpv_req_run) == 2){
-      $date = $row['date'];
-      $month2 = strtotime("+2 months", strtotime($date));
-      $month2 = date('m/d/Y',$month2);
-      $month6 = strtotime("+2 months", strtotime($month2));
-      $month6 = date('m/d/Y',$month6);
-
-      $month6 = strtotime("+2 months", strtotime($date));
-      $month6 = date('m/d/Y',$month6);
-      $month15 = strtotime("+2 months", strtotime($month6));
-      $month15 = date('m/d/Y',$month15);
-      
-      $hpv_message = "
-          <div align='center'>
-            <small>
-              <div class='mb-3 row col-md-12'>
-                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-                  <div class='card-body mt-3'>
-                    3rd dose is due on <b>$month6</b> but no later than <b>$month15</b>. If given at <b>$month6</b>, please administer the following vaccines and other immunization agents:
-                  </div>
-                </div>
-                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-                  <div class='card-body'>
-                      $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/rotavirus.pdf' class='text-decoration-none' target='_blank'>RV</a>
-                      <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                      <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
-                      <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                      <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-                  </div>
-                </div>
-              </div>
-              <button type='button' class='focus-ring btn btn-sm border mt-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button>
-            </small>
-          </div>
-       ";
-
-       $hpv_recommendation = "
-          <div align='center'>
-            <small>
-              <div class='mb-3' align='left'>
-              <b>Due on $month6:</b><br>
-                3rd dose of Hep B <br>
-                2nd dose of Rotavirus <br>
-                2nd dose of DTaP <br>
-                2nd dose of Hib <br>
-                2nd dose of PCV <br>
-                2nd dose of IPV
-              </div>
-             
-            </small>
-          </div>
-      ";
-  }
-  if(mysqli_num_rows($hpv_req_run) == 3){
-      $hpv_message = "
-      <div class='mb-3'>
-        <div align='center'>
-          <small>
-            <div class='mb-3'>
-                Hepatitis B series is complete! The following vaccines and other immunization agents should be administered today:
-                <div class='col-md-5 card mt-2' align='left' style='background-color: #e8e8e8'>
-                   <div class='card-body'>
-                      $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                      <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                      <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
-                   </div>
-                </div>
+    $hpv_message = "
+    <div align='center'>
+      <small>
+        <div class='mb-3 row col-md-12'>
+          <div class='col card border-0 m-2' align='left' style='background-color: #e8e8e8'>
+            <div class='card-body mt-2'>
+              HPV series is complete! The following vaccines and other immunization agents should be administered today:
             </div>
-            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a>
-            <div class='row col-md-10 mt-2'>
-              <div class='col me-2'>
-                <div class='row'>
-                  <div class='card mb-2' style='background-color: #cae3d1'>
-                    <div class='card-body'>
-                      PEDIARIX
-                      <br>(DTaP, IPV, Hep B)
-                    </div>
-                  </div>
-                </div>
-                +
-                <div class='row'>
-                  <div class='card mt-2 mb-2' style='background-color: #e6f2e9;'>
-                    <div class='py-2'>
-                      PCV
-                      <br> Rotavirus
-                      <br> Hib
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='col me-2'>
-                <div class='row'>
-                  <div class='card mb-2' style='background-color: #fadefa'>
-                    <div class='card-body'>
-                      PENTACEL
-                      <br>(DTaP, IPV, Hib)
-                    </div>
-                  </div>
-                </div>
-                +
-                <div class='row'>
-                  <div class='card mt-2 mb-2' style='background-color: #fcf2fc;'>
-                    <div class='py-2'>
-                      PCV
-                      <br> Rotavirus
-                      <br> Hep B
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='col me-2'>
-                <div class='row'>
-                  <div class='card mb-2' style='background-color: #ccd4fc'>
-                    <div class='card-body'>
-                      VAXELIS
-                      <br>(DTaP, IPV, Hib, Hep B)
-                    </div>
-                  </div>
-                </div>
-                +
-                <div class='row'>
-                  <div class='card mt-2' style='background-color: #ebeeff; height:81px'>
-                    <div class='py-2'>
-                      PCV
-                      <br> Rotavirus
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </small>
+          </div>
+          <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+             <div class='card-body'>
+                $syringe 1 or more doses of updated <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                <br> $syringe 1 or 2 doses of annual <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+             </div>
+          </div>
         </div>
-      </div>
-      ";
-
-      $hpv_recommendation = null;
+        Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+        Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+      </small>
+    </div>
+";
   }
 
   // Count Administered MCV
