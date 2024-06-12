@@ -6,7 +6,7 @@
                     <?php
                         $patientID = htmlspecialchars($patient['patientID']);
                         $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                        $vaccine = htmlspecialchars("mmr");
+                        $vaccine = htmlspecialchars("MMR");
                         $query = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$vaccine' ORDER BY id DESC";
                         $query_run = mysqli_query($con, $query);
                         $searchnum = mysqli_num_rows($query_run);

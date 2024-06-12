@@ -1,7 +1,8 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Redesign Recommendation Box - Hep A, MMR, Varicella, Tdap, HPV, MCV, MenB, COVID-19, Influenza
+- Redesign Recommendation Box - HPV, MCV, MenB, COVID-19, Influenza
+- Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design
