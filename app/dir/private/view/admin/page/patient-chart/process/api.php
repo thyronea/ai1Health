@@ -113,20 +113,32 @@ if(isset($_GET['patientID'])){
   $month1 = date('m/d/Y',$month1);
   $month2 = strtotime("+2 months", strtotime($date));
   $month2 = date('m/d/Y',$month2);
+  $month4 = strtotime("+4 months", strtotime($date));
+  $month4 = date('m/d/Y',$month4);
   $month6 = strtotime("+6 months", strtotime($date));
   $month6 = date('m/d/Y',$month6);
+  $month12 = strtotime("+12 months", strtotime($date));
+  $month12 = date('m/d/Y',$month12);
+  $month18 = strtotime("+18 months", strtotime($date));
+  $month18 = date('m/d/Y',$month18);
 
   // Date from date of birth
-  $year11 = strtotime("+11 years", strtotime($dob));
-  $year11 = date('m/d/Y',$year11);
-  $year16 = strtotime("+16 years", strtotime($dob));
-  $year16 = date('m/d/Y',$year16);
-  $year11 = strtotime("+11 years", strtotime($dob));
-  $year11 = date('m/d/Y',$year11);
-  $year16 = strtotime("+16 years", strtotime($dob));
-  $year16 = date('m/d/Y',$year16);
-  $year18 = strtotime("+18 years", strtotime($dob));
-  $year18 = date('m/d/Y',$year18);
+  $month1old = strtotime("+1 months", strtotime($dob));
+  $month1old = date('m/d/Y',$month1old);
+  $month2old = strtotime("+2 months", strtotime($dob));
+  $month2old = date('m/d/Y',$month2old);
+  $month6old = strtotime("+6 months", strtotime($dob));
+  $month6old = date('m/d/Y',$month6old);
+  $year4old = strtotime("+4 years", strtotime($dob));
+  $year4old = date('m/d/Y',$year4old);
+  $year6old = strtotime("+6 years", strtotime($dob));
+  $year6old = date('m/d/Y',$year6old);
+  $year11old = strtotime("+11 years", strtotime($dob));
+  $year11old = date('m/d/Y',$year11old);
+  $year16old = strtotime("+16 years", strtotime($dob));
+  $year16old = date('m/d/Y',$year16old);
+  $year18old = strtotime("+18 years", strtotime($dob));
+  $year18old = date('m/d/Y',$year18old);
 
   // Count Administered RSV
   $rsv = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='RSV' ";
@@ -173,7 +185,7 @@ if(isset($_GET['patientID'])){
       $row = mysqli_fetch_assoc($hepB_req_run);
       $date = $row['date'];
       $month2 = strtotime("+2 months", strtotime($date));
-      $month2 = date('m/d/Y',$month2);
+      $month2 = date('m/d/Y',$month2); // 2 month since last shot
 
       $hepB_message = "
           <div align='center'>
@@ -1190,11 +1202,6 @@ if(isset($_GET['patientID'])){
     ";
   }
   if(mysqli_num_rows($flu_req_run) > 0){
-    $row = mysqli_fetch_assoc($covid_req_run);
-    $date = $row['date'];
-    $month4 = strtotime("+2 months", strtotime($date));
-    $month4 = date('m/d/Y',$month4);
- 
     $flu_message = "
        <div align='center'>
           <small>
@@ -1234,20 +1241,13 @@ if(isset($_GET['patientID'])){
     ";
   }
   if(mysqli_num_rows($mmr_req_run) > 0){
-    $row = mysqli_fetch_assoc($mmr_req_run);
-    $date = $row['date'];
-    $year4 = strtotime("+3 years", strtotime($date));
-    $year4 = date('m/d/Y',$year4);
-    $year6 = strtotime("+2 years", strtotime($year4));
-    $year6 = date('m/d/Y',$year6);
- 
     $mmr_message = "
        <div align='center'>
           <small>
             <div class='row col-md-12 mb-3'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-4'>
-                  2nd dose is due by <b>$year4</b> (but no later than <b>$year6</b>) along with the following vaccines and other immunization agents:
+                  2nd dose is due by <b>$year4old</b> (but no later than <b>$year6old</b>) along with the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1312,20 +1312,13 @@ if(isset($_GET['patientID'])){
     ";
   }
   if(mysqli_num_rows($var_req_run) > 0){
-    $row = mysqli_fetch_assoc($var_req_run);
-    $date = $row['date'];
-    $year4 = strtotime("+3 years", strtotime($date));
-    $year4 = date('m/d/Y',$year4);
-    $year6 = strtotime("+2 years", strtotime($year4));
-    $year6 = date('m/d/Y',$year6);
- 
     $var_message = "
        <div align='center'>
           <small>
             <div class='row col-md-12 mb-3'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-4'>
-                  2nd dose is due by <b>$year4</b> (but no later than <b>$year6</b>) along with the following vaccines and other immunization agents:
+                  2nd dose is due by <b>$year4old</b> (but no later than <b>$year6old</b>) along with the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1391,11 +1384,6 @@ if(isset($_GET['patientID'])){
     ";
   }
   if(mysqli_num_rows($hepa_req_run) > 0){
-    $row = mysqli_fetch_assoc($hepa_req_run);
-    $date = $row['date'];
-    $month18 = strtotime("+6 months", strtotime($date));
-    $month18 = date('m/d/Y',$month18);
- 
     $hepa_message = "
        <div align='center'>
           <small>
@@ -1423,11 +1411,6 @@ if(isset($_GET['patientID'])){
     ";
   }
   if(mysqli_num_rows($hepa_req_run) == 2){
-    $row = mysqli_fetch_assoc($hepa_req_run);
-    $date = $row['date'];
-    $month6 = strtotime("+6 months", strtotime($date));
-    $month6 = date('m/d/Y',$month6);
- 
     $hepa_message = "
       <div align='center'>
         <small>
@@ -1515,14 +1498,7 @@ if(isset($_GET['patientID'])){
       ";
   }
   if(mysqli_num_rows($hpv_req_run) > 0){
-      $row = mysqli_fetch_assoc($hpv_req_run);
-      $date = $row['date'];
-      $month6 = strtotime("+6 months", strtotime($date));
-      $month6 = date('m/d/Y',$month6);
-      $month12 = strtotime("+6 months", strtotime($month6));
-      $month12 = date('m/d/Y',$month12);
-
-      $hpv_message = "
+    $hpv_message = "
           <div align='center'>
             <small>
               <div class='mb-3 row col-md-12'>
@@ -1609,7 +1585,7 @@ if(isset($_GET['patientID'])){
             <div class='mb-3 row col-md-12'>
               <div class='col card border-0 m-2' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-2'>
-                  2nd dose is due on <b>$year16</b> along with the following vaccines and other immunization agents:
+                  2nd dose is due on <b>$year16old</b> along with the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
@@ -1626,13 +1602,7 @@ if(isset($_GET['patientID'])){
       </div>
     ";
   }
-  if(mysqli_num_rows($mcv_req_run) == 2){
-    $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
-    $decrypted_dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
-    $year16 = strtotime("+16 years", strtotime($decrypted_dob));
-    $year16 = date('m/d/Y',$year16);
- 
-    $mcv_message = "
+  if(mysqli_num_rows($mcv_req_run) == 2){$mcv_message = "
        <div align='center'>
         <small>
             <div class='mb-3 row col-md-12'>
@@ -1670,7 +1640,7 @@ if(isset($_GET['patientID'])){
           <div class='col card border-0 m-2' align='left' style='background-color: #e8e8e8'>
             <div class='card-body mt-2'>
               <b>Adolescents not at increased risk</b> age 16–23 years (preferred age 16–18 years) based on shared clinical decision-making:<br>
-              1st dose is recommended by <b>$year16 - $year18</b>
+              1st dose is recommended by <b>$year16old - $year18old</b>
             </div>
           </div>
           <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
