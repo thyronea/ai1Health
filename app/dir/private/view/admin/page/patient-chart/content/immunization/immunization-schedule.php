@@ -64,7 +64,7 @@ $year18old = date('m/d/Y',$year18old);
     transition: all 1s ease;
   }
 </style>
-<div class="tab-pane fade show active" id="history" role="tabpanel" tabindex="0">
+<div class="tab-pane fade show active" id="schedule" role="tabpanel" tabindex="0">
     <div class="row col-md-12">
         <!--
         <div class="col-md-4 mt-5 mb-3">
@@ -247,6 +247,100 @@ $year18old = date('m/d/Y',$year18old);
                 </div>
                 -->
             </small>
+        </div>
+        <div class="col-md-5 mt-2 card border">
+            <div class="row card-body">
+                <div class="col mt-2 mb-3">
+                    <small>
+                        <div style="margin-top: 14px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>RSV</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>HEP B</small></button>
+                        </div>
+                        <div style="margin-top: 5.5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>RV</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>DTAP</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>HIB</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>PCV</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>IPV</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>MMR</small></button>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>VAR</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>HEP A</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>TDAP</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>HPV</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>MCV</small></button>
+                        </div>
+                        <div style="margin-top: 6px">
+                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small>MEN B</small></button>
+                        </div>
+                    </small>
+                </div>
+                <div class="col-md-8 mt-2 mb-3">
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$rsv_count;?>%"><?=$rsv_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepB_count;?>%"><?=$hepB_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$rota_count;?>%"><?=$rota_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$dtap_count;?>%"><?=$dtap_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hib_count;?>%"><?=$hib_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$pcv_count;?>%"><?=$pcv_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$ipv_count;?>%"><?=$ipv_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$mmr_count;?>%"><?=$mmr_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$var_count;?>%"><?=$var_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hepa_count;?>%"><?=$hepa_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$tdap_count;?>%"><?=$tdap_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$hpv_count;?>%"><?=$hpv_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$mcv_count;?>%"><?=$mcv_count;?>%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 20px; margin-top: 17px">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?=$menb_count;?>%"><?=$menb_count;?>%</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- 

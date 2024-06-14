@@ -23,7 +23,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
     <div class="container col-md-12 mt-3 mb-3">
         <div class="d-flex align-items-start"> 
             <div class="nav col-md-1 flex-column nav-pills me-3 mt-2" id="v-pills-tab" role="tablist">
-                <button class="active focus-ring btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#history" type="button">Schedule</button>
+                <button class="active focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#schedule" type="button">Schedule</button>
+                <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#progress" type="button">Progress</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#combination" type="button">Combo</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rsv" type="button">RSV</button>
                 <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepb" type="button">Hep B</button>
@@ -44,7 +45,8 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                 
             </div>
             <div class="col tab-content">
-                <?php include('immunization-history.php');?>
+                <?php include('immunization-schedule.php');?>
+                <?php include('immunization-progress.php');?>
                 <?php include('immunization-combination.php');?>
                 <?php include('immunization-rsv.php');?>
                 <?php include('immunization-hepb.php');?>
