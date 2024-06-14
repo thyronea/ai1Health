@@ -3,7 +3,7 @@
 
     <div class="row flex-nowrap">
       <div class="col-md-12 mt-3">
-        <div class="card shadow" style="height:43rem">
+        <div class="card shadow" style="background-image: linear-gradient(#f5f5f5, #ffffff); height:43rem">
           <div class="card-body table-responsive" id="immunization">
 
             <nav>

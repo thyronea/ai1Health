@@ -168,7 +168,7 @@ $year18old = date('m/d/Y',$year18old);
             </small>
         </div>
         -->
-        <div class="col-md-7 me-3 mt-2 card border" style="width: 625px">
+        <div class="col-md-7 me-3 mt-2 card border" style="background-image: linear-gradient(#ffffff, #edf3ff); width: 625px">
             <div class="row card-body">
                 <div class="col mt-2 mb-3" align="left">
                     <small>
@@ -269,51 +269,51 @@ $year18old = date('m/d/Y',$year18old);
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-2 card border" style="width: 470px">
+        <div class="col-md-4 mt-2 card border" style="background-image: linear-gradient(#ffffff, #edf3ff); width: 470px">
             <div class="row card-body">
                 <div class="col mt-2 mb-3" align="left">
                     <small>
                         <div style="margin-top: 29px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>RSV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>RSV</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>HEP B</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>HEP B</small></button>
                         </div>
                         <div style="margin-top: 5.5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>RV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>RV</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>DTAP</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>DTAP</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>HIB</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>HIB</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>PCV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>PCV</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>IPV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>IPV</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>MMR</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>MMR</small></button>
                         </div>
                         <div style="margin-top: 5px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>VAR</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>VAR</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>HEP A</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>HEP A</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>TDAP</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>TDAP</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>HPV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>HPV</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>MCV</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>MCV</small></button>
                         </div>
                         <div style="margin-top: 6px">
-                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm btn-outline-secondary rounded-3" disabled><small>MEN B</small></button>
+                            <button id="btn_progress" class="focus-ring py-1 px-2 btn btn-sm border-0 rounded-3" disabled><small>MEN B</small></button>
                         </div>
                     </small>
                 </div>
