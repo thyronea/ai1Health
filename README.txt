@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Redesign Recommendation Box - History, COVID-19, Influenza - Use $dob for schedule recommendation
+- Redesign Recommendation Box - Schedule ($iz_date needs to be a loop), COVID-19, Influenza.
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive

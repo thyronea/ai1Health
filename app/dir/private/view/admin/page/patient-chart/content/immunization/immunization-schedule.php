@@ -205,12 +205,15 @@ $year18old = date('m/d/Y',$year18old);
                         <?=$rsv_schedule?>
 
                         <!--  Hep B-->
+                        <?=$hepb_schedule?>
+                        <!-- 
                         <div style="margin-top: 5.5px">
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hep B</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$dob;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
                         </div>
+                        -->
 
                         <!-- RV -->
                         <div style="margin-top: 6px">

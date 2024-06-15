@@ -121,6 +121,8 @@ if(isset($_GET['patientID'])){
   $month6 = date('m/d/Y',$month6);
   $month12 = strtotime("+12 months", strtotime($date));
   $month12 = date('m/d/Y',$month12);
+  $month15 = strtotime("+15 months", strtotime($date));
+  $month15 = date('m/d/Y',$month15);
   $month18 = strtotime("+18 months", strtotime($date));
   $month18 = date('m/d/Y',$month18);
 
@@ -147,12 +149,13 @@ if(isset($_GET['patientID'])){
   $rsv_run = mysqli_query($con, $rsv);
   $rsv_value = mysqli_fetch_assoc($rsv_run);
   $rsv_count = round($rsv_value['count(*)'] / 1 * 100);
-  // RSV Complete
+  // RSV Recommendation
   $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
   $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);
   $rsv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='RSV' ORDER BY id DESC";
   $rsv_req_run = mysqli_query($con, $rsv_req);
   $row = mysqli_fetch_assoc($rsv_req_run);
+
   if(mysqli_num_rows($rsv_req_run) == 0){
       $rsv_message = "
         <small>No Data Found</small><br>
@@ -166,9 +169,7 @@ if(isset($_GET['patientID'])){
       </div>
       ";
     }
-    else{   
-    $iz_date = strtotime($row['date']);
-    $iz_date = date('m/d/Y',$iz_date);
+    else{ 
     $rsv_message = "
         <div align='center'>
           <small>
@@ -178,7 +179,8 @@ if(isset($_GET['patientID'])){
           </small>
         </div>
       ";
-      
+      $iz_date = strtotime($row['date']);
+      $iz_date = date('m/d/Y',$iz_date);
       $rsv_schedule = "
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RSV</b></small></button>
@@ -192,22 +194,28 @@ if(isset($_GET['patientID'])){
   $hepB_run = mysqli_query($con, $hepB);
   $hepB_value = mysqli_fetch_assoc($hepB_run);
   $hepB_count = round($hepB_value['count(*)'] / 3 * 100);
-  // Recommended dates to administer 2nd & 3rd dose of Hep B
+  // Hep B Recommendation
   $hepB_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Hepatitis B' ORDER BY id DESC";
   $hepB_req_run = mysqli_query($con, $hepB_req);
+  $row = mysqli_fetch_assoc($hepB_req_run);
   if(mysqli_num_rows($hepB_req_run) == 0){
       $hepB_message = "
       <small>No Data Found</small><br>
       <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hepb'>Administer Hep B</button> 
       ";
+
+      $hepb_schedule = "
+      <div style='margin-top: 5.5px'>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$dob</small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$month2old</small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$month6old</small></button> 
+      </div>
+      ";
+
       $iz_recommendation = " <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-adolescent.html' target='_blank'>Immunization Schedule</a>";
   }
   if(mysqli_num_rows($hepB_req_run) > 0){
-      $row = mysqli_fetch_assoc($hepB_req_run);
-      $date = $row['date'];
-      $month2 = strtotime("+2 months", strtotime($date));
-      $month2 = date('m/d/Y',$month2); // 2 month since last shot
-
       $hepB_message = "
           <div align='center'>
             <small>
@@ -231,6 +239,18 @@ if(isset($_GET['patientID'])){
             </small>
           </div>
       ";
+
+      $iz_date = strtotime($row['date']);
+      $iz_date = date('m/d/Y',$iz_date);
+      $hepb_schedule = "
+      <div style='margin-top: 5.5px'>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
+        <button id='btn_complete' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#edit_administered_hepb'><small>$iz_date</small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$month2old</small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$month6old</small></button> 
+      </div>
+      ";
+      
       $iz_recommendation = "
           <div align='center'>
             <small>
@@ -249,24 +269,13 @@ if(isset($_GET['patientID'])){
       ";
   }
   if(mysqli_num_rows($hepB_req_run) == 2){
-      $date = $row['date'];
-      $month2 = strtotime("+2 months", strtotime($date));
-      $month2 = date('m/d/Y',$month2);
-      $month6 = strtotime("+2 months", strtotime($month2));
-      $month6 = date('m/d/Y',$month6);
-
-      $month6 = strtotime("+2 months", strtotime($date));
-      $month6 = date('m/d/Y',$month6);
-      $month15 = strtotime("+2 months", strtotime($month6));
-      $month15 = date('m/d/Y',$month15);
-      
       $hepB_message = "
           <div align='center'>
             <small>
               <div class='mb-3 row col-md-12'>
                 <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
                   <div class='card-body mt-3'>
-                    3rd dose is due on <b>$month6</b> but no later than <b>$month15</b>. If given at <b>$month6</b>, please administer the following vaccines and other immunization agents:
+                    3rd dose is due on <b>$month4</b> but no later than <b>$month18</b>. If given at <b>$month6</b>, please administer the following vaccines and other immunization agents:
                   </div>
                 </div>
                 <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
@@ -283,6 +292,17 @@ if(isset($_GET['patientID'])){
             </small>
           </div>
        ";
+
+      $iz_date = strtotime($row['date']);
+      $iz_date = date('m/d/Y',$iz_date);
+      $hepb_schedule = "
+          <div style='margin-top: 5.5px'>
+            <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
+            <button id='btn_complete' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#edit_administered_hepb'><small>$iz_date</small></button>
+            <button id='btn_complete' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$iz_date</small></button>
+            <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$month6old</small></button> 
+          </div>
+        ";
   }
   if(mysqli_num_rows($hepB_req_run) == 3){
       $hepB_message = "
