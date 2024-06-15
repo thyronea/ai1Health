@@ -105,7 +105,9 @@ if(isset($_GET['patientID'])){
   // Syringe icon
   $syringe = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 512 512"><path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/></svg>';
   $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
-  $dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
+  $decrypted_dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
+  $year = (date('Y') - date('Y', strtotime($decrypted_dob)));
+  $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decrypted_dob)) . '/' . date('Y', strtotime($decrypted_dob)));
   $date = date("Y/m/d");
 
   // Date from Today
@@ -146,24 +148,43 @@ if(isset($_GET['patientID'])){
   $rsv_value = mysqli_fetch_assoc($rsv_run);
   $rsv_count = round($rsv_value['count(*)'] / 1 * 100);
   // RSV Complete
+  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+  $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);
   $rsv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='RSV' ORDER BY id DESC";
   $rsv_req_run = mysqli_query($con, $rsv_req);
+  $row = mysqli_fetch_assoc($rsv_req_run);
   if(mysqli_num_rows($rsv_req_run) == 0){
       $rsv_message = "
-      <small>No Data Found</small><br>
-      <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rsv'>Administer RSV</button> 
+        <small>No Data Found</small><br>
+        <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rsv'>Administer RSV</button> 
+      ";
+
+      $rsv_schedule = "
+      <div style='margin-top: 5px'>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RSV</b></small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rsv'><small>$dob</small></button>
+      </div>
       ";
     }
-    else{
+    else{   
+    $iz_date = strtotime($row['date']);
+    $iz_date = date('m/d/Y',$iz_date);
     $rsv_message = "
-          <div align='center'>
-            <small>
-              <div class='mb-3'>
-                RSV is complete!
-              </div>
-            </small>
-          </div>
+        <div align='center'>
+          <small>
+            <div class='mb-3'>
+              RSV is complete!
+            </div>
+          </small>
+        </div>
       ";
+      
+      $rsv_schedule = "
+        <div style='margin-top: 5px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RSV</b></small></button>
+          <button id='btn_complete' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#edit_administered_rsv'><small>$iz_date</small></button>
+        </div>
+      ";  
   }
 
   // Count Administered Hep B

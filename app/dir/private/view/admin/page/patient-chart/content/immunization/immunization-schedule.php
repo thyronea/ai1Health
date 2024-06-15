@@ -55,9 +55,28 @@ $year18old = date('m/d/Y',$year18old);
 ?>
 
 <style>
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
     #btn_schedule{
         width: 90px;
         height: 31px;
+    }
+    #btn_complete{
+        width: 90px;
+        height: 31px;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        color: #fff;
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
     }
     #btn_progress{
         width: 90px;
@@ -172,7 +191,8 @@ $year18old = date('m/d/Y',$year18old);
             <div class="row card-body">
                 <div class="col mt-2 mb-3" align="left">
                     <small>
-                        <div style="margin-top: -5px;"> <!-- Schedule -->
+                        <!-- Schedule -->
+                        <div style="margin-top: -5px;">
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Vax</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>1st</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>2nd</b></small></button>
@@ -180,17 +200,20 @@ $year18old = date('m/d/Y',$year18old);
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>4th</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>5th</b></small></button>
                         </div>
-                        <div style="margin-top: 5px"> <!-- RSV -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>RSV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$dob;?></small></button>
-                        </div>
-                        <div style="margin-top: 5.5px"> <!--  Hep B-->
+
+                        <!-- RSV -->
+                        <?=$rsv_schedule?>
+
+                        <!--  Hep B-->
+                        <div style="margin-top: 5.5px">
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hep B</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$dob;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
                         </div>
-                        <div style="margin-top: 6px"> <!-- RV -->
+
+                        <!-- RV -->
+                        <div style="margin-top: 6px">
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>RV</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>

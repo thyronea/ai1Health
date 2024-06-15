@@ -24,7 +24,7 @@
                     <td>
                         <div class="card shadow" id="patients">
                             <div class="card-body">
-                                <a type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="text-decoration-none" style="color: black">
+                                <button type="button" href="../patient-chart/index.php?patientID=<?=htmlspecialchars($patient['patientID']);?>" class="btn border-0 text-decoration-none" style="color: black" disabled>
                                     <small>
                                     <div class="row" style="padding-left:15px;">
                                         <div class="col border" style="width:50px;height:50px;border-radius:50%;overflow:hidden">
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                     </small>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </td>

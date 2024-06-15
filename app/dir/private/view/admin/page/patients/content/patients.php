@@ -40,7 +40,7 @@
 
        <!-- All Patients -->
        <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-         <table class="table align-middle  table table-sm table-borderless text-nowrap">
+         <table class="table align-middle table table-sm table-borderless text-nowrap">
            <thead>
              <th></th>
            </thead>
@@ -74,7 +74,7 @@
        </div>
        <!-- Pediatric Patients-->
        <div class="tab-pane fade" id="pediatric-tab-pane" role="tabpanel" aria-labelledby="pediatric-tab" tabindex="0">
-         <table class="table align-middle table-sm table-hover table-borderless text-nowrap">
+         <table class="table align-middle table-sm table-borderless text-nowrap">
            <thead>
              <th></th>
            </thead>
@@ -108,7 +108,7 @@
        </div>
        <!-- Adult Patients -->
        <div class="tab-pane fade" id="adult-tab-pane" role="tabpanel" aria-labelledby="adult-tab" tabindex="0">
-         <table class="table align-middle table-sm table-hover table-borderless text-nowrap">
+         <table class="table align-middle table-sm table-borderless text-nowrap">
            <thead>
              <th></th>
            </thead>
