@@ -3,22 +3,52 @@
 
     <div class="row flex-nowrap">
       <div class="col-md-12 mt-3">
-        <div class="card shadow" style="background-image: linear-gradient(#f5f5f5, #ffffff); height:43rem">
+        <div class="card shadow" style="background-image: linear-gradient(#f5f5f5, #ffffff); height:42rem">
           <div class="card-body table-responsive" id="immunization">
 
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-history" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="color: black;"><small>Overview</small></button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-peds" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;"><small>Pediatric</small></button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-adol" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="color: black;"><small>Adolescent</small></button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-adult" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="color: black;"><small>Adult</small></button>
+            <div class="container col-md-12 mt-3 mb-3">
+              <div class="d-flex align-items-start"> 
+                  <div class="nav col-md-1 flex-column nav-pills me-3 mt-2" id="v-pills-tab" role="tablist">
+                      <button class="active focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#schedule" type="button">Schedule</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#combination" type="button">Combo</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rsv" type="button">RSV</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepb" type="button">Hep B</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rota" type="button">Rotavirus</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#dtap" type="button">DTaP</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hib" type="button">Hib</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#pcv" type="button">PCV</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#ipv" type="button">IPV</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#mmr" type="button">MMR</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#var" type="button">Varicella</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hepa" type="button">Hep A</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#tdap" type="button">Tdap</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#hpv" type="button">HPV</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#mcv" type="button">MCV</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#menb" type="button">MenB</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#covid" type="button">COVID-19</button>
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#flu" type="button">Influenza</button>
+                  </div>
+                  <div class="col tab-content">
+                      <?php include('immunization-schedule.php');?>
+                      <?php include('immunization-combination.php');?>
+                      <?php include('immunization-rsv.php');?>
+                      <?php include('immunization-hepb.php');?>
+                      <?php include('immunization-rota.php');?>
+                      <?php include('immunization-dtap.php');?>
+                      <?php include('immunization-hib.php');?>
+                      <?php include('immunization-pcv.php');?>
+                      <?php include('immunization-ipv.php');?>
+                      <?php include('immunization-mmr.php');?>
+                      <?php include('immunization-var.php');?>
+                      <?php include('immunization-hepa.php');?>
+                      <?php include('immunization-tdap.php');?>
+                      <?php include('immunization-hpv.php');?>
+                      <?php include('immunization-mcv.php');?>
+                      <?php include('immunization-menb.php');?>
+                      <?php include('immunization-covid.php');?>
+                      <?php include('immunization-flu.php');?>
+                  </div>
               </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <?php include('immunization-overview.php');?>
-              <div class="tab-pane fade" id="nav-peds" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
-              <div class="tab-pane fade" id="nav-adol" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
-              <div class="tab-pane fade" id="nav-adult" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
             </div>
 
           </div>

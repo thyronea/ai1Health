@@ -216,20 +216,11 @@ $year18old = date('m/d/Y',$year18old);
                         -->
 
                         <!-- RV -->
-                        <div style="margin-top: 6px">
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>RV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- DTaP -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>DTaP</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month15old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month18old;?></small></button>
-                        </div>
+                        <?=$rota_schedule?>
+                        
+                        <!-- DTaP -->
+                        <?=$dtap_schedule?>
+                        
                         <div style="margin-top: 5px"> <!-- Hib -->
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hib</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>

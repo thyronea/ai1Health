@@ -1,6 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
+- Delete Overview
 - Redesign Recommendation Box - Schedule ($iz_date needs to be a loop), COVID-19, Influenza.
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
