@@ -203,31 +203,14 @@ $year18old = date('m/d/Y',$year18old);
 
                         <!-- RSV -->
                         <?=$rsv_schedule?>
-
                         <!--  Hep B-->
                         <?=$hepb_schedule?>
-                        <!-- 
-                        <div style="margin-top: 5.5px">
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hep B</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$dob;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                        </div>
-                        -->
-
                         <!-- RV -->
                         <?=$rota_schedule?>
-                        
                         <!-- DTaP -->
                         <?=$dtap_schedule?>
-                        
-                        <div style="margin-top: 5px"> <!-- Hib -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hib</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month15old;?></small></button>
-                        </div>
+                        <!-- Hib -->
+                        <?=$hib_schedule?>
                         <div style="margin-top: 5px"> <!-- PCV -->
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>PCV</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
