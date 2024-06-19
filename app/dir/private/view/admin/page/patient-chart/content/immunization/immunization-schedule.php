@@ -6,52 +6,6 @@ $year = (date('Y') - date('Y', strtotime($decrypted_dob)));
 $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decrypted_dob)) . '/' . date('Y', strtotime($decrypted_dob)));
 
 $date = date("Y/m/d");
-
-// Date from Today
-$month1 = strtotime("+1 months", strtotime($date));
-$month1 = date('m/d/Y',$month1);
-$month2 = strtotime("+2 months", strtotime($date));
-$month2 = date('m/d/Y',$month2);
-$month4 = strtotime("+4 months", strtotime($date));
-$month4 = date('m/d/Y',$month4);
-$month6 = strtotime("+6 months", strtotime($date));
-$month6 = date('m/d/Y',$month6);
-$month12 = strtotime("+12 months", strtotime($date));
-$month12 = date('m/d/Y',$month12);
-$month18 = strtotime("+18 months", strtotime($date));
-$month18 = date('m/d/Y',$month18);
-
-// Date from date of birth
-$month1old = strtotime("+1 months", strtotime($dob));
-$month1old = date('m/d/Y',$month1old);
-$month2old = strtotime("+2 months", strtotime($dob));
-$month2old = date('m/d/Y',$month2old);
-$month4old = strtotime("+4 months", strtotime($dob));
-$month4old = date('m/d/Y',$month4old);
-$month6old = strtotime("+6 months", strtotime($dob));
-$month6old = date('m/d/Y',$month6old);
-$month15old = strtotime("+15 months", strtotime($dob));
-$month15old = date('m/d/Y',$month15old);
-$month18old = strtotime("+18 months", strtotime($dob));
-$month18old = date('m/d/Y',$month18old);
-$year1old = strtotime("+1 years", strtotime($dob));
-$year1old = date('m/d/Y',$year1old);
-$year4old = strtotime("+4 years", strtotime($dob));
-$year4old = date('m/d/Y',$year4old);
-$year6old = strtotime("+6 years", strtotime($dob));
-$year6old = date('m/d/Y',$year6old);
-$year11old = strtotime("+11 years", strtotime($dob));
-$year11old = date('m/d/Y',$year11old);
-$year11_6month_old = strtotime("+138 months", strtotime($dob));
-$year11_6month_old = date('m/d/Y',$year11_6month_old);
-$year16old = strtotime("+16 years", strtotime($dob));
-$year16old = date('m/d/Y',$year16old);
-$year16_1month_old = strtotime("+192 months", strtotime($dob));
-$year16_1month_old = date('m/d/Y',$year16_1month_old);
-$year16_6month_old = strtotime("+197 months", strtotime($dob));
-$year16_6month_old = date('m/d/Y',$year16_6month_old);
-$year18old = strtotime("+18 years", strtotime($dob));
-$year18old = date('m/d/Y',$year18old);
 ?>
 
 <style>
@@ -214,53 +168,21 @@ $year18old = date('m/d/Y',$year18old);
                         <!-- PCV -->
                         <?=$pcv_schedule?>
                         <!-- IPV -->
-                        <div style="margin-top: 5px">
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>IPV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year4old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- MMR -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>MMR</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year1old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year4old;?></small></button>
-                        </div>
-                        <div style="margin-top: 6px"> <!-- VAR -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>VAR</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year1old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year4old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- Hep A -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Hep A</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year1old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month18old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- Tdap -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Tdap</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year11old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- HPV -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>HPV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year11old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year11_6month_old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- MCV -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>MCV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year11old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year16old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- Men B Bexsero-->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Men B</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year16old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year16_1month_old;?></small></button>
-                        </div>
-                        <!-- Trumenba
-                        <div style="margin-top: 6px">
-                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year16old;?></small></button>
-                            <button id="btn" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year16_6month_old;?></small></button>
-                        </div>
-                        -->
+                        <?=$ipv_schedule?>
+                        <!-- MMR -->
+                        <?=$mmr_schedule?>
+                        <!-- VAR -->
+                        <?=$var_schedule?>
+                        <!-- Hep A -->
+                        <?=$hepa_schedule?>
+                        <!-- Tdap -->
+                        <?=$tdap_schedule?>
+                        <!-- HPV -->
+                        <?=$hpv_schedule?>
+                        <!-- MCV -->
+                        <?=$mcv_schedule?>
+                        <!-- Men B -->
+                        <?=$menb_schedule?>
                     </small>
                 </div>
             </div>
@@ -360,27 +282,4 @@ $year18old = date('m/d/Y',$year18old);
             </div>
         </div>
     </div>
-    <!-- 
-    <div class='card'>
-        <div class='card-body'>
-            <div class='row'>
-                <div class='col'>
-                    <?=$iz_recommendation?>
-                </div>
-                <div class='col'>
-                    <?=$iz_recommendation?>
-                </div>
-                <div class='col'>
-                    <?=$iz_recommendation?>
-                </div>
-                <div class='col'>
-                    <?=$iz_recommendation?>
-                </div>
-                <div class='col'>
-                    <?=$iz_recommendation?>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 </div>

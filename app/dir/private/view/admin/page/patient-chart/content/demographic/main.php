@@ -92,7 +92,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                           <i class="bi bi-gear"></i>
                         </button>
                         <button type="button" class="focus-ring btn btn-sm border-0 patientdeletebtn" style="color: black" data-bs-toggle="modal" data-bs-target="#patientdeletemodal">
-                          <i class="bi bi-trash"></i>
+                            <i class="bi bi-box-arrow-right"></i>
                         </button>
                       </div>
                     </div>
