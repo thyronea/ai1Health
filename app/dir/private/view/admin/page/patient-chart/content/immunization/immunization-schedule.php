@@ -211,14 +211,10 @@ $year18old = date('m/d/Y',$year18old);
                         <?=$dtap_schedule?>
                         <!-- Hib -->
                         <?=$hib_schedule?>
-                        <div style="margin-top: 5px"> <!-- PCV -->
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>PCV</b></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month6old;?></small></button>
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$year1old;?></small></button>
-                        </div>
-                        <div style="margin-top: 5px"> <!-- IPV -->
+                        <!-- PCV -->
+                        <?=$pcv_schedule?>
+                        <!-- IPV -->
+                        <div style="margin-top: 5px">
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>IPV</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month2old;?></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm border rounded-3"><small><?=$month4old;?></small></button>
