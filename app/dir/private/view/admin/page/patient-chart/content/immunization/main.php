@@ -66,3 +66,17 @@
     height: 0;
   }
 </style>
+<style>
+  #admin_card:hover{
+    background-color: #8fafff;
+    transition: all 1s ease;
+  }
+  #iz_sidebar:hover{
+    background-color: #8fafff;
+    transition: all 1s ease;
+  }
+  #submit_btn:hover{
+    background-color: #8fafff;
+    transition: all 1s ease;
+  }
+</style>

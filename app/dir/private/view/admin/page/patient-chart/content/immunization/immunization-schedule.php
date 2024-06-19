@@ -154,7 +154,6 @@ $date = date("Y/m/d");
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>4th</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>5th</b></small></button>
                         </div>
-
                         <!-- RSV -->
                         <?=$rsv_schedule?>
                         <!--  Hep B-->

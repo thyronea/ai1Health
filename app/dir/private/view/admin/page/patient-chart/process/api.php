@@ -2015,7 +2015,7 @@ if(isset($_GET['patientID'])){
       $tdap_schedule = "
       <div style='margin-top: 5px'>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Tdap</b></small></button>
-        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_tdap'><small>$month11old</small></button>
+        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_tdap'><small>$year11old</small></button>
       </div>
     ";
     }
