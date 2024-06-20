@@ -186,37 +186,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-    $('.edit_dtap_btn').on('click', function() {
-      $('#edit_administered_dtap').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#dtap_edit_ID').val(data[0]);
-      $('#dtap_edit_uniqueID').val(data[1]);
-      $('#delete_dtap_uniqueID').val(data[1]);
-      $('#patient_ID').val(data[2]);
-      $('#group_ID').val(data[3]);
-      $('#edit_dtap_name').val(data[4]);
-      $('#delete_dtap_name').val(data[4]);
-      $('#edit_dtap_lot').val(data[5]);
-      $('#edit_dtap_ndc').val(data[6]);
-      $('#edit_dtap_exp').val(data[7]);
-      $('#dtap_edit_site').val(data[8]);
-      $('#dtap_edit_route').val(data[9]);
-      $('#dtap_edit_vis_given').val(data[10]);
-      $('#dtap_edit_vis').val(data[11]);
-      $('#edit_dtap_funding').val(data[12]);
-      $('#edit_dtap_eligibility').val(data[12]);
-      $('#dtapadministered_by').val(data[13]);
-      $('#dtap_edit_comment').val(data[14]);
-    });
-  });
-</script>

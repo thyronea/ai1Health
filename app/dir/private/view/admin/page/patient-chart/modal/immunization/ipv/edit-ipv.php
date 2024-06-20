@@ -170,37 +170,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-    $('.edit_ipv_btn').on('click', function() {
-      $('#edit_administered_ipv').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#ipv_edit_ID').val(data[0]);
-      $('#ipv_edit_uniqueID').val(data[1]);
-      $('#delete_ipv_uniqueID').val(data[1]);
-      $('#patient_ID').val(data[2]);
-      $('#group_ID').val(data[3]);
-      $('#edit_ipv_name').val(data[4]);
-      $('#delete_ipv_name').val(data[4]);
-      $('#edit_ipv_lot').val(data[5]);
-      $('#edit_ipv_ndc').val(data[6]);
-      $('#edit_ipv_exp').val(data[7]);
-      $('#ipv_edit_site').val(data[8]);
-      $('#ipv_edit_route').val(data[9]);
-      $('#ipv_edit_vis_given').val(data[10]);
-      $('#ipv_edit_vis').val(data[11]);
-      $('#edit_ipv_funding').val(data[12]);
-      $('#edit_ipv_eligibility').val(data[12]);
-      $('#ipvadministered_by').val(data[13]);
-      $('#ipv_edit_comment').val(data[14]);
-    });
-  });
-</script>

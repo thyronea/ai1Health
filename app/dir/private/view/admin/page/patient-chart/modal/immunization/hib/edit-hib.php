@@ -186,37 +186,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-    $('.edit_hib_btn').on('click', function() {
-      $('#edit_administered_hib').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#hib_edit_ID').val(data[0]);
-      $('#hib_edit_uniqueID').val(data[1]);
-      $('#delete_hib_uniqueID').val(data[1]);
-      $('#patient_ID').val(data[2]);
-      $('#group_ID').val(data[3]);
-      $('#edit_hib_name').val(data[4]);
-      $('#delete_hib_name').val(data[4]);
-      $('#edit_hib_lot').val(data[5]);
-      $('#edit_hib_ndc').val(data[6]);
-      $('#edit_hib_exp').val(data[7]);
-      $('#hib_edit_site').val(data[8]);
-      $('#hib_edit_route').val(data[9]);
-      $('#hib_edit_vis_given').val(data[10]);
-      $('#hib_edit_vis').val(data[11]);
-      $('#edit_hib_funding').val(data[12]);
-      $('#edit_hib_eligibility').val(data[12]);
-      $('#hibadministered_by').val(data[13]);
-      $('#hib_edit_comment').val(data[14]);
-    });
-  });
-</script>

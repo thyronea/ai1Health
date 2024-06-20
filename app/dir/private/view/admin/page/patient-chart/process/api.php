@@ -363,7 +363,7 @@ if(isset($_GET['patientID'])){
       $hepb_schedule = "
         <div style='margin-top: 5.5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
-          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hepB1</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default' data-bs-toggle='modal' data-bs-target='#edit_administered_hepb'><small>$hepB1</small></button>
           <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$s1_month2</small></button>
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button> 
         </div>
@@ -2505,6 +2505,4 @@ if(isset($_GET['patientID'])){
   }
 
 }
-
-
 ?>

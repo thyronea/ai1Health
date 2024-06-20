@@ -5,6 +5,8 @@ include('../../../../security/encrypt_decrypt.php');
 include('../../components/header.php');
 include('process/function.php');
 include('process/api.php');
+include('process/jquery.php');
+include('config/styles.php');
 ?>
 
 <!-- Login session -->

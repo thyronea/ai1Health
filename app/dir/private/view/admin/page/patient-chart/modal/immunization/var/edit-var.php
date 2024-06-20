@@ -173,37 +173,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-    $('.edit_var_btn').on('click', function() {
-      $('#edit_administered_var').modal('show');
-
-      $tr = $(this).closest('tr');
-
-      var data = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      console.log(data);
-      $('#var_edit_ID').val(data[0]);
-      $('#var_edit_uniqueID').val(data[1]);
-      $('#delete_var_uniqueID').val(data[1]);
-      $('#patient_ID').val(data[2]);
-      $('#group_ID').val(data[3]);
-      $('#edit_var_name').val(data[4]);
-      $('#delete_var_name').val(data[4]);
-      $('#edit_var_lot').val(data[5]);
-      $('#edit_var_ndc').val(data[6]);
-      $('#edit_var_exp').val(data[7]);
-      $('#var_edit_site').val(data[8]);
-      $('#var_edit_route').val(data[9]);
-      $('#var_edit_vis_given').val(data[10]);
-      $('#var_edit_vis').val(data[11]);
-      $('#edit_var_funding').val(data[12]);
-      $('#edit_var_eligibility').val(data[12]);
-      $('#varadministered_by').val(data[13]);
-      $('#var_edit_comment').val(data[14]);
-    });
-  });
-</script>
