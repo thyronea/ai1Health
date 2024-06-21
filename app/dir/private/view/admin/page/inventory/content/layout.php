@@ -10,6 +10,7 @@
 
      <!-- Modals -->
      <?php include('modal/inventory-add.php'); ?>
+     <?php include('modal/inventory-scan.php'); ?>
      <?php include('modal/inventory-edit.php'); ?>
      <?php include('modal/inventory-delete.php'); ?>
      <?php include('modal/inventory-list.php'); ?>

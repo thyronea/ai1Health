@@ -2,6 +2,7 @@ All In 1 Health: A robust electronic health system
 
 To Do:
 - Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
+- Barcode - Design and submit. Split information (NDC, Lot & Expiration Date)
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
