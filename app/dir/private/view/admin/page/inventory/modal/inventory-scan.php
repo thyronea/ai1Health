@@ -14,14 +14,14 @@
 
               <div class="col-md-3">
                 <div class="form-group mb-3 mt-2">
-                  <input type="hidden" name="engineID[]" id="inventory_engineID" class="form-control form-control-sm" required>
+                  <input type="hidden" name="engineID" id="scan_inventory_engineID" class="form-control form-control-sm" required>
                 </div>
               </div>
 
               <div class="row g-2 mb-1">
                   <!-- Location -->
                   <div class="col">
-                    <select class="form-group form-select form-select-sm" name="storage[]">
+                    <select class="form-group form-select form-select-sm" name="storage">
                       <option disabled selected>Storage Unit</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
@@ -38,7 +38,7 @@
                   <!-- Manufacturer -->
                   <div class="col">
                       <div class="form-group mb-1">
-                        <select class="form-select form-select-sm" name="manufacturer[]" required>
+                        <select class="form-select form-select-sm" name="manufacturer" required>
                           <option disabled selected>Manufacturer</option>
                           <option value="AstraZeneca">AstraZeneca</option>
                           <option value="GSK">GSK</option>
@@ -56,7 +56,7 @@
                   <div class="col">
                     <div class="form-group mb-2">
 
-                          <select class="form-select form-select-sm" name="name[]" required>
+                          <select class="form-select form-select-sm" name="name" required>
                             <option disabled selected>Product</option>
                             <option disabled>DTaP</option>
                             <option value="DTaP - Daptacel Single Dose Vials">Daptacel (Single Dose Vials)</option>
@@ -148,13 +148,13 @@
                   <!-- Doses -->
                   <div class="col-md-3">
                     <div class="form-group mb-1">
-                        <input type="number" name="doses[]" class="form-control form-control-sm" placeholder="Doses" required>
+                        <input type="number" name="doses" class="form-control form-control-sm" placeholder="Doses" required>
                     </div>
                   </div>
                   <!-- Funding Source -->
                   <div class="col-md-3">
                     <div class="form-group mb-3">
-                        <select class="form-select form-select-sm" name="funding[]" required>
+                        <select class="form-select form-select-sm" name="funding" required>
                           <option disabled selected>Source</option>
                           <option value="Private">Private</option>
                           <option value="Public">Public</option>
@@ -167,7 +167,7 @@
                   <!-- Barcode -->      
                   <div class="col">
                         <div class="form-group mb-1">
-                            <input type="text" name="barcode[]" class="form-control text-center form-control-sm" placeholder="Barcode" required>
+                            <input type="text" name="barcode" class="form-control text-center form-control-sm" placeholder="Barcode" required>
                         </div>
                     </div>
               </div>
@@ -178,7 +178,7 @@
       </div>
       <div class="modal-footer col d-flex justify-content-center">
        <!-- <a href="javascript:void(0)" class="add-more-form focus-ring py-1 px-2 btn-outline border btn btn-sm" onclick="change();">More</a> -->
-        <button type="submit" name="add_inventory" class="focus-ring py-1 px-2 btn-outline border btn btn-sm">Add</button>
+        <button type="submit" name="scan_inventory" class="focus-ring py-1 px-2 btn-outline border btn btn-sm">Add</button>
       </div>
       </form>
     </div>
@@ -197,5 +197,5 @@
   }
   return n;
   }
-  document.getElementById("inventory_engineID").value = randomNumber(7);
+  document.getElementById("scan_inventory_engineID").value = randomNumber(7);
 </script>
