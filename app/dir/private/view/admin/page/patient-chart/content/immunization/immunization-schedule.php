@@ -103,7 +103,7 @@
                     <small>
                         <!-- Schedule -->
                         <div style="margin-top: -5px;">
-                            <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>Vax</b></small></button>
+                            <button id="btn_schedule" class="py-1 px-2 btn btn-sm border-0 rounded-3" disabled></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>1st</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>2nd</b></small></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>3rd</b></small></button>
