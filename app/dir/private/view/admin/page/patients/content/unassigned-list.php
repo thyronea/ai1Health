@@ -45,7 +45,7 @@
                                                 }
                                             ?>
                                         </div>
-                                        <div class="col">
+                                        <div class="col" align="left">
                                             <?= htmlspecialchars($patient['patientID']);?><br>
                                             <small><?=htmlspecialchars($dob);?> (<?=htmlspecialchars($year);?> years old)</small>
                                         </div>

@@ -41,7 +41,7 @@
     #btn_complete{
         width: 90px;
         height: 31px;
-        background: linear-gradient(45deg, #32edde, #886aa6, #23a6d5, #6e7efa);
+        background: linear-gradient(45deg, #886aa6, #6e7efa, #23a6d5, #55c9c0, #55c997, #368041, #036311);
         color: #fff;
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;

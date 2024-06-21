@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Redesign Recommendation Box - Schedule (update design when almost due and overdue), COVID-19, Influenza.
+- Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
@@ -54,4 +54,4 @@ Currently Logging:
 - Vaccine Inventory
 - Patient Chart
 
-6/19/2024
+6/21/2024
