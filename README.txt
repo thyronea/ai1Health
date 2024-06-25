@@ -4,6 +4,7 @@ To Do:
 - Refactor Combo vax - Pentacel, Vaxelis, Quadracel, Kinrix, Proquad
 - Special condition immunization - rotateq vs rotarix; hpv at 12y/o vs hpv at 16y/o
 - Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
+- Previous shot giver is blank when adding new patient
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
 - Create Modal for Inventory Archive
@@ -57,4 +58,4 @@ Currently Logging:
 - Vaccine Inventory
 - Patient Chart
 
-6/21/2024
+6/25/2024
