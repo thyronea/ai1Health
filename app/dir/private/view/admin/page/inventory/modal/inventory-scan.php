@@ -167,7 +167,7 @@
                   <!-- Barcode -->      
                   <div class="col">
                         <div class="form-group mb-1">
-                            <input type="text" name="barcode" class="form-control text-center form-control-sm" placeholder="Barcode" required>
+                            <input type="text" name="barcode" class="form-control text-center form-control-sm" placeholder="Click Here Before Scanning" required>
                         </div>
                     </div>
               </div>
