@@ -1,7 +1,6 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Refactor Combo vax - Vaxelis, Quadracel, Kinrix, Proquad
 - Special condition immunization - rotateq vs rotarix; hpv at 12y/o vs hpv at 16y/o
 - Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
 - Previous shot giver is blank when adding new patient
