@@ -1,5 +1,6 @@
 <?php
 $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+$iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);
 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $patientID = mysqli_real_escape_string($con, $_GET['patientID']);
 
@@ -189,8 +190,6 @@ if(isset($_GET['patientID'])){
   $rsv_value = mysqli_fetch_assoc($rsv_run);
   $rsv_count = round($rsv_value['count(*)'] / 1 * 100);
   // RSV Recommendation
-  $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
-  $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);
   $rsv_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='RSV' ORDER BY id DESC";
   $rsv_req_run = mysqli_query($con, $rsv_req);
   // Schedule
@@ -531,6 +530,7 @@ if(isset($_GET['patientID'])){
   // Rota Recommendation
   $rota_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='Rotavirus' ORDER BY id DESC";
   $rota_req_run = mysqli_query($con, $rota_req);
+  $rota_vaccine = mysqli_fetch_assoc($rota_req_run);
   // Schedule
   foreach ($rota_req_run as $row){
     if($row['seriesID'] == 1){
@@ -542,6 +542,8 @@ if(isset($_GET['patientID'])){
       $s1_month2 = date('m/d/Y',$s1_month2);
       $s1_month4 = strtotime("+2 months", strtotime($s1_month2));
       $s1_month4 = date('m/d/Y',$s1_month4);
+      $s1_month6 = strtotime("+2 months", strtotime($s1_month4));
+      $s1_month6 = date('m/d/Y',$s1_month6);
     }
     if($row['seriesID'] == 2){
       $rota2 = strtotime($row['date']);
@@ -570,7 +572,7 @@ if(isset($_GET['patientID'])){
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$month2old</small></button>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month4old</small></button>
-          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month6old</small></button> 
+          <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-rotavirus' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
         </div>
       ";
   }
@@ -588,77 +590,157 @@ if(isset($_GET['patientID'])){
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
         <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>OVERDUE</small></button>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month4old</small></button>
-        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month6old</small></button> 
+        <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-rotavirus' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
       </div>
     ";
   }
   if(mysqli_num_rows($rota_req_run) == 1 && $date <= $v1_month2){
-    $rota_message = "
-      <div align='center'>
-        <small>
-          <div class='mb-3 row col-md-12'>
-            <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-              <div class='card-body mt-3'>
-                2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+    $rota_brand = decryptthis($rota_vaccine['vaccine'], $iz_key);
+    $rotateq = "RV - RotaTeq Single Dose Tubes";
+    $rotarixSDV = "RV - Rotarix Single Dose Vials";
+    $rotarixSOD = "RV - Rotarix Single Oral Doses";
+    // Special condition (2 dose series if Rotarix and 3 dose series if Rotateq)
+    if($rota_brand == $rotateq){
+      $rota_message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3 row col-md-12'>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body mt-3'>
+                    2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+                  </div>
+                </div>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body'>
+                    $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-              <div class='card-body'>
-                $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-              </div>
-            </div>
+              Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+            </small>
           </div>
-          Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-          Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-          <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
-        </small>
-      </div>
-      ";
-    $rota_schedule = "
-      <div style='margin-top: 6px'>
-        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
-        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
-        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$s1_month2</small></button>
-        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
-      </div>
-    ";   
+        ";
+      $rota_schedule = "
+        <div style='margin-top: 6px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$s1_month2</small></button>
+          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
+        </div>
+        ";  
+    }
+    else{
+      $rota_message = "
+        <div align='center'>
+          <small>
+            <div class='mb-3 row col-md-12'>
+              <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-3'>
+                  2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                  $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                </div>
+              </div>
+            </div>
+            Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+          </small>
+        </div>
+        ";
+      $rota_schedule = "
+        <div style='margin-top: 6px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$s1_month2</small></button>
+        </div>
+        ";
+    }   
   }
   elseif(mysqli_num_rows($rota_req_run) == 1 && $date > $v1_month2){
-    $rota_message = "
-      <div align='center'>
-        <small>
-          <div class='mb-3 row col-md-12'>
-            <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-              <div class='card-body mt-3'>
-                2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+    $rota_brand = decryptthis($rota_vaccine['vaccine'], $iz_key);
+    $rotateq = "RV - RotaTeq Single Dose Tubes";
+    $rotarixSDV = "RV - Rotarix Single Dose Vials";
+    $rotarixSOD = "RV - Rotarix Single Oral Doses";
+    // Special condition (2 dose series if Rotarix and 3 dose series if Rotateq)
+    if($rota_brand == $rotateq){
+      $rota_message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3 row col-md-12'>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body mt-3'>
+                    2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+                  </div>
+                </div>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body'>
+                    $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-              <div class='card-body'>
-                $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-              </div>
-            </div>
+              Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+            </small>
           </div>
-          Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-          Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-          <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
-        </small>
-      </div>
-      ";
-    $rota_schedule = "
-      <div style='margin-top: 6px'>
-        <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
-        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
-        <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>OVERDUE</small></button>
-        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
-      </div>
-    ";   
+        ";
+      $rota_schedule = "
+        <div style='margin-top: 6px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
+          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$s1_month2</small></button>
+          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
+        </div>
+        ";  
+    }
+    else{
+      $rota_message = "
+        <div align='center'>
+          <small>
+            <div class='mb-3 row col-md-12'>
+              <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-3'>
+                  2nd dose is due on <b>$s1_month2</b> along with the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                  $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hib.pdf' class='text-decoration-none' target='_blank'>Hib</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                  <br> $syringe 2nd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                </div>
+              </div>
+            </div>
+            Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rota'>Administer Rotavirus</button> 
+          </small>
+        </div>
+        ";
+      $rota_schedule = "
+        <div style='margin-top: 6px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RV</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rota1</small></button>
+          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rota'><small>$s1_month2</small></button>
+        </div>
+        ";
+    }  
   }
   if(mysqli_num_rows($rota_req_run) == 2){
     $rota_message = "
