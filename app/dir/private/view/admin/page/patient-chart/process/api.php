@@ -320,7 +320,7 @@ if(isset($_GET['patientID'])){
       </div>
      ";
   }
-  if(mysqli_num_rows($hepB_req_run) == 1 && $date < $v1_month2){
+  if(mysqli_num_rows($hepB_req_run) == 1 && $date <= $v1_month2){
     $hepB_message = "
       <div align='center'>
         <small>
@@ -2681,7 +2681,7 @@ if(isset($_GET['patientID'])){
       <div style='margin-top: 5px'>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>MMR</b></small></button>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_mmr'><small>$month12old</small></button>
-        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$year4old</small></button>
+        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' data-bs-container='body' data-bs-toggle='popover' data-bs-placement='top' data-bs-content='Slow down! 1st dose first' style='cursor:default'><small>$year4old</small></button>
       </div>
       ";
   }
