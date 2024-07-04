@@ -1,7 +1,7 @@
 All In 1 Health: A robust electronic health system
 
 To Do:
-- Special condition immunization - rotateq vs rotarix; hpv at 12y/o vs hpv at 16y/o
+- Special condition immunization - hep a, hpv 
 - Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
 - Previous shot giver is blank when adding new patient
 - Fix Reset password error
@@ -9,7 +9,6 @@ To Do:
 - Create Modal for Inventory Archive
 - Redesign inventory list - card design
 - Add temperature exposore in inventory edit modal
-- Patient chart: Immunization (Work on IZ schedule visibility)
 - Patient registration from main page (Unassigned)
 - Send email notification when adding, editing, and deleting (anything)
 - Design temperature chart
@@ -57,4 +56,4 @@ Currently Logging:
 - Vaccine Inventory
 - Patient Chart
 
-6/28/2024
+7/4/2024

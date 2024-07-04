@@ -50,8 +50,8 @@ if(isset($_POST['user_send_code']))
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->Username = "thyrone.antonio@gmail.com";
-    $mail->Password = "mhopftvkjlemevgn";
+    $mail->Username = "donotreply@ai1system.net";
+    $mail->Password = "xube qnjf xotp sull";
 
     $mail->setFrom($email);
     $mail->addAddress($email);
