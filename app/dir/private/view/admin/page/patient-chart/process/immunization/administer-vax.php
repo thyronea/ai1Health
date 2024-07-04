@@ -2172,28 +2172,64 @@ if(isset($_POST['administer_hib'])){
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
-        $stmt->execute();
+        $hib_brand = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
+        $hib_brand_run = mysqli_query($con, $hib_brand);
+        $hib_vaccine = mysqli_fetch_array($hib_brand_run);
+        $verify_hib_vaccine = decryptthis($hib_vaccine['vaccine'], $iz_key);
+        // Verify if the same brand is used
+        if($vaccine !== $verify_hib_vaccine){
+          $_SESSION['warning'] = "Unable to administer $vaccine because $verify_hib_vaccine was previously administered";
+          header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+          exit(0);
+        }
+        else{
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $con->prepare($administer_iz);
+          $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+          $stmt->execute();
+        }
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
-        $stmt->execute();
+        $hib_brand = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
+        $hib_brand_run = mysqli_query($con, $hib_brand);
+        $hib_vaccine = mysqli_fetch_array($hib_brand_run);
+        $verify_hib_vaccine = decryptthis($hib_vaccine['vaccine'], $iz_key);
+        // Verify if the same brand is used
+        if($vaccine !== $verify_hib_vaccine){
+          $_SESSION['warning'] = "Unable to administer $vaccine because $verify_hib_vaccine was previously administered";
+          header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+          exit(0);
+        }
+        else{
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+          VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $con->prepare($administer_iz);
+          $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+          $stmt->execute();
+        }
       }
       if(mysqli_num_rows($sql_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
-        $stmt->execute();
+        $hib_brand = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
+        $hib_brand_run = mysqli_query($con, $hib_brand);
+        $hib_vaccine = mysqli_fetch_array($hib_brand_run);
+        $verify_hib_vaccine = decryptthis($hib_vaccine['vaccine'], $iz_key);
+        // Verify if the same brand is used
+        if($vaccine !== $verify_hib_vaccine){
+          $_SESSION['warning'] = "Unable to administer $vaccine because $verify_hib_vaccine was previously administered";
+          header("Location: ../../../patient-chart/index.php?patientID=$patientID");
+          exit(0);
+        }
+        else{
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+          VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $con->prepare($administer_iz);
+          $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+          $stmt->execute();
+        }
       }
 
       // update inventory

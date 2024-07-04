@@ -1505,8 +1505,12 @@ if(isset($_GET['patientID'])){
       $hib2 = date('m/d/Y',$hib2);
       $v2_month2 = strtotime("+2 months", strtotime($hib2));
       $v2_month2 = date('Y-m-d',$v2_month2);
+      $v2_month8 = strtotime("+8 months", strtotime($hib2));
+      $v2_month8 = date('Y-m-d',$v2_month8);
       $s2_month2 = strtotime("+2 months", strtotime($hib2));
       $s2_month2 = date('m/d/Y',$s2_month2);
+      $s2_month4 = strtotime("+2 months", strtotime($s2_month2));
+      $s2_month4 = date('m/d/Y',$s2_month4);
       $s2_month6 = strtotime("+6 months", strtotime($s2_month2));
       $s2_month6 = date('m/d/Y',$s2_month6);
     }
@@ -1539,8 +1543,8 @@ if(isset($_GET['patientID'])){
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$month2old</small></button>
         <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month4old</small></button>
-        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month6old</small></button> 
-        <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month12old</small></button> 
+        <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-hib' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
+        <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-hib' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
       </div>
     ";
   }
@@ -1558,8 +1562,8 @@ if(isset($_GET['patientID'])){
          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month4old</small></button>
-         <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month6old</small></button> 
-         <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$month12old</small></button> 
+         <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-hib' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
+         <a href='https://www.cdc.gov/vaccines/schedules/hcp/imz/child-schedule-notes.html#note-hib' target='_blank' id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small><i class='bi bi-book'></i></small></a> 
        </div>
      ";
   }
@@ -1637,7 +1641,6 @@ if(isset($_GET['patientID'])){
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s1_month2</small></button>
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
-          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month6</small></button> 
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month10</small></button> 
         </div>
         ";
@@ -1715,22 +1718,26 @@ if(isset($_GET['patientID'])){
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
-          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s1_month2</small></button>
+          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button>
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month10</small></button> 
         </div>
         ";
     }
   }
-  // Received 2nd dose and on time for the 3rd dose
-  if(mysqli_num_rows($hib_req_run) == 2 && $date <= $v2_month2){
-    $hib_message = "
+  // Received 2nd dose
+  if(mysqli_num_rows($hib_req_run) == 2){
+    $hib_brand = decryptthis($hib_vaccine['vaccine'], $iz_key);
+    $pedvaxHib = "Hib - PedvaxHib Single Dose Vials";
+    // Received 2nd dose and on time for the 3rd dose (pedvaxHib)
+    if($hib_brand == $pedvaxHib && $date <= $v2_month8){
+      $hib_message = "
         <div align='center'>
           <small>
             <div class='row col-md-12'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-5'>
-                  3rd dose is due on <b>$s2_month2 or $s2_month6</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
+                  3rd dose is due on <b>$s2_month2 or $s2_month4</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1747,7 +1754,7 @@ if(isset($_GET['patientID'])){
             <div class='mb-3 row col-md-12'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-5'>
-                  If given by <b>$s2_month6</b>, please administer the following vaccines and other immunization agents:
+                  If given by <b>$s2_month4</b>, please administer the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1770,27 +1777,25 @@ if(isset($_GET['patientID'])){
             </div>
           </small>
         </div>
-      ";
-    $hib_schedule = "
+        ";
+      $hib_schedule = "
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
-          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s2_month2</small></button>
-          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s2_month6</small></button>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s2_month6</small></button>
         </div>
       ";
-    
-  }
-  // Received 2nd dose but overdue for the 3rd dose
-  elseif(mysqli_num_rows($hib_req_run) == 2 && $date > $v2_month2){
-    $hib_message = "
+    }
+    // Received 2nd dose and overdue for the 3rd dose (pedvaxHib)
+    elseif($hib_brand == $pedvaxHib && $date > $v2_month8){
+      $hib_message = "
         <div align='center'>
           <small>
             <div class='row col-md-12'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-5'>
-                  3rd dose is due on <b>$s2_month2 or $s2_month6</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
+                  3rd dose is due on <b>$s2_month2 or $s2_month4</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1807,7 +1812,7 @@ if(isset($_GET['patientID'])){
             <div class='mb-3 row col-md-12'>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
                 <div class='card-body mt-5'>
-                  If given by <b>$s2_month6</b>, please administer the following vaccines and other immunization agents:
+                  If given by <b>$s2_month4</b>, please administer the following vaccines and other immunization agents:
                 </div>
               </div>
               <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
@@ -1830,23 +1835,184 @@ if(isset($_GET['patientID'])){
             </div>
           </small>
         </div>
-      ";
-    $hib_schedule = "
+        ";
+      $hib_schedule = "
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
           <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
-          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s2_month6</small></button>
         </div>
       ";
-    
+    }
+    // Received 2nd dose and on time for the 3rd dose (ActHib, Hiberix, Pentacel, Vaxelis)
+    elseif($hib_brand !== $pedvaxHib && $date <= $v2_month2){
+      $hib_message = "
+        <div align='center'>
+          <small>
+            <div class='row col-md-12'>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-5'>
+                  3rd dose is due on <b>$s2_month2 or $s2_month4</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                    <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                    <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                </div>
+              </div>
+            </div>
+            <div class='mb-3 row col-md-12'>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-5'>
+                  If given by <b>$s2_month4</b>, please administer the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                    <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf' class='text-decoration-none' target='_blank'>MMR</a>
+                    <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/varicella.pdf' class='text-decoration-none' target='_blank'>Varicella</a>
+                    <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                    <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                </div>
+              </div>
+            </div>
+            Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            <div class='row col-md-2'>
+              <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hib'>Administer Hib</button>
+            </div>
+          </small>
+        </div>
+        ";
+      $hib_schedule = "
+        <div style='margin-top: 5px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s2_month2</small></button>
+          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s2_month6</small></button> 
+        </div>
+      ";
+    }
+    // Received 2nd dose and overdue for the 3rd dose (ActHib, Hiberix, Pentacel, Vaxelis)
+    elseif($hib_brand !== $pedvaxHib && $date > $v2_month2){
+      $hib_message = "
+        <div align='center'>
+          <small>
+            <div class='row col-md-12'>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-5'>
+                  3rd dose is due on <b>$s2_month2 or $s2_month4</b>. If given by <b>$s2_month2</b>, please administer the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                    <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                    <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                </div>
+              </div>
+            </div>
+            <div class='mb-3 row col-md-12'>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body mt-5'>
+                  If given by <b>$s2_month4</b>, please administer the following vaccines and other immunization agents:
+                </div>
+              </div>
+              <div class='col card border-0 m-1 mt-1' align='left' style='background-color: #e8e8e8'>
+                <div class='card-body'>
+                    $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                    <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                    <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                    <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                    <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf' class='text-decoration-none' target='_blank'>MMR</a>
+                    <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/varicella.pdf' class='text-decoration-none' target='_blank'>Varicella</a>
+                    <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                    <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                </div>
+              </div>
+            </div>
+            Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+            <div class='row col-md-2'>
+              <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hib'>Administer Hib</button>
+            </div>
+          </small>
+        </div>
+        ";
+      $hib_schedule = "
+        <div style='margin-top: 5px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
+          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
+          <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s2_month6</small></button> 
+        </div>
+      ";
+    }
   }
-  // Received 3rd dose and on time for the 4th dose (Only applies for ActHib, Hiberix, Pentacel & Vaxelis)
-  if(mysqli_num_rows($hib_req_run) == 3 && $date <= $v3_month6){
-     $hib_message = "
-         <div align='center'>
-           <small>
+  // Received 3rd dose
+  if(mysqli_num_rows($hib_req_run) == 3){
+    $hib_brand = decryptthis($hib_vaccine['vaccine'], $iz_key);
+    $pedvaxHib = "Hib - PedvaxHib Single Dose Vials";
+    // Completed PedvaxHib series
+    if($hib_brand == $pedvaxHib){
+      $hib_message = "
+          <div class='mb-3'>
+            <div align='center'>
+              <small>
+                <div class='mb-3 row col-md-12'>
+                    <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                      <div class='card-body mt-5'>
+                        PedvaxHib series is complete! The following vaccines and other immunization agents should be administered today:
+                      </div>
+                    </div>
+                    <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                      <div class='card-body'>
+                        $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                        <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                        <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                        <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                        <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                        <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf' class='text-decoration-none' target='_blank'>MMR</a>
+                        <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                        <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                      </div>
+                    </div>
+                </div>
+                Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+                Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              </small>
+            </div>
+          </div>
+        ";
+      $hib_schedule = "
+          <div style='margin-top: 5px'>
+            <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
+            <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
+            <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
+            <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib3</small></button>
+          </div>
+      ";
+    }
+    // Received 3rd dose and on time for the 4th dose (Only applies for ActHib, Hiberix, Pentacel & Vaxelis)
+    elseif(mysqli_num_rows($hib_req_run) == 3 && $date <= $v3_month6){
+      $hib_message = "
+          <div align='center'>
+            <small>
               <div class='mb-3 row col-md-12'>
                 <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
                   <div class='card-body mt-5'>
@@ -1865,16 +2031,16 @@ if(isset($_GET['patientID'])){
                       <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
                   </div>
                 </div>
-             </div>
-             Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-             Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-             <div class='row col-md-2'>
+              </div>
+              Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              <div class='row col-md-2'>
                 <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hib'>Administer Hib</button>
-             </div>
-           </small>
-         </div>
+              </div>
+            </small>
+          </div>
         ";
-     $hib_schedule = "
+      $hib_schedule = "
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
           <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
@@ -1883,48 +2049,49 @@ if(isset($_GET['patientID'])){
           <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>$s3_month6</small></button>
         </div>
       ";  
-  }
-  // Received 3rd dose but overdue for the 4th dose (Only applies for ActHib, Hiberix, Pentacel & Vaxelis)
-  elseif(mysqli_num_rows($hib_req_run) == 3 && $date > $v3_month6){
-    $hib_message = "
-        <div align='center'>
-          <small>
-             <div class='mb-3 row col-md-12'>
-               <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-                 <div class='card-body mt-5'>
-                   4th dose is due by <b>$s3_month6</b> along with the following vaccines and other immunization agents (if not administered when 3rd dose was given):
-                 </div>
-               </div>
-               <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
-                 <div class='card-body'>
-                     $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
-                     <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
-                     <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
-                     <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-                     <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
-                     <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf' class='text-decoration-none' target='_blank'>MMR</a>
-                     <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
-                     <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
-                 </div>
-               </div>
-            </div>
-            Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-            Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
-            <div class='row col-md-2'>
-               <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hib'>Administer Hib</button>
-            </div>
-          </small>
+    }
+    // Received 3rd dose but overdue for the 4th dose (Only applies for ActHib, Hiberix, Pentacel & Vaxelis)
+    elseif(mysqli_num_rows($hib_req_run) == 3 && $date > $v3_month6){
+      $hib_message = "
+          <div align='center'>
+            <small>
+              <div class='mb-3 row col-md-12'>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body mt-5'>
+                    4th dose is due by <b>$s3_month6</b> along with the following vaccines and other immunization agents (if not administered when 3rd dose was given):
+                  </div>
+                </div>
+                <div class='col card border-0 m-2 mt-2' align='left' style='background-color: #e8e8e8'>
+                  <div class='card-body'>
+                      $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/hep-b.pdf' class='text-decoration-none' target='_blank'>Hep B</a>
+                      <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf' class='text-decoration-none' target='_blank'>DTaP</a>
+                      <br> $syringe 4th dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/pcv.pdf' class='text-decoration-none' target='_blank'>PCV15, PCV20</a>
+                      <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                      <br> $syringe 3rd dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/ipv.pdf' class='text-decoration-none' target='_blank'>IPV</a>
+                      <br> $syringe 1st dose - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/mmr.pdf' class='text-decoration-none' target='_blank'>MMR</a>
+                      <br> $syringe 1 or more doses of updated vaccine - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/COVID-19.pdf' class='text-decoration-none' target='_blank'>COVID-19</a>
+                      <br> $syringe 1 or 2 doses of annual vaccination - <a href='https://www.cdc.gov/vaccines/hcp/vis/vis-statements/flu.pdf' class='text-decoration-none' target='_blank'>Influenza</a>
+                  </div>
+                </div>
+              </div>
+              Immunization Schedule <a href='https://www.cdc.gov/vaccines/schedules/hcp/index.html' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              Combination Vaccines with Other Immunization Agents <a href='https://eziz.org/assets/docs/IMM-922.pdf' target='_blank'><i class='bi bi-info-circle' style='color:blue'></i></a><br>
+              <div class='row col-md-2'>
+                <button type='button' class='focus-ring btn btn-sm border mt-4' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_hib'>Administer Hib</button>
+              </div>
+            </small>
+          </div>
+        ";
+      $hib_schedule = "
+        <div style='margin-top: 5px'>
+          <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib3</small></button>
+          <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
         </div>
-       ";
-    $hib_schedule = "
-       <div style='margin-top: 5px'>
-         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hib</b></small></button>
-         <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib1</small></button>
-         <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib2</small></button>
-         <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hib3</small></button>
-         <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hib'><small>OVERDUE</small></button>
-       </div>
-     ";  
+      ";  
+    }
   }
   // Completed Hib series
   if(mysqli_num_rows($hib_req_run) == 4){
