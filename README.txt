@@ -56,4 +56,8 @@ Currently Logging:
 - Vaccine Inventory
 - Patient Chart
 
+New email config:
+$mail->Username = "donotreply@ai1system.net";
+$mail->Password = "xube qnjf xotp sull";
+
 7/4/2024
