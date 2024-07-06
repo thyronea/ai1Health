@@ -1,8 +1,8 @@
-All In 1 Health: A robust electronic health system
+AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- Special condition immunization - hep a, hpv 
 - Redesign Schedule (vaccine special circumstance), COVID-19, Influenza.
+- Fix Snapshot's IZ Recommendation
 - Previous shot giver is blank when adding new patient
 - Fix Reset password error
 - 1 dose should not be deducted when selecting the same vaccine (per lot & ndc) from inventory during edit
@@ -60,4 +60,4 @@ New email config:
 $mail->Username = "donotreply@ai1system.net";
 $mail->Password = "xube qnjf xotp sull";
 
-7/4/2024
+7/6/2024
