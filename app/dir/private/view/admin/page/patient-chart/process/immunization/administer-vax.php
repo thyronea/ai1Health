@@ -44,6 +44,7 @@ $shot2 = mysqli_real_escape_string($con, "2");
 $shot3 = mysqli_real_escape_string($con, "3");
 $shot4 = mysqli_real_escape_string($con, "4");
 $shot5 = mysqli_real_escape_string($con, "5");
+$othershot = mysqli_real_escape_string($con, "0");
 
 // Encrypt Admin Log Data
 $fullname = "$fname $lname";
@@ -3485,10 +3486,10 @@ if(isset($_POST['administer_covid'])){
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
       $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 
@@ -3599,10 +3600,10 @@ if(isset($_POST['administer_flu'])){
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssss", $uniqueID, $patientID, $groupID, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
       $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 

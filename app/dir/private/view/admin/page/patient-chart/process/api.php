@@ -4163,10 +4163,10 @@ if(isset($_GET['patientID'])){
   }
 
   // Count Administered COVID-19
-  $covid = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='COVID' ";
+  $covid = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='COVID-19' ";
   $covid_run = mysqli_query($con, $covid);
   $covid_value = mysqli_fetch_assoc($covid_run);
-  $covid_count = round($covid_value['count(*)'] / 20 * 100);
+  $covid_count = round($covid_value['count(*)'] / 50 * 100);
   // Recommended dates to administer COVID-19
   $covid_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='COVID' ORDER BY id DESC";
   $covid_req_run = mysqli_query($con, $covid_req);
@@ -4207,7 +4207,7 @@ if(isset($_GET['patientID'])){
   $flu = "SELECT count(*) FROM immunization WHERE patientID='$patientID' AND type='Influenza' ";
   $flu_run = mysqli_query($con, $flu);
   $flu_value = mysqli_fetch_assoc($flu_run);
-  $flu_count = round($flu_value['count(*)'] / 20 * 100);
+  $flu_count = round($flu_value['count(*)'] / 50 * 100);
   // Recommended dates to administer Influenza Vaccine
   $flu_req = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='COVID' ORDER BY id DESC";
   $flu_req_run = mysqli_query($con, $flu_req);
