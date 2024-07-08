@@ -1,4 +1,4 @@
-<div class="mt-5 mb-5" id="wrapper">
+<div class="mt-3 mb-5" id="wrapper">
 
     <div id="left_panel">
         <?php include('user-profile.php');?>

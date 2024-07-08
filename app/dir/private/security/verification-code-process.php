@@ -58,7 +58,7 @@ if(isset($_POST['send_code']))
     $mail->Port = 587;
 
     $mail->Username = "donotreply@ai1system.net";
-    $mail->Password = "xube qnjf xotp sull";
+    $mail->Password = "awxo vbxo hvix pitc";
 
     $mail->setFrom($email);
     $mail->addAddress($email);

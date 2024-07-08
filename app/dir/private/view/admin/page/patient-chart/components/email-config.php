@@ -12,8 +12,8 @@ $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
-$mail->Username = "thyrone.antonio@gmail.com";
-$mail->Password = "mhopftvkjlemevgn";
+$mail->Username = "donotreply@ai1system.net";
+$mail->Password = "awxo vbxo hvix pitc";
 
 $mail->setFrom($email);
 $mail->addAddress($patient_email);

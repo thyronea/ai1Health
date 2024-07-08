@@ -1,6 +1,7 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
+- IZ - Create a report
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal
 - Snapshot - Create health score (+1 point for following schedule and recommendation. -1 if late or missing)
@@ -61,4 +62,4 @@ New email config:
 $mail->Username = "donotreply@ai1system.net";
 $mail->Password = "xube qnjf xotp sull";
 
-7/6/2024
+7/8/2024
