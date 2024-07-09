@@ -2,9 +2,9 @@
 
 // Create connection
   $servername = "mariadb";
-  $username = "root";
-  $password = "Grayson2019!";
-  $database = "ai1health";
+  $username = "aqfusshsmb";
+  $password = "C4AB02C04ADCACFEDB1362859F03B4E03EE59F36";
+  $database = "aqfusshsmb";
 
   $con = mysqli_connect($servername, $username, $password, $database);
 
