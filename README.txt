@@ -1,7 +1,8 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- IZ - Create a report
+- IZ History - Add Manufacturer
+- IZ History - Limit combo vax to 1 (currently showing multiple records)
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal
 - Snapshot - Create health score (+1 point for following schedule and recommendation. -1 if late or missing)

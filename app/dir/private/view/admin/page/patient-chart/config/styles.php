@@ -15,6 +15,10 @@
     background-color: #8fafff;
     transition: all 1s ease;
   }
+  #iz-record:hover{
+    background-color: #8fafff;
+    transition: all 2s ease;
+  }
   @keyframes gradient {
         0% {
             background-position: 0% 50%;
