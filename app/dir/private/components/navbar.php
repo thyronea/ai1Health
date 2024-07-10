@@ -13,7 +13,7 @@
           <div class="dropstart">
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="public/page/access/sign-in.php"><small>Sign In</small></a></li>
-              <li><a class="dropdown-item" href="public/page/access/sign-in.php"><small>Register</small></a></li>
+              <li><a class="dropdown-item" href="public/page/access/admin-registration.php"><small>Register</small></a></li>
             </ul>
           </div>
         </li>

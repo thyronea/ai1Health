@@ -37,7 +37,7 @@
              <hr style="border-top: 2px solid;">
 
              <div class="mt-2">
-               <small>Don't have an account? <a class="text-decoration-none" href="/public/page/access/sign-in.php">Register</a></small><br>
+               <small>Don't have an account? <a class="text-decoration-none" href="/public/page/access/admin-registration.php">Register</a></small><br>
              </div>
            </form>
 

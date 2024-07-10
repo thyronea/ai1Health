@@ -3,6 +3,7 @@ AI1 Health: Powered By AI1 System (Former DLi)
 To Do:
 - IZ History - Add Manufacturer
 - IZ History - Limit combo vax to 1 (currently showing multiple records)
+- Create a waiting list sign-up
 - Design Favicon (title)
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal
