@@ -1,7 +1,7 @@
 <?php
 
 // Create connection
-  $servername = "127.0.0.1";
+  $servername = "%";
   $username = "aqfusshsmb";
   $password = "C4AB02C04ADCACFEDB1362859F03B4E03EE59F36!";
   $database = "aqfusshsmb";
