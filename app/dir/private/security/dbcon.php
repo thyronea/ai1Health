@@ -1,10 +1,10 @@
 <?php
 
 // Create connection
-  $servername = "mariadb";
-  $username = "root";
-  $password = "Grayson2019!";
-  $database = "ai1health";
+  $servername = "localhost"; // mariadb
+  $username = "aqfusshsmb"; // root
+  $password = "MEMrQhJxm7"; // Grayson2019!
+  $database = "aqfusshsmb"; // ai1health
 
   $con = mysqli_connect($servername, $username, $password, $database);
 
