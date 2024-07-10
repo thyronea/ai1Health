@@ -149,19 +149,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
               <div class="card-body">
                 <div class='row mt-3'>
                   <div class='col'>
-                      <?=$iz_recommendation?>
-                  </div>
-                  <div class='col'>
-                      <?=$iz_recommendation?>
-                  </div>
-                  <div class='col'>
-                      <?=$iz_recommendation?>
-                  </div>
-                  <div class='col'>
-                      <?=$iz_recommendation?>
-                  </div>
-                  <div class='col'>
-                      <?=$iz_recommendation?>
+                    <?=$iz_recommendation?>
                   </div>
                 </div>
               </div>
