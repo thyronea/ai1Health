@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-body sticky-top" id="navbar">
   <div class="container">
     <a class="navbar-brand" href="/index.php">AI1 System</a>
-    <a class="nav-item" href="/public/page/about/index.php">About</a>
+    <a class="nav-item" href="/public/page/about/main.php">About</a>
+    <a class="nav-item" href="/public/page/systems/main.php">Systems</a>
     <div class="d-flex collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
@@ -13,7 +14,6 @@
           <div class="dropstart">
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/public/page/access/sign-in.php"><small>Sign In</small></a></li>
-              <li><a class="dropdown-item" href="/public/page/access/admin-registration.php"><small>Register</small></a></li>
             </ul>
           </div>
         </li>
