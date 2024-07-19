@@ -34,7 +34,11 @@
              <div class="form-group mb-2">
                <button type="submit" name="send_code" class="btn btn-outline-secondary btn-sm">Send Verification Code</button>
              </div>
+             <hr style="border-top: 2px solid;">
 
+             <div class="mt-2">
+               <small>Don't have an account? <a class="text-decoration-none" href="/public/page/access/admin-registration.php">Register</a></small><br>
+             </div>
            </form>
 
          </div>
