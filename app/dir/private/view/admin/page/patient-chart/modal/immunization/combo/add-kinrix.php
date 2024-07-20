@@ -57,7 +57,12 @@ $ipv_vis = date('2021') . '-' . date('08') . '-' . date('06');
             </select>
             <div class="row mb-2">
                 <div class="col">
-                  <input type="" id="add_kinrix_vaccines" name="vaccine" class="form-control form-control-sm" value="" hidden required>
+                  <input type="" id="add_kinrix_vaccines" name="vaccine" class="form-control form-control-sm" value="" placeholder="Vaccine Brand" hidden required>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                  <input type="" id="add_kinrix_manu" name="manufacturer" class="form-control form-control-sm" value="" placeholder="Manufacturer" required>
                 </div>
             </div>
             <div class="row mb-2">

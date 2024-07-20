@@ -56,6 +56,11 @@ $hib_vis = date('2021') . '-' . date('08') . '-' . date('06');
             </div>
             <div class="row mb-2">
                 <div class="col">
+                  <input type="" id="add_pentacel_manu" name="manufacturer" class="form-control form-control-sm" value="" placeholder="Manufacturer" required>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
                   <input type="text" id="add_pentacel_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">

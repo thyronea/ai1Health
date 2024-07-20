@@ -12,6 +12,7 @@ function add_pediarix(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_pediarix_vaccines").value = data.vaccines;
+            document.getElementById("add_pediarix_manu").value = data.manufacturer;
             document.getElementById("add_pediarix_lot").value = data.lot;
             document.getElementById("add_pediarix_ndc").value = data.ndc;
             document.getElementById("add_pediarix_exp").value = data.exp;
@@ -50,6 +51,7 @@ function add_pentacel(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_pentacel_vaccines").value = data.vaccines;
+            document.getElementById("add_pentacel_manu").value = data.manufacturer;
             document.getElementById("add_pentacel_lot").value = data.lot;
             document.getElementById("add_pentacel_ndc").value = data.ndc;
             document.getElementById("add_pentacel_exp").value = data.exp;
@@ -88,6 +90,7 @@ function add_vaxelis(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_vaxelis_vaccines").value = data.vaccines;
+            document.getElementById("add_vaxelis_manu").value = data.manufacturer;
             document.getElementById("add_vaxelis_lot").value = data.lot;
             document.getElementById("add_vaxelis_ndc").value = data.ndc;
             document.getElementById("add_vaxelis_exp").value = data.exp;
@@ -126,6 +129,7 @@ function add_quadracel(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_quadracel_vaccines").value = data.vaccines;
+            document.getElementById("add_quadracel_manu").value = data.manufacturer;
             document.getElementById("add_quadracel_lot").value = data.lot;
             document.getElementById("add_quadracel_ndc").value = data.ndc;
             document.getElementById("add_quadracel_exp").value = data.exp;
@@ -164,6 +168,7 @@ function add_kinrix(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_kinrix_vaccines").value = data.vaccines;
+            document.getElementById("add_kinrix_manu").value = data.manufacturer;
             document.getElementById("add_kinrix_lot").value = data.lot;
             document.getElementById("add_kinrix_ndc").value = data.ndc;
             document.getElementById("add_kinrix_exp").value = data.exp;
@@ -202,6 +207,7 @@ function add_proquad(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_proquad_vaccines").value = data.vaccines;
+            document.getElementById("add_proquad_manu").value = data.manufacturer;
             document.getElementById("add_proquad_lot").value = data.lot;
             document.getElementById("add_proquad_ndc").value = data.ndc;
             document.getElementById("add_proquad_exp").value = data.exp;
@@ -467,6 +473,7 @@ function add_dtap(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_dtap_vaccines").value = data.vaccines;
+            document.getElementById("add_dtap_manu").value = data.manufacturer;
             document.getElementById("add_dtap_lot").value = data.lot;
             document.getElementById("add_dtap_ndc").value = data.ndc;
             document.getElementById("add_dtap_exp").value = data.exp;
@@ -767,6 +774,7 @@ function add_covid(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_covid_vaccines").value = data.vaccines;
+            document.getElementById("add_covid_manu").value = data.manufacturer;
             document.getElementById("add_covid_lot").value = data.lot;
             document.getElementById("add_covid_ndc").value = data.ndc;
             document.getElementById("add_covid_exp").value = data.exp;
