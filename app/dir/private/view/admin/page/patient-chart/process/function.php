@@ -248,6 +248,7 @@ function add_rsv(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_rsv_vaccines").value = data.vaccines;
+            document.getElementById("add_rsv_manu").value = data.manufacturer;
             document.getElementById("add_rsv_lot").value = data.lot;
             document.getElementById("add_rsv_ndc").value = data.ndc;
             document.getElementById("add_rsv_exp").value = data.exp;
@@ -399,6 +400,7 @@ function add_rota(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_rota_vaccines").value = data.vaccines;
+            document.getElementById("add_rota_manu").value = data.manufacturer;
             document.getElementById("add_rota_lot").value = data.lot;
             document.getElementById("add_rota_ndc").value = data.ndc;
             document.getElementById("add_rota_exp").value = data.exp;
@@ -626,6 +628,7 @@ function add_pcv(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_pcv_vaccines").value = data.vaccines;
+            document.getElementById("add_pcv_manu").value = data.manufacturer;
             document.getElementById("add_pcv_lot").value = data.lot;
             document.getElementById("add_pcv_ndc").value = data.ndc;
             document.getElementById("add_pcv_exp").value = data.exp;
@@ -929,6 +932,7 @@ function add_mmr(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_mmr_vaccines").value = data.vaccines;
+            document.getElementById("add_mmr_manu").value = data.manufacturer;
             document.getElementById("add_mmr_lot").value = data.lot;
             document.getElementById("add_mmr_ndc").value = data.ndc;
             document.getElementById("add_mmr_exp").value = data.exp;
@@ -1004,6 +1008,7 @@ function add_var(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_var_vaccines").value = data.vaccines;
+            document.getElementById("add_var_manu").value = data.manufacturer;
             document.getElementById("add_var_lot").value = data.lot;
             document.getElementById("add_var_ndc").value = data.ndc;
             document.getElementById("add_var_exp").value = data.exp;
@@ -1155,6 +1160,7 @@ function add_tdap(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_tdap_vaccines").value = data.vaccines;
+            document.getElementById("add_tdap_manu").value = data.manufacturer;
             document.getElementById("add_tdap_lot").value = data.lot;
             document.getElementById("add_tdap_ndc").value = data.ndc;
             document.getElementById("add_tdap_exp").value = data.exp;

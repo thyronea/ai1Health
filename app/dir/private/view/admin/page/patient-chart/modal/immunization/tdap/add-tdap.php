@@ -75,16 +75,17 @@
              </div>
              <div class="row mb-2">
                 <div class="col">
+                  <input type="" id="add_tdap_manu" name="manufacturer" class="form-control form-control-sm" value="" placeholder="Manufacturer" required>
+                </div>
+            </div>
+             <div class="row mb-2">
+                <div class="col">
                   <input type="text" id="add_tdap_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
                   <input type="text" id="add_tdap_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
              </div>
-             <?php
-              
-             ?>
-            
              <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>

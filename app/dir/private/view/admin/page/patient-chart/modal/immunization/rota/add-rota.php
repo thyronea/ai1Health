@@ -68,16 +68,17 @@ $rota_vis = date('2021') . '-' . date('10') . '-' . date('15');
             </div>
             <div class="row mb-2">
                 <div class="col">
+                  <input type="" id="add_rota_manu" name="manufacturer" class="form-control form-control-sm" value="" placeholder="Manufacturer" required>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
                   <input type="text" id="add_rota_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">
                   <input type="text" id="add_rota_ndc" name="ndc" class="form-control form-control-sm" value="" placeholder="NDC" required>
                 </div>
             </div>
-            <?php
-              
-            ?>
-            
             <div class="row mb-2">
                 <div class="col" align="right">
                   <label><small>Expiration Date:</small></label>
