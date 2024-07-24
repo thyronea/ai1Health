@@ -84,6 +84,11 @@ $flu_vis = date('2023') . '-' . date('10') . '-' . date('19');
             </div>
             <div class="row mb-2">
                 <div class="col">
+                  <input type="" id="add_flu_manu" name="manufacturer" class="form-control form-control-sm" value="" placeholder="Manufacturer" required>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
                   <input type="text" id="add_flu_lot" name="lot" class="form-control form-control-sm" value="" placeholder="Lot Number" required>
                 </div>
                 <div class="col">

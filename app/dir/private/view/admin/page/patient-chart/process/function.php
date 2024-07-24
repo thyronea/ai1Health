@@ -323,6 +323,7 @@ function add_hepB(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_hepB_vaccines").value = data.vaccines;
+            document.getElementById("add_hepB_manu").value = data.manufacturer;
             document.getElementById("add_hepB_lot").value = data.lot;
             document.getElementById("add_hepB_ndc").value = data.ndc;
             document.getElementById("add_hepB_exp").value = data.exp;
@@ -549,6 +550,7 @@ function add_hib(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_hib_vaccines").value = data.vaccines;
+            document.getElementById("add_hib_manu").value = data.manufacturer;
             document.getElementById("add_hib_lot").value = data.lot;
             document.getElementById("add_hib_ndc").value = data.ndc;
             document.getElementById("add_hib_exp").value = data.exp;
@@ -699,6 +701,7 @@ function add_ipv(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_ipv_vaccines").value = data.vaccines;
+            document.getElementById("add_ipv_manu").value = data.manufacturer;
             document.getElementById("add_ipv_lot").value = data.lot;
             document.getElementById("add_ipv_ndc").value = data.ndc;
             document.getElementById("add_ipv_exp").value = data.exp;
@@ -850,6 +853,7 @@ function add_flu(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_flu_vaccines").value = data.vaccines;
+            document.getElementById("add_flu_manu").value = data.manufacturer;
             document.getElementById("add_flu_lot").value = data.lot;
             document.getElementById("add_flu_ndc").value = data.ndc;
             document.getElementById("add_flu_exp").value = data.exp;
@@ -1075,6 +1079,7 @@ function add_hepa(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_hepa_vaccines").value = data.vaccines;
+            document.getElementById("add_hepa_manu").value = data.manufacturer;
             document.getElementById("add_hepa_lot").value = data.lot;
             document.getElementById("add_hepa_ndc").value = data.ndc;
             document.getElementById("add_hepa_exp").value = data.exp;
@@ -1225,6 +1230,7 @@ function add_hpv(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_hpv_vaccines").value = data.vaccines;
+            document.getElementById("add_hpv_manu").value = data.manufacturer;
             document.getElementById("add_hpv_lot").value = data.lot;
             document.getElementById("add_hpv_ndc").value = data.ndc;
             document.getElementById("add_hpv_exp").value = data.exp;
@@ -1300,6 +1306,7 @@ function add_mcv(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_mcv_vaccines").value = data.vaccines;
+            document.getElementById("add_mcv_manu").value = data.manufacturer;
             document.getElementById("add_mcv_lot").value = data.lot;
             document.getElementById("add_mcv_ndc").value = data.ndc;
             document.getElementById("add_mcv_exp").value = data.exp;
@@ -1375,6 +1382,7 @@ function add_menb(){
         dataType:"JSON",
         success: function(data){
             document.getElementById("add_menb_vaccines").value = data.vaccines;
+            document.getElementById("add_menb_manu").value = data.manufacturer;
             document.getElementById("add_menb_lot").value = data.lot;
             document.getElementById("add_menb_ndc").value = data.ndc;
             document.getElementById("add_menb_exp").value = data.exp;
