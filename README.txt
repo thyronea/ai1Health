@@ -1,7 +1,8 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- IZ History - Add Manufacturer (Pentacel, Vaxelis, Quadracel, Kinrix, Proquad, rsv, hep b, rota, dtap, hib, pcv, ipv, mmr, var, hep a, tdap, hpv, mcv, menB, covid, flu)
+- IZ History - Add Manufacturer ( Vaxelis, Quadracel, Kinrix, Proquad, rsv, hep b, rota, dtap, hib, pcv, ipv, mmr, var, hep a, tdap, hpv, mcv, menB, covid, flu)
+- Prevent the use of other combo vax (stick to the same one)
 - IZ History - Limit combo vax to 1 (currently showing multiple records)
 - Create a waiting list sign-up
 - Design Favicon (title)

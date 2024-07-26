@@ -77,7 +77,7 @@ if(isset($_POST['administer_pediarix'])){
     // Verify Combo series
     $verify_combo = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$combo_type' ";
     $combo_run =  mysqli_query($con, $verify_combo);
-    if(mysqli_num_rows($combo_run)  >= 9){
+    if(mysqli_num_rows($combo_run)  >= 3){
       $_SESSION['warning'] = "$combo_type is already complete!";
         header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
@@ -348,7 +348,7 @@ if(isset($_POST['administer_pentacel'])){
     // Verify Combo series
     $verify_combo = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$combo_type' ";
     $combo_run =  mysqli_query($con, $verify_combo);
-    if(mysqli_num_rows($combo_run)  >= 3){
+    if(mysqli_num_rows($combo_run)  >= 4){
       $_SESSION['warning'] = "$combo_type is already complete!";
         header("Location: ../../../patient-chart/index.php?patientID=$patientID");
         exit(0);
@@ -498,7 +498,7 @@ if(isset($_POST['administer_pentacel'])){
       // Insert Hib
       if(mysqli_num_rows($hib_run) <= 0){
         $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
         $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
         $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
@@ -532,7 +532,7 @@ if(isset($_POST['administer_pentacel'])){
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
         $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
         $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
         $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
@@ -550,7 +550,7 @@ if(isset($_POST['administer_pentacel'])){
         $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
         VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("sssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
         $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
