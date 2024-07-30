@@ -38,10 +38,10 @@ if(isset($_POST['register_btn']))
   If you did not create this account, please contact admin.
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
-  http://localhost:8002/private/security/new-user-email-verification.php?token=$token
+  http://ai1system.net/private/security/email-verification.php?token=$token
 
   Thank you!
-  ");
+  "); //http://ai1system.net/private/security/email-verification.php?token=$token
 
   // Check if email exist
   $checkemail = "SELECT * FROM admin WHERE email='$email'";
