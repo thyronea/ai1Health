@@ -45,10 +45,10 @@ if(isset($_POST['register_btn'])) {
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-  http://localhost:8002/private/security/email-verification.php?token=$token
+  http://ai1system.net/private/security/email-verification.php?token=$token
 
   Thank you!
-  ");
+  "); // http://ai1system.net/private/security/email-verification.php?token=$token
 
   // Email validation
   $check_admin = "SELECT * FROM admin WHERE email='$email'";
@@ -72,7 +72,7 @@ if(isset($_POST['register_btn'])) {
     $mail->Port = 587;
 
     $mail->Username = "donotreply@ai1system.net";
-    $mail->Password = "xube qnjf xotp sull";
+    $mail->Password = "awxo vbxo hvix pitc";
 
     $mail->setFrom($email);
     $mail->addAddress($email);
