@@ -2189,8 +2189,8 @@ if(isset($_POST['administer_hib'])){
         $hib_brand = "SELECT * FROM immunization WHERE patientID='$patientID' AND type='$type' ";
         $hib_brand_run = mysqli_query($con, $hib_brand);
         $hib_vaccine = mysqli_fetch_array($hib_brand_run);
-        $verify_hib_vaccine = decryptthis($hib_vaccine['vaccine'], $iz_key);
         // Verify if the same brand is used
+        $verify_hib_vaccine = decryptthis($hib_vaccine['vaccine'], $iz_key);
         if($vaccine !== $verify_hib_vaccine){
           $_SESSION['warning'] = "Unable to administer $vaccine because $verify_hib_vaccine was previously administered";
           header("Location: ../../../patient-chart/index.php?patientID=$patientID");
