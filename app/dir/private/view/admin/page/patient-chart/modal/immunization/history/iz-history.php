@@ -31,7 +31,9 @@ include('../../components/print.php');
                                   <div class="card-body">
                                   <small>
                                     <div class="mb-2">Administered on: <?=htmlspecialchars($admin_date);?></div>
-                                    <div class="row"><h6><?=htmlspecialchars(decryptthis($vaccine['vaccine'], $iz_key));?></h6></div>
+                                    <div class="row col-md-12">
+                                      <div class="col"><b><?=htmlspecialchars($vaccine['type']);?></b> (<?=htmlspecialchars(decryptthis($vaccine['manufacturer'], $iz_key));?> - <?=htmlspecialchars(decryptthis($vaccine['vaccine'], $iz_key));?>)</div>
+                                    </div>
                                     <div class="row col-md-12">
                                       <div class="col">NDC: <?=htmlspecialchars(decryptthis($vaccine['ndc'], $iz_key));?></div>
                                       <div class="col">Lot: <?=htmlspecialchars(decryptthis($vaccine['lot'], $iz_key));?></div>
