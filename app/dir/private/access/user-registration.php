@@ -43,10 +43,10 @@ if(isset($_POST['register_user'])) {
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-  http://localhost:8002/private/security/email-verification.php?token=$token
+  http://ai1system.net/private/security/email-verification.php?token=$token
 
   Thank you!
-  "); // http://ai1system.net/private/security/email-verification.php?token=$token
+  ");
 
   // Email validation
   $check_admin = "SELECT * FROM admin WHERE email='$email' ";
@@ -55,7 +55,7 @@ if(isset($_POST['register_user'])) {
   // Email validation for existence
   if(mysqli_num_rows($check_admin_run) > 0) {
     $_SESSION['warning'] = "This Account Already Exist!";
-    header("Location: /pages/sign-in.php");
+    header("Location: /public/pages/sign-in.php");
     exit(0);
   }
   else {
