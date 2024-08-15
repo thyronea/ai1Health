@@ -45,9 +45,10 @@ if(isset($_POST['register_btn'])) {
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-  http://ai1system.net/private/security/email-verification.php?token=$token
+  https://ai1system.net/private/security/email-verification.php?token=$token
 
   Thank you!
+  ");
 
   // Email validation
   $check_admin = "SELECT * FROM admin WHERE email='$email'";
