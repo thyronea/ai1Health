@@ -35,10 +35,10 @@
 </div>
 
 <style>
-    img {
-        height: 8%;
-        width: 8%;
-        display: inline-block;
-  }
-    }
+img {
+    height: 8%;
+    width: 8%;
+    display: inline-block;
+}
+
 </style>
