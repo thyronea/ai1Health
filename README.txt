@@ -1,7 +1,6 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- Add Location when administering vaccines
 - Prevent the use of other combo vax (stick to the same one. Use administer_hib as a reference)
 - Create a waiting list sign-up
 - Design Favicon (title)
@@ -22,47 +21,5 @@ To Do:
 - Send email confirmation when admin account is deleted
 - Dark Mode
 
-Regular User:
-- Data encryption
-- Registration - Email Verification (required)
-- Sign In - Email Code Verification (required)
-- Forgot-Password (password reset from sign-in page)
-- New User Welcome Modal - Complete Profile (required)
-- Update Profile
-- Change-Password (password reset from account settings)
-- Send Email
-- Upload Image (profile & background)
-- Edit Image (current image will be replaced and deleted in DB and directory)
-- Search
-- Docs (upload/delete files)
-- Chat (instant message members within group)
-- Storage & Handling (add/edit/delete storage units & thermometers; log temperature)
-- Inventory (add/edit/delete inventory)
-- Scan Vaccine Barcode
-- Patients (add/edit/chart/remove/assign)
-- Patient-Chart - Immunization (private funding can be administered to public eligible but public cannot be administered to private)
 
-Admin User (Manager Tab):
-- Everything in Basic
-- Analytics
-- Activity & Email Log
-- Account Management - Add/Edit/Delete User
-
-Currently Logging:
-- Registration
-- Sign In
-- Log Out
-- Update Profile
-- Add User
-- Delete User
-- Email
-- File
-- Temperature
-- Vaccine Inventory
-- Patient Chart
-
-New email config:
-$mail->Username = "donotreply@ai1system.net";
-$mail->Password = "xube qnjf xotp sull";
-
-7/8/2024
+8/16/2024

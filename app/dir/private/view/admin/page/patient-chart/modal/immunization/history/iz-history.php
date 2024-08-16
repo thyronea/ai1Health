@@ -40,7 +40,7 @@ include('../../components/print.php');
                                       <div class="col">Exp: <?=htmlspecialchars($exp_date);?></div>
                                     </div>
                                     <div class="row col-md-12">
-                                      <div class="col">Location: (Insert clinicals Name)</div>
+                                      <div class="col">Location: <?=htmlspecialchars(decryptthis($vaccine['location'], $iz_key));?></div>
                                       <div class="col">Site: <?=htmlspecialchars(decryptthis($vaccine['site'], $iz_key));?></div>
                                       <div class="col">Route: <?=htmlspecialchars(decryptthis($vaccine['route'], $iz_key));?></div>
                                     </div>

@@ -16,6 +16,7 @@ $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
 $email = mysqli_real_escape_string($con, $_SESSION['email']);
 $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
 $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
+$location = mysqli_real_escape_string($con, $_SESSION['location']);
 
 // Patient's information
 $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
@@ -127,133 +128,134 @@ if(isset($_POST['administer_pediarix'])){
       $encrypt_ipv_vis = encryptthis_iz($ipv_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Pediarix 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert DTaP 
       if(mysqli_num_rows($dtap_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert Hepatitis B
       if(mysqli_num_rows($hepB_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hepB_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hepB_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -418,149 +420,150 @@ if(isset($_POST['administer_pentacel'])){
       $encrypt_ipv_vis = encryptthis_iz($ipv_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Pentacel 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert DTaP 
       if(mysqli_num_rows($dtap_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert Hib
       if(mysqli_num_rows($hib_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -716,167 +719,168 @@ if(isset($_POST['administer_vaxelis'])){
       $encrypt_hepB_vis = encryptthis_iz($hepB_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Vaxelis 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert DTaP 
       if(mysqli_num_rows($dtap_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert Hepatitis B
       if(mysqli_num_rows($hepB_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hepB_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hepB_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hepB_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hepB_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
       // Insert Hib
       if(mysqli_num_rows($hib_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($hib_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $hib_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_hib_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -1011,91 +1015,92 @@ if(isset($_POST['administer_quadracel'])){
       $encrypt_ipv_vis = encryptthis_iz($ipv_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Quadracel 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert DTaP 
       if(mysqli_num_rows($dtap_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -1229,91 +1234,92 @@ if(isset($_POST['administer_kinrix'])){
       $encrypt_ipv_vis = encryptthis_iz($ipv_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Kinrix 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert DTaP 
       if(mysqli_num_rows($dtap_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($dtap_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $dtap_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_dtap_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert IPV
       if(mysqli_num_rows($ipv_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($ipv_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $ipv_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_ipv_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -1447,59 +1453,60 @@ if(isset($_POST['administer_proquad'])){
       $encrypt_var_vis = encryptthis_iz($var_vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       // Insert Proquad 
       if(mysqli_num_rows($combo_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($combo_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $combo_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert MMR 
       if(mysqli_num_rows($mmr_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $mmr_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $mmr_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($mmr_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $mmr_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $mmr_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       
       // Insert Varicella
       if(mysqli_num_rows($var_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $var_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $var_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       elseif(mysqli_num_rows($var_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $var_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $var_type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_mmr_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -1611,13 +1618,14 @@ if(isset($_POST['administer_rsv'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+      $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 
       // update inventory
@@ -1749,30 +1757,31 @@ if(isset($_POST['administer_hepB'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
       
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -1882,14 +1891,15 @@ if(isset($_POST['administer_rota'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
@@ -1904,20 +1914,20 @@ if(isset($_POST['administer_rota'])){
           exit(0);
         }
         else{
-          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
         }
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2027,46 +2037,47 @@ if(isset($_POST['administer_dtap'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 4){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot5, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2176,14 +2187,15 @@ if(isset($_POST['administer_hib'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
@@ -2198,11 +2210,11 @@ if(isset($_POST['administer_hib'])){
           exit(0);
         }
         else{
-          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-          VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           $stmt = $con->prepare($administer_iz);
-          $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+          $stmt->bind_param("ssssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
           $stmt->execute();
         }
       }
@@ -2218,11 +2230,11 @@ if(isset($_POST['administer_hib'])){
           exit(0);
         }
         else{
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
         }
       }
@@ -2238,11 +2250,11 @@ if(isset($_POST['administer_hib'])){
           exit(0);
         }
         else{
-          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-          VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
           $stmt = $con->prepare($administer_iz);
-          $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+          $stmt->bind_param("ssssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+          $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
           $stmt->execute();
         }
       }
@@ -2353,38 +2365,39 @@ if(isset($_POST['administer_pcv'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2494,38 +2507,39 @@ if(isset($_POST['administer_ipv'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 3){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot4, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2635,22 +2649,23 @@ if(isset($_POST['administer_mmr'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2760,22 +2775,23 @@ if(isset($_POST['administer_var'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -2885,22 +2901,23 @@ if(isset($_POST['administer_hepa'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -3010,13 +3027,14 @@ if(isset($_POST['administer_tdap'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 
       // update inventory
@@ -3125,30 +3143,31 @@ if(isset($_POST['administer_hpv'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 2){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot3, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -3258,22 +3277,23 @@ if(isset($_POST['administer_mcv'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -3383,22 +3403,23 @@ if(isset($_POST['administer_menb'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
       if(mysqli_num_rows($sql_run) <= 0){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot1, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
       if(mysqli_num_rows($sql_run) == 1){
-        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-        VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $con->prepare($administer_iz);
-        $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $shot2, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+        $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
         $stmt->execute();
       }
 
@@ -3508,13 +3529,14 @@ if(isset($_POST['administer_covid'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 
       // update inventory
@@ -3623,13 +3645,14 @@ if(isset($_POST['administer_flu'])){
       $encrypt_vis = encryptthis_iz($vis, $iz_key);
       $encrypt_eligibility = encryptthis_iz($eligibility, $iz_key);
       $encrypt_administered_by = encryptthis_iz($administered_by, $iz_key);
+      $encrypt_location = encryptthis_iz($location, $iz_key);
       $encrypt_comment = encryptthis_iz($comment, $iz_key);
 
-      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,comment,value,date,time) 
-      VALUES (?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $administer_iz = "INSERT INTO immunization (uniqueID,patientID,groupID,seriesID,name,dob,type,manufacturer,vaccine,lot,ndc,exp,site,route,vis_given,vis,funding_source,administered_by,location,comment,value,date,time) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($administer_iz);
-      $stmt->bind_param("ssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
-      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_comment, $value, $date, $time);
+        $stmt->bind_param("sssssssssssssssssssssss", $uniqueID, $patientID, $groupID, $othershot, $encrypt_patient_name, $encrypt_dob, $type, $encrypt_manufacturer, $encrypt_vaccine, $encrypt_lot, $encrypt_ndc,
+      $exp, $encrypt_site, $encrypt_route, $encrypt_vis_given, $encrypt_vis, $encrypt_eligibility, $encrypt_administered_by, $encrypt_location, $encrypt_comment, $value, $date, $time);
       $stmt->execute();
 
       // update inventory
