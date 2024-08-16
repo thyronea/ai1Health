@@ -6,7 +6,6 @@
             <ul class="f-menu">
               <li><a href="/public/page/privacy-policy/index.php">Privacy Policy</a></li>
               <li><a href="/public/page/terms/index.php">Terms of Use</a></li>
-              <li><a href="/public/page/contact-us/index.php">Contact Us</a></li>
             </ul>
           </div>
       </div>
