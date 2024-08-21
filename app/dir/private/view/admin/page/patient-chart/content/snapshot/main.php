@@ -3,7 +3,6 @@ $date = date('Y') . '-' . date('m') . '-' . date('d');
 $decrypted_dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
 $year = (date('Y') - date('Y', strtotime($decrypted_dob)));
 $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decrypted_dob)) . '/' . date('Y', strtotime($decrypted_dob)));
-
 ?>
 
 <div class="tab-pane fade show active" id="snapshot-tab-pane" role="tabpanel" aria-labelledby="snapshot-tab" tabindex="0">
@@ -180,7 +179,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                         <td hidden><?=htmlspecialchars($patientLog['engineID']);?></td>
                         <td hidden><?=htmlspecialchars($patientLog['groupID']);?></td>
                         <td ><small><?=htmlspecialchars($patientLog['date']);?></small></td>
-                        <td ><small><?=htmlspecialchars(decryptthis($patientLog['activity'], $key));?></small></td>
+                        <td ><small><?=htmlspecialchars(decryptthis($patientLog['activity'], $iz_key));?></small></td>
                       </tr>
                       <?php
                     }

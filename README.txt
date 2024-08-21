@@ -1,6 +1,7 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
+- Patient log is blank for new patients (unassigned).
 - Prevent the use of other combo vax (stick to the same one. Use administer_hib as a reference)
 - Create a waiting list sign-up
 - Design Favicon (title)

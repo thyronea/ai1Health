@@ -53,7 +53,7 @@ $fullname = "$fname $lname";
 $action = htmlspecialchars("Administered");
 $message = "$action $vaccine ($lot) to $patient_fname $patient_lname";
 $encrypt_fullname = encryptthis($fullname, $key);
-$encrypt_message = encryptthis($message, $key);
+$encrypt_message = encryptthis($message, $iz_key);
 
 
 // Combo Vax

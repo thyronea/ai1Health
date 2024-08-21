@@ -10,6 +10,7 @@ if(isset($_POST['add_patient']))
 {
   $token = md5(rand());
   $key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+  $iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);  
   $email = mysqli_real_escape_string($con, $_SESSION['email']);
   $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
   $user_fname = mysqli_real_escape_string($con, $_SESSION['fname']);
@@ -51,7 +52,7 @@ if(isset($_POST['add_patient']))
   Your Patient ID is $patientID.
 
   TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
-  http://localhost:8002/private/security/new-patient-email-verification.php?token=$token
+  https://ai1system.net/private/security/new-patient-email-verification.php?token=$token
 
   Please DO NOT share your Patient ID.
   If you did not register, please contact admin.
@@ -211,7 +212,7 @@ if(isset($_POST['add_patient']))
       $stmt->execute();
 
       // Encrypt Patient's log Data
-      $encrypt_status = encryptthis($status, $key);
+      $encrypt_status = encryptthis($status, $iz_key);
 
       // insert to patient log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)";
