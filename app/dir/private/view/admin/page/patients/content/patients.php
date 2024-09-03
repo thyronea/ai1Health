@@ -48,14 +48,15 @@
 
              <?php
                  $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-                 $query = "SELECT * FROM patients WHERE groupID='$groupID' ";
+                 $query = "SELECT * FROM patients INNER JOIN data_dob
+                 ON patients.patientID=data_dob.patientID WHERE data_dob.groupID='$groupID' ";
                  $query_run = mysqli_query($con, $query);
                  $searchnum = mysqli_num_rows($query_run);
                  if($searchnum > 0)
                  {
                    foreach ($query_run as $patient)
                    {
-                    $patient_dob = htmlspecialchars(decryptthis($patient['dob'], $key));
+                    $patient_dob = htmlspecialchars($patient['dob']);
                     include('patient-list.php');
                    }
                  }
@@ -79,7 +80,6 @@
              <th></th>
            </thead>
            <tbody>
-
              <?php
                  $query = "SELECT * FROM patients INNER JOIN data_dob
                  ON patients.patientID=data_dob.patientID WHERE data_dob.groupID='$groupID' AND (YEAR(NOW()) - YEAR(data_dob.dob)) BETWEEN 0 AND 18";

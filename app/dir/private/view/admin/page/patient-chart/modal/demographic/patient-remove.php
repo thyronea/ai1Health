@@ -18,7 +18,7 @@
 
             <!----------------------------------------------------->
             <p align="center">Patient will be removed from your group.</p>
-            <p align="center">Do you still want to proceed?</p>
+            <p align="center">Do you still want to proceed? </p>
           </div>
 
           <div class="form-group mb-3" align="center">

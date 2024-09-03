@@ -40,7 +40,7 @@ if(isset($_POST['add_patient']))
   $role = mysqli_real_escape_string($con, $_POST['role']);
   $type = mysqli_real_escape_string($con, "Registered Patient");
   $admin = mysqli_real_escape_string($con, "Admin");
-  $status = mysqli_real_escape_string($con, "Account Created");
+  $activity = mysqli_real_escape_string($con, "Account Created");
   $patient_image = mysqli_real_escape_string($con, $_FILES['patient_image']['name']);
   $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
   $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
@@ -212,12 +212,12 @@ if(isset($_POST['add_patient']))
       $stmt->execute();
 
       // Encrypt Patient's log Data
-      $encrypt_status = encryptthis($status, $iz_key);
+      $encrypt_activity = encryptthis($activity, $iz_key);
 
       // insert to patient log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)";
       $stmt = $con->prepare($patientlog);
-      $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypt_status);
+      $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypt_activity);
       $stmt->execute();
 
       if($stmt = $con->prepare($patient))

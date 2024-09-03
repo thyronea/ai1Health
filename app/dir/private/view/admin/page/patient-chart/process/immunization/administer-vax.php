@@ -269,7 +269,7 @@ if(isset($_POST['administer_pediarix'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Pediarix");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -391,7 +391,7 @@ if(isset($_POST['administer_pentacel'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Pentacel");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -689,7 +689,7 @@ if(isset($_POST['administer_vaxelis'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Vaxelis");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -987,7 +987,7 @@ if(isset($_POST['administer_quadracel'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Quadracel");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1206,7 +1206,7 @@ if(isset($_POST['administer_kinrix'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Kinrix");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1425,7 +1425,7 @@ if(isset($_POST['administer_proquad'])){
       $received = htmlspecialchars("Received");
       $pediarix = htmlspecialchars("Proquad");
       $patient_log = mysqli_real_escape_string($con, "$received $pediarix");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1590,7 +1590,7 @@ if(isset($_POST['administer_rsv'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1710,7 +1710,7 @@ if(isset($_POST['administer_hepB'])){
       if(mysqli_num_rows($sql_run)  >= 2){
         $received = htmlspecialchars("Received");
         $patient_log = mysqli_real_escape_string($con, "$received $type");
-        $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+        $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
         $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
         $stmt = $con->prepare($patientlog);
         $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1728,7 +1728,7 @@ if(isset($_POST['administer_hepB'])){
         // Insert Patient Log Data
         $received = htmlspecialchars("Received");
         $patient_log = mysqli_real_escape_string($con, "$received $type");
-        $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+        $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
         $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
         $stmt = $con->prepare($patientlog);
         $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -1863,7 +1863,7 @@ if(isset($_POST['administer_rota'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2009,7 +2009,7 @@ if(isset($_POST['administer_dtap'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2159,7 +2159,7 @@ if(isset($_POST['administer_hib'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2337,7 +2337,7 @@ if(isset($_POST['administer_pcv'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2479,7 +2479,7 @@ if(isset($_POST['administer_ipv'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2621,7 +2621,7 @@ if(isset($_POST['administer_mmr'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2747,7 +2747,7 @@ if(isset($_POST['administer_var'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2873,7 +2873,7 @@ if(isset($_POST['administer_hepa'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -2999,7 +2999,7 @@ if(isset($_POST['administer_tdap'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -3115,7 +3115,7 @@ if(isset($_POST['administer_hpv'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -3249,7 +3249,7 @@ if(isset($_POST['administer_mcv'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -3375,7 +3375,7 @@ if(isset($_POST['administer_menb'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -3501,7 +3501,7 @@ if(isset($_POST['administer_covid'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);
@@ -3617,7 +3617,7 @@ if(isset($_POST['administer_flu'])){
       // Insert Patient Log Data
       $received = htmlspecialchars("Received");
       $patient_log = mysqli_real_escape_string($con, "$received $type");
-      $encrypted_patient_log = encryptthis($patient_log, $key); // Encrypt Patient Log
+      $encrypted_patient_log = encryptthis($patient_log, $iz_key); // Encrypt Patient Log
       $patientlog = "INSERT INTO patientlog (patientID, uniqueID, groupID, date, time, activity) VALUES (?, ?, ?, ?, ?, ?)"; // Insert data to patientlog table
       $stmt = $con->prepare($patientlog);
       $stmt->bind_param("ssssss", $patientID, $uniqueID, $groupID, $date, $time, $encrypted_patient_log);

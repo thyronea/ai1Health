@@ -19,9 +19,11 @@ if(isset($_POST['remove_patient']))
     $email = mysqli_real_escape_string($con, $_SESSION['email']);
     $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
     $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
+
     $patientID = mysqli_real_escape_string($con, $_POST['patientID']);
     $engineID = mysqli_real_escape_string($con, $_POST['engineID']);
     $patient_email = mysqli_real_escape_string($con, $_POST['patient_email']);
+    
     $admin = mysqli_real_escape_string($con, "Admin");
     $type = mysqli_real_escape_string($con, "Removed Patient: ");
   
