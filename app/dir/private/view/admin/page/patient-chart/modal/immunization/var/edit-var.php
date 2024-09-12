@@ -144,6 +144,7 @@
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm mb-2" id="varadministered_by" name="administered_by" required>
+                      <option value="<?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?>"><?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?></option>
                       <option disabled selected>Or select from active users</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);

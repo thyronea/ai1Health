@@ -152,7 +152,8 @@
                 </div>
                 <div class="col">
                   <select class="form-select form-select-sm mb-2" id="menbadministered_by" name="administered_by" required>
-                      <option disabled selected>Or select from active users</option>
+                      <option value="<?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?>"><?=htmlspecialchars(decryptthis_iz($vaccine['administered_by'], $iz_key));?></option>
+                      <option disabled>Or select from active users</option>
                       <?php
                       $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
                       $sql = "SELECT * FROM profile WHERE groupID='$groupID' ";
