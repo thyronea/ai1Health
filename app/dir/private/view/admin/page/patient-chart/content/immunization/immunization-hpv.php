@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/hpv/add-hpv.php'); ?>
-<?php include('modal/immunization/hpv/edit-hpv.php'); ?>
-<?php include('modal/immunization/hpv/delete-hpv.php'); ?>

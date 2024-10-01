@@ -29,24 +29,26 @@
                       <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#flu" type="button">Influenza</button>
                   </div>
                   <div class="col tab-content">
-                      <?php include('immunization-schedule.php');?>
-                      <?php include('immunization-combination.php');?>
-                      <?php include('immunization-rsv.php');?>
-                      <?php include('immunization-hepb.php');?>
-                      <?php include('immunization-rota.php');?>
-                      <?php include('immunization-dtap.php');?>
-                      <?php include('immunization-hib.php');?>
-                      <?php include('immunization-pcv.php');?>
-                      <?php include('immunization-ipv.php');?>
-                      <?php include('immunization-mmr.php');?>
-                      <?php include('immunization-var.php');?>
-                      <?php include('immunization-hepa.php');?>
-                      <?php include('immunization-tdap.php');?>
-                      <?php include('immunization-hpv.php');?>
-                      <?php include('immunization-mcv.php');?>
-                      <?php include('immunization-menb.php');?>
-                      <?php include('immunization-covid.php');?>
-                      <?php include('immunization-flu.php');?>
+                      <?php 
+                        include('immunization-schedule.php');
+                        include('immunization-combination.php');
+                        include('immunization-rsv.php');
+                        include('immunization-hepb.php');
+                        include('immunization-rota.php');
+                        include('immunization-dtap.php');
+                        include('immunization-hib.php');
+                        include('immunization-pcv.php');
+                        include('immunization-ipv.php');
+                        include('immunization-mmr.php');
+                        include('immunization-var.php');
+                        include('immunization-hepa.php');
+                        include('immunization-tdap.php');
+                        include('immunization-hpv.php');
+                        include('immunization-mcv.php');
+                        include('immunization-menb.php');
+                        include('immunization-covid.php');
+                        include('immunization-flu.php');
+                      ?>
                   </div>
               </div>
             </div>

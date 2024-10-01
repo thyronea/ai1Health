@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/dtap/add-dtap.php'); ?>
-<?php include('modal/immunization/dtap/edit-dtap.php'); ?>
-<?php include('modal/immunization/dtap/delete-dtap.php'); ?>

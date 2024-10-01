@@ -7,7 +7,8 @@ require '../../../../../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
 require '../../../../../../../vendor/mailer/PHPMailer/src/SMTP.php';
 
 // User's information
-$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);  
+$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
+$iz_key = mysqli_real_escape_string($con, $_SESSION["iz_key"]);  
 $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
 $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
 $email = mysqli_real_escape_string($con, $_SESSION['email']);

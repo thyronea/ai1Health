@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/covid/add-covid.php'); ?>
-<?php include('modal/immunization/covid/edit-covid.php'); ?>
-<?php include('modal/immunization/covid/delete-covid.php'); ?>

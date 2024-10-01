@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/var/add-var.php'); ?>
-<?php include('modal/immunization/var/edit-var.php'); ?>
-<?php include('modal/immunization/var/delete-var.php'); ?>

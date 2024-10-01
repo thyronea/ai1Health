@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/ipv/add-ipv.php'); ?>
-<?php include('modal/immunization/ipv/edit-ipv.php'); ?>
-<?php include('modal/immunization/ipv/delete-ipv.php'); ?>

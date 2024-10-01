@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/hib/add-hib.php'); ?>
-<?php include('modal/immunization/hib/edit-hib.php'); ?>
-<?php include('modal/immunization/hib/delete-hib.php'); ?>

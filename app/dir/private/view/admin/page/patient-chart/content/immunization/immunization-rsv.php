@@ -67,6 +67,3 @@
         </div>
     </div> 
 </div>
-<?php include('modal/immunization/rsv/add-rsv.php'); ?>
-<?php include('modal/immunization/rsv/edit-rsv.php'); ?>
-<?php include('modal/immunization/rsv/delete-rsv.php'); ?>

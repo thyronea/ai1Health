@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/pcv/add-pcv.php'); ?>
-<?php include('modal/immunization/pcv/edit-pcv.php'); ?>
-<?php include('modal/immunization/pcv/delete-pcv.php'); ?>

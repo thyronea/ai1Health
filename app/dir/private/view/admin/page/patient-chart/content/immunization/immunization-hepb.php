@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/hepB/add-hepb.php'); ?>
-<?php include('modal/immunization/hepB/edit-hepb.php'); ?>
-<?php include('modal/immunization/hepB/delete-hepb.php'); ?>

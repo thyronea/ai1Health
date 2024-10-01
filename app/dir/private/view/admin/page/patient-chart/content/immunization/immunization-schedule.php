@@ -143,6 +143,51 @@
 </div>
 
 <?php include('modal/immunization/history/iz-history.php'); ?>
+<?php include('modal/immunization/rsv/add-rsv.php'); ?>
+<?php include('modal/immunization/rsv/edit-rsv.php'); ?>
+<?php include('modal/immunization/rsv/delete-rsv.php'); ?>
+<?php include('modal/immunization/hepB/add-hepb.php'); ?>
+<?php include('modal/immunization/hepB/edit-hepb.php'); ?>
+<?php include('modal/immunization/hepB/delete-hepb.php'); ?>
+<?php include('modal/immunization/rota/add-rota.php'); ?>
+<?php include('modal/immunization/rota/edit-rota.php'); ?>
+<?php include('modal/immunization/rota/delete-rota.php'); ?>
+<?php include('modal/immunization/dtap/add-dtap.php'); ?>
+<?php include('modal/immunization/dtap/edit-dtap.php'); ?>
+<?php include('modal/immunization/dtap/delete-dtap.php'); ?>
+<?php include('modal/immunization/hib/add-hib.php'); ?>
+<?php include('modal/immunization/hib/edit-hib.php'); ?>
+<?php include('modal/immunization/hib/delete-hib.php'); ?>
+<?php include('modal/immunization/pcv/add-pcv.php'); ?>
+<?php include('modal/immunization/pcv/edit-pcv.php'); ?>
+<?php include('modal/immunization/pcv/delete-pcv.php'); ?>
+<?php include('modal/immunization/ipv/add-ipv.php'); ?>
+<?php include('modal/immunization/ipv/edit-ipv.php'); ?>
+<?php include('modal/immunization/ipv/delete-ipv.php'); ?>
+<?php include('modal/immunization/mmr/add-mmr.php'); ?>
+<?php include('modal/immunization/mmr/edit-mmr.php'); ?>
+<?php include('modal/immunization/mmr/delete-mmr.php'); ?>
+<?php include('modal/immunization/var/add-var.php'); ?>
+<?php include('modal/immunization/var/edit-var.php'); ?>
+<?php include('modal/immunization/var/delete-var.php'); ?>
+<?php include('modal/immunization/hepA/add-hepa.php'); ?>
+<?php include('modal/immunization/hepA/edit-hepa.php'); ?>
+<?php include('modal/immunization/hepA/delete-hepa.php'); ?>
+<?php include('modal/immunization/tdap/add-tdap.php'); ?>
+<?php include('modal/immunization/tdap/edit-tdap.php'); ?>
+<?php include('modal/immunization/tdap/delete-tdap.php'); ?>
+<?php include('modal/immunization/hpv/add-hpv.php'); ?>
+<?php include('modal/immunization/hpv/edit-hpv.php'); ?>
+<?php include('modal/immunization/hpv/delete-hpv.php'); ?>
+<?php include('modal/immunization/mcv/add-mcv.php'); ?>
+<?php include('modal/immunization/mcv/edit-mcv.php'); ?>
+<?php include('modal/immunization/mcv/delete-mcv.php'); ?>
+<?php include('modal/immunization/menb/add-menb.php'); ?>
+<?php include('modal/immunization/menb/edit-menb.php'); ?>
+<?php include('modal/immunization/menb/delete-menb.php'); ?>
+<?php include('modal/immunization/covid/add-covid.php'); ?>
+<?php include('modal/immunization/covid/edit-covid.php'); ?>
+<?php include('modal/immunization/covid/delete-covid.php'); ?>
 
 <script>
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')

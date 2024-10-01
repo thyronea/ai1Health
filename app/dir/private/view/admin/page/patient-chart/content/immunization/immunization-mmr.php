@@ -41,7 +41,7 @@
                                         <a class="text-decoration-none focus-ring edit_mmr_btn" style="color: black; font-size: 14px" data-bs-toggle="modal" data-bs-target="#edit_administered_mmr">
                                             <div class="card shadow" id="admin_card">
                                                 <div class="card-body">
-                                                    <small><?=htmlspecialchars($admin_mmr);?></small>
+                                                    <small><?=htmlspecialchars($admin_mmr)?></small>
                                                 </div>
                                             </div>
                                         </a>
@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/mmr/add-mmr.php'); ?>
-<?php include('modal/immunization/mmr/edit-mmr.php'); ?>
-<?php include('modal/immunization/mmr/delete-mmr.php'); ?>

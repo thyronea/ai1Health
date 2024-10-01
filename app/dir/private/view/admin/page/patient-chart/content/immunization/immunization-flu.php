@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/flu/add-flu.php'); ?>
-<?php include('modal/immunization/flu/edit-flu.php'); ?>
-<?php include('modal/immunization/flu/delete-flu.php'); ?>

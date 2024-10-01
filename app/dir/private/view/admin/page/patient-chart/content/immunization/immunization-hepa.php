@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/hepA/add-hepa.php'); ?>
-<?php include('modal/immunization/hepA/edit-hepa.php'); ?>
-<?php include('modal/immunization/hepA/delete-hepa.php'); ?>

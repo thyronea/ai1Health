@@ -68,6 +68,3 @@
         </div>
     </div> 
 </div>
-<?php include('modal/immunization/rota/add-rota.php'); ?>
-<?php include('modal/immunization/rota/edit-rota.php'); ?>
-<?php include('modal/immunization/rota/delete-rota.php'); ?>

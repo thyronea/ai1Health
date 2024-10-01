@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/menb/add-menb.php'); ?>
-<?php include('modal/immunization/menb/edit-menb.php'); ?>
-<?php include('modal/immunization/menb/delete-menb.php'); ?>

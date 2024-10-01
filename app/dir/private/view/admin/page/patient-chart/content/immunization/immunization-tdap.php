@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/tdap/add-tdap.php'); ?>
-<?php include('modal/immunization/tdap/edit-tdap.php'); ?>
-<?php include('modal/immunization/tdap/delete-tdap.php'); ?>

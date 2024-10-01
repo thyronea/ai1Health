@@ -67,7 +67,3 @@
         </div>
     </div> 
 </div>
-
-<?php include('modal/immunization/mcv/add-mcv.php'); ?>
-<?php include('modal/immunization/mcv/edit-mcv.php'); ?>
-<?php include('modal/immunization/mcv/delete-mcv.php'); ?>
