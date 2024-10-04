@@ -6,6 +6,9 @@ if(isset($_SESSION["userID"])){
   $update_vcode = "UPDATE token SET v_code='$new_vcode' WHERE userID='$userID' ";
   $update_vcode_run = mysqli_query($con, $update_vcode);
 }
+else{
+  exit(0);
+} 
 
 // Display patient name from database to snapshot
 if(isset($_GET['patientID'])){
@@ -17,7 +20,10 @@ if(isset($_GET['patientID'])){
     $patients = mysqli_fetch_array($query_run);
     foreach($query_run as $patient){}
   }
-}
+} 
+else{
+  exit(0);
+} 
 
 // Display patient's health plan from database to snapshot
 if(isset($_GET['patientID'])){ 
@@ -30,6 +36,9 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $plan){}
   }
 }
+else{
+  exit(0);
+} 
 
 // Display patient diversity from database to snapshot
 if(isset($_GET['patientID'])){
@@ -42,6 +51,9 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $diversity){}
   }
 }
+else{
+  exit(0);
+} 
 
 // Display patient address from database to snapshot
 if(isset($_GET['patientID'])){
@@ -54,6 +66,9 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $address){}
   }
 }
+else{
+  exit(0);
+} 
 
 // Display patient contact from database to snapshot
 if(isset($_GET['patientID'])){
@@ -66,6 +81,9 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $contacts){}
   }
 }
+else{
+  exit(0);
+} 
 
 // Display patient's emergency contact from database to demographic
 if(isset($_GET['patientID'])){
@@ -78,6 +96,9 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $emergency_contact){}
   }
 }
+else{
+  exit(0);
+} 
 
 // Display patient's profile image
 if(isset($_GET['patientID'])){
@@ -90,8 +111,11 @@ if(isset($_GET['patientID'])){
     foreach($query_run as $image){}
   }
 }
+else{
+  exit(0);
+} 
 
-// Immunization Date Recommendation
+// IZ Date Recommendation
 if(isset($_GET['patientID'])){
   // Patient's Date of Birth
   $decrypted_dob = htmlspecialchars(decryptthis($diversity['dob'], $key));
@@ -183,8 +207,11 @@ if(isset($_GET['patientID'])){
   $year18old_ = strtotime("+18 years", strtotime($dob));
   $year18old_ = date('Y-m-d',$year18old_);
 }
+else{
+  exit(0);
+} 
 
-// Immunization Schedule
+// IZ Schedule
 if(isset($_GET['patientID'])){
   // Syringe Icon
   $syringe = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 512 512"><path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/></svg>';
@@ -223,7 +250,8 @@ if(isset($_GET['patientID'])){
         <button type='button' class='focus-ring btn btn-sm border mt-5 mb-3 shadow' id='submit_btn' data-bs-toggle='modal' data-bs-target='#administer_rsv'>Administer RSV</button> 
       ";
 
-      $rsv_schedule = "
+      $rsv_schedule = 
+      "
       <div style='margin-top: 5px'>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RSV</b></small></button>
         <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_rsv'><small>OVERDUE</small></button>
@@ -243,9 +271,9 @@ if(isset($_GET['patientID'])){
       $rsv_schedule = "
         <div style='margin-top: 5px'>
           <button id='btn_schedule' class='py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>RSV</b></small></button>
-          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$rsv1</small></button>
+          <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3 edit_rsv_btn' data-bs-toggle='modal' data-bs-target='#edit_administered_rsv'><small>$rsv1</small></button>
         </div>
-      "; 
+      ";  
   }
 
   // Count Administered Hep B
@@ -352,7 +380,7 @@ if(isset($_GET['patientID'])){
     $hepb_schedule = "
       <div style='margin-top: 5.5px'>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
-        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hepB1</small></button>
+        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3 edit_hepB_btn'><small>$hepB1</small></button>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$s1_month2</small></button>
         <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button> 
       </div>
@@ -401,7 +429,7 @@ if(isset($_GET['patientID'])){
     $hepb_schedule = "
       <div style='margin-top: 5.5px'>
         <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3' disabled><small><b>Hep B</b></small></button>
-        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$hepB1</small></button>
+        <button id='btn_complete' class='py-1 px-2 btn btn-sm border rounded-3 edit_hepB_btn'><small>$hepB1</small></button>
         <button id='btn_overdue' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>OVERDUE</small></button>
         <button id='btn_schedule' class='py-1 px-2 btn btn-sm border rounded-3' style='cursor:default'><small>$s1_month4</small></button> 
       </div>
@@ -456,6 +484,23 @@ if(isset($_GET['patientID'])){
             <button id='btn_schedule' class='focus-ring py-1 px-2 btn btn-sm border rounded-3' data-bs-toggle='modal' data-bs-target='#administer_hepb'><small>$s2_month4</small></button> 
           </div>
         ";
+      
+      $iz_recommendation = "
+        <div align='center'>
+          <small>
+            <div class='mb-3' align='left'>
+            <b>Due on $s2_month4:</b><br>
+              3rd dose of Hep B <br>
+              2nd dose of Rotavirus <br>
+              2nd dose of DTaP <br>
+              2nd dose of Hib <br>
+              2nd dose of PCV <br>
+              2nd dose of IPV
+            </div>
+           
+          </small>
+        </div>
+      ";
   }
   elseif(mysqli_num_rows($hepB_req_run) == 2 && $date > $v2_month4){
     $hepB_message = "
@@ -4234,8 +4279,11 @@ if(isset($_GET['patientID'])){
     ";
   }
 }
+else{
+  exit(0);
+} 
 
-// Immunization Record
+// IZ Record
 if(isset($_GET['patientID'])){
   $iz_record = "SELECT * FROM immunization WHERE patientID='$patientID' ";
   $iz_record_run = mysqli_query($con, $iz_record);
@@ -4253,4 +4301,7 @@ if(isset($_GET['patientID'])){
     }
   }
 }
+else{
+  exit(0);
+} 
 ?>

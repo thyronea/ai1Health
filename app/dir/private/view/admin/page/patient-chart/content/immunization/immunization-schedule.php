@@ -1,10 +1,13 @@
+<?php include('content/includes.php'); ?>
+
+<!-- Schedule -->
 <div class="tab-pane fade show active" id="schedule" role="tabpanel" tabindex="0">
     <div class="row col-md-12">
         <div class="col-md-7 me-3 mt-2 card border" style="background-image: linear-gradient(#ffffff, #edf3ff); width: 625px">
             <div class="row card-body">
                 <div class="col mt-2 mb-3" align="left">
                     <small>
-                        <!-- Schedule -->
+                        <!-- Header -->
                         <div style="margin-top: -5px;">
                             <button title="Immunization History" id="btn_schedule" class="py-1 px-2 btn btn-sm border-0 rounded-3" data-bs-toggle="modal" data-bs-target="#iz_history"><i class="bi bi-card-list fa-lg"></i></button>
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>1st</b></small></button>
@@ -14,7 +17,7 @@
                             <button id="btn_schedule" class="focus-ring py-1 px-2 btn btn-sm btn-secondary rounded-3" disabled><small><b>5th</b></small></button>
                         </div>
                         <!-- RSV -->
-                        <?=$rsv_schedule?>
+                        <?php include('modal/immunization/rsv/iz-schedule-edit.php');?>
                         <!--  Hep B-->
                         <?=$hepb_schedule?>
                         <!-- RV -->
@@ -142,53 +145,7 @@
     </div>
 </div>
 
-<?php include('modal/immunization/history/iz-history.php'); ?>
-<?php include('modal/immunization/rsv/add-rsv.php'); ?>
-<?php include('modal/immunization/rsv/edit-rsv.php'); ?>
-<?php include('modal/immunization/rsv/delete-rsv.php'); ?>
-<?php include('modal/immunization/hepB/add-hepb.php'); ?>
-<?php include('modal/immunization/hepB/edit-hepb.php'); ?>
-<?php include('modal/immunization/hepB/delete-hepb.php'); ?>
-<?php include('modal/immunization/rota/add-rota.php'); ?>
-<?php include('modal/immunization/rota/edit-rota.php'); ?>
-<?php include('modal/immunization/rota/delete-rota.php'); ?>
-<?php include('modal/immunization/dtap/add-dtap.php'); ?>
-<?php include('modal/immunization/dtap/edit-dtap.php'); ?>
-<?php include('modal/immunization/dtap/delete-dtap.php'); ?>
-<?php include('modal/immunization/hib/add-hib.php'); ?>
-<?php include('modal/immunization/hib/edit-hib.php'); ?>
-<?php include('modal/immunization/hib/delete-hib.php'); ?>
-<?php include('modal/immunization/pcv/add-pcv.php'); ?>
-<?php include('modal/immunization/pcv/edit-pcv.php'); ?>
-<?php include('modal/immunization/pcv/delete-pcv.php'); ?>
-<?php include('modal/immunization/ipv/add-ipv.php'); ?>
-<?php include('modal/immunization/ipv/edit-ipv.php'); ?>
-<?php include('modal/immunization/ipv/delete-ipv.php'); ?>
-<?php include('modal/immunization/mmr/add-mmr.php'); ?>
-<?php include('modal/immunization/mmr/edit-mmr.php'); ?>
-<?php include('modal/immunization/mmr/delete-mmr.php'); ?>
-<?php include('modal/immunization/var/add-var.php'); ?>
-<?php include('modal/immunization/var/edit-var.php'); ?>
-<?php include('modal/immunization/var/delete-var.php'); ?>
-<?php include('modal/immunization/hepA/add-hepa.php'); ?>
-<?php include('modal/immunization/hepA/edit-hepa.php'); ?>
-<?php include('modal/immunization/hepA/delete-hepa.php'); ?>
-<?php include('modal/immunization/tdap/add-tdap.php'); ?>
-<?php include('modal/immunization/tdap/edit-tdap.php'); ?>
-<?php include('modal/immunization/tdap/delete-tdap.php'); ?>
-<?php include('modal/immunization/hpv/add-hpv.php'); ?>
-<?php include('modal/immunization/hpv/edit-hpv.php'); ?>
-<?php include('modal/immunization/hpv/delete-hpv.php'); ?>
-<?php include('modal/immunization/mcv/add-mcv.php'); ?>
-<?php include('modal/immunization/mcv/edit-mcv.php'); ?>
-<?php include('modal/immunization/mcv/delete-mcv.php'); ?>
-<?php include('modal/immunization/menb/add-menb.php'); ?>
-<?php include('modal/immunization/menb/edit-menb.php'); ?>
-<?php include('modal/immunization/menb/delete-menb.php'); ?>
-<?php include('modal/immunization/covid/add-covid.php'); ?>
-<?php include('modal/immunization/covid/edit-covid.php'); ?>
-<?php include('modal/immunization/covid/delete-covid.php'); ?>
-
+<!-- Script for popover message -->
 <script>
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
   const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))

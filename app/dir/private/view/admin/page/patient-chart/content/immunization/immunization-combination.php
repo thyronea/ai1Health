@@ -1,3 +1,5 @@
+<?php include('content/includes.php'); ?>
+
 <div class="tab-pane fade" id="combination" role="tabpanel" tabindex="0">
         <div class="col-md-11 mt-2">
             <div align='center'>
@@ -467,9 +469,3 @@
             </div>
         </div>
 </div>
-<?php include('modal/immunization/combo/add-pediarix.php'); ?>
-<?php include('modal/immunization/combo/add-pentacel.php'); ?>
-<?php include('modal/immunization/combo/add-vaxelis.php'); ?>
-<?php include('modal/immunization/combo/add-quadracel.php'); ?>
-<?php include('modal/immunization/combo/add-kinrix.php'); ?>
-<?php include('modal/immunization/combo/add-proquad.php'); ?>

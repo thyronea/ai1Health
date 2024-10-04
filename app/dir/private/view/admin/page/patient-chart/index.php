@@ -22,10 +22,10 @@ include('../../components/header.php');
 
 <!-- Function, API, jQuery and CSS -->
 <?php
+  include('config/styles.php');
   include('process/function.php');
   include('process/api.php');
   include('process/jquery.php');
-  include('config/styles.php');
 ?>
 
 <!-- Navtab -->
