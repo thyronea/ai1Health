@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="10;url=/index.php" /> <!--Auto direct to homepage after 10 seconds-->
+<meta http-equiv="refresh" content="10;url=/" /> <!--Auto direct to homepage after 10 seconds-->
 
 <div class="py-5">
   <div class="container mt-5">

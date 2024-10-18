@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <!-- Header Alert -->
-        <?php include('../../../private/messages/alert.php'); ?>
+        <?php include('../private/messages/alert.php'); ?>
 
         <!-- Login form -->
         <div class="card">
@@ -30,8 +30,8 @@
              <hr style="border-top: 2px solid;">
 
              <div class="mt-2">
-               <small><a class="text-decoration-none" href="../../page/access/sign-in.php">Resend Verification Code</a></small><br>
-               <small><a class="text-decoration-none" href="../../page/password/forgot-pw.php">Reset Password</a></small>
+               <small><a class="text-decoration-none" href="/sign-in/">Resend Verification Code</a></small><br>
+               <small><a class="text-decoration-none" href="/forgot-password/">Reset Password</a></small>
              </div>
            </form>
          </div>

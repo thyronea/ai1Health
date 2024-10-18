@@ -76,7 +76,7 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
           <!-- Health Summary Container -->
           <div class="col-md-6">
             <div class="card mb-2 shadow" style="height:16rem; overflow: auto">
-              <div class="card-header text-center" style="item-align: middle">
+              <div class="card-header text-center">
                 <h6>Vitals</h6>
               </div>
               <div class="card-body">
@@ -149,6 +149,9 @@ $dob = (date('m', strtotime($decrypted_dob)) . '/' . date('d', strtotime($decryp
                 <div class='row mt-3'>
                   <div class='col'>
                     <?=$iz_recommendation?>
+                  </div>
+                  <div class='col'>
+                    
                   </div>
                 </div>
               </div>

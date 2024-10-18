@@ -9,6 +9,7 @@
             <div class="container col-md-12 mb-3">
               <div class="d-flex align-items-start"> 
                   <div class="nav col-md-1 flex-column nav-pills me-3 mt-2" id="v-pills-tab" role="tablist">
+                      <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="modal" data-bs-target="#registryStatus" type="button">Registry</button>
                       <button class="active focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#schedule" type="button">Schedule</button>
                       <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#combination" type="button">Combo</button>
                       <button class="focus-ring py-1 px-2 btn btn-sm border rounded-0 text-start" id="iz_sidebar" data-bs-toggle="pill" data-bs-target="#rsv" type="button">RSV</button>

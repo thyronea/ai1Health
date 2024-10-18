@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <!-- Header Alert -->
-        <?php include('../../../private/messages/alert.php'); ?>
+        <?php include('../private/messages/alert.php'); ?>
 
         <!-- Invalid login alert -->
         <div align="center">
@@ -37,7 +37,7 @@
              <hr style="border-top: 2px solid;">
 
              <div class="mt-2">
-               <small>Don't have an account? <a class="text-decoration-none" href="/public/page/access/admin-registration.php">Register</a></small><br>
+               <small>Don't have an account? <a class="text-decoration-none" href="/registration/">Register</a></small><br>
              </div>
            </form>
 

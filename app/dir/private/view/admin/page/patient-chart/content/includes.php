@@ -57,6 +57,9 @@ if(isset($_GET['patientID'])){
     include('modal/immunization/combo/add-quadracel.php');
     include('modal/immunization/combo/add-kinrix.php');
     include('modal/immunization/combo/add-proquad.php');
+
+    // Registry Status
+    include('modal/immunization/registry/status.php');
   }      
   else{
     exit(0);
