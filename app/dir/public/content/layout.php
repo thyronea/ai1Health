@@ -8,10 +8,10 @@
                 </div>
             </div>
         </a>
-        <a href="public/page/job-board/index.php" style="text-decoration:none; color:black;">
+        <a href="/lifestyle/" style="text-decoration:none; color:black;">
             <div class="col-md-8 d-flex mb-3 card border shadow" id="systems">
                 <div class="card-body">
-                    <h1>Job Board</h1>
+                    <h1>Life$tyle</h1>
                 </div>
             </div>
         </a>
