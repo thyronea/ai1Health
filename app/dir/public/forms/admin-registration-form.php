@@ -5,7 +5,7 @@
       <div class="col-md-4">
 
         <!-- Header Alert -->
-        <?php include('../../../private/messages/alert.php'); ?>
+        <?php include('../private/messages/alert.php'); ?>
 
         <div class="card">
           <div class="card-body shadow">
@@ -13,7 +13,7 @@
             <form class="" action="" method="POST">
               <div class="mb-3" align="center">
                 <h4>Admin Registration</h4>
-                <small>Already have an account? <a class="text-decoration-none" href="sign-in.php">Sign in</a></small><br>
+                <small>Already have an account? <a class="text-decoration-none" href="/public/page/access/sign-in.php">Sign in</a></small><br>
                 <hr class="mb-4">
               </div>
               <div class="form-group mb-3">

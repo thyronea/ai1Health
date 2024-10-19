@@ -36,7 +36,7 @@ $update_status_run = mysqli_query($con, $update_status);
 
 session_unset();
 session_destroy();
-header("Location: ../../logout/");
+header("Location: ../../public/page/access/logout.php");
 exit(0);
 
 ?>
