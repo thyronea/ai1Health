@@ -30,8 +30,8 @@
              <hr style="border-top: 2px solid;">
 
              <div class="mt-2">
-               <small><a class="text-decoration-none" href="/sign-in/">Resend Verification Code</a></small><br>
-               <small><a class="text-decoration-none" href="/forgot-password/">Reset Password</a></small>
+               <small><a class="text-decoration-none" href="sign-in.php">Resend Verification Code</a></small><br>
+               <small><a class="text-decoration-none" href="../password/forgot-pw.php">Reset Password</a></small>
              </div>
            </form>
          </div>

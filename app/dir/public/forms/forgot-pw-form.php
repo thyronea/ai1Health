@@ -4,12 +4,12 @@
      <div class="col-md-4 mb-5">
 
        <!-- Header Alert -->
-       <?php include('../private/messages/alert.php'); ?>
+       <?php include('../../../private/messages/alert.php'); ?>
 
        <div class="card">
         <div class="card-body shadow">
 
-           <form action="../private/security/forgot-pw-process.php" method="post">
+           <form action="../../../private/security/forgot-pw-process.php" method="post">
            <div class="mb-4" align="center">
              <h4>Forgot Password?</h4>
              <p><small>Provide registered email to reset password</small></p>
