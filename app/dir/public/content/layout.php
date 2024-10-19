@@ -1,14 +1,14 @@
 <div class="container py-2 mt-5">
     <div class="col-md-12" align="center" style="font-family: 'Lucida Console', 'Courier New', monospace;">
         
-        <a href="public/page/access/sign-in.php" style="text-decoration:none; color:black;">
+        <a href="public/page/healthcare/index.php" style="text-decoration:none; color:black;">
             <div class="col-md-8 d-flex mb-3 card border shadow" id="systems">
                 <div class="card-body">
                     <h1>Healthcare</h1>
                 </div>
             </div>
         </a>
-        <a href="job-board/" style="text-decoration:none; color:black;">
+        <a href="public/page/job-board/index.php" style="text-decoration:none; color:black;">
             <div class="col-md-8 d-flex mb-3 card border shadow" id="systems">
                 <div class="card-body">
                     <h1>Job Board</h1>
