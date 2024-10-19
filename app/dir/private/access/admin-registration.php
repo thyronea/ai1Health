@@ -1,9 +1,9 @@
 <?php
 session_start();
 include(PRIVATE_SECURITY_PATH . '/dbcon.php');
-include '../vendor/mailer/PHPMailer/src/Exception.php';
-include '../vendor/mailer/PHPMailer/src/PHPMailer.php';
-include '../vendor/mailer/PHPMailer/src/SMTP.php';
+include '../../../vendor/mailer/PHPMailer/src/Exception.php';
+include '../../../vendor/mailer/PHPMailer/src/PHPMailer.php';
+include '../../../vendor/mailer/PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
