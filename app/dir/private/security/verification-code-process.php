@@ -78,7 +78,7 @@ if(isset($_POST['send_code']))
     if($stmt->execute())
     {
       $_SESSION['success'] = "Code was sent to your email";
-      header("Location: ../../verification/"); // If user type is "Admin", go to admin page
+      header("Location: ../../../verification/"); // If user type is "Admin", go to admin page
       exit(0);
     }
     else
