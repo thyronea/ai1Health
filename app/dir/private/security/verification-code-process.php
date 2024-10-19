@@ -1,8 +1,8 @@
 <?php
 session_start();
-include('../../../vendor/mailer/PHPMailer/src/Exception.php');
-include('../../../vendor/mailer/PHPMailer/src/PHPMailer.php');
-include('../../../vendor/mailer/PHPMailer/src/SMTP.php');
+include('../vendor/mailer/PHPMailer/src/Exception.php');
+include('../vendor/mailer/PHPMailer/src/PHPMailer.php');
+include('../vendor/mailer/PHPMailer/src/SMTP.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
@@ -78,7 +78,7 @@ if(isset($_POST['send_code']))
     if($stmt->execute())
     {
       $_SESSION['success'] = "Code was sent to your email";
-      header("Location: /public/page/access/login-verification.php"); // If user type is "Admin", go to admin page
+      header("Location: /verification/"); // If user type is "Admin", go to admin page
       exit(0);
     }
     else

@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <!-- Header Alert -->
-        <?php include('../../../private/messages/alert.php'); ?>
+        <?php include('../private/messages/alert.php'); ?>
 
         <!-- Invalid login alert -->
         <div align="center">

@@ -13,7 +13,7 @@
             <form class="" action="" method="POST">
               <div class="mb-3" align="center">
                 <h4>Admin Registration</h4>
-                <small>Already have an account? <a class="text-decoration-none" href="/public/page/access/sign-in.php">Sign in</a></small><br>
+                <small>Already have an account? <a class="text-decoration-none" href="/access/">Sign in</a></small><br>
                 <hr class="mb-4">
               </div>
               <div class="form-group mb-3">

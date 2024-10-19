@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="/public/page/access/sign-in.php" class="nav-link">Sign In</a>
+          <a href="/access/" class="nav-link">Sign In</a>
         </li>
         <li class="nav-item">
           <a href="/registration/" class="nav-link">Register</a>
