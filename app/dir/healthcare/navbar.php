@@ -11,7 +11,7 @@
           <a href="/sign-in/" class="nav-link">Sign In</a>
         </li>
         <li class="nav-item">
-          <a href="../registration/index.php" class="nav-link">Register</a>
+          <a href="../registration/main.php" class="nav-link">Register</a>
         </li>
       </ul>
     </div>
