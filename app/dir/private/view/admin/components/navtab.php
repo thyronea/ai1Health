@@ -20,7 +20,7 @@
           <li><hr class="dropdown-divider" /></li>
           <li ><a class="dropdown-item focus-ring" href="page/settings/index.php?userID=<?=$_SESSION['userID'];?>"><small>Settings</small><i class="bi bi-gear" style="margin-left: 30px"></i></a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" value="logout" href="/../private/access/logout-process.php"><small>Logout</small><i class="bi bi-door-open" style="margin-left: 36.5px"></i></a></li>
+          <li><a class="dropdown-item" value="logout" href="/private/controller/auth/logoutController.php"><small>Logout</small><i class="bi bi-door-open" style="margin-left: 36.5px"></i></a></li>
         </ul>
       </div>
     </div>

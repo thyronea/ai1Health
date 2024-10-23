@@ -8,10 +8,22 @@ ob_start(); // output buffering is turned on
 define("PRIVATE_PATH", dirname(__FILE__));
 define("PROJECT_PATH", dirname(PRIVATE_PATH));
 
-// private directory
+// Project path
+define("ADMIN_PATH", PROJECT_PATH . '/admin');
+define("PATIENT_PATH", PROJECT_PATH . '/patient');
+define("SYSTEM_PATH", PROJECT_PATH . '/system');
+
+// Vendors directory
+define("VENDOR_PATH", PROJECT_PATH . '/vendor');
+  // Mailer
+  define("VENDOR_MAILER_PATH", VENDOR_PATH . '/mailer/PHPMailer/src');
+
+// Private directory
 define("PRIVATE_ACCESS_PATH", PRIVATE_PATH . '/access');
+define("PRIVATE_AUTH_PATH", PRIVATE_PATH . '/auth');
 define("PRIVATE_COMPONENTS_PATH", PRIVATE_PATH . '/components');
-define("PRIVATE_MESSAGES_PATH", PRIVATE_PATH . '/messages');
+define("PRIVATE_CONTROLLERS_PATH", PRIVATE_PATH . '/controllers');
+define("PRIVATE_MODELS_PATH", PRIVATE_PATH . '/models');
 define("PRIVATE_SECURITY_PATH", PRIVATE_PATH . '/security');
 define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
   // admin
@@ -30,18 +42,6 @@ define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
     define("USER_CONTENT", VIEW_USER . '/content');
     define("USER_MODAL", VIEW_USER . '/modal');
 
-// vendors directory
-define("VENDOR_PATH", PROJECT_PATH . '/vendor');
-  // mailer
-  define("VENDOR_MAILER_PATH", VENDOR_PATH . '/mailer');
-
-
-
-
-define("ADMIN_PATH", PROJECT_PATH . '/admin');
-define("PATIENT_PATH", PROJECT_PATH . '/patient');
-define("PUBLIC_PATH", PROJECT_PATH . '/public');
-
 // admin directory
 define("ADMIN_COMP_PATH", ADMIN_PATH . '/components');
 define("ADMIN_CONTENT_PATH", ADMIN_PATH . '/content');
@@ -50,10 +50,12 @@ define("ADMIN_OFFCANVAS_PATH", ADMIN_PATH . '/offcanvas');
 define("ADMIN_PAGES_PATH", ADMIN_PATH . '/page');
 
 // public directory
-define("PUBLIC_CONFIG_PATH", PUBLIC_PATH . '/config');
-define("PUBLIC_CONTENT_PATH", PUBLIC_PATH . '/content');
-define("PUBLIC_FORMS_PATH", PUBLIC_PATH . '/forms');
-define("PUBLIC_PAGES_PATH", PUBLIC_PATH . '/page');
+define("SYSTEM_COMPONENT_PATH", SYSTEM_PATH . '/component');
+define("SYSTEM_CSS_PATH", SYSTEM_PATH . '/css');
+define("SYSTEM_CONTENT_PATH", SYSTEM_PATH . '/content');
+define("SYSTEM_FORMS_PATH", SYSTEM_PATH . '/forms');
+define("SYSTEM_SCRIPTS_PATH", SYSTEM_PATH . '/scripts');
+define("SYSTEM_VIEW_PATH", SYSTEM_PATH . '/view');
 
 
 // Assign the root URL to the PHP constant
@@ -63,8 +65,8 @@ define("PUBLIC_PAGES_PATH", PUBLIC_PATH . '/page');
 // define("WWW_ROOT", '/`htdoc/HC/public`');
 // define ("WWW_ROOT", '');
 // * Can dynamically find everything in URL up to "/public"
-$public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
-$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
+$SYSTEM_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
+$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $SYSTEM_end);
 define("WWW_ROOT", $doc_root);
 
 // Requires function file once

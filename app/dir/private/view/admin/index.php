@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once('../../initialize.php');
-include(PRIVATE_SECURITY_PATH . '/dbcon.php');
-include(PRIVATE_SECURITY_PATH . '/encrypt_decrypt.php');
+include(PRIVATE_CONTROLLERS_PATH . '/auth/dbcon.php');
+include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
 include(ADMIN_COMPONENTS . '/header.php');
 include(ADMIN_PROCESS . '/sql.php');
 ?>

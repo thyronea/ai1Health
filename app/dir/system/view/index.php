@@ -1,7 +1,7 @@
 <?php
   $page_title = 'Home';
   session_start();
-  require_once('private/initialize.php');
+  require_once('../../private/initialize.php');
   include(SYSTEM_COMPONENT_PATH . '/header.php');
   include(SYSTEM_CSS_PATH . '/styles.php');
   include(SYSTEM_COMPONENT_PATH . '/navbar.php');
