@@ -1,5 +1,4 @@
 <?php
-
 ob_start(); // output buffering is turned on
 
 // Assign file path to PHP constants
@@ -17,14 +16,20 @@ define("SYSTEM_PATH", PROJECT_PATH . '/system');
 define("VENDOR_PATH", PROJECT_PATH . '/vendor');
   // Mailer
   define("VENDOR_MAILER_PATH", VENDOR_PATH . '/mailer/PHPMailer/src');
+  // CSS
+  define("VENDOR_CSS_PATH", VENDOR_PATH . '/css');
+  // Scripts
+  define("VENDOR_SCRIPTS_PATH", VENDOR_PATH . '/scripts');
 
-// Private directory
-define("PRIVATE_ACCESS_PATH", PRIVATE_PATH . '/access');
-define("PRIVATE_AUTH_PATH", PRIVATE_PATH . '/auth');
+  // Private directory
 define("PRIVATE_COMPONENTS_PATH", PRIVATE_PATH . '/components');
+define("PRIVATE_CONFIG_PATH", PRIVATE_PATH . '/config');
+define("PRIVATE_CONTENT_PATH", PRIVATE_PATH . '/content');
 define("PRIVATE_CONTROLLERS_PATH", PRIVATE_PATH . '/controllers');
+define("PRIVATE_IMG_PATH", PRIVATE_PATH . '/img');
 define("PRIVATE_MODELS_PATH", PRIVATE_PATH . '/models');
-define("PRIVATE_SECURITY_PATH", PRIVATE_PATH . '/security');
+define("PRIVATE_SCRIPTS_PATH", PRIVATE_PATH . '/scripts');
+define("PRIVATE_UPLOADS_PATH", PRIVATE_PATH . '/uploads');
 define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
   // admin
   define("VIEW_ADMIN", PRIVATE_VIEW_PATH . '/admin');
@@ -51,12 +56,11 @@ define("ADMIN_PAGES_PATH", ADMIN_PATH . '/page');
 
 // public directory
 define("SYSTEM_COMPONENT_PATH", SYSTEM_PATH . '/component');
-define("SYSTEM_CSS_PATH", SYSTEM_PATH . '/css');
+define("SYSTEM_CONFIG_PATH", SYSTEM_PATH . '/config');
 define("SYSTEM_CONTENT_PATH", SYSTEM_PATH . '/content');
 define("SYSTEM_FORMS_PATH", SYSTEM_PATH . '/forms');
 define("SYSTEM_SCRIPTS_PATH", SYSTEM_PATH . '/scripts');
 define("SYSTEM_VIEW_PATH", SYSTEM_PATH . '/view');
-
 
 // Assign the root URL to the PHP constant
 // * Do not need to to include the domain

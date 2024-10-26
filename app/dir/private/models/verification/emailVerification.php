@@ -9,7 +9,4 @@ Your login verification code is: $vcode
 If you did not attempt to login, please contact admin.
 
 ");
-
-// Send email confirmation
-include(PRIVATE_CONTROLLERS_PATH . '/auth/emailController.php');
 ?>

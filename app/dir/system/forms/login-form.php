@@ -6,13 +6,6 @@
         <!-- Header Alert -->
         <?php include('../../../system/content/alert.php'); ?>
 
-        <!-- Invalid login alert -->
-        <div align="center">
-          <?php if ($is_invalid): ?>
-          <em style="color:red">Invalid login</em>
-        <?php endif; ?>
-        </div>
-
         <!-- Login form -->
         <div class="card">
          <div class="card-body shadow" align="center">

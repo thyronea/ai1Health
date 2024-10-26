@@ -1,7 +1,7 @@
 <?php
 if($_SESSION["role"] == 'Admin')
 {
-  header("Location: /private/view/admin/"); // If user type is "Admin", go to admin page
+  header("Location: /private/view/admin/dashboard/"); // If user type is "Admin", go to admin page
   exit(0);
 }
 elseif($_SESSION["role"] =='User')

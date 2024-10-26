@@ -1,9 +1,10 @@
 <?php
 session_start();
-include('dbcon.php');
+require_once('../../../private/initialize.php');
+include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
 
+// Collects user's information then sends verficiation email
 if(isset($_POST['register_btn'])) {
-
   // User's credentials
   include(PRIVATE_MODELS_PATH . '/registration/registrationCred.php');
 
@@ -16,7 +17,7 @@ if(isset($_POST['register_btn'])) {
   }
   else {
     // Send email confirmation
-    include(PRIVATE_CONTROLLERS_PATH . '/auth/emailController.php');
+    include(PRIVATE_CONFIG_PATH . '/email.php');
 
     // Store auth credentials
     include(PRIVATE_MODELS_PATH . '/registration/registrationAuth.php');
@@ -30,5 +31,13 @@ if(isset($_POST['register_btn'])) {
     // View registration result
     include(PRIVATE_CONTROLLERS_PATH . '/routes/registrationEmailVerification.php');
   }
+}
+
+// Complete registration after email verification
+if(isset($_GET['token'])){
+  // Get token
+  include(PRIVATE_MODELS_PATH . '/verification/tokenVerification.php');
+  // Validate token
+  include(PRIVATE_CONTROLLERS_PATH . '/routes/tokenValidation.php');
 }
 ?>

@@ -25,13 +25,13 @@
              </div>
 
              <div class="form-group mb-2">
-               <button type="submit" name="admin_login_btn" class="btn btn-outline-secondary btn-sm">Login</button>
+               <button type="submit" name="login_btn" class="btn btn-outline-secondary btn-sm">Login</button>
              </div>
              <hr style="border-top: 2px solid;">
 
              <div class="mt-2">
-               <small><a class="text-decoration-none" href="/access/">Resend Verification Code</a></small><br>
-               <small><a class="text-decoration-none" href="/forgot-pw/">Reset Password</a></small>
+               <small><a class="text-decoration-none" href="/system/view/access/">Resend Verification Code</a></small><br>
+               <small><a class="text-decoration-none" href="/system/view//forgot-pw/">Reset Password</a></small>
              </div>
            </form>
          </div>
@@ -40,12 +40,3 @@
     </div>
   </div>
 </div>
-
-<!-- Autotab input on login verification code -->
-<script type="text/javascript">
-  $(".inputs").keyup(function () {
-      if (this.value.length == this.maxLength) {
-        $(this).next('.inputs').focus();
-      }
-  });
-</script>
