@@ -18,6 +18,7 @@
                 <div class="col-md-6">
                   <input type="date" name="dob" class="form-control form-select-sm" 
                   data-bs-toggle="popover"
+                  data-bs-placement="top"
                   data-bs-trigger="focus"
                   data-bs-content="Date of Birth" required>
                 </div>

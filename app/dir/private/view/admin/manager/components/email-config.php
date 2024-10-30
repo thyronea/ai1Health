@@ -1,7 +1,5 @@
 <?php
-include(VENDOR_MAILER_PATH . '/Exception.php');
-include(VENDOR_MAILER_PATH . '/PHPMailer.php');
-include(VENDOR_MAILER_PATH . '/SMTP.php');
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
@@ -17,11 +15,12 @@ $mail->Port = 587;
 $mail->Username = "donotreply@ai1system.net";
 $mail->Password = "awxo vbxo hvix pitc";
 
-$mail->setFrom($email);
+$mail->setFrom(htmlspecialchars($_SESSION['email']), $fromName);
 $mail->addAddress($email);
 
 $mail->Subject = $subject;
 $mail->Body = $message;
 
 $mail->send();
+
 ?>

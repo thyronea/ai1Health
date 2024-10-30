@@ -19,5 +19,6 @@ else{
   exit(0);
 }
 
+include(PRIVATE_MODELS_PATH . '/password/vCode.php');
 include(PRIVATE_COMPONENTS_PATH . '/admin/footer.php');
 ?>

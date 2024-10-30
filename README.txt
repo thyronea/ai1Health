@@ -1,7 +1,7 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- Refactor admin
+- Refactor admin - manager
 - Fix footer on lanmding page (scale)
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal

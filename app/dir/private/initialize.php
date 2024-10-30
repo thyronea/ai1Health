@@ -34,12 +34,13 @@ define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
   // admin
   define("VIEW_ADMIN", PRIVATE_VIEW_PATH . '/admin');
     // directory
-    define("ADMIN_COMPONENTS", VIEW_ADMIN . '/components');
-    define("ADMIN_CONTENT", VIEW_ADMIN . '/content');
-    define("ADMIN_MODAL", VIEW_ADMIN . '/modal');
+    define("ADMIN_DASHBOARD", VIEW_ADMIN . '/dashboard');
+    define("ADMIN_PROFILE", VIEW_ADMIN . '/profile');
     define("ADMIN_OFFCANVAS", VIEW_ADMIN . '/offcanvas');
     define("ADMIN_PAGE", VIEW_ADMIN . '/page');
     define("ADMIN_PROCESS", VIEW_ADMIN . '/process');
+  // forms
+  define("VIEW_FORMS", PRIVATE_VIEW_PATH . '/forms');
   // user
   define("VIEW_USER", PRIVATE_VIEW_PATH . '/user');
     // directory
