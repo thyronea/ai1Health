@@ -1,7 +1,7 @@
 <?php
 if($stmt->execute()){
   $_SESSION['success'] = "Code was sent to your email";
-  header("Location: /system/view/verification/"); // If user type is "Admin", go to admin page
+  header("Location: /system/view/verification/");
   exit(0);
 }
 else{

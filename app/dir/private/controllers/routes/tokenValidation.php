@@ -3,7 +3,7 @@ if(mysqli_num_rows($token_query_run) > 0){
     $row = mysqli_fetch_array($token_query_run);
     if(htmlspecialchars($row['status']) == "0"){
 
-      include(PRIVATE_MODELS_PATH . '/verification/tokenUpdate.php');
+      include(PRIVATE_MODELS_PATH . '/verification/clickedToken.php');
 
       if($stmt->execute()){
         $_SESSION['success'] = "Your account has been verified!";
