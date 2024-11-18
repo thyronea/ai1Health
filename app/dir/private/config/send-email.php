@@ -14,8 +14,8 @@ $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
-$mail->Username = "donotreply@ai1system.net";
-$mail->Password = "awxo vbxo hvix pitc";
+$mail->Username = "";
+$mail->Password = "";
 
 $mail->setFrom($email, $fromName);
 $mail->addAddress($email);

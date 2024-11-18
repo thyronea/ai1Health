@@ -17,8 +17,8 @@ function send_password_reset($userID, $fname, $lname, $email, $token)
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
   $mail->Port = 587;
 
-  $mail->Username = "thyrone.antonio@gmail.com";
-  $mail->Password = "mhopftvkjlemevgn";
+  $mail->Username = "";
+  $mail->Password = "";
 
   $mail->setFrom($userEmail);
   $mail->addAddress($userEmail);
