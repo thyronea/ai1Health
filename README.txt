@@ -37,4 +37,19 @@ To Do:
 - Dark Mode
 
 
+Cloudways deployment
+- Click on "Deployment vis GIT"
+- Click on "View SSH Keys" and copy the Key
+- Go to GitHub; Repositories
+- Go to Settings then Deploy Keys
+- Click on "Deploy key"
+- Paste key from Cloudways
+- Copy SSH url
+- Go back to Cloudways and paste SSH url in "GIT Remote Access" for authentication
+- Select Branch
+- enter "app/dir" in Deployment Path
+- Click "Start deployment"
+
 11/18/2024
+
+143.198.231.152
