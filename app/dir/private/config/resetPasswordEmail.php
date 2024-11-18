@@ -20,8 +20,8 @@ function send_password_reset($userID, $fname, $lname, $email, $token)
   $mail->Username = "thyrone.antonio@gmail.com";
   $mail->Password = "mhopftvkjlemevgn";
 
-  $mail->setFrom($email);
-  $mail->addAddress($email);
+  $mail->setFrom($userEmail);
+  $mail->addAddress($userEmail);
 
   $subject = htmlspecialchars("Reset Password");
   $message = htmlspecialchars_decode("
