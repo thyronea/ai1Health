@@ -1,5 +1,9 @@
       <footer>
-        <!-- Footer Goes Here -->
+  
+
       </footer>
+
+      <?php include(VENDOR_SCRIPTS_PATH . '/src.php'); ?>
+
   </body>
 </html>

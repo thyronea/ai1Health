@@ -9,13 +9,13 @@
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <form class="" action="process/immunization/administer-vax.php" method="post">
+          <form class="" action="" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
-            <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="rsv_uniqueID" required>
+            <input type="" class="form-control form-control-sm mt-2" name="uniqueID" id="rsv_uniqueID" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="RSV" required>
             
             <div class="row col-md-8 mb-2">
@@ -189,17 +189,3 @@
   </div>
 </div>
 
-<!-- Script for generating random uniqueID -->
-<script>
- function randomNumber(len) {
-  var randomNumber;
-  var n = '';
-
-  for (var count = 0; count < len; count++) {
-    randomNumber = Math.floor((Math.random() * 9) + 1);
-    n += randomNumber.toString();
-  }
-  return n;
-  }
-  document.getElementById("rsv_uniqueID").value = randomNumber(8);
-</script>

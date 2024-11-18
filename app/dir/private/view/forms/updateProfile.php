@@ -7,11 +7,11 @@
 
 <div class="card shadow" style="width:35rem; animation: appear 1.5s ease">
   <div class="card-body">
-    <form class="" action="../../../models/admin/profileUpdate.php" method="post">
+    <form class="" action="../../../models/admin/profile/profileUpdate.php" method="post">
       <div class="row mt-2 g-2">
         <div class="col" align="center">
             <div id="display-image" class="border" style="width:170px;height:170px;border-radius:50%;overflow:auto">
-              <?php include(PRIVATE_MODELS_PATH . '/admin/profileIMG.php'); ?>
+              <?php include(PRIVATE_MODELS_PATH . '/admin/profile/profileIMG.php'); ?>
             </div>
             <a title="Add Profile Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_profile_image" style="color:black;"><i class="bi bi-camera"></i></a>
             <a title="Add Background Image" type="button" class="mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#add_background_image" style="color:black;"><i class="bi bi-image"></i></a>

@@ -234,8 +234,6 @@ function add_validate_proquad() {
     }
 }
 
-
-
 // Fetch RSV information based on option selected to ADD
 function add_rsv(){
     var id = document.getElementById("rsv_ID").value;

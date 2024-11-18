@@ -1,4 +1,17 @@
 <?php
+
+// stores password in admin table
+$sql = "INSERT INTO admin (userID, engineID, groupID, email, role, password) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("ssssss", $userID, $engineID, $groupID, $email, $role, $password_hash);
+$stmt->execute();
+
+// stores tokens in token table
+$sql = "INSERT INTO token (userID, groupID, token, dk_token, salt) VALUES (?, ?, ?, ?, ?)";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("sssss", $userID, $groupID, $token, $key, $salt);
+$stmt->execute();
+
 // Encrypt Profile Data
 $encrypted_email = encryptthis($email, $key);
 $encrypted_role = encryptthis($role, $key);

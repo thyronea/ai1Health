@@ -4,13 +4,13 @@
      <div class="col-md-4 mb-5">
 
        <!-- Header Alert -->
-       <?php include('../../../private/messages/alert.php'); ?>
+       <?php include('../../../system/content/alert.php'); ?>
 
        <!-- Reset Password form -->
        <div class="card">
         <div class="card-body shadow">
 
-           <form method="post" action="/../../private/security/create-user-pw-process.php">
+           <form method="post" action="">
            <div class="mb-4" align="center">
              <h4>Create Password</h4>
            </div>
@@ -35,7 +35,7 @@
            </div>
 
            <div class="form-group mb-2" align="center">
-             <button type="submit" name="createPW_btn" class="btn btn-outline-secondary btn-sm">Create</button>
+             <button type="submit" name="create_new_pw" class="btn btn-outline-secondary btn-sm">Create</button>
 
         </div>
        </div>
@@ -45,9 +45,3 @@
   </div>
  </div>
 </div>
-
-<!-- Script for popover messages -->
-<script type="text/javascript">
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-</script>
