@@ -2,7 +2,7 @@ AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
 - Refactor admin - manager
-- Fix footer on lanmding page (scale)
+- Fix footer on landing page (scale)
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal
 - Snapshot - Create health score (+1 point for following schedule and recommendation. -1 if late or missing)
