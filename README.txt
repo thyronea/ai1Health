@@ -1,8 +1,11 @@
 AI1 Health: Powered By AI1 System (Former DLi)
 
 To Do:
-- Refactor admin - manager
-- Fix footer on lanmding page (scale)
+- Refactor:
+     admin - Patients-Chart - Update Vaccines
+     search page
+     chat
+- Fix footer on landing page (scale)
 - Snapshot - IZ Schedule Reminder
 - Snapshot - Create an IZ menu modal
 - Snapshot - Create health score (+1 point for following schedule and recommendation. -1 if late or missing)
@@ -25,4 +28,4 @@ To Do:
 - Dark Mode
 
 
-11/7/2024
+11/18/2024

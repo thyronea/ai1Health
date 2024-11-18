@@ -14,7 +14,7 @@
         <ul class="dropdown-menu" style="font-size: 12px;">
           <li ><a class="dropdown-item user-select-none"><small>Group ID: <b><?=htmlspecialchars($_SESSION['groupID']);?></b></small></a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li ><a class="dropdown-item user-select-none"><small><b><?=htmlspecialchars($_SESSION['loc']);?></b></small></a></li>
+          <li ><a class="dropdown-item user-select-none"><small><b><?=htmlspecialchars($_SESSION['location']);?></b></small></a></li>
           <li><hr class="dropdown-divider" /></li>
           <li ><a class="dropdown-item focus-ring" href="../../admin/profile/?userID=<?=htmlspecialchars($_SESSION['userID']);?>" target="_blank"><small><?=htmlspecialchars($_SESSION['fname']); ?> <?=htmlspecialchars($_SESSION['lname']); ?></small></a></li>
           <li><hr class="dropdown-divider" /></li>
