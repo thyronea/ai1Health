@@ -31,14 +31,13 @@ define("PRIVATE_MODELS_PATH", PRIVATE_PATH . '/models');
 define("PRIVATE_SCRIPTS_PATH", PRIVATE_PATH . '/scripts');
 define("PRIVATE_UPLOADS_PATH", PRIVATE_PATH . '/uploads');
 define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
-  // admin
+  // View admin
   define("VIEW_ADMIN", PRIVATE_VIEW_PATH . '/admin');
     // directory
     define("ADMIN_DASHBOARD", VIEW_ADMIN . '/dashboard');
     define("ADMIN_PROFILE", VIEW_ADMIN . '/profile');
-    define("ADMIN_OFFCANVAS", VIEW_ADMIN . '/offcanvas');
-    define("ADMIN_PAGE", VIEW_ADMIN . '/page');
-    define("ADMIN_PROCESS", VIEW_ADMIN . '/process');
+    define("ADMIN_PATIENTS", VIEW_ADMIN . '/patients');
+    define("ADMIN_PATIENT_CHART", VIEW_ADMIN . '/patient-chart');
   // forms
   define("VIEW_FORMS", PRIVATE_VIEW_PATH . '/forms');
   // user

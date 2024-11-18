@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$servername = "mariadb"; // mariadb / localhost
+$servername = "localhost"; // mariadb / localhost
 $username = "mkpnktxrxw"; // root / mkpnktxrxw
 $password = "p3GNsFe44G"; // Grayson2019! / p3GNsFe44G
 $database = "mkpnktxrxw"; // ai1health / mkpnktxrxw

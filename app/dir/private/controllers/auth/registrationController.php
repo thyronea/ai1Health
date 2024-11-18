@@ -2,151 +2,36 @@
 session_start();
 require_once('../../../private/initialize.php');
 include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
-include(VENDOR_MAILER_PATH . '/Exception.php');
-include(VENDOR_MAILER_PATH . '/PHPMailer.php');
-include(VENDOR_MAILER_PATH . '/SMTP.php');
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
 
-// Collects user's information then sends verficiation email
+// 1. Collects user's information then sends verficiation email
 if(isset($_POST['register_btn'])) {
-  // User's credentials
-  $key = md5(rand()); // Generate key for data decryption. IF THIS KEY IS SOME HOW BROKEN OR COMPROMISED, ALL DATA WILL BE LOST
-  $token = md5(rand()); // Generates random token
-  $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT); // Password will be HASHED and cannot be retrieved by anyone BUT the creator
-  $userID = mysqli_real_escape_string($con, $_POST['userID']); // Generates ID
-  $engineID = mysqli_real_escape_string($con, $_POST['engineID']); // Generates ID for search engine
-  $groupID = mysqli_real_escape_string($con, $_POST['groupID']);
-  $email = mysqli_real_escape_string($con, $_POST['email']);
-  $role = mysqli_real_escape_string($con, $_POST['role']);
-  $fname = mysqli_real_escape_string($con, $_POST['fname']);
-  $lname = mysqli_real_escape_string($con, $_POST['lname']);
-  $filename = mysqli_real_escape_string($con, "default-profile-pic.jpeg");
-  $background_filename = mysqli_real_escape_string($con, "default-background.jpg");
-  $type = mysqli_real_escape_string($con, "Registered");
-  $as = mysqli_real_escape_string($con, "as");
-  $admin = mysqli_real_escape_string($con, "Admin");
-  $subject = mysqli_real_escape_string($con, "Registration Confirmation");
-  $message = htmlspecialchars("
-  Hello $fname,
 
-  Your Group ID is $groupID.
-
-  Please only share your Group ID to members who will be given access to the account.
-
-  If you did not create this account, please contact admin.
-
-  TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
-
-  http://ai1system.net/private/controllers/auth/registrationController.php?token=$token
-
-  Thank you!
-  "); // http://ai1system.net/private/controllers/auth/registrationController.php?token=$token / http://localhost:8002/private/controllers/auth/registrationController.php?token=$token
-
-
+  // User's credentials (collected information from registration form)
+  include(PRIVATE_MODELS_PATH . '/registration/registrationCred.php');
   // Email validation
-  $check_admin = "SELECT * FROM admin WHERE email='$email'";
-  $check_admin_run = mysqli_query($con, $check_admin);
+  include(PRIVATE_MODELS_PATH . '/registration/emailValidation.php');
 
-  // Email validation for existence
+  // Error if email exist
   if(mysqli_num_rows($check_admin_run) > 0) {
     $_SESSION['warning'] = "This Email Already Exist!";
     header("Location: /system/view/access/");
+    exit(0);
   }
-  else{
+  // Proceeds with registration
+  else {
     // Send email confirmation
-    $mail = new PHPMailer(true);
+    include(PRIVATE_CONFIG_PATH . '/email.php');
+    // Process registration
+    include(PRIVATE_MODELS_PATH . '/registration/registrationProcess.php');
 
-    $mail->isSMTP();
-    $mail->SMTPAuth = true;
-
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
-
-    $mail->Username = "donotreply@ai1system.net";
-    $mail->Password = "awxo vbxo hvix pitc";
-
-    $mail->setFrom($email);
-    $mail->addAddress($email);
-
-    $mail->Subject = $subject;
-    $mail->Body = $message;
-
-    $mail->send();
-
-    // stores data in users table
-    $sql = "INSERT INTO admin (userID, engineID, groupID, email, role, password) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("ssssss", $userID, $engineID, $groupID, $email, $role, $password_hash);
-    $stmt->execute();
-
-    // stores data in token table
-    $sql = "INSERT INTO token (userID, groupID, token, dk_token) VALUES (?, ?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("ssss", $userID, $groupID, $token, $key);
-    $stmt->execute();
-
-    // Utilize encryption controller
-    include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
-
-    // Encrypt Profile Data
-    $encrypted_email = encryptthis($email, $key);
-    $encrypted_role = encryptthis($role, $key);
-
-    // stores user's profile in profile table (encrypted)
-    $sql = "INSERT INTO profile (userID, engineID, groupID, fname, lname, email, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sssssss", $userID, $engineID, $groupID, $fname, $lname, $encrypted_email, $encrypted_role);
-    $stmt->execute();
-
-    // stores default profile image to profile_image table
-    $sql = "INSERT INTO profile_image (userID, groupID, filename) VALUES (?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $userID, $groupID, $filename);
-    $stmt->execute();
-
-    // stores default background image to background_image table
-    $sql = "INSERT INTO background_image (userID, groupID, filename) VALUES (?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $userID, $groupID, $background_filename);
-    $stmt->execute();
-
-    // stores data in engine table
-    $fullname = "$fname $lname"; // Person creating the new account
-    $link = mysqli_real_escape_string($con, "../../../../view/profile/index.php?userID=$userID"); // Link to user's profile
-    $engine = "INSERT INTO engine (engineID, groupID, keyword1, keyword2, keyword3, link) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($engine);
-    $stmt->bind_param("ssssss", $engineID, $groupID, $fullname, $role, $email, $link);
-    $stmt->execute();
-
-    // Encrypt Activities Data
-    $fullname = "$fname $lname";
-    $act_message = "$type $as $role";
-    $encrypted_fullname = encryptthis($fullname, $key);
-    $encrypted_message = encryptthis($act_message, $key);
-
-    // stores data in activity table
-    $activity = "INSERT INTO admin_log (userID, groupID, user, type, activity) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($activity);
-    $stmt->bind_param("sssss", $userID, $groupID,$encrypted_fullname, $type, $encrypted_message); // Will save as "$fname $lname Registered as new Admin"
-    $stmt->execute();
-
-    // Encrypt Email Data
-    $encrypted_admin = encryptthis($admin, $key);
-    $encrypted_email = encryptthis($email, $key);
-    $encrypted_subject = encryptthis($subject, $key);
-    $encrypted_message = encryptthis($message, $key);
-    $send_message = "INSERT INTO email (userID, groupID, fromEmail, toEmail, subject, message) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($send_message);
-    $stmt->bind_param("ssssss", $userID, $groupID, $encrypted_admin, $encrypted_email, $encrypted_subject, $encrypted_message);
-    $stmt->execute();
-
+    // Successful email validation
     if($stmt = $con->prepare($sql)){
       $_SESSION['success'] = "Verify Email to Complete Registration!";
       header("Location: /system/view/access/");
       exit(0);
     }
+    // Error with collected information
     else{
         $_SESSION['warning'] = "Unable to Register User!";
         header("Location: /system/view/access/");
@@ -155,11 +40,121 @@ if(isset($_POST['register_btn'])) {
   }
 }
 
-// Complete registration after email verification
+// 2. Complete registration after email verification
 if(isset($_GET['token'])){
-  // Get token
+
+  // Gets token from the link (once clicked)
   include(PRIVATE_MODELS_PATH . '/verification/tokenVerification.php');
+
   // Validate token
-  include(PRIVATE_CONTROLLERS_PATH . '/routes/tokenValidation.php');
+  if(mysqli_num_rows($token_query_run) > 0){
+
+    // Fetch associated rows in token table
+    $row = mysqli_fetch_array($token_query_run);
+
+    // If status is 0 (unverified), update to 1 (verified) 
+    if(htmlspecialchars($row['status']) == "0"){
+
+      // Updates status after token validation
+      include(PRIVATE_MODELS_PATH . '/verification/clickedToken.php');
+
+      // Successful verification
+      if($stmt->execute()){
+        $_SESSION['success'] = "Your account has been verified!";
+        header("Location: /system/view/access/");
+        exit(0);
+      }
+      // Error if token is inaccurate
+      else{
+        $_SESSION['warning'] = "Verification failed!";
+        header("Location: /system/view/access/");
+        exit(0);
+      }
+    }
+    // Error is account is already verified
+    else{
+        $_SESSION['warning'] = "Email already verified! Please log in.";
+        header("Location: /system/view/access/");
+        exit(0);
+    }
+  }
+  // Error if token is null
+  else{
+    $_SESSION['warning'] = "This token does not exist";
+    header("Location: /system/view/access/");
+    exit(0);
+  }
 }
+
+// 1. Admin - Create new user then sends verification email
+if(isset($_POST['register_new_user'])){
+  // User's information
+  include(PRIVATE_MODELS_PATH . '/admin/manager/newUserCred.php');
+  // Check if email exist
+  include(PRIVATE_MODELS_PATH . '/registration/emailValidation.php');
+  
+  // If email exist
+  if(mysqli_num_rows($check_admin_run) > 0){
+    $_SESSION['warning'] = "This Email Already Exist!";
+    header("Location: /private/view/admin/manager/");
+    exit(0);
+  }
+  else{
+    // Send verification email
+    include(PRIVATE_CONFIG_PATH . '/email.php');
+    // Add new user - process
+    include(PRIVATE_MODELS_PATH . '/admin/manager/newUserProcess.php');
+
+    // Add new user status
+    if($stmt = $con->prepare($sql)){
+      $_SESSION['success'] = "You have successfully registered a new user! An email has been sent for additional verification.";
+      header("Location: /private/view/admin/manager/");
+      exit(0);
+    }
+    else{
+        $_SESSION['warning'] = "Unable to Register User!";
+        header("Location: /private/view/admin/manager/");
+        exit(0);
+    }
+  }
+}
+
+// 2. Create new password (Admin page) - New user creates new password after email verification
+if(isset($_GET['nut'])){
+  
+  // Verification to register new user
+  include(PRIVATE_MODELS_PATH . '/verification/nutVerification.php');
+
+  if(mysqli_num_rows($nut_query_run) > 0){
+    $row = mysqli_fetch_array($nut_query_run);
+    if($row['status'] == "0"){
+      
+      // Update token status after registration email confirmation
+      $clicked_token = $row['token'];
+      $update_query = "UPDATE token SET status ='1' WHERE token='$clicked_token' LIMIT 1";
+      $update_query_run = mysqli_query($con, $update_query);
+
+      if($update_query_run){
+        $_SESSION['success'] = "Your account has been verified!";
+        header("Location: /system/view/create-pw/?token=$nut");
+        exit(0);
+      }
+      else{
+        $_SESSION['warning'] = "Verification failed!";
+        header("Location: /system/view/create-pw/?token=$nut");
+        exit(0);
+      }
+    }
+    else{
+      $_SESSION['warning'] = "Account already verified! Please log in.";
+      header("Location: /system/view/access/");
+      exit(0);
+    }
+  }
+  else{
+    $_SESSION['warning'] = "This token does not exist";
+    header("Location: /system/view/access/");
+  }
+}
+
 ?>

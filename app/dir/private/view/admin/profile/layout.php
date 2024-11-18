@@ -8,7 +8,7 @@
         if(mysqli_num_rows($result) > 0 ) {
           foreach($result as $background_img){
             ?>
-      <div class="card" style="background-image: url('../../../img/background/<?=$background_img['filename'];?>')">
+              <div class="card" style="background-image: url('../../../img/background/<?=$background_img['filename'];?>')">
             <?php
           }
         }
@@ -25,9 +25,7 @@
                 if(mysqli_num_rows($result) > 0 ) {
                   foreach($result as $profile_img){
                     ?>
-                      <a href="../../../img/profile/<?=$profile_img['filename'];?>" target="_blank">
-                        <img src="../../../img/profile/<?php echo $profile_img['filename'];?>" style="width:168px;height:168px;border-radius:50%;object-fit:cover;">
-                      </a>
+                      <img src="../../../img/profile/<?php echo $profile_img['filename'];?>" style="width:168px;height:168px;border-radius:50%;object-fit:cover;">
                     <?php
                   }
                 }

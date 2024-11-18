@@ -8,7 +8,9 @@
                 </div>
             </div>
         </a>
-        <a href="/mutuor/" style="text-decoration:none; color:black;">
+        
+
+        <a hidden href="/mutuor/" style="text-decoration:none; color:black;">
             <div class="col-md-8 d-flex mb-3 card border shadow" id="systems">
                 <div class="card-body">
                     <h1>Lifestyle</h1>
