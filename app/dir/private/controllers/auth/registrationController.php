@@ -14,7 +14,7 @@ if(isset($_POST['register_btn'])) {
 
   // Error if email exist
   if(mysqli_num_rows($check_admin_run) > 0) {
-    $_SESSION['warning'] = "This Email Already Exist Deelos!";
+    $_SESSION['warning'] = "This Email Already Exist!";
     header("Location: /system/view/access/");
     exit(0);
   }
