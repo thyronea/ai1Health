@@ -32,8 +32,8 @@ Please only share your Group ID to members who will be given access to the accou
 If you did not create this account, please contact admin.
 
 TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
-https://www.ai1system.net/private/controllers/auth/registrationController.php?nut=$token
+http://localhost:8002/private/controllers/auth/registrationController.php?nut=$token
 
 Thank you!
-");
+"); 
 ?>
