@@ -28,13 +28,13 @@ if(isset($_POST['register_btn'])) {
     // Successful email validation
     if($stmt = $con->prepare($sql)){
       $_SESSION['success'] = "Verify Email to Complete Registration!";
-      header("Location: /system/view/access/");
+      header("Location: https://ai1system.net/system/view/access/");
       exit(0);
     }
     // Error with collected information
     else{
         $_SESSION['warning'] = "Unable to Register User!";
-        header("Location: /system/view/access/");
+        header("Location: https://ai1system.net/system/view/access/");
         exit(0);
     }
   }
