@@ -49,7 +49,7 @@ Your Patient ID is $patientID.
 
 TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-http://localhost:8002/private/controllers/admin/patientsController.php?token=$token
+https://ai1system.net/private/controllers/admin/patientsController.php?token=$token
 
 Please DO NOT share your Patient ID.
 If you did not register, please contact admin.
