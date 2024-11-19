@@ -26,7 +26,7 @@ if(isset($_POST['register_btn'])) {
     include(PRIVATE_MODELS_PATH . '/registration/registrationProcess.php');
 
     // Successful email validation
-    if($stmt = $con->prepare($sql)){
+    if($stmt->execute()){
       $_SESSION['success'] = "Verify Email to Complete Registration!";
       header("Location: /system/view/access/");
       exit(0);
