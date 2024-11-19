@@ -15,7 +15,7 @@ if(isset($_POST['register_btn'])) {
   // Error if email exist
   if(mysqli_num_rows($check_admin_run) > 0) {
     $_SESSION['warning'] = "This Email Already Exist!";
-    header("Location: /system/view/access/");
+    header("Location: ai1system.net/system/view/access/");
     exit(0);
   }
   // Proceeds with registration
@@ -28,13 +28,13 @@ if(isset($_POST['register_btn'])) {
     // Successful email validation
     if($stmt = $con->prepare($sql)){
       $_SESSION['success'] = "Verify Email to Complete Registration!";
-      header("Location: https://ai1system.net/system/view/access/");
+      header("Location: ai1system.net/system/view/access/");
       exit(0);
     }
     // Error with collected information
     else{
         $_SESSION['warning'] = "Unable to Register User!";
-        header("Location: https://ai1system.net/system/view/access/");
+        header("Location: ai1system.net/system/view/access/");
         exit(0);
     }
   }
