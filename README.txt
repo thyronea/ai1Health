@@ -8,4 +8,4 @@ Vaccine and Immunization Registry Management
 - Manage Immunization registry (encryted)
 - Coming Soon - Send HL7 Data to State Regisistries
 
-11/20/2024 Test
+11/20/2024 Test Sup Deelos
