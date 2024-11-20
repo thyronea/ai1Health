@@ -6,8 +6,7 @@ include(VENDOR_MAILER_PATH . '/SMTP.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-function send_password_reset($userID, $fname, $lname, $email, $token)
-{
+function send_password_reset($userID, $fname, $lname, $email, $token){
   $mail = new PHPMailer(true);
 
   $mail->isSMTP();
@@ -20,8 +19,8 @@ function send_password_reset($userID, $fname, $lname, $email, $token)
   $mail->Username = "";
   $mail->Password = "";
 
-  $mail->setFrom($userEmail);
-  $mail->addAddress($userEmail);
+  $mail->setFrom($email);
+  $mail->addAddress($email);
 
   $subject = htmlspecialchars("Reset Password");
   $message = htmlspecialchars_decode("
