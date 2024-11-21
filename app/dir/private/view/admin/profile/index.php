@@ -1,9 +1,9 @@
 <?php 
 if(!isset($page_title)) {$page_title='Profile';}
+require_once('../../../initialize.php');
 session_start();
 
 if(isset($_SESSION["userID"])):{
-    require_once('../../../initialize.php');
     include(PRIVATE_COMPONENTS_PATH . '/admin/header.php');
     include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
     include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
@@ -15,7 +15,7 @@ if(isset($_SESSION["userID"])):{
     include(PRIVATE_MODELS_PATH . '/password/vCode.php'); 
 }
 else:{
-    include(PRIVATE_CONTROLLERS_PATH . '/auth/logoutController.php');
+    include(VIEW_ALERTS . '/emergencyExit.php');
 }
 endif;
 ?>

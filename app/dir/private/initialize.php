@@ -38,6 +38,8 @@ define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
     define("ADMIN_PROFILE", VIEW_ADMIN . '/profile');
     define("ADMIN_PATIENTS", VIEW_ADMIN . '/patients');
     define("ADMIN_PATIENT_CHART", VIEW_ADMIN . '/patient-chart');
+    // alerts
+  define("VIEW_ALERTS", PRIVATE_VIEW_PATH . '/alerts');
   // forms
   define("VIEW_FORMS", PRIVATE_VIEW_PATH . '/forms');
   // modals
