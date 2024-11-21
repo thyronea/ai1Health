@@ -17,7 +17,7 @@ if(isset($_SESSION["userID"])):{
     include(PRIVATE_SCRIPTS_PATH . '/js.php');
 }
 else:{
-    require_once('../../../initialize.php');
+    include(VIEW_ALERTS . '/emergencyExit.php');
 }
 endif;
 ?>
