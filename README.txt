@@ -4,7 +4,7 @@ Vaccine and Immunization Registry Management
 
 - Track and manage storage and handling units, temperatures and documents
 - Manage Vaccine inventory
-- Create patient profile (encryted)
+- Create patient profile (encrypted)
 - Manage Immunization registry (encryted)
 - Coming Soon - Send HL7 Data to State Regisistries
 
