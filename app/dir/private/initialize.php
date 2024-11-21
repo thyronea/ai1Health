@@ -40,12 +40,10 @@ define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
     define("ADMIN_PATIENT_CHART", VIEW_ADMIN . '/patient-chart');
   // forms
   define("VIEW_FORMS", PRIVATE_VIEW_PATH . '/forms');
-  // user
-  define("VIEW_USER", PRIVATE_VIEW_PATH . '/user');
-    // directory
-    define("USER_COMPONENTS", VIEW_USER . '/components');
-    define("USER_CONTENT", VIEW_USER . '/content');
-    define("USER_MODAL", VIEW_USER . '/modal');
+  // modals
+  define("VIEW_MODALS", PRIVATE_VIEW_PATH . '/modals');
+  // tables
+  define("VIEW_TABLES", PRIVATE_VIEW_PATH . '/tables');
 
 // admin directory
 define("ADMIN_COMP_PATH", ADMIN_PATH . '/components');
