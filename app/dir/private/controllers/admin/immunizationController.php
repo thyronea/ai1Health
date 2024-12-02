@@ -1,23 +1,5 @@
 <?php
 
-// Delete administered vaccine
-if(isset($_POST['delete_administered_vax'])){
-
-  // Process delete administered vaccine
-  include(PRIVATE_MODELS_PATH . '/admin/patients/izDelete.php');  
-
-  if($stmt = $con->prepare($delete)){
-    $_SESSION['success'] = "Administered $vaccine Successfully Deleted!";
-    header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
-    exit(0);
-  }
-  else{
-    $_SESSION['warning'] = "Unable to Delete Administered $vaccine";
-    header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
-    exit(0);
-  }
-}
-
 // Administer RSV,  Tdap
 if(isset($_POST['administer_1ds'])){ 
     
@@ -279,6 +261,42 @@ if(isset($_POST['administer_'])){
       header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
       exit(0);
     }
+  }
+}
+
+// Administer Pediarix
+if(isset($_POST['administer_pediarix'])){ 
+
+  include(PRIVATE_MODELS_PATH . '/admin/patients/pediarixCred.php');
+  include(PRIVATE_MODELS_PATH . '/admin/patients/izCred.php');
+  
+  if($funding_source && $eligibility == "Public"){
+    $_SESSION['warning'] = "Please Choose an Eligibility Type When Public Funding is Selected";
+    header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
+    exit(0);
+  }
+  else{
+
+    include(PRIVATE_MODELS_PATH . '/admin/patients/pediarixVerifyAdminister.php');
+    
+  }
+}
+
+// Delete administered vaccine
+if(isset($_POST['delete_administered_vax'])){
+
+  // Process delete administered vaccine
+  include(PRIVATE_MODELS_PATH . '/admin/patients/izDelete.php');  
+
+  if($stmt = $con->prepare($delete)){
+    $_SESSION['success'] = "Administered $vaccine Successfully Deleted!";
+    header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
+    exit(0);
+  }
+  else{
+    $_SESSION['warning'] = "Unable to Delete Administered $vaccine";
+    header("Location: /private/view/admin/patient-chart/?patientID=$patientID");
+    exit(0);
   }
 }
 

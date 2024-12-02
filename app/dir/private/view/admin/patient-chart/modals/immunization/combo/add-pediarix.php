@@ -8,7 +8,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="administer_pediarixLabel">Administer Pediarix</h1>
+        <h1 class="modal-title w-100 fs-5" id="">Administer Pediarix</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

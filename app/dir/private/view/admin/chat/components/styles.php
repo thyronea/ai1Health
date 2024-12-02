@@ -35,9 +35,6 @@
   #left_panel label:hover{
     background-color: #778593;
   }
-  #left_panel label img{
-    
-  }
   #right_panel{
     min-height: 400px;
     flex: 4;
