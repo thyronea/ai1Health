@@ -22,20 +22,20 @@ if(isset($_POST['send_code'])){
     // Successful email validation; vcode will be sent to email for verification
     if($stmt->execute()){
       $_SESSION['success'] = "Code was sent to your email";
-      header("Location: /system/view/verification/");
+      header("Location: /public/view/verification/");
       exit(0);
     }
     // Error; email doesn't exist
     else{
       $_SESSION['warning'] = "Please register or verify your email address!";
-      header("Location: /system/view/access/");
+      header("Location: /public/view/access/");
       exit(0);
     }
   }
   // Error; account is not verified
   else{
     $_SESSION['warning'] = "Please register or verify your email address!";
-    header("Location: /system/view/access/");
+    header("Location: /public/view/access/");
     exit(0);
   }
 }
@@ -77,14 +77,14 @@ if(isset($_POST['login_btn'])){
     // Error; password is inaccurate
     else{
       $_SESSION['warning'] = "Invalid Password!";
-      header("Location: /system/view/verification/");
+      header("Location: /public/view/verification/");
       exit(0);
     }
   }
   // Error; vcode is inaccurate
   else{
     $_SESSION['warning'] = "Invalid Verification Code!";
-    header("Location: /system/view/verification/");
+    header("Location: /public/view/verification/");
     exit(0);
   }
 }

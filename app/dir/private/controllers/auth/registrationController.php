@@ -15,7 +15,7 @@ if(isset($_POST['register_btn'])) {
   // Error if email exist
   if(mysqli_num_rows($check_admin_run) > 0) {
     $_SESSION['warning'] = "This Email Already Exist!";
-    header("Location: /system/view/access/");
+    header("Location: /public/view/access/");
     exit(0);
   }
   // Proceeds with registration
@@ -28,13 +28,13 @@ if(isset($_POST['register_btn'])) {
     // Successful email validation
     if($stmt->execute()){
       $_SESSION['success'] = "Verify Email to Complete Registration!";
-      header("Location: /system/view/access/");
+      header("Location: /public/view/access/");
       exit(0);
     }
     // Error with collected information
     else{
         $_SESSION['warning'] = "Unable to Register User!";
-        header("Location: /system/view/access/");
+        header("Location: /public/view/access/");
         exit(0);
     }
   }
@@ -61,27 +61,27 @@ if(isset($_GET['token'])){
       // Successful verification
       if($stmt->execute()){
         $_SESSION['success'] = "Your account has been verified!";
-        header("Location: /system/view/access/");
+        header("Location: /public/view/access/");
         exit(0);
       }
       // Error if token is inaccurate
       else{
         $_SESSION['warning'] = "Verification failed!";
-        header("Location: /system/view/access/");
+        header("Location: /public/view/access/");
         exit(0);
       }
     }
     // Error is account is already verified
     else{
         $_SESSION['warning'] = "Email already verified! Please log in.";
-        header("Location: /system/view/access/");
+        header("Location: /public/view/access/");
         exit(0);
     }
   }
   // Error if token is null
   else{
     $_SESSION['warning'] = "This token does not exist";
-    header("Location: /system/view/access/");
+    header("Location: /public/view/access/");
     exit(0);
   }
 }
@@ -136,24 +136,24 @@ if(isset($_GET['nut'])){
 
       if($update_query_run){
         $_SESSION['success'] = "Your account has been verified!";
-        header("Location: /system/view/create-pw/?token=$nut");
+        header("Location: /public/view/create-pw/?token=$nut");
         exit(0);
       }
       else{
         $_SESSION['warning'] = "Verification failed!";
-        header("Location: /system/view/create-pw/?token=$nut");
+        header("Location: /public/view/create-pw/?token=$nut");
         exit(0);
       }
     }
     else{
       $_SESSION['warning'] = "Account already verified! Please log in.";
-      header("Location: /system/view/access/");
+      header("Location: /public/view/access/");
       exit(0);
     }
   }
   else{
     $_SESSION['warning'] = "This token does not exist";
-    header("Location: /system/view/access/");
+    header("Location: /public/view/access/");
   }
 }
 

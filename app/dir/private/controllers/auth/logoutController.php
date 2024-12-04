@@ -10,6 +10,6 @@ include(PRIVATE_MODELS_PATH . '/password/vCode.php');
 
 session_unset();
 session_destroy();
-header("Location: /system/view/exit/");
+header("Location: /public/view/exit/");
 exit(0);
 ?>

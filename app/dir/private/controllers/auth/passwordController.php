@@ -18,21 +18,21 @@ if(isset($_POST['forgot_pw'])):{
             include(PRIVATE_CONFIG_PATH . '/email.php');
 
             $_SESSION['success'] = "Link to reset password has been sent!";
-            header("Location: /system/view/access/");
+            header("Location: /public/view/access/");
             exit(0);
 
         }
         else{
             // Error message
             $_SESSION['warning'] = "Unable to reset password!";
-            header("Location: /system/view/forgot-pw/");
+            header("Location: /public/view/forgot-pw/");
             exit(0);
         }
     }
     else{
         // Error message
         $_SESSION['warning'] = "Unable to reset password!";
-        header("Location: /system/view/forgot-pw/");
+        header("Location: /public/view/forgot-pw/");
         exit(0);
     }
 }endif;
@@ -56,26 +56,26 @@ if(isset($_POST['reset_user_PW_btn'])):{
 
             if($stmt->execute()){
                 $_SESSION['success'] = "Password successfully updated!";
-                header("Location: /system/view/access/");
+                header("Location: /public/view/access/");
                 exit(0);
             }
             else{
                 $_SESSION['warning'] = "Unable to update password! Please try again.";
-                header("Location: /system/view/create-pw/?token=$token");
+                header("Location: /public/view/create-pw/?token=$token");
                 exit(0);
             }
         }
         // Error; token is inaccurate
         else{
             $_SESSION['warning'] = "Invalid Token!";
-            header("Location: /system/view/create-pw/?token=$token");
+            header("Location: /public/view/create-pw/?token=$token");
             exit(0);
         }
     }
     // Error; token does not exist
     else{
         $_SESSION['warning'] = "Unable to reset password!";
-        header("Location: /system/view/forgot-pw/");
+        header("Location: /public/view/forgot-pw/");
         exit(0);
     }
 }endif;
@@ -146,20 +146,20 @@ if(isset($_POST['create_new_pw'])){
             // Successfull update
             if($stmt = $con->prepare($update_password)){
                     $_SESSION['success'] = "Password successfully updated!";
-                    header("Location: /system/view/access/");
+                    header("Location: /public/view/access/");
                     exit(0);
             }
             // Error; Invalid userID
             else{
                 $_SESSION['warning'] = "Unable to update password! Please try again.";
-                header("Location: /system/view/create-pw/?token=$token");
+                header("Location: /public/view/create-pw/?token=$token");
                 exit(0);
             }
         }
         // Error; Invalid token
         else{
             $_SESSION['warning'] = "Invalid Token!";
-            header("Location: /system/view/create-pw/?token=$token");
+            header("Location: /public/view/create-pw/?token=$token");
             exit(0);
         }
 
@@ -167,7 +167,7 @@ if(isset($_POST['create_new_pw'])){
     else{
         // Error; Token does not exist
         $_SESSION['warning'] = "Unable to reset password!";
-        header("Location: /system/view/forgot-pw/");
+        header("Location: /public/view/forgot-pw/");
         exit(0);
 
     }
