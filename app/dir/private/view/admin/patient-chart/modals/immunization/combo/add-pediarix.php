@@ -8,18 +8,19 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h1 class="modal-title w-100 fs-5" id="">Administer Pediarix</h1>
+        <h1 class="modal-title w-100 fs-5" id="administer_pediarixLabel">Administer Pediarix</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <form class="" action="process/immunization/administer-vax.php" method="post">
+          <form class="" action="" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="pediarix_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="PEDIARIX" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="combo_type" value="PEDIARIX" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="dtap_type" value="DTaP" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="hepB_type" value="Hepatitis B" required>
@@ -125,7 +126,7 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label><small><a href="https://www.cdc.gov/vaccines/hcp/vis/vis-statements/dtap.pdf" target="_blank" class="text-decoration-none">(DTaP) VIS Publication Date:</a></small></label>
                 </div>
                 <div class="col">
-                  <input type="date" name="dtap_vis" class="form-control form-control-sm" value="<?php echo $dtap_vis; ?>" required>
+                  <input type="date" name="vis" class="form-control form-control-sm" value="<?php echo $dtap_vis; ?>" required>
                 </div>
               </div>
               <div class="row mb-2">
@@ -150,19 +151,18 @@ $hepB_vis = date('2023') . '-' . date('05') . '-' . date('12');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_pediarix_funding" name="add_pediarix_funding" class="form-control form-control-sm" onChange="add_validate_pediarix()" hidden required>
-                  <select id="add_pediarix_eligibility" name="add_pediarix_eligibility" class="form-select form-select-sm" onChange="add_validate_pediarix()" required>
+                  <input type="hidden" id="add_pediarix_funding" name="funding" class="form-control form-control-sm" onChange="add_validate_pediarix()" hidden required>
+                  <select id="add_pediarix_eligibility" name="eligibility" class="form-select form-select-sm" onChange="add_validate_pediarix()" required>
                     <option></option>
-                    <option disabled>Select one</option>
                     <option value="Private">Private</option>
-                    <optgroup label="Public">
-                      <option value="Public">Select Eligibility Type</option>
-                      <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
-                      <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
-                      <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
-                      <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
-                      <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
-                    </optgroup>
+                    <option disabled></option><hr>
+                    <option disabled></option>
+                    <option value="Public">Select Public Type</option>
+                    <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
+                    <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
+                    <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
+                    <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
+                    <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
                   </select>
                 </div>
               </div>

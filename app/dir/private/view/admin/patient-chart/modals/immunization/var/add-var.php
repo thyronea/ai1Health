@@ -129,16 +129,15 @@ $var_vis = date('2021') . '-' . date('08') . '-' . date('06');
                   <input id="add_var_funding" name="add_var_funding" class="form-control form-control-sm" onChange="add_validate_var()" hidden required>
                   <select id="add_var_eligibility" name="add_var_eligibility" class="form-select form-select-sm" onChange="add_validate_var()" required>
                     <option></option>
-                    <option disabled>Select one</option>
                     <option value="Private">Private</option>
-                    <optgroup label="Public">
-                      <option value="Public">Select Eligibility Type</option>
-                      <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
-                      <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
-                      <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
-                      <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
-                      <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
-                    </optgroup>
+                    <option disabled></option><hr>
+                    <option disabled></option>
+                    <option value="Public">Select Public Type</option>
+                    <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
+                    <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
+                    <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
+                    <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
+                    <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
                   </select>
                 </div>
               </div>

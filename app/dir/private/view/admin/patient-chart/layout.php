@@ -1,9 +1,9 @@
 <?php
 include(PRIVATE_CONFIG_PATH . '/print.php');
 include(PRIVATE_MODELS_PATH . '/admin/patients/patientDisplay.php');
-include(PRIVATE_MODELS_PATH . '/admin/patients/izRecDate.php');
-include(PRIVATE_MODELS_PATH . '/admin/patients/izSchedule.php');
-include(PRIVATE_MODELS_PATH . '/admin/patients/izRecord.php');
+include(PRIVATE_MODELS_PATH . '/admin/immunization/izRecDate.php');
+include(PRIVATE_MODELS_PATH . '/admin/immunization/izSchedule.php');
+include(PRIVATE_MODELS_PATH . '/admin/immunization/izRecord.php');
 include(ADMIN_PATIENT_CHART . '/modalDirectory.php'); 
 include(PRIVATE_CONTROLLERS_PATH . '/admin/patientChartController.php');
 include(PRIVATE_CONTROLLERS_PATH . '/admin/immunizationController.php');

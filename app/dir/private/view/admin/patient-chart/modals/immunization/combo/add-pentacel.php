@@ -13,13 +13,14 @@ $hib_vis = date('2021') . '-' . date('08') . '-' . date('06');
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <form class="" action="process/immunization/administer-vax.php" method="post">
+          <form class="" action="" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_lname" value="<?=htmlspecialchars(decryptthis($patient['lname'], $key));?>" placeholder="Last Name" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_dob" value="<?=htmlspecialchars(decryptthis($diversity['dob'], $key));?>" placeholder="Date of Birth" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="uniqueID" id="pentacel_uniqueID" required>
+            <input type="hidden" class="form-control form-control-sm mt-2" name="type" value="PENTACEL" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="combo_type" value="PENTACEL" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="dtap_type" value="DTaP" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="ipv_type" value="IPV" required>
@@ -150,19 +151,18 @@ $hib_vis = date('2021') . '-' . date('08') . '-' . date('06');
                   <label style="color:red"><small>Eligibility:</small></label>
                 </div>
                 <div class="col">
-                  <input id="add_pentacel_funding" name="add_pentacel_funding" class="form-control form-control-sm" onChange="add_validate_pentacel()" hidden required>
-                  <select id="add_pentacel_eligibility" name="add_pentacel_eligibility" class="form-select form-select-sm" onChange="add_validate_pentacel()" required>
+                  <input id="add_pentacel_funding" name="funding" class="form-control form-control-sm" onChange="add_validate_pentacel()" hidden required>
+                  <select id="add_pentacel_eligibility" name="eligibility" class="form-select form-select-sm" onChange="add_validate_pentacel()" required>
                     <option></option>
-                    <option disabled>Select one</option>
                     <option value="Private">Private</option>
-                    <optgroup label="Public">
-                      <option value="Public">Select Eligibility Type</option>
-                      <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
-                      <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
-                      <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
-                      <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
-                      <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
-                    </optgroup>
+                    <option disabled></option><hr>
+                    <option disabled></option>
+                    <option value="Public">Select Public Type</option>
+                    <option value="VFC Eligible - Medical/Medicaid">VFC Eligible - Medical/Medicaid</option>
+                    <option value="VFC Eligible - Uninsured">VFC Eligible - Uninsured</option>
+                    <option value="VFC Eligible - Underinsured">VFC Eligible - Underinsured</option>
+                    <option value="VFC Eligible - Native American">VFC Eligible - Native American</option>
+                    <option value="VFC Eligible - Alaskan Native">VFC Eligible - Alaskan Native</option>
                   </select>
                 </div>
               </div>

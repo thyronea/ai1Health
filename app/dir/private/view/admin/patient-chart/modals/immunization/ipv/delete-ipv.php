@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body mt-3">
         <div class="col-md-12">
-          <form class="" action="process/immunization/delete-vax.php" method="post">
+          <form class="" action="" method="post">
             <input type="hidden" class="form-control form-control-sm mt-2" name="patientID" value="<?=htmlspecialchars($patient['patientID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="engineID" value="<?=htmlspecialchars($patient['engineID']);?>" required>
             <input type="hidden" class="form-control form-control-sm mt-2" name="patient_fname" value="<?=htmlspecialchars(decryptthis($patient['fname'], $key));?>" placeholder="First Name" required>

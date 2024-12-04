@@ -27,6 +27,11 @@ $date = mysqli_real_escape_string($con, $_POST['date']);
 $time = mysqli_real_escape_string($con, $_POST['time']);
 $value = mysqli_real_escape_string($con, "1");
 $shot = mysqli_real_escape_string($con, "1");
+$shot1 = mysqli_real_escape_string($con, "1");
+$shot2 = mysqli_real_escape_string($con, "2");
+$shot3 = mysqli_real_escape_string($con, "3");
+$shot4 = mysqli_real_escape_string($con, "4");
+$shot5 = mysqli_real_escape_string($con, "5");
 $othershot = mysqli_real_escape_string($con, "0");
 
 // Encrypt Admin Log Data

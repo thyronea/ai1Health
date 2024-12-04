@@ -8,7 +8,7 @@
 
         <?php 
           include(PRIVATE_VIEW_PATH . '/alerts/headerAlert.php'); 
-          include(PRIVATE_MODELS_PATH . '/admin/patients/math.php');
+          include(PRIVATE_MODELS_PATH . '/admin/patients/patientCount.php');
           include(PRIVATE_CONTROLLERS_PATH . '/admin/patientsController.php');
           include(PRIVATE_CONTROLLERS_PATH . '/admin/patientChartController.php');
         ?> 
