@@ -722,7 +722,7 @@ Location: components/footer.php
         $('.paste-new-sh').append('<div class="sh-form mb-2">\
           <div class="col-md-2">\
               <div class="form-group">\
-                  <input type="hidden" name="groupID[]" value="<?=$_SESSION['group_id']; ?>" class="form-control">\
+                  <input type="hidden" name="groupID[]" value="<?=$_SESSION['groupID']; ?>" class="form-control">\
               </div>\
           </div>\
             <div class="row g-2">\
@@ -778,7 +778,7 @@ Location: components/footer.php
       $('.paste-new-thermometer').append('<div class="thermometer-form mb-2">\
         <div class="col-md-2">\
           <div class="form-group">\
-            <input type="hidden" name="groupID[]" value="<?=$_SESSION['group_id']; ?>" class="form-control">\
+            <input type="hidden" name="groupID[]" value="<?=$_SESSION['groupID']; ?>" class="form-control">\
           </div>\
         </div>\
         <div class="row g-2">\

@@ -15,7 +15,7 @@ if(isset($_SESSION["userID"])):{
     include(PRIVATE_MODELS_PATH . '/password/vCode.php'); 
 }
 else:{
-    include(VIEW_ALERTS . '/emergencyExit.php');
+    include(PRIVATE_VIEW_PATH . '/alerts/emergencyExit.php');
 }
 endif;
 ?>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="admin_addProfile" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+<div class="modal fade" id="admin_addProfile" tabindex="1" data-bs-backdrop="static" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 

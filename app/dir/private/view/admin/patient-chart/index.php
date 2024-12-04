@@ -1,9 +1,9 @@
 <?php
 if(!isset($page_title)) {$page_title='Patient Chart';}
+require_once('../../../initialize.php');
 session_start();
 
 if(isset($_SESSION["userID"])):{
-    require_once('../../../initialize.php');
     include(PRIVATE_COMPONENTS_PATH . '/admin/header.php');
     include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
     include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
@@ -20,7 +20,7 @@ if(isset($_SESSION["userID"])):{
     include('process/jquery.php');
 }
 else:{
-    include(PRIVATE_VIEW_PATH . '/alerts/emergencyExit.php');
+    include(VIEW_ALERTS . '/emergencyExit.php');
 }
 endif;
 ?>

@@ -21,23 +21,6 @@ function add_pediarix(){
         }
     })
 }
-// Validate eligbility and funding when adding PEDIARIX
-function add_validate_pediarix() {
-    const funding = document.querySelector('input[name=add_pediarix_funding]');
-    const eligibility = document.querySelector('select[name=add_pediarix_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
 
 // Fetch PENTACEL information based on option selected to ADD
 function add_pentacel(){
@@ -59,23 +42,6 @@ function add_pentacel(){
             document.getElementById("add_pentacel_eligibility").value = data.funding_source;
         }
     })
-}
-// Validate eligbility and funding when adding PENTACEL
-function add_validate_pentacel() {
-    const funding = document.querySelector('input[name=add_pentacel_funding]');
-    const eligibility = document.querySelector('select[name=add_pentacel_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
 }
 
 // Fetch VAXELIS information based on option selected to ADD
@@ -99,23 +65,6 @@ function add_vaxelis(){
         }
     })
 }
-// Validate eligbility and funding when adding VAXELIS
-function add_validate_vaxelis() {
-    const funding = document.querySelector('input[name=add_vaxelis_funding]');
-    const eligibility = document.querySelector('select[name=add_vaxelis_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
 
 // Fetch QUADRACEL information based on option selected to ADD
 function add_quadracel(){
@@ -137,23 +86,6 @@ function add_quadracel(){
             document.getElementById("add_quadracel_eligibility").value = data.funding_source;
         }
     })
-}
-// Validate eligbility and funding when adding QUADRACEL
-function add_validate_quadracel() {
-    const funding = document.querySelector('input[name=add_quadracel_funding]');
-    const eligibility = document.querySelector('select[name=add_quadracel_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
 }
 
 // Fetch KINRIX information based on option selected to ADD
@@ -177,23 +109,6 @@ function add_kinrix(){
         }
     })
 }
-// Validate eligbility and funding when adding KINRIX
-function add_validate_kinrix() {
-    const funding = document.querySelector('input[name=add_kinrix_funding]');
-    const eligibility = document.querySelector('select[name=add_kinrix_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
 
 // Fetch PROQUAD information based on option selected to ADD
 function add_proquad(){
@@ -216,25 +131,6 @@ function add_proquad(){
         }
     })
 }
-// Validate eligbility and funding when adding PROQUAD
-function add_validate_proquad() {
-    const funding = document.querySelector('input[name=add_proquad_funding]');
-    const eligibility = document.querySelector('select[name=add_proquad_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
-
-
 
 // Fetch RSV information based on option selected to ADD
 function add_rsv(){
@@ -257,23 +153,7 @@ function add_rsv(){
         }
     })
 }
-// Validate eligbility and funding when adding RSV
-function add_validate_rsv() {
-    const funding = document.querySelector('input[name=add_rsv_funding]');
-    const eligibility = document.querySelector('select[name=add_rsv_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch RSV information based on option selected to EDIT
 function edit_rsv(){
     var id = document.getElementById("edit_rsv_vaccines").value;
@@ -296,8 +176,8 @@ function edit_rsv(){
 }
 // Validate eligbility and funding when editing RSV
 function edit_validate_rsv() {
-    const funding = document.querySelector('input[name=edit_rsv_funding]');
-    const eligibility = document.querySelector('select[name=edit_rsv_eligibility]');
+    const funding = document.querySelector('input[id=edit_rsv_funding]');
+    const eligibility = document.querySelector('select[id=edit_rsv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -333,23 +213,7 @@ function add_hepB(){
         }
     })
 }
-// Validate eligbility and funding when adding Hep B
-function add_validate_hepB() {
-    const funding = document.querySelector('input[name=add_hepB_funding]');
-    const eligibility = document.querySelector('select[name=add_hepB_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch Hep B information based on option selected to EDIT
 function edit_hepB(){
     var id = document.getElementById("edit_hepB_vaccines").value;
@@ -370,10 +234,11 @@ function edit_hepB(){
         }
     })
 }
+
 // Validate eligbility and funding when editing Hep B
 function edit_validate_hepB() {
-    const funding = document.querySelector('input[name=edit_hepB_funding]');
-    const eligibility = document.querySelector('select[name=edit_hepB_eligibility]');
+    const funding = document.querySelector('input[id=edit_hepB_funding]');
+    const eligibility = document.querySelector('select[id=edit_hepB_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -409,23 +274,7 @@ function add_rota(){
         }
     })
 }
-// Validate eligbility and funding when adding Rotavirus
-function add_validate_rota() {
-    const funding = document.querySelector('input[name=add_rota_funding]');
-    const eligibility = document.querySelector('select[name=add_rota_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch Rotavirus information based on option selected to EDIT
 function edit_rota(){
     var id = document.getElementById("edit_rota_vaccines").value;
@@ -446,10 +295,11 @@ function edit_rota(){
         }
     })
 }
+
 // Validate eligbility and funding when editing Rotavirus
 function edit_validate_rota() {
-    const funding = document.querySelector('input[name=edit_rota_funding]');
-    const eligibility = document.querySelector('select[name=edit_rota_eligibility]');
+    const funding = document.querySelector('input[id=edit_rota_funding]');
+    const eligibility = document.querySelector('select[id=edit_rota_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -485,23 +335,7 @@ function add_dtap(){
         }
     })
 }
-// Validate eligbility and funding when adding DTaP
-function add_validate_dtap() {
-    const funding = document.querySelector('input[name=add_dtap_funding]');
-    const eligibility = document.querySelector('select[name=add_dtap_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch DTaP information based on option selected to EDIT
 function edit_dtap(){
     var id = document.getElementById("edit_dtap_vaccines").value;
@@ -522,10 +356,11 @@ function edit_dtap(){
         }
     })
 }
+
 // Validate eligbility and funding when editing DTaP
 function edit_validate_dtap() {
-    const funding = document.querySelector('input[name=edit_dtap_funding]');
-    const eligibility = document.querySelector('select[name=edit_dtap_eligibility]');
+    const funding = document.querySelector('input[id=edit_dtap_funding]');
+    const eligibility = document.querySelector('select[id=edit_dtap_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -563,8 +398,8 @@ function add_hib(){
 }
 // Validate eligbility and funding when adding Hib
 function add_validate_hib() {
-    const funding = document.querySelector('input[name=add_hib_funding]');
-    const eligibility = document.querySelector('select[name=add_hib_eligibility]');
+    const funding = document.querySelector('input[id=add_hib_funding]');
+    const eligibility = document.querySelector('select[id=add_hib_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -600,8 +435,8 @@ function edit_hib(){
 }
 // Validate eligbility and funding when editing Hib
 function edit_validate_hib() {
-    const funding = document.querySelector('input[name=edit_hib_funding]');
-    const eligibility = document.querySelector('select[name=edit_hib_eligibility]');
+    const funding = document.querySelector('input[id=edit_hib_funding]');
+    const eligibility = document.querySelector('select[id=edit_hib_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -639,8 +474,8 @@ function add_pcv(){
 }
 // Validate eligbility and funding when adding PCV
 function add_validate_pcv() {
-    const funding = document.querySelector('input[name=add_pcv_funding]');
-    const eligibility = document.querySelector('select[name=add_pcv_eligibility]');
+    const funding = document.querySelector('input[id=add_pcv_funding]');
+    const eligibility = document.querySelector('select[id=add_pcv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -676,8 +511,8 @@ function edit_pcv(){
 }
 // Validate eligbility and funding when editing PCV
 function edit_validate_pcv() {
-    const funding = document.querySelector('input[name=edit_pcv_funding]');
-    const eligibility = document.querySelector('select[name=edit_pcv_eligibility]');
+    const funding = document.querySelector('input[id=edit_pcv_funding]');
+    const eligibility = document.querySelector('select[id=edit_pcv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -713,23 +548,7 @@ function add_ipv(){
         }
     })
 }
-// Validate eligbility and funding when adding IPV
-function add_validate_ipv() {
-    const funding = document.querySelector('input[name=add_ipv_funding]');
-    const eligibility = document.querySelector('select[name=add_ipv_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch IPV information based on option selected to EDIT
 function edit_ipv(){
     var id = document.getElementById("edit_ipv_vaccines").value;
@@ -750,10 +569,11 @@ function edit_ipv(){
         }
     })
 }
+
 // Validate eligbility and funding when editing IPV
 function edit_validate_ipv() {
-    const funding = document.querySelector('input[name=edit_ipv_funding]');
-    const eligibility = document.querySelector('select[name=edit_ipv_eligibility]');
+    const funding = document.querySelector('input[id=edit_ipv_funding]');
+    const eligibility = document.querySelector('select[id=edit_ipv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -791,8 +611,8 @@ function add_covid(){
 }
 // Validate eligbility and funding when adding COVID
 function add_validate_covid() {
-    const funding = document.querySelector('input[name=add_covid_funding]');
-    const eligibility = document.querySelector('select[name=add_covid_eligibility]');
+    const funding = document.querySelector('input[id=add_covid_funding]');
+    const eligibility = document.querySelector('select[id=add_covid_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -828,8 +648,8 @@ function edit_covid(){
 }
 // Validate eligbility and funding when editing COVID
 function edit_validate_covid() {
-    const funding = document.querySelector('input[name=edit_covid_funding]');
-    const eligibility = document.querySelector('select[name=edit_covid_eligibility]');
+    const funding = document.querySelector('input[id=edit_covid_funding]');
+    const eligibility = document.querySelector('select[id=edit_covid_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -867,8 +687,8 @@ function add_flu(){
 }
 // Validate eligbility and funding when adding Influenza
 function add_validate_flu() {
-    const funding = document.querySelector('input[name=add_flu_funding]');
-    const eligibility = document.querySelector('select[name=add_flu_eligibility]');
+    const funding = document.querySelector('input[id=add_flu_funding]');
+    const eligibility = document.querySelector('select[id=add_flu_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -904,8 +724,8 @@ function edit_flu(){
 }
 // Validate eligbility and funding when editing Influenza
 function edit_validate_flu() {
-    const funding = document.querySelector('input[name=edit_flu_funding]');
-    const eligibility = document.querySelector('select[name=edit_flu_eligibility]');
+    const funding = document.querySelector('input[id=edit_flu_funding]');
+    const eligibility = document.querySelector('select[id=edit_flu_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -941,23 +761,7 @@ function add_mmr(){
         }
     })
 }
-// Validate eligbility and funding when adding MMR
-function add_validate_mmr() {
-    const funding = document.querySelector('input[name=add_mmr_funding]');
-    const eligibility = document.querySelector('select[name=add_mmr_eligibility]');
-     
-    if(eligibility.value === funding.value ||
-        eligibility.value === "VFC Eligible - Medical/Medicaid" ||
-        eligibility.value === "VFC Eligible - Uninsured" ||
-        eligibility.value === "VFC Eligible - Underinsured" ||
-        eligibility.value === "VFC Eligible - Native American" ||
-        eligibility.value === "VFC Eligible - Alaskan Native"){
-        eligibility.setCustomValidity('');
-    }
-    else{
-        eligibility.setCustomValidity('Funding Source and Eligibility does not match');
-    }
-}
+
 // Fetch MMR information based on option selected to EDIT
 function edit_mmr(){
     var id = document.getElementById("edit_mmr_vaccines").value;
@@ -978,10 +782,11 @@ function edit_mmr(){
         }
     })
 }
+
 // Validate eligbility and funding when editing MMR
 function edit_validate_mmr() {
-    const funding = document.querySelector('input[name=edit_mmr_funding]');
-    const eligibility = document.querySelector('select[name=edit_mmr_eligibility]');
+    const funding = document.querySelector('input[id=edit_mmr_funding]');
+    const eligibility = document.querySelector('select[id=edit_mmr_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1019,8 +824,8 @@ function add_var(){
 }
 // Validate eligbility and funding when adding Varicella
 function add_validate_var() {
-    const funding = document.querySelector('input[name=add_var_funding]');
-    const eligibility = document.querySelector('select[name=add_var_eligibility]');
+    const funding = document.querySelector('input[id=add_var_funding]');
+    const eligibility = document.querySelector('select[id=add_var_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1056,8 +861,8 @@ function edit_var(){
 }
 // Validate eligbility and funding when editing Varicella
 function edit_validate_var() {
-    const funding = document.querySelector('input[name=edit_var_funding]');
-    const eligibility = document.querySelector('select[name=edit_var_eligibility]');
+    const funding = document.querySelector('input[id=edit_var_funding]');
+    const eligibility = document.querySelector('select[id=edit_var_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1095,8 +900,8 @@ function add_hepa(){
 }
 // Validate eligbility and funding when adding Hepatitis A
 function add_validate_hepa() {
-    const funding = document.querySelector('input[name=add_hepa_funding]');
-    const eligibility = document.querySelector('select[name=add_hepa_eligibility]');
+    const funding = document.querySelector('input[id=add_hepa_funding]');
+    const eligibility = document.querySelector('select[id=add_hepa_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1132,8 +937,8 @@ function edit_hepa(){
 }
 // Validate eligbility and funding when editing Hepatitis A
 function edit_validate_hepa() {
-    const funding = document.querySelector('input[name=edit_hepa_funding]');
-    const eligibility = document.querySelector('select[name=edit_hepa_eligibility]');
+    const funding = document.querySelector('input[id=edit_hepa_funding]');
+    const eligibility = document.querySelector('select[id=edit_hepa_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1171,8 +976,8 @@ function add_tdap(){
 }
 // Validate eligbility and funding when adding Tdap
 function add_validate_tdap() {
-    const funding = document.querySelector('input[name=add_tdap_funding]');
-    const eligibility = document.querySelector('select[name=add_tdap_eligibility]');
+    const funding = document.querySelector('input[id=add_tdap_funding]');
+    const eligibility = document.querySelector('select[id=add_tdap_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1208,8 +1013,8 @@ function edit_tdap(){
 }
 // Validate eligbility and funding when editing Tdap
 function edit_validate_tdap() {
-    const funding = document.querySelector('input[name=edit_tdap_funding]');
-    const eligibility = document.querySelector('select[name=edit_tdap_eligibility]');
+    const funding = document.querySelector('input[id=edit_tdap_funding]');
+    const eligibility = document.querySelector('select[id=edit_tdap_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1247,8 +1052,8 @@ function add_hpv(){
 }
 // Validate eligbility and funding when adding HPV
 function add_validate_hpv() {
-    const funding = document.querySelector('input[name=add_hpv_funding]');
-    const eligibility = document.querySelector('select[name=add_hpv_eligibility]');
+    const funding = document.querySelector('input[id=add_hpv_funding]');
+    const eligibility = document.querySelector('select[id=add_hpv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1284,8 +1089,8 @@ function edit_hpv(){
 }
 // Validate eligbility and funding when editing HPV
 function edit_validate_hpv() {
-    const funding = document.querySelector('input[name=edit_hpv_funding]');
-    const eligibility = document.querySelector('select[name=edit_hpv_eligibility]');
+    const funding = document.querySelector('input[id=edit_hpv_funding]');
+    const eligibility = document.querySelector('select[id=edit_hpv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1323,8 +1128,8 @@ function add_mcv(){
 }
 // Validate eligbility and funding when adding MCV
 function add_validate_mcv() {
-    const funding = document.querySelector('input[name=add_mcv_funding]');
-    const eligibility = document.querySelector('select[name=add_mcv_eligibility]');
+    const funding = document.querySelector('input[id=add_mcv_funding]');
+    const eligibility = document.querySelector('select[id=add_mcv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1360,8 +1165,8 @@ function edit_mcv(){
 }
 // Validate eligbility and funding when editing MCV
 function edit_validate_mcv() {
-    const funding = document.querySelector('input[name=edit_mcv_funding]');
-    const eligibility = document.querySelector('select[name=edit_mcv_eligibility]');
+    const funding = document.querySelector('input[id=edit_mcv_funding]');
+    const eligibility = document.querySelector('select[id=edit_mcv_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1399,8 +1204,8 @@ function add_menb(){
 }
 // Validate eligbility and funding when adding Men B
 function add_validate_menb() {
-    const funding = document.querySelector('input[name=add_menb_funding]');
-    const eligibility = document.querySelector('select[name=add_menb_eligibility]');
+    const funding = document.querySelector('input[id=add_menb_funding]');
+    const eligibility = document.querySelector('select[id=add_menb_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||
@@ -1436,8 +1241,8 @@ function edit_menb(){
 }
 // Validate eligbility and funding when editing Men B
 function edit_validate_menb() {
-    const funding = document.querySelector('input[name=edit_menb_funding]');
-    const eligibility = document.querySelector('select[name=edit_menb_eligibility]');
+    const funding = document.querySelector('input[id=edit_menb_funding]');
+    const eligibility = document.querySelector('select[id=edit_menb_eligibility]');
      
     if(eligibility.value === funding.value ||
         eligibility.value === "VFC Eligible - Medical/Medicaid" ||

@@ -21,19 +21,19 @@ if($row['status'] == "0"){
 
     if($update_query_run){
         $_SESSION['success'] = "Your account has been verified!";
-        header("Location: /system/view/create-pw/?token=$token");
+        header("Location: /public/view/create-pw/?token=$token");
         exit(0);
     }
     else{
         $_SESSION['warning'] = "Verification failed!";
-        header("Location: /system/view/create-pw/?token=$token");
+        header("Location: /public/view/create-pw/?token=$token");
         exit(0);
     }
     
 }
 else{
     $_SESSION['warning'] = "Email already verified! Please log in.";
-    header("Location: /system/view/access/");
+    header("Location: /public/view/access/");
     exit(0);
 }
 ?>

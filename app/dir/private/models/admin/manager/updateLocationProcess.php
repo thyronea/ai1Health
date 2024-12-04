@@ -47,17 +47,8 @@ $stmt = $con->prepare($location);
 $stmt->bind_param("ssssssssss", $poc, $name, $address1, $address2, $city, $state, $zip, $phone, $location_email, $location_link);
 $stmt->execute();
 
-$check_poc = "SELECT * FROM profile WHERE userID='$userID'";
-$check_poc_run = mysqli_query($con, $check_poc);
-$profile = mysqli_fetch_assoc($check_poc_run);
-$profile_fname = decryptthis($profile['fname'], $key);
-$profile_lname = decryptthis($profile['lname'], $key);
-$fullName = htmlspecialchars("$profile_fname $profile_lname");
-
-if($poc = $fullName){
-    $updateProfileLoc  = "UPDATE profile SET location=? WHERE userID='$userID' ";
-    $stmt = $con->prepare($updateProfileLoc);
-    $stmt->bind_param("s", $encrypt_name);
-    $stmt->execute();
-}
+$updateProfileLoc  = "UPDATE profile SET location=? WHERE userID='$userID' ";
+$stmt = $con->prepare($updateProfileLoc);
+$stmt->bind_param("s", $encrypt_name);
+$stmt->execute();
 ?>

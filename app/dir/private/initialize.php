@@ -10,7 +10,7 @@ define("PROJECT_PATH", dirname(PRIVATE_PATH));
 // Project path
 define("ADMIN_PATH", PROJECT_PATH . '/admin');
 define("PATIENT_PATH", PROJECT_PATH . '/patient');
-define("SYSTEM_PATH", PROJECT_PATH . '/system');
+define("PUBLIC_PATH", PROJECT_PATH . '/public');
 
 // Vendors directory
 define("VENDOR_PATH", PROJECT_PATH . '/vendor');
@@ -38,9 +38,9 @@ define("PRIVATE_VIEW_PATH", PRIVATE_PATH . '/view');
     define("ADMIN_PROFILE", VIEW_ADMIN . '/profile');
     define("ADMIN_PATIENTS", VIEW_ADMIN . '/patients');
     define("ADMIN_PATIENT_CHART", VIEW_ADMIN . '/patient-chart');
-    // alerts
+  // alerts
   define("VIEW_ALERTS", PRIVATE_VIEW_PATH . '/alerts');
-  // forms
+    // forms
   define("VIEW_FORMS", PRIVATE_VIEW_PATH . '/forms');
   // modals
   define("VIEW_MODALS", PRIVATE_VIEW_PATH . '/modals');
@@ -55,12 +55,12 @@ define("ADMIN_OFFCANVAS_PATH", ADMIN_PATH . '/offcanvas');
 define("ADMIN_PAGES_PATH", ADMIN_PATH . '/page');
 
 // public directory
-define("SYSTEM_COMPONENT_PATH", SYSTEM_PATH . '/component');
-define("SYSTEM_CONFIG_PATH", SYSTEM_PATH . '/config');
-define("SYSTEM_CONTENT_PATH", SYSTEM_PATH . '/content');
-define("SYSTEM_FORMS_PATH", SYSTEM_PATH . '/forms');
-define("SYSTEM_SCRIPTS_PATH", SYSTEM_PATH . '/scripts');
-define("SYSTEM_VIEW_PATH", SYSTEM_PATH . '/view');
+define("PUBLIC_COMPONENT_PATH", PUBLIC_PATH . '/component');
+define("PUBLIC_CONFIG_PATH", PUBLIC_PATH . '/config');
+define("PUBLIC_CONTENT_PATH", PUBLIC_PATH . '/content');
+define("PUBLIC_FORMS_PATH", PUBLIC_PATH . '/forms');
+define("PUBLIC_SCRIPTS_PATH", PUBLIC_PATH . '/scripts');
+define("PUBLIC_VIEW_PATH", PUBLIC_PATH . '/view');
 
 // Assign the root URL to the PHP constant
 // * Do not need to to include the domain
@@ -69,8 +69,8 @@ define("SYSTEM_VIEW_PATH", SYSTEM_PATH . '/view');
 // define("WWW_ROOT", '/`htdoc/HC/public`');
 // define ("WWW_ROOT", '');
 // * Can dynamically find everything in URL up to "/public"
-$SYSTEM_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
-$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $SYSTEM_end);
+$PUBLIC_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
+$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $PUBLIC_end);
 define("WWW_ROOT", $doc_root);
 
 // Requires function file once

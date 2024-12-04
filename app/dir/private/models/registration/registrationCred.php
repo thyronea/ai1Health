@@ -33,7 +33,7 @@ If you did not create this account, please contact admin.
 
 TO COMPLETE YOUR REGISTRATION, PLEASE CLICK ON THE LINK BELOW:
 
-http://localhost:8002/private/controllers/auth/registrationController.php?token=$token
+http://localhost/private/controllers/auth/registrationController.php?token=$token
 
 Thank you!
 "); 

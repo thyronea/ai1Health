@@ -1,41 +1,13 @@
 <?php
-include('../../../../security/dbcon.php');
+// Create connection
+$servername = "mariadb"; // mariadb / localhost
+$username = "root"; // root / mkpnktxrxw
+$password = "Grayson2019!"; // Grayson2019! / p3GNsFe44G
+$database = "ai1health"; // ai1health / mkpnktxrxw
 
-Class Database {
+$con = mysqli_connect($servername, $username, $password, $database);
 
-    private $con;
-
-    function _construct() {
-        $this->con = $this->connect();
-    }
-    
-    private function connect() {
-        $string = "mysql:host=mariadb;dli";
-        try{
-            $connection = new PDO($string, $username, $password);
-            return $connection;
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-            die;
-        }
-
-        return false;
-
-    }
-
-    public function write($query, $data_array = []){
-        $userID = mysqli_real_escape_string($con, $_SESSION['userID']);
-        $con = $this->connect();
-        $stmt = $con->prepare($query);
-
-        foreach ($data_array as $key => $value) {
-            $stmt->bind_param(':'.$key, $value);
-        }
-        $check = $stmt->execute();
-        if($check){
-            return true;
-        }
-        return false;
-    }
+// Check connection
+if($con->connect_error){
+  die("Connection failed: " . mysqli_connect_error());
 }

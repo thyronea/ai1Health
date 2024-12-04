@@ -10,6 +10,7 @@ if(isset($_SESSION["userID"])):{
     include(PRIVATE_MODELS_PATH . '/admin/profile/userInfo.php');
 
     include(PRIVATE_VIEW_PATH . '/admin/settings/layout.php');
+
     include(PRIVATE_COMPONENTS_PATH . '/admin/footer.php');
     include(PRIVATE_MODELS_PATH . '/password/vCode.php');
     include(PRIVATE_SCRIPTS_PATH . '/js.php');

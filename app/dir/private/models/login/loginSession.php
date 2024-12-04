@@ -23,27 +23,6 @@ $lname = htmlspecialchars($profile["lname"]); // Decrypted last name
 $_SESSION['fname'] = htmlspecialchars($profile["fname"]); // Retrieved first name for SESSION
 $_SESSION['lname'] = htmlspecialchars($profile["lname"]); // Retrieved last name for SESSION
 $_SESSION['email'] = htmlspecialchars(decryptthis($profile["email"], $key)); // Retrieved email for SESSION
-$_SESSION['role'] = htmlspecialchars(decryptthis($profile["role"], $key)); // Retrieved role for SESSIO
-
-// Retrieves user's location for SESSION
-if($profile['location'] > 0){
-    // Check if user is the POC for the location
-    $check_poc = "SELECT * FROM location WHERE poc='$fname $lname' ";
-    $check_poc_run = mysqli_query($con, $check_poc);
-    $locID = mysqli_fetch_assoc($check_poc_run);
-    $locEngineID = $locID["engineID"];
-
-    // If user is the POC, use location's name
-    if($locEngineID > 0){
-        $_SESSION['poc'] = htmlspecialchars($locID["poc"]);
-        $_SESSION['location'] = htmlspecialchars($locID["name"]);
-    }
-    else{
-        // If not POC, use profile's location
-        $_SESSION['location'] = htmlspecialchars(decryptthis($profile["location"], $key));
-    }
-}
-else{
-    $_SESSION['location'] = htmlspecialchars("Office Unavailable");
-}
+$_SESSION['role'] = htmlspecialchars(decryptthis($profile["role"], $key)); // Retrieved role for SESSION
+$_SESSION['location'] = htmlspecialchars(decryptthis($profile["location"], $key));
 ?>

@@ -25,7 +25,7 @@ $message = htmlspecialchars_decode("
 Hello $fname,
 
 TO RESET YOUR PASSWORD, PLEASE CLICK ON THE LINK BELOW:
-http://localhost:8002/system/view/reset-pw/deelos.php?userID=$userID&token=$new_token
+http://localhost/public/view/reset-pw/deelos.php?userID=$userID&token=$new_token
 
 If you did not make this request, please contact admin.
 

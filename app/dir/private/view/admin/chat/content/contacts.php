@@ -1,10 +1,4 @@
 <?php
-session_start();
-include('../../../../../security/dbcon.php');
-include('../../../../../security/encrypt_decrypt.php');
-$key = mysqli_real_escape_string($con, $_SESSION["dk_token"]);
-$groupID = mysqli_real_escape_string($con, $_SESSION['groupID']);
-$myuserID = mysqli_real_escape_string($con, $_SESSION['userID']);
 
 $mydata = 
 '<div class="mt-3" style="text-align: center;">';

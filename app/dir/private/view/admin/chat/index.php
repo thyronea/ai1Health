@@ -8,14 +8,17 @@ if (isset($_SESSION["userID"])):{
   include('components/styles.php');
   include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
   include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
+  include(PRIVATE_MODELS_PATH . '/admin/sessions.php'); 
   include(PRIVATE_COMPONENTS_PATH . '/admin/navtab.php');
+
   include('process/api.php');
   include('content/layout.php');
   include('process/script.php');
-  include(PRIVATE_MODELS_PATH . '/password/vCode.php');
   include(PRIVATE_COMPONENTS_PATH . '/admin/footer.php');
+  include(PRIVATE_MODELS_PATH . '/password/vCode.php');
+  include(PRIVATE_SCRIPTS_PATH . '/js.php');
 }
 else:{
-  include(VIEW_ALERTS . '/emergencyExit.php');
+  include(PRIVATE_VIEW_PATH . '/alerts/emergencyExit.php');
 }
 endif;

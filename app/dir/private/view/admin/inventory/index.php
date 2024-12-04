@@ -17,7 +17,7 @@ if(isset($_SESSION["userID"])):{
     include(PRIVATE_SCRIPTS_PATH . '/js.php');
 }
 else:{
-    include(VIEW_ALERTS . '/emergencyExit.php');
+    include(PRIVATE_VIEW_PATH . '/alerts/emergencyExit.php');
 }
 endif;
 ?>

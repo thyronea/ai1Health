@@ -8,6 +8,6 @@ $fname = mysqli_real_escape_string($con, $_SESSION['fname']);
 $lname = mysqli_real_escape_string($con, $_SESSION['lname']);
 $userEmail = mysqli_real_escape_string($con, $_SESSION['email']);
 $fromName = mysqli_real_escape_string($con, $_SESSION['fname']);
+$location = mysqli_real_escape_string($con, $_SESSION['location']);
 $office = htmlspecialchars($_SESSION['location']);
-$location = htmlspecialchars($_SESSION['location']);
 ?>

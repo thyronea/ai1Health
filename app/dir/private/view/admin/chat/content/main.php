@@ -20,7 +20,7 @@
             <input type="radio" id="radio_contacts" name="myradio" style="display: none;">
             
             <div id="inner_right_panel">
-                
+        
             </div>
 
         </div>

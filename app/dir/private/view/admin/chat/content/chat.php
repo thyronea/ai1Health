@@ -1,9 +1,4 @@
 <?php
-session_start();
-require_once('../../../initialize.php');
-include(PRIVATE_CONTROLLERS_PATH . '/database/ai1health.php');
-include(PRIVATE_CONTROLLERS_PATH . '/encryption/encryptionController.php');
-include(PRIVATE_MODELS_PATH . '/admin/sessions.php'); 
 
 $userID = "null";
 if(isset($DATA_OBJ->find->userid)){
