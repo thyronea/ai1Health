@@ -109,8 +109,11 @@
                             <td hidden><small><?= htmlspecialchars($thermometer['location']);?></small></td>
                             <td hidden><small><?= htmlspecialchars(decryptthis($thermometer['position'], $key));?></small></td>
                             <td><a type="button" class="focus-ring border-none text-decoration-none thermometer-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#thermometer-edit"><small><?= htmlspecialchars(decryptthis($thermometer['name'], $key));?></small></a></td>
-                            <td hidden><small><?= htmlspecialchars(decryptthis($thermometer['serial'], $key));?></small></td>
-                            <td hidden><small><?= htmlspecialchars(decryptthis($thermometer['expiration'], $key));?></small></td>
+                            <td hidden><small><?= htmlspecialchars($thermometer['serial']);?></small></td>
+                            <td hidden><small><?= htmlspecialchars($thermometer['expiration']);?></small></td>
+                            <td hidden><small><?= htmlspecialchars($thermometer['scale']);?></small></td>
+                            <td hidden><small><?= htmlspecialchars($thermometer['lowAlarm']);?></small></td>
+                            <td hidden><small><?= htmlspecialchars($thermometer['highAlarm']);?></small></td>
                             <td><a type="button" class="focus-ring border-none thermometer-editbtn" style="color: black" data-bs-toggle="modal" data-bs-target="#thermometer-edit"><i class="bi bi-gear"></a></td>
                             <td><a type="button" class="focus-ring border-none thermometerdeletebtn" style="color:black;" data-bs-toggle="modal" data-bs-target="#thermometerdeletemodal"><i class="bi bi-trash"></i></a></td>
 

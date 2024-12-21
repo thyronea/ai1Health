@@ -10,7 +10,7 @@
 
         <form action="" method="POST">
         <?php $groupID = mysqli_real_escape_string($con, $_SESSION['groupID']); ?>
-            <div class="thermometer-form mt-3 mb-3">
+            <div class="thermometer-form mb-3">
               <div class="col-md-2">
                 <div class="form-group mb-3">
                     <input type="hidden" name="engineID" id="thermometer_engineID" class="form-control form-control-sm">
@@ -66,6 +66,25 @@
                   </div>
                 </div>
               </div>
+              <div class="row mb-5 g-2">
+                <div class="col-md-6">
+                  <select class="form-group form-select form-select-sm text-center" name="scale" required>
+                    <option disabled>Select a scale</option>    
+                    <option value="fahrenheit">Fahrenheit (F&#176)</option>
+                    <option value="celcius">Celcius (C&#176)</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <input type="text" name="lowAlarm" class="form-control form-control-sm text-center" placeholder="Low Alarm" required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <input type="text" name="highAlarm" class="form-control form-control-sm text-center" placeholder="High Alarm" required>
+                  </div>
+                </div>
+              </div>
             </div>
 
           <div class="paste-new-thermometer"></div>
@@ -116,7 +135,7 @@
                         <label for="unitPosition"><small>Position</small></label>
                         <input title="Where is the Storage & handling unit located?" type="text" name="unitPosition" class="form-control form-control-sm" required>
                     </div>
-                    <div class="row g-2">
+                    <div class="row g-2 mb-4">
                       <div class="col">
                         <div class="form-group">
                           <label for="unitType"><small>Type</small></label>
@@ -214,7 +233,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group mb-4">
             <input type="text" name="unit_name" id="unit_name" class="form-control form-control-sm" placeholder="Name" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="focus" data-bs-content="Brand & Model" required>
           </div>
 
@@ -349,7 +368,7 @@
             <input type="text" name="therm_name" id="therm_name" class="form-control form-control-sm" placeholder="Name/Brand/Model" required>
           </div>
 
-          <div class="row g-2 mb-3">
+          <div class="row g-2">
             <div class="col">
               <div class="form-group mb-2">
                 <input type="text" name="therm_serial" id="therm_serial" class="form-control form-control-sm" placeholder="Serial Number" required>
@@ -358,6 +377,26 @@
             <div class="col">
               <div class="form-group mb-2">
                 <input type="date" name="therm_expiration" id="therm_expiration" class="form-control form-control-sm" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4 g-2">
+            <div class="col-md-6">
+              <select class="form-group form-select form-select-sm" name="therm_scale" id="therm_scale" required>
+                <option disabled>Select a scale</option>    
+                <option value="fahrenheit">Fahrenheit (F&#176)</option>
+                <option value="celcius">Celcius (C&#176)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="text" name="therm_lowAlarm" id="therm_lowAlarm" class="form-control form-control-sm" placeholder="Low Alarm" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="text" name="therm_highAlarm" id="therm_highAlarm" class="form-control form-control-sm" placeholder="High Alarm" required>
               </div>
             </div>
           </div>

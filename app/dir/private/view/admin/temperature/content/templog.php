@@ -30,13 +30,13 @@
               <select class="form-select form-select-sm" name="refrigerator">
                 <option disabled selected>Select Unit</option>
                 <?php
-                $ref = htmlspecialchars("Refrigerator");
+                $ref = mysqli_real_escape_string($con, "Refrigerator");
                 $sql = "SELECT * FROM storage WHERE groupID='$groupID' AND type='$ref' ";
                 $sql_run = mysqli_query($con, $sql);
                 $refrigerator = mysqli_num_rows($sql_run);
                 while ($refrigerator = mysqli_fetch_array($sql_run))
                 {
-                  echo "<option value='". htmlspecialchars(decryptthis($refrigerator['name'], $key)) ."'>" .htmlspecialchars(decryptthis($refrigerator['name'], $key)) ."</option>" ;
+                  echo "<option value='". htmlspecialchars($refrigerator['id']) ."'>" .htmlspecialchars(decryptthis($refrigerator['name'], $key)) ."</option>" ;
                 }
                 ?>
               </select>
@@ -44,8 +44,9 @@
           </div>
           <!-- Initials/Current/Min/Max -->
           <div class="col-md-4">
+            
             <div class="input-group input-group-sm">
-              <input type="text" name="r_initials" class="form-control" placeholder="Initials" required>
+              <input type="text" name="r_initials" class="form-control" value="<?=$initials?>" placeholder="Initials" required>
               <input type="text" name="r_current" class="form-control" placeholder="Current" required>
               <input type="text" name="r_min" class="form-control" placeholder="Min" required>
               <input type="text" name="r_max" class="form-control" placeholder="Max" required>
@@ -85,7 +86,7 @@
                 $freezer = mysqli_num_rows($sql_run);
                 while ($freezer = mysqli_fetch_array($sql_run))
                 {
-                  echo "<option value='". htmlspecialchars(decryptthis($freezer['name'], $key)) ."'>" .htmlspecialchars(decryptthis($freezer['name'], $key)) ."</option>" ;
+                  echo "<option value='". htmlspecialchars($freezer['id']) ."'>" .htmlspecialchars(decryptthis($freezer['name'], $key)) ."</option>" ;
                 }
                 ?>
               </select>
@@ -94,7 +95,7 @@
           <!-- Initials/Current/Min/Max -->
           <div class="col-md-4">
             <div class="input-group input-group-sm">
-              <input type="text" name="f_initials" class="form-control" placeholder="Initials" required>
+              <input type="text" name="f_initials" class="form-control" value="<?=$initials?>" placeholder="Initials" required>
               <input type="text" name="f_current" class="form-control" placeholder="Current" required>
               <input type="text" name="f_min" class="form-control" placeholder="Min" required>
               <input type="text" name="f_max" class="form-control" placeholder="Max" required>

@@ -10,17 +10,9 @@
         <button title="Daily Temperature Log" style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="v-pills-log-tab" data-bs-toggle="pill" data-bs-target="#v-pills-log" type="button" role="tab" aria-controls="v-pills-log" aria-selected="false">
           Log
         </button>
-        <!-- Temp Log Print Logs -->
-        <button style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="v-pills-print-temp-log-tab" data-bs-toggle="pill" data-bs-target="#v-pills-print-temp-log" type="submit" role="tab" aria-controls="v-pills-print-temp-log" aria-selected="false" hidden>
-          Print Temp Log
-        </button>
-        <!-- Temp Log Print Trigger -->
-        <button title="Print Temperature Logs" style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="tempLogPrint" onClick="window.print()">
-          Print
-        </button>
-        <!-- Temp Log Save Trigger -->
-        <button title="Save Temperature Logs" style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="tempLogPrint" onClick="window.print()">
-          Save
+        <!-- Report Builder Trigger -->
+        <button title="Save or Print Temperature Reports" style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" data-bs-toggle="modal" data-bs-target="#reports">
+          Reports
         </button>
         <!-- Settings Trigger -->
         <button title="Settings" style="color:black; text-align: left" class="focus-ring py-1 px-2 btn btn-sm border rounded-0" id="v-pills-storage-handling-tab" data-bs-toggle="pill" data-bs-target="#v-pills-storage-handling" type="button" role="tab" aria-controls="v-pills-storage-handling" aria-selected="false">
